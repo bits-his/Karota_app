@@ -4,6 +4,7 @@ import InputForm from './Component/InputForm'
 import { _post } from '../Utils/Helper';
 import QRCode from 'qrcode.react';
 import { useNavigate } from 'react-router-dom';
+// import './style.css'
 
 export default function Registration() {
     const navigate = useNavigate()

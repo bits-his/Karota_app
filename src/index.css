@@ -162,7 +162,7 @@
 }
 .app_title {
   color: #000;
-  text-shadow: 3px 4px 5px #000000
+  /* text-shadow: 3px 4px 5px #000000 */
 }
 hr{
     border: 1px solid #f5c005;    

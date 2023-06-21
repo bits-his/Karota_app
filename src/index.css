@@ -24,7 +24,7 @@
 
 .app_card {
   border: none !important;
-  border-radius: 5px;
+  border-radius: 15px;
   border: 1px solid #f5c005 !important;
   max-height: 96vh;
   overflow: auto;
@@ -75,6 +75,9 @@
 .app_button {
   background-color: #f5c005;
   border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 12px;
   color: white;
 }
 .download_button {
@@ -85,7 +88,7 @@
 .app_input {
   border-radius: none !important;
   border: 1px solid #f5c005;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
   width: 100%;
   padding: 8px;
 }
@@ -99,12 +102,13 @@
   color: #000;
 }
 .app_input2 {
-  width: 90%;
-  padding: 3px 10px;
+  /* width: 90%; */
+  padding: 8px 10px;
   border: none !important;
   border-radius: 8px;
-  font-size: 20px;
+  /* font-size: 20px; */
   outline: none;
+  background-color: rgb(238, 238, 238)
 }
 .app_input3 {
   border-radius: none !important;
@@ -159,23 +163,15 @@
   outline: 1px #f5c005 solid;
   border: none;
 }
-.app_title {
-  color: #000;
-  margin-bottom: 20px;
-}
+
 hr{
     border: 1px solid #f5c005;    
 }
 
-.app_titleI {
-  margin-top: 20px;
-  background-color: #f5c005;
-  color: #fff;
-  /* padding: 6px 10px; */
-}
+
 label {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 12px;
+  /* font-weight: 600; */
   margin: 0 !important;
 }
 .label1 {
@@ -191,9 +187,9 @@ label {
 .sidebar {
   background-color: #f5c005;
   height: 100vh;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   margin: 0;
-  width: 250px;
+  /* width: 250px; */
 }
 
 .user_image{
@@ -208,7 +204,7 @@ label {
 
 .dashboard_card {
   margin-top: 20px;
-  padding: 30px;
+  /* padding: 30px; */
   min-height: 96vh !important;
   overflow-x: auto;
 }
@@ -231,27 +227,27 @@ label {
 .link_item{
     color: #fff;
     padding-top: 0px;
-    font-family: monospace;
-    font-size: 18px;
+    /* font-family: monospace; */
+    font-size: 15px;
     margin-top: 3px;
-    width: 258px;
+    /* width: 100%; */
     padding: 10px 30px;
     list-style: none;
     cursor: pointer;
 }
 
 .active_side_menu {
-  background-color: hsl(47, 95%, 34%);
-  border-right: 5px solid white;
+  background-color: hsl(0, 0%, 0%);
+  /* border-right: 5px solid white; */
 }
 
-.active_side_menu:hover {
+/* .active_side_menu:hover {
   background-color: #eaeef0;
   color: var(--primaryColor2);
-}
+} */
 
 .link_item:hover, .link_item1:hover {
-  background-color: #a88504;
+  background-color: #000000;
   color: #fff;
   cursor: pointer;
 }
@@ -332,7 +328,7 @@ label {
   /* height: 97.9vh; */
   /* width: 100vw; */
   margin: 0;
-  font-family: Footlight MT Light;
+  /* font-family: Footlight MT Light; */
   display: grid;
   place-items: center;
   place-content: center;
@@ -457,7 +453,7 @@ label {
 .link_item1{
   color: #fff;
   padding-top: 0px;
-  font-family: monospace;
+  /* font-family: monospace; */
   font-size: 18px;
   margin-top: 3px;
   width: 238px;
@@ -505,7 +501,7 @@ label {
 }
 
 #customers {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  /* font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; */
   border-collapse: collapse;
 }
 .table_overflow {
@@ -555,4 +551,26 @@ td{
 }
 td:hover{
   background-color: transparent;
+}
+
+.back_icon{
+  background-color: rgb(221, 221, 221);
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.user_data_div{
+  background-color: rgb(238, 238, 238);
+  padding: 10px;
+  border-radius: 20px;
+  width: fit-content;
+}
+.user_data_l{
+  font-size: 13px;
+  color: #f5c005;
+}
+.user_data_s{
+  color: black;
+  font-size: 18px;
+  /* font-weight: bold; */
 }

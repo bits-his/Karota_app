@@ -7,8 +7,8 @@ import DashBoard from '../Component/DashBoard'
 import Incident from '../Component/Incident'
 import Payment from '../Component/Payment'
 import MakePayment from '../Component/MakePayment'
-import VarifyPaymentWithID from '../Component/VarifyPaymentWithID'
-import VarifyPaymentWithQR from '../Component/VarifyPaymentWithQR'
+import VerifyPaymentWithID from '../Component/VerifyPaymentWithID'
+import VerifyPaymentWithQR from '../Component/VerifyPaymentWithQR'
 
 export default function AppNavigation() {
   let Pages = useRoutes([
@@ -40,12 +40,12 @@ export default function AppNavigation() {
             element: <MakePayment />
           },
           {
-            path: '/varify-payment-with-id',
-            element: <VarifyPaymentWithID />
+            path: '/verify-payment-with-id',
+            element: <VerifyPaymentWithID />
           },
           {
-            path: '/varify-payment-with-qr',
-            element: <VarifyPaymentWithQR />
+            path: '/verify-payment-with-qr',
+            element: <VerifyPaymentWithQR />
           }
         ]
        }

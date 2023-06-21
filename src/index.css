@@ -237,7 +237,7 @@ label {
 }
 
 .active_side_menu {
-  background-color: hsl(0, 0%, 0%);
+  /* background-color: hsl(0, 0%, 0%); */
   /* border-right: 5px solid white; */
 }
 
@@ -246,11 +246,11 @@ label {
   color: var(--primaryColor2);
 } */
 
-.link_item:hover, .link_item1:hover {
+/* .link_item:hover, .link_item1:hover {
   background-color: #000000;
   color: #fff;
   cursor: pointer;
-}
+} */
 .active {
   background-color: #f5c005;
   color: #fff;

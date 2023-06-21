@@ -12,11 +12,8 @@ export default function SideBar() {
     setShowSubMenu((p) => !p)
   }
   return (
-    <div className="">
+    <div className="sidebar">
       <div>
-        {/* <center>
-          <div className="user_image"></div>
-        </center> */}
         <h4 className="mt-4 app_title">Karota App</h4>
       </div>
       <div className="link" activeclassName="active">

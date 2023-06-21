@@ -20,7 +20,7 @@ export default function Payment() {
         <Card className="app_card dashboard_card m-0 p-0">
             <Col md={12}>
                 <center>
-                    <h4 className="app_title" style={{fontFamily: 'monospace', fontWeight: 'bold'}}>INCIDENT </h4>
+                    <h4 className="app_title" style={{fontFamily: 'monospace', fontWeight: 'bold'}}>Payment </h4>
                 </center>
             </Col>
             <Row className='p-0 m-0'>
@@ -28,7 +28,7 @@ export default function Payment() {
                     <Col md={6}>
                         <InputForm 
                             id="exampleSelect"
-                            label="Name"
+                            label=" Unique Number"
                             className="app_input"
                             value={form.unique_number}
                             name="unique_number"

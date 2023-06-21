@@ -5,7 +5,7 @@ export default function InputForm(props) {
   return (
     <div style={{display: "flex", flexDirection: 'column'}}>
         {props.label&&
-        <Label className='Label mt-2'> 
+        <Label className='Label mt-2' style={{fontWeight: 'lighter'}}> 
         {props.label} {props.required&&<span className='text-danger'>*</span>}</Label>}
         <input {...props} className= "app_input"/>
     </div>

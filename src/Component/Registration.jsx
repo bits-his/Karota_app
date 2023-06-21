@@ -4,6 +4,7 @@ import InputForm from './Component/InputForm'
 import { _post } from '../Utils/Helper';
 import QRCode from 'qrcode.react';
 import { useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa'
 // import './style.css'
 
 export default function Registration() {
@@ -125,7 +126,7 @@ export default function Registration() {
 
   return (
     <div>
-        <button 
+        {/* <button 
             className="app_button"
             style={{ 
                 width: 150 ,
@@ -137,8 +138,26 @@ export default function Registration() {
             onClick={() => navigate ("/registration")}
         >
             {`<`} Back
-        </button>
+        </button> */}
         <Card className="app_card dashboard_card m-0 p-0">
+            <Row>
+                <Col md={12} style={{display: 'flex', width: '100%',textAlign: 'center', marginBottom: 30}}>
+                    <button
+                        className="app_button"
+                        style={{ 
+                            width: 150 ,
+                            padding: 10,
+                            marginLeft: 0,
+                            marginTop: 10,
+                            color: '#000'
+                        }} 
+                        onClick={() => navigate ("/registration")}
+                    >
+                        <FaArrowLeft style={{marginRight: 10}} /> Back
+                    </button>
+                    <h5 className="app_title" style={{fontSize: 20, width: '75%', fontFamily: 'monospace', fontWeight: 'bold'}}>Create New Country</h5>
+            </Col>
+            </Row>
             <Row className='p-0 m-0'>
                 <Col md={12}>
                     <Col md={4}>

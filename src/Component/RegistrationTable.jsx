@@ -394,7 +394,8 @@ export default function RegistrationTable() {
                                 <td
                                     style={{
                                         padding: "5px 10px",
-                                        border: '1px solid #f5c005'
+                                        border: '1px solid #f5c005',
+                                        width: 200
                                     }}
                                 >
                                     {i.address}

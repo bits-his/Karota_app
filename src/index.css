@@ -26,6 +26,8 @@
   border: none !important;
   border-radius: 5px;
   border: 1px solid #f5c005 !important;
+  max-height: 96vh;
+  overflow: auto;
 }
 .dd {
   width: 100% !important;
@@ -71,11 +73,9 @@
   cursor: pointer;
 }
 .app_button {
-  /* background-color: rgb(250, 128, 114); */
   background-color: #f5c005;
   border: none;
   color: white;
-  /* font-weight: bold; */
 }
 .download_button {
   border: none;
@@ -154,7 +154,6 @@
   border-bottom-left-radius: 5px;
   text-align: center;
   margin-top: -18px;
-  /* height: 70px; */
 }
 .app_input:focus {
   outline: 1px #f5c005 solid;
@@ -162,7 +161,7 @@
 }
 .app_title {
   color: #000;
-  /* text-shadow: 3px 4px 5px #000000 */
+  margin-bottom: 20px;
 }
 hr{
     border: 1px solid #f5c005;    
@@ -207,35 +206,11 @@ label {
 			0 10px 10px rgba(49, 48, 48, 0.22);
 }
 
-/* width */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  width: 8px;
-  background: #f1f1f1;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #4e3e03;
-  width: 8px;
-  border-radius: 8px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #6b5504;
-  width: 8px;
-  border-radius: 8px;
-}
-
 .dashboard_card {
   margin-top: 20px;
   padding: 30px;
-  min-height: 90vh !important;
+  min-height: 96vh !important;
+  overflow-x: auto;
 }
 .card_div {
   border: 1px solid #f5c005;
@@ -246,7 +221,6 @@ label {
   overflow-y: auto;
 }
 .link {
-  margin-top: 20px;
   width: 111%;
   margin-left: -25px;
 }
@@ -258,8 +232,8 @@ label {
     color: #fff;
     padding-top: 0px;
     font-family: monospace;
-    font-size: 20px;
-    margin-top: 30px;
+    font-size: 18px;
+    margin-top: 3px;
     width: 258px;
     padding: 10px 30px;
     list-style: none;
@@ -267,9 +241,7 @@ label {
 }
 
 .active_side_menu {
-  background-color: #a88504;
-
-  /* color: #f5c005; */
+  background-color: hsl(47, 95%, 34%);
   border-right: 5px solid white;
 }
 
@@ -278,25 +250,22 @@ label {
   color: var(--primaryColor2);
 }
 
-.link_item:hover {
+.link_item:hover, .link_item1:hover {
   background-color: #a88504;
   color: #fff;
   cursor: pointer;
 }
 .active {
   background-color: #f5c005;
-  /* background-color: #b30000; */
   color: #fff;
 }
 .icon {
-    font-size: 25px;
+    font-size: 22px;
     margin-bottom: -6px;
     margin-right: 10px;
 }
 .grp_btn {
-  /* width: fit-content; */
   display: flex;
-  /* justify-content: flex-end; */
 }
 .checkout_btn {
   background-color: rgba(255, 166, 0, 0.627);
@@ -485,6 +454,17 @@ label {
 .sub_menu {
   margin-left: 20px;
 }
+.link_item1{
+  color: #fff;
+  padding-top: 0px;
+  font-family: monospace;
+  font-size: 18px;
+  margin-top: 3px;
+  width: 238px;
+  padding: 10px 30px;
+  list-style: none;
+  cursor: pointer;
+}
 .sub_menu > li {
   font-size: 12px;
 }
@@ -532,28 +512,6 @@ label {
   overflow-x: auto;
   width: 100%;
   margin-bottom: 50px;
-}
-/* width */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  /* box-shadow: inset 0 0 5px grey; */
-  /* border-radius: 10px; */
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #f5c005;
-  /* border-radius: 10px; */
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #f5c005; 
-  /* width: 400%; */
 }
 
 #customers td,

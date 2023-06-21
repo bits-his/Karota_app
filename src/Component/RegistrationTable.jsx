@@ -44,10 +44,10 @@ export default function RegistrationTable() {
   return (
     <Card className="app_card dashboard_card shadow p-3 mt-2">
       <Row className="m-0">
-        <Col md={6}>
+        <Col md={6} sm={6} xs={6}>
           <h4 className="app_title"> Registered Rides</h4>
         </Col>
-        <Col md={6}>
+        <Col md={6} sm={6} xs={6}>
           <button
             className="app_button"
             onClick={() => navigate('/registration-form')}

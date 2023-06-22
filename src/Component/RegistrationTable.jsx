@@ -68,6 +68,7 @@ export default function RegistrationTable() {
       <div className="table_overflow">
         <table className="mt-5">
           <thead>
+            <th>Unique Id</th>
             <th>First Name</th>
             <th>Middle Name</th>
             <th>Surename</th>
@@ -95,6 +96,7 @@ export default function RegistrationTable() {
           </thead>
           {search?.map((i) => (
             <tbody>
+              <td>{i.vehicle_id}</td>
               <td>{i.name}</td>
               <td>{i.middle_name}</td>
               <td>{i.surname}</td>
@@ -119,7 +121,7 @@ export default function RegistrationTable() {
               <td>{i.phone_no3}</td>
               <td>{i.name_of_company}</td>
               <td>
-                <QRCode value={i.qrcode} renderAs="canvas" />
+                <QRCode style={{width: 50, height: 50 }} value={i.qrcode} renderAs="canvas" />
               </td>
             </tbody>
           ))}

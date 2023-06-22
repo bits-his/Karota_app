@@ -1,18 +1,21 @@
 import React, { useState } from 'react'
 import { Card, Col, Row } from 'reactstrap'
 import InputForm from './Component/InputForm'
-import { _post } from '../Utils/Helper'
+import useQuery, { _post } from '../Utils/Helper'
 import { MdOutlineArrowBackIos } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 
 export default function MakePayment() {
+  const query = useQuery();
+  const vehicle_id = query.get('vehicle_id')
   const [form, setForm] = useState({
-    unique_number: '',
-    Amount: '',
+    unique_number: vehicle_id,
+    Amount: '2000',
     card_number: '',
     CVV_number: '',
     expiring_date: '',
   })
+  const agent_name = query.get("agent_name");
 
   const handleChange = ({ target: { name, value } }) => {
     setForm((p) => ({ ...p, [name]: value }))
@@ -43,6 +46,7 @@ export default function MakePayment() {
               value={form.unique_number}
               name="unique_number"
               onChange={handleChange}
+              disabled
             />
           </Col>
           <Col md={6}>
@@ -53,6 +57,7 @@ export default function MakePayment() {
               value={form.Amount}
               name="Amount"
               onChange={handleChange}
+              disabled
             />
           </Col>
 

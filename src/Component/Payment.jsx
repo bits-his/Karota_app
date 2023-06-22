@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card, Col, Row } from 'reactstrap'
-import InputForm from './Component/InputForm'
-import { _post } from '../Utils/Helper'
+import { _get } from '../Utils/Helper'
 import { useNavigate } from 'react-router-dom'
 import { MdOutlineArrowBackIos } from 'react-icons/md'
 import { RiUser4Line } from 'react-icons/ri'
@@ -9,13 +8,33 @@ import { RiUser4Line } from 'react-icons/ri'
 export default function Payment() {
   const navigate = useNavigate()
   const [form, setForm] = useState({
-    unique_number: '',
+    vehicle_id: '',
   })
+  const [data, setData] =useState([])
 
   const handleChange = ({ target: { name, value } }) => {
     setForm((p) => ({ ...p, [name]: value }))
     console.log(form)
   }
+
+   const handleSubmit = () => {
+    // alert('click')
+    _get(
+      `api/getCreate_user?query_type=select-one&vehicle_id=${form.vehicle_id}`,
+      (res) => {
+        // alert('sucessful');
+        setData([res.results[0]])
+      },
+      (err) => {
+        setLoading(false)
+        console.log(err)
+      },
+    )
+  }
+  
+  useEffect(() => {
+    // getState()
+  }, [])
 
   return (
     <div>
@@ -37,12 +56,15 @@ export default function Payment() {
             <input
               id="exampleSelect"
               className="app_input"
-              value={form.unique_number}
-              name="unique_number"
+              value={form.vehicle_id}
+              name="vehicle_id"
               onChange={handleChange}
               style={{ width: '100%', marginRight: 10 }}
             />
-            <button className="app_button">GO</button>
+            <button 
+                className="app_button"
+                onClick={()=>handleSubmit()}
+            >GO</button>
           </div>
         </div>
         <Row>
@@ -57,23 +79,28 @@ export default function Payment() {
           </Col>
         </Row>
         <div className="user_data_div mt-3">
-          <p className="user_data_l">
-            Full Name: <span className="user_data_s">fadfasfsfas</span>
-          </p>
-          <p className="user_data_l">
-            Plate Number: <span className="user_data_s">fadfasfsfas</span>
-          </p>
-          <p className="user_data_l">
-            Chassis Number: <span className="user_data_s">fadfasfsfas</span>
-          </p>
-          <p className="user_data_l">
-            NIN: <span className="user_data_s">fadfasfsfas</span>
-          </p>
+            {data?.map((idx) => (
+            <>
+                <p className="user_data_l">
+                    Full Name: <span className="user_data_s">{idx.name} {idx.middle_name} {idx.surname}</span>
+                </p>
+                <p className="user_data_l">
+                    Plate Number: <span className="user_data_s">{idx.plate_number}</span>
+                </p>
+                <p className="user_data_l">
+                    Chassis Number: <span className="user_data_s">{idx.classes_number}</span>
+                </p>
+                <p className="user_data_l">
+                    NIN: <span className="user_data_s">{idx.NIN_number}</span>
+                </p>
+            </>
+                ))
+            }
         </div>
         <div>
           <button
             className="app_button mt-3"
-            onClick={() => navigate('/make-payment')}
+            onClick={() => {navigate(`/make-payment?vehicle_id=${form.vehicle_id}`)}}
           >
             Make Payment
           </button>

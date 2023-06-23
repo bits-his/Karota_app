@@ -10,7 +10,7 @@ export default function AppIndex() {
         <Col md={2} className="m-0 sidebar">
           <SideBar />
         </Col>
-        <Col md={10}>
+        <Col md={10} className='backgroung_image'>
           <Col md={12} className="p-0 m-0">
             <Outlet />
           </Col>

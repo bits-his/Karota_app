@@ -9,6 +9,8 @@ import Payment from '../Component/Payment'
 import MakePayment from '../Component/MakePayment'
 import VerifyPaymentWithID from '../Component/VerifyPaymentWithID'
 import VerifyPaymentWithQR from '../Component/VerifyPaymentWithQR'
+import PaymentTable from '../Component/PaymentTable'
+import IncidentTable from '../Component/IncidentTable'
 
 export default function AppNavigation() {
   let Pages = useRoutes([
@@ -29,10 +31,18 @@ export default function AppNavigation() {
           },
           {
             path: '/incident',
+            element: <IncidentTable />
+          },
+          {
+            path: '/incident-form',
             element: <Incident />
           },
           {
             path: '/payment',
+            element: <PaymentTable />
+          },
+          {
+            path: '/payment-form',
             element: <Payment />
           },
           {

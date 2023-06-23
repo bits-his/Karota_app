@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { GiArchiveRegister } from 'react-icons/gi'
-import { MdDashboard } from 'react-icons/md'
-import { TiArrowSortedDown, TiArrowSortedUp } from 'react-icons/ti'
+import img from '../Images/klogo.jpg'
 
 export default function SideBar() {
   const goto = useNavigate()
@@ -13,7 +11,14 @@ export default function SideBar() {
   }
   return (
     <div className="sidebar">
-      <div>
+      <div style={{textAlign: 'center', marginBottom: 20}}>
+        <div className='karota_barge'>
+          <img 
+            className='karota_barge'
+            src={img}
+            alt='Karota Logo'
+          />
+        </div>
         <h4 className="mt-4 app_title">Karota App</h4>
       </div>
       <div className="link" activeclassName="active">
@@ -86,14 +91,14 @@ export default function SideBar() {
           ''
         )} */}
 
-        {/* <li
+        <li
           onClick={() => goto('/incident')}
           className={`link_item ${
             location.pathname === '/incident' && 'active_side_menu'
           }`}
         >
           Incident
-        </li> */}
+        </li>
         <li
           onClick={() => goto('/payment')}
           className={`link_item ${

@@ -9,11 +9,11 @@ export default function MakePayment() {
   const query = useQuery();
   const vehicle_id = query.get('vehicle_id')
   const [form, setForm] = useState({
-    unique_number: vehicle_id,
-    Amount: '2000',
+    vehicle_id: vehicle_id,
+    amount: '2000',
     card_number: '',
-    CVV_number: '',
-    expiring_date: '',
+    cvv: '',
+    expiry_date: '',
   })
   const agent_name = query.get("agent_name");
 
@@ -22,6 +22,29 @@ export default function MakePayment() {
     console.log(form)
   }
   const navigate = useNavigate()
+
+
+  const handleSubmit = () => {
+    _post(
+      `api/payments?query_type=create`,
+      form,
+      (res) => {
+        alert('sucessful')
+        console.log(form)
+        // setForm({
+        //     vehicle_id: '',
+        //     amount: '',
+        //     card_number: '',
+        //     cvv: '',
+        //     expiry_date: ''
+        // })
+      },
+      (err) => {
+        setLoading(false)
+        console.log(err)
+      },
+    )
+  }
 
   return (
     <div>
@@ -43,8 +66,8 @@ export default function MakePayment() {
               id="exampleSelect"
               label="Unique Number"
               className="app_input"
-              value={form.unique_number}
-              name="unique_number"
+              value={form.vehicle_id}
+              name="vehicle_id"
               onChange={handleChange}
               disabled
             />
@@ -54,8 +77,8 @@ export default function MakePayment() {
               id="exampleSelect"
               label="Amount"
               className="app_input"
-              value={form.Amount}
-              name="Amount"
+              value={form.amount}
+              name="amount"
               onChange={handleChange}
               disabled
             />
@@ -63,9 +86,9 @@ export default function MakePayment() {
 
           <Col md={6}>
             <InputForm
+              className="app_input"
               id="exampleSelect"
               label="Card Number"
-              className="app_input"
               value={form.card_number}
               name="card_number"
               onChange={handleChange}
@@ -76,8 +99,8 @@ export default function MakePayment() {
               id="exampleSelect"
               label="CVV Number"
               className="app_input"
-              value={form.CVV_number}
-              name="CVV_number"
+              value={form.cvv}
+              name="cvv"
               onChange={handleChange}
             />
           </Col>
@@ -87,14 +110,21 @@ export default function MakePayment() {
               id="exampleSelect"
               label="Card Expiring Date"
               className="app_input"
-              value={form.expiring_date}
-              name="expiring_date"
+              value={form.expiry_date}
+              name="expiry_date"
               onChange={handleChange}
+              type='date'
             />
           </Col>
         </Row>
         <div className="mt-3">
-          <button className="app_button">Pay</button>
+          <button 
+            className="app_button"
+            onClick={() => {
+              handleSubmit();
+              navigate('/payment')
+            }}
+        >Pay</button>
         </div>
       </Card>
     </div>

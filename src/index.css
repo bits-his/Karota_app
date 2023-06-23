@@ -1,3 +1,11 @@
+.backgroung_image{
+  background:linear-gradient(135deg, rgba(0,0,0,.6), rgba(0,0,0,.6)),
+  url(./Images/download.jpg);
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
 .status_button {
   border: none;
   border-radius: 0;
@@ -189,7 +197,7 @@ label {
   height: 100vh;
   /* overflow-y: auto; */
   margin: 0;
-  /* width: 250px; */
+  /* width: px; */
 }
 
 .user_image{
@@ -203,10 +211,12 @@ label {
 }
 
 .dashboard_card {
+  /* background-color: transparent; */
   margin-top: 20px;
   /* padding: 30px; */
   min-height: 96vh !important;
   overflow-x: auto;
+  opacity: 0.85;
 }
 .card_div {
   border: 1px solid #f5c005;
@@ -225,32 +235,29 @@ label {
 }
 
 .link_item{
-    color: #fff;
+    color: #000;
     padding-top: 0px;
+    font-weight: 500;
     /* font-family: monospace; */
-    font-size: 15px;
+    font-size: 18px;
     margin-top: 3px;
-    /* width: 100%; */
+    width: 100%;
     padding: 10px 30px;
     list-style: none;
     cursor: pointer;
 }
 
 .active_side_menu {
-  background-color: hsl(0, 0%, 0%);
+  background-color: #bd9504;
   border-right: 5px solid white;
+  width: 100%;
 }
 
-.active_side_menu:hover {
-  background-color: #eaeef0;
-  color: var(--primaryColor2);
+.link_item:hover {
+  background-color: #bd9504;
+  color: #000;
 }
 
-/* .link_item:hover, .link_item1:hover {
-  background-color: #000000;
-  color: #fff;
-  cursor: pointer;
-} */
 .active {
   background-color: #f5c005;
   color: #fff;
@@ -583,4 +590,91 @@ td:hover{
   color: black;
   font-size: 16px;
   font-weight: lighter;
+}
+
+.karota_barge{
+  margin: auto;
+  width: 130px;
+  height: 130px;
+  margin-top: 20px;
+  border-radius: 100px;
+  /* background-color: #b3b3b3; */
+}
+
+/* dashboard */
+
+.tittle_dash {
+  box-sizing: border-box;
+  width: 94%;
+  height: 130px;
+  background: rgba(217, 217, 217, 0.58);
+  border: 1px solid white;
+  box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+  border-radius: 17px;
+  /* text-align: center; */
+  cursor: pointer;
+  transition: all 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* user-select: none; */
+  font-weight: bolder;
+  color: black;
+}
+
+.tittle_dash:hover {
+  border: 1px solid black;
+  transform: scale(1.05);
+}
+
+.tittle_dash:active {
+  transform: scale(0.95) rotateZ(1.7deg);
+}
+
+/* .tittle_dash {
+  background-color: whitesmoke;
+  width: 94%;
+  height: 130px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 7px 0px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+} */
+
+.para_tittle_dash {
+  font-size: 19px;
+  font-weight: 500;
+  color: #353434;
+}
+
+.number {
+  font-size: 20px;
+  margin-top: -13px;
+  font-weight: 600;
+  font-family: monospace;
+}
+
+.icon_dash {
+  margin-top: 6px;
+  /* margin-right: 10px; */
+  margin-left: 30px;
+  font-size: 30px;
+  color: #000;
+  background-color: #b99205;
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+}
+
+.tittle_dash:hover .icon_dash {
+  background-color: #f5c005;
+}
+
+.para_data {
+  margin-top: 20px;
+  font-size: 20px;
 }

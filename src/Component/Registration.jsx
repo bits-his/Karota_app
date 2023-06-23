@@ -222,9 +222,9 @@ export default function Registration() {
               onChange={handleChange}
             >
               <option>Select</option>
-              {data.map((i) => (
+              {/* {data.map((i) => (
                 <option value={i.state}>{i.state}</option>
-              ))}
+              ))} */}
             </select>
           </Col>
           <Col md={4}>
@@ -430,10 +430,10 @@ export default function Registration() {
           </Col>
         </Row>
         <div>
-          {/* <Col md={4}>
-            <QRCode value={qrCodeGenerator} renderAs="canvas" />
-          </Col> */}
-          <button className="app_button mt-3" onClick={handleSubmit}>
+          <button className="app_button mt-3" onClick={() => {
+            handleSubmit();
+            navigate('/registration')
+          }}>
             Submit
           </button>
         </div>

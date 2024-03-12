@@ -94,6 +94,24 @@ export default function SuperAgent() {
               </Form.Control.Feedback>
             </Form.Group>
           </Col>
+          <Col md={6}>
+            <CustomInput
+              label="Email"
+              onChange={handleChange}
+              type="email"
+              name="super_email"
+              value={form.super_email}
+            />
+          </Col>
+          <Col md={6}>
+            <CustomInput
+              label="Contact address"
+              onChange={handleChange}
+              type="tel"
+              name="super_address"
+              value={form.super_address}
+            />
+          </Col>
           <Col md={6} className="mb-1">
             <Form.Group controlId="lgaSelect">
               <Form.Label>L.G.A</Form.Label>

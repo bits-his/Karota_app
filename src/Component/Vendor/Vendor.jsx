@@ -33,8 +33,11 @@ export default function RegistrationTable() {
                     
                     <hr />
                 </Col>
-                <Col md={6}>
-                    
+                <Col md={6} sm={12}>
+                    prototype
+                </Col>
+                <Col lg={6} md={6} sm={12}>
+                    prototype
                 </Col>
             </Row>
         </Card>

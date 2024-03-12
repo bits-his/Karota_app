@@ -10,10 +10,10 @@ export default function AppIndex() {
             <Col md={2} className="m-0 sidebar">
                 <SideBar />
             </Col>
-            <Col md={10}>
-                <Col md={12} className="p-0 m-0" style={{position: 'absolute', marginRight: 'auto'}}>
+            <Col md={10} sm={12}>
+                <div className="p-0 m-0" style={{marginRight: 'auto', width: '100%'}}>
                     <Outlet />
-                </Col>
+                </div>
             </Col>
         </Row>
     </div>

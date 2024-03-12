@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { Card, Col, Row } from 'reactstrap'
+import { Card, Col, Row, Form, FormGroup, Label, Input } from 'reactstrap'
 
 export default function RegistrationTable() {
     const navigate = useNavigate()
@@ -33,12 +33,144 @@ export default function RegistrationTable() {
                     
                     <hr />
                 </Col>
-                <Col md={6} sm={12}>
-                    prototype
-                </Col>
-                <Col lg={6} md={6} sm={12}>
-                    prototype
-                </Col>
+                <Form>
+                    <Row className="p-4">
+                        <Col md={6}>
+                            <FormGroup>
+                                <Label for="vendorName">
+                                Vendor's name
+                                </Label>
+                                <Input
+                                id="vendorName"
+                                name="vendorName"
+                                placeholder="Vendor's name"
+                                type="text"
+                                />
+                            </FormGroup>
+                        </Col>
+                        <Col md={6}>
+                            <FormGroup>
+                                <Label for="orgPhone">
+                                Organization's phone
+                                </Label>
+                                <Input
+                                id="orgPhone"
+                                name="orgPhone"
+                                placeholder="+234-8100000000"
+                                type="tel"
+                                />
+                            </FormGroup>
+                        </Col>
+                    </Row>
+                    <Row className="p-4">
+                        <Col md={6}>
+                            <FormGroup>
+                                <Label for="officeAddress">
+                                Office Address
+                                </Label>
+                                <Input
+                                id="officeAddress"
+                                name="officeAddress"
+                                type="text"
+                                />
+                            </FormGroup>
+                        </Col>
+                        <Col md={6}>
+                            <FormGroup>
+                                <Label for="orgEmail">
+                                Organization's email
+                                </Label>
+                                <Input
+                                id="orgEmailexample"
+                                name="orgEmail"
+                                placeholder="organization@fake.com"
+                                type="email"
+                                />
+                            </FormGroup>
+                        </Col>
+                    </Row>
+                    <Row className="p-4">
+                        <Col md={6}>
+                            <FormGroup>
+                                <Label for="state">
+                                State
+                                </Label>
+                                <Input
+                                id="state"
+                                name="state"
+                                type="select"
+                                >
+                                    <option>
+                                        --select state--
+                                    </option>
+                                    <option>
+                                        State and capital
+                                    </option>
+                                </Input>
+                            </FormGroup>
+                        </Col>
+                        <Col md={6}>
+                            <FormGroup>
+                                <Label for="tin">
+                                Tin
+                                </Label>
+                                <Input
+                                id="tin"
+                                name="tin"
+                                type="number"
+                                />
+                            </FormGroup>
+                        </Col>
+                    </Row>
+                    <Row className="p-4">
+                        <Col md={6}>
+                            <FormGroup>
+                                <Label for="lga">
+                                LGA
+                                </Label>
+                                <Input
+                                id="lga"
+                                name="lga"
+                                type="select"
+                                >
+                                    <option>
+                                        --select LGA--
+                                    </option>
+                                    <option>
+                                        osapolo
+                                    </option>
+                                </Input>
+                            </FormGroup>
+                        </Col>
+                        <Col md={6}>
+                            <FormGroup>
+                                <Label for="bn/rc">
+                                BN/RC
+                                </Label>
+                                <Input
+                                id="bn/rc"
+                                name="bn/rc"
+                                type="text"
+                                />
+                            </FormGroup>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={6}>
+                            <FormGroup>
+                                <Label for="examplePassword">
+                                Password
+                                </Label>
+                                <Input
+                                id="examplePassword"
+                                name="password"
+                                placeholder="password placeholder"
+                                type="password"
+                                />
+                            </FormGroup>
+                        </Col>
+                    </Row>
+                </Form>
             </Row>
         </Card>
     )

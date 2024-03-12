@@ -5,7 +5,7 @@ import { GiArchiveRegister } from "react-icons/gi";
 export default function SideBar() {
   const goto = useNavigate()
   return (
-    <div style={{}}>
+    <>
       <div>
         <center>
           <div className="user_image"></div>
@@ -43,6 +43,6 @@ export default function SideBar() {
           Vendor Reg.
         </li>
       </div>
-    </div>
+    </>
   );
 }

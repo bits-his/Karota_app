@@ -7,7 +7,7 @@ export default function AppIndex() {
   return (
     <div >
         <Row className="m-0 p-0" style={{padding: 0, margin: 0, display: 'flex', flexDirection: 'row'}}>
-            <Col md={2} className="m-0 sidebar">
+            <Col md={2} sm={0} className="m-0 sidebar">
                 <SideBar />
             </Col>
             <Col md={10} sm={12}>

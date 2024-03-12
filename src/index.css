@@ -247,7 +247,7 @@ label {
 }
 .link {
   margin-top: 20px;
-  width: 111%;
+  width: 100%;
   margin-left: -25px;
 }
 .table-div {
@@ -260,7 +260,7 @@ label {
     font-family: monospace;
     font-size: 20px;
     margin-bottom: 10px;
-    width: 258px;
+    width: 100%;
     padding: 10px 30px;
     list-style: none;
     cursor: pointer;
@@ -268,8 +268,7 @@ label {
 
 .active_side_menu {
   background-color: #a88504;
-
-  /* color: #f5c005; */
+  width: 100%;
   border-right: 5px solid white;
 }
 

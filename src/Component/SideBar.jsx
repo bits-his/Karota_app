@@ -5,7 +5,7 @@ import { GiArchiveRegister } from "react-icons/gi";
 export default function SideBar() {
   const goto = useNavigate()
   return (
-    <div className="">
+    <div style={{}}>
       <div>
         <center>
           <div className='user_image'>
@@ -13,7 +13,7 @@ export default function SideBar() {
           </div>
         </center>
         <h4 className="mt-4 app_title" style={{ fontSize: "26px", textAlign: 'center', color: 'black', marginBottom: 40,}}>
-            Karota App
+            Keke App
         </h4>  
       </div>
       <div className="link" activeclassName="active">

@@ -33,7 +33,9 @@ export default function RegistrationTable() {
                     
                     <hr />
                 </Col>
-                
+                <Col md={6}>
+                    
+                </Col>
             </Row>
         </Card>
     )

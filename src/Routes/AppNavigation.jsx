@@ -3,8 +3,9 @@ import { useRoutes } from "react-router-dom";
 import AppIndex from "./AppIndex";
 import Registration from "../Component/Registration";
 import RegistrationTable from "../Component/RegistrationTable";
-import Vendor from "../Component/Vendor/Vendor";
-import SuperAgent from "../Component/SuperAgent/SuperAgent";
+import Register from "../Component/Register";
+import SignUp from "../Component/SignIn/signUp/Login";
+import Login from "../Component/SignIn/signUp/Login";
 
 export default function AppNavigation() {
   let Pages = useRoutes([
@@ -15,7 +16,7 @@ export default function AppNavigation() {
     // {
     //   path: '/login',
     //   element: <Register />
-    // }
+    // },
     {
       element: <AppIndex />,
       children: [
@@ -24,16 +25,12 @@ export default function AppNavigation() {
           element: <RegistrationTable />,
         },
         {
-          path: "/registration-form",
+          path: "/registration",
           element: <Registration />,
         },
         {
           path: "/superagent",
-          element: <SuperAgent />,
-        },
-        {
-          path: "/vendor",
-          element: <Vendor />,
+          element: <Registration />,
         },
       ],
     },

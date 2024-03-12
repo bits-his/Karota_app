@@ -21,7 +21,7 @@ export default function Login() {
           <Card>
             <Col pt={4} pb={3} px={3}>
               <Col component="form" role="form">
-                <Col mb={12}>
+                <Col mb={11}>
                   <Label>Email</Label>
                   <Input
                     type="email"

@@ -13,6 +13,11 @@ export default function Login() {
     setForm((p) => ({ ...p, [name]: value }));
     console.log(form);
   };
+
+  const handleAdd = () => {
+    setForm(form)
+    console.log(form)
+  }
   return (
     <div style={{ marginTop: 80 }}>
       <Row>
@@ -21,7 +26,7 @@ export default function Login() {
           <Card>
             <Col pt={4} pb={3} px={3}>
               <Col component="form" role="form">
-                <Col mb={11}>
+                <Col mb={12}>
                   <Label>Email</Label>
                   <Input
                     type="email"
@@ -52,7 +57,7 @@ export default function Login() {
                     variant="gradient"
                     color="info"
                     fullWidth
-                    // onClick={handleAdd}
+                    onClick={handleAdd}
                   >
                     sign In
                   </Button>

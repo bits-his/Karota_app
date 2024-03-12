@@ -9,15 +9,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@emotion/cache": "11.10.8",
     "@emotion/react": "11.10.8",
     "@emotion/styled": "11.10.8",
     "@mui/icons-material": "5.11.16",
     "@mui/material": "5.12.3",
+=======
+    "@themesberg/react-bootstrap": "^1.4.1",
+>>>>>>> 37d39f680ac4237cee9f1cb371e049b6c7d3ba00
     "bootstrap": "^3.3.7",
     "qrcode.react": "^3.1.0",
     "react": "^18.2.0",
-    "react-bootstrap": "^1.3.0",
+    "react-bootstrap": "^1.6.8",
     "react-dom": "^18.2.0",
     "react-icon": "^1.0.0",
     "react-icons": "^4.9.0",

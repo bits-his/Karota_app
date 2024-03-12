@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, Row, Col, Form } from "react-bootstrap";
+import CustomInput from "../Component/CustomInput";
 
 export default function SuperAgent() {
-  const [form, setForm] = useState({});
+  const users = [
+    {
+      id: 1,
+      name: "John",
+    },
+  ];
+  const [form, setForm] = useState({
+    vendor: users[0].id,
+  });
   const [states, setStates] = useState([]);
   const [lgas, setLgas] = useState([]);
+
   const handleChange = ({ target: { name, value } }) => {
     setForm((p) => ({ ...p, [name]: value }));
     console.log(form);
@@ -13,16 +24,14 @@ export default function SuperAgent() {
     fetchStates();
     fetchLgas();
   }, []);
-   const fetchStates = async () => {
-     try {
-       const response = await fetch(
-         "https://nga-states-lga.onrender.com/fetch"
-       );
-       const data = await response.json();
-       setStates(data);
-     } catch (error) {
-       console.error("Error fetching states:", error);
-     }
+  const fetchStates = async () => {
+    try {
+      const response = await fetch("https://nga-states-lga.onrender.com/fetch");
+      const data = await response.json();
+      setStates(data);
+    } catch (error) {
+      console.error("Error fetching states:", error);
+    }
   };
   const fetchLgas = async (selectedState) => {
     try {
@@ -35,105 +44,117 @@ export default function SuperAgent() {
       console.error("Error fetching LGAs:", error);
     }
   };
+  const navigate = useNavigate();
   return (
     <div>
-      <button className="app_button" onClick={() => navigate("/agent")}>
+      {/* <button className="app_button" onClick={() => navigate("/agent")}>
         Create agent
-      </button>
+      </button> */}
       <Card className="app_card dashboard_card m-0 p-0">
         <Row>
-          <Col md={6}>
-            <CustomInput
-              label="Name"
-              onChange={handleChange}
-              type="text"
-              required={true}
-              name="super_name"
-              value={form.super_name}
-            />
-          </Col>
-          <Col md={6}>
-            <CustomInput
-              label="Vendor"
-              onChange={handleChange}
-              type="text"
-              required={true}
-              name="vendor"
-              value={form.vendor}
-            />
-          </Col>
-          <Col md={6}>
-            <CustomInput
-              label="Phone"
-              onChange={handleChange}
-              type="tel"
-              required={true}
-              name="super_phone"
-              value={form.super_phone}
-            />
-          </Col>
-          <Col md={6} className="mb-1">
-            <Form.Group controlId="stateSelect">
-              <Form.Label>State</Form.Label>
-              <Form.Select
-                name="state"
-                value={form.state}
-                onChange={handleChange}
-                isValid={stateValid}
-                isInvalid={!stateValid}
-              >
-                <option value="">Select state...</option>
-                {states.map((state) => (
-                  <option key={state} value={state}>
-                    {state}
-                  </option>
-                ))}
-              </Form.Select>
-              <Form.Control.Feedback type="invalid">
-                Please select a state.
-              </Form.Control.Feedback>
-            </Form.Group>
-          </Col>
-          <Col md={6}>
-            <CustomInput
-              label="Email"
-              onChange={handleChange}
-              type="email"
-              name="super_email"
-              value={form.super_email}
-            />
-          </Col>
-          <Col md={6}>
-            <CustomInput
-              label="Contact address"
-              onChange={handleChange}
-              type="tel"
-              name="super_address"
-              value={form.super_address}
-            />
-          </Col>
-          <Col md={6} className="mb-1">
-            <Form.Group controlId="lgaSelect">
-              <Form.Label>L.G.A</Form.Label>
-              <Form.Select
-                name="lga"
-                value={form.lga}
-                onChange={handleChange}
-                isValid={lgaValid}
-                isInvalid={!lgaValid}
-              >
-                <option value="">Select LGA...</option>
-                {lgas.map((lga) => (
-                  <option key={lga} value={lga}>
-                    {lga}
-                  </option>
-                ))}
-              </Form.Select>
-              <Form.Control.Feedback type="invalid">
-                Please select an LGA.
-              </Form.Control.Feedback>
-            </Form.Group>
-          </Col>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <h4 className="app_title">Super Agent</h4>
+            <button
+              className="app_button"
+              style={{
+                width: 150,
+                padding: 10,
+                marginLeft: 15,
+                color: "#000",
+                borderRadius: 10,
+              }}
+              onClick={() => navigate("/superagent")}
+            >
+              Create Agent
+            </button>
+          </div>
+          <hr />
+          <div className="bg-white shadow border border-2 border-primary rounded-5 p-4 p-lg-5">
+            {/* <Form className="mt-1">
+              <Col md={6}>
+                <CustomInput
+                  label="Bank Name"
+                  onChange={handleChange}
+                  type="text"
+                  required={true}
+                  name="contact_name"
+                  value={form.contact_name}
+                />
+              </Col>
+              <Col md={6}>
+                <CustomInput
+                  label="Contact Phone Number"
+                  onChange={handleChange}
+                  type="text"
+                  required={true}
+                  name="contact_phone"
+                  value={form.contact_phone}
+                />
+              </Col>
+              <Col md={6}>
+                <CustomInput
+                  label="Contact Email"
+                  onChange={handleChange}
+                  type="text"
+                  // required={true}
+                  name="contact_email"
+                  value={form.contact_email}
+                />
+              </Col>
+              <Col md={6}>
+                <CustomInput
+                  label="Office address / state"
+                  type="textarea"
+                  // required={true}
+                  name="office_address"
+                  value={form.office_address}
+                  onChange={handleChange}
+                />
+              </Col>
+              <Col md={6}>
+                <CustomInput
+                  label="State of residence"
+                  type="select"
+                  name="state"
+                  required={true}
+                  // options={stateLga.map((item) => item.state)}
+                  value={form.state}
+                  onChange={handleChange}
+                />
+              </Col>{" "}
+              <Col md={6}>
+                <CustomInput
+                  label="L.G.A"
+                  type="text"
+                  name="lga"
+                  // required={true}
+                  // options={
+                  //   stateLga.filter(
+                  //     (item) => item.state === form.state
+                  //   )[0].lgas
+                  // }
+                  value={form.lga}
+                  onChange={handleChange}
+                />
+              </Col>
+              <Col md={6} className="mb-1">
+                <CustomInput
+                  label="Ward"
+                  type="text"
+                  name="ward"
+                  value={form.ward}
+                  onChange={handleChange}
+                />
+              </Col>
+              
+            </Form> */}
+          </div>
         </Row>
       </Card>
     </div>

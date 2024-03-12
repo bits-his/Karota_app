@@ -8,22 +8,29 @@ export default function SideBar() {
     <div className="">
       <div>
         <center>
-          <div className='user_image'>
-            
-          </div>
+          <div className="user_image"></div>
         </center>
-        <h4 className="mt-4 app_title" style={{ fontSize: "26px", textAlign: 'center', color: 'black'}}>
-            Karota App
-        </h4>  
+        <h4
+          className="mt-4 app_title"
+          style={{
+            fontSize: "26px",
+            textAlign: "center",
+            color: "black",
+            marginBottom: 40,
+          }}
+        >
+          Karota App
+        </h4>
       </div>
       <div className="link" activeclassName="active">
         <li
-          onClick={() => goto("/registration")}
+          onClick={() => goto("/")}
           className={`link_item ${
-            location.pathname === "/registration" && "active_side_menu"
+            location.pathname === "/" && "active_side_menu"
           }`}
         >
-          <GiArchiveRegister className="icon shadow" />Regitration
+          <GiArchiveRegister className="icon shadow" />
+          Regitration
         </li>
         <li
           onClick={() => goto("/superagent")}
@@ -31,9 +38,19 @@ export default function SideBar() {
             location.pathname === "/superagent" && "active_side_menu"
           }`}
         >
-          <GiArchiveRegister className="icon shadow" />Super Agent
+          <GiArchiveRegister className="icon shadow" />
+          Super Agent
+        </li>
+        <li
+          onClick={() => goto("/vendor")}
+          className={`link_item ${
+            location.pathname === "/vendor" && "active_side_menu"
+          }`}
+        >
+          <GiArchiveRegister className="icon shadow" />
+          Vendor Reg.
         </li>
       </div>
     </div>
-  )
+  );
 }

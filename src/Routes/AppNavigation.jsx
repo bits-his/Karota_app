@@ -3,7 +3,7 @@ import { useRoutes } from "react-router-dom";
 import AppIndex from "./AppIndex";
 import Registration from "../Component/Registration";
 import RegistrationTable from "../Component/RegistrationTable";
-import Register from "../Component/Register";
+import Vendor from "../Component/Vendor";
 import SuperAgent from "../Component/SuperAgent/SuperAgent";
 
 export default function AppNavigation() {
@@ -16,7 +16,7 @@ export default function AppNavigation() {
       element: <AppIndex />,
       children: [
         {
-          path: "/registration",
+          path: "/",
           element: <RegistrationTable />,
         },
         {
@@ -26,6 +26,10 @@ export default function AppNavigation() {
         {
           path: "/superagent",
           element: <SuperAgent />,
+        },
+        {
+          path: "/vendor",
+          element: <Vendor />,
         },
       ],
     },

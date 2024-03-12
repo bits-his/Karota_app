@@ -11,7 +11,7 @@ export default function CustomInput(props) {
   } = props;
 
   const primaryBorderStyle = {
-    outline: "1.5px solid #58a4fa",
+    outline: "1.5px solid #F5C005",
     borderRadius: "0.25rem",
   };
 
@@ -33,4 +33,8 @@ export default function CustomInput(props) {
       </InputGroup>
     </Form.Group>
   );
+}
+
+export function customCard(props) {
+  return <div></div>;
 }

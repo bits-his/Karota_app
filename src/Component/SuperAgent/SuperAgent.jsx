@@ -76,7 +76,7 @@ export default function SuperAgent() {
           </div>
           <hr />
           <div className="bg-white shadow border border-2 border-primary rounded-5 p-4 p-lg-5">
-            {/* <Form className="mt-1">
+            <Form className="mt-1">
               <Col md={6}>
                 <CustomInput
                   label="Bank Name"
@@ -153,7 +153,7 @@ export default function SuperAgent() {
                 />
               </Col>
               
-            </Form> */}
+            </Form>
           </div>
         </Row>
       </Card>

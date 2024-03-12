@@ -22,6 +22,10 @@ export default function AppNavigation() {
             path: '/registration-form',
             element: <Registration />
           },
+          {
+            path: '/superagent',
+            element: <Registration />
+          },
         ]
        }
     ])

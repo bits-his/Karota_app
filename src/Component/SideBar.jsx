@@ -25,6 +25,14 @@ export default function SideBar() {
         >
           <GiArchiveRegister className="icon shadow" />Regitration
         </li>
+        <li
+          onClick={() => goto("/superagent")}
+          className={`link_item ${
+            location.pathname === "/superagent" && "active_side_menu"
+          }`}
+        >
+          <GiArchiveRegister className="icon shadow" />Super Agent
+        </li>
       </div>
     </div>
   )

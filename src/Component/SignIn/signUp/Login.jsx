@@ -23,6 +23,7 @@ export default function Login() {
       <Row>
         <Col md={4}></Col>
         <Col md={4}>
+          <CardBody  style={{border: "1px solid black", borderRadius: "15px", padding: "65px"}}>
           <Card>
             <Col pt={4} pb={3} px={3}>
               <Col component="form" role="form">
@@ -64,7 +65,8 @@ export default function Login() {
                 </Col>
               </Col>
             </Col>
-          </Card>
+            </Card>
+            </CardBody>
         </Col>
         <Col md={4}></Col>
       </Row>

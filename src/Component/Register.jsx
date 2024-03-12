@@ -1,11 +1,7 @@
 import React from "react";
 import { Col, Row } from "reactstrap";
-import "./style.css";
 import { FaApple } from "react-icons/fa";
 import { BsGooglePlay } from "react-icons/bs";
-import SignIn from "./SignIn/signUp/SignIn";
-import SignUp from "./SignIn/signUp/SignUp";
-import SendCode from "./SignIn/signUp/SendCode";
 
 export default function Register() {
   const handleClickSignUp = () => {
@@ -22,11 +18,7 @@ export default function Register() {
         <Col md={12}>
           <Col md={5}>
             <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 180,
-              }}
+
             >
               <div>
                 <p className="logo_name">IslahPay</p>
@@ -67,12 +59,12 @@ export default function Register() {
                 marginTop: 150,
               }}
             >
-              <div className="form-container sign-up-container">
-                <form action="#" className="Signup_form">
+              <div className="form-container sign-up-containe">
+                {/* <form action="#" className="Signup_form">
                   <SignUp />
-                </form>
+                </form> */}
               </div>
-              <div className="form-container sign-in-container">
+              <div className="form-containe sign-in-containe">
                 <Row>
                   <Col md={12}>
                     <h2 className="second_header">Welcome To IslahPay!</h2>
@@ -80,7 +72,7 @@ export default function Register() {
                   </Col>
                 </Row>
                 <form action="#" className="SignIn_form">
-                  <SignIn />
+                  {/* <SignIn /> */}
                 </form>
               </div>
               <div className="overlay-container">

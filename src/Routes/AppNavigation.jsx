@@ -15,7 +15,7 @@ export default function AppNavigation() {
         element: <AppIndex />,
         children: [
           {
-            path: '/',
+            path: '/registration',
             element: <RegistrationTable />
           },
           {

@@ -23,11 +23,11 @@ export default function Login() {
       <Row>
         <Col md={4}></Col>
         <Col md={4}>
-          <CardBody  style={{border: "1px solid black", borderRadius: "15px", padding: "65px"}}>
+          <CardBody  style={{border: "1px solid black", borderRadius: "20px", padding: "90px"}}>
           <Card>
-            <Col pt={4} pb={3} px={3}>
+            <Col>
               <Col component="form" role="form">
-                <Col mb={12}>
+                <Col mb={12} className="mt-4">
                   <Label>Email</Label>
                   <Input
                     type="email"
@@ -39,7 +39,7 @@ export default function Login() {
                     onChange={handleChange}
                   />
                 </Col>
-                <Col mb={12}>
+                <Col mb={12} className="mt-4">
                   <Label>Password</Label>
                   <Input
                     type="password"

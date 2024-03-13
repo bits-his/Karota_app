@@ -29,7 +29,7 @@ function VendorReg() {
                     </button></Col>
 
             </Row>
-            <hr style={{ position: 'relative', width: '97.3%', top: "25px" }} />
+            <hr style={{ position: 'relative', width: '100%', top: "25px" }} />
             <Table style={{ width: '97.3%' }}>
                 <thead>
                     <tr>

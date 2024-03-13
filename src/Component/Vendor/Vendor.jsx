@@ -7,28 +7,10 @@ export default function RegistrationTable() {
     const _form = {
         step: 0,
         name: "",
-        middle_name: "",
-        surname: "",
-        gender: "",
-        status: "",
-        nationality: "",
-        state_of_origin: "",
-        lg: "",
-        date_of_birth: "",
-        place_of_birth: "",
-        phone_no: "",
-        blood_group: "",
-        genotype: "",
-        address: "",
-        NIN_number: "",
-        next_of_king: "",
-        next_of_king_address: "",
-        phone_no2: "",
-        plate_number: "",
-        classes_number: "",
-        side_number: "",
-        phone_no3: "",
-        name_of_company: "",
+        vendor_name: '',
+        lga: "",
+        contact_lga: ''
+
     }
     const [form, setForm] = useState(_form)
     const handleChange = ({ target: { name, value } }) => {
@@ -299,10 +281,10 @@ export default function RegistrationTable() {
                                             onChange={handleChange}
                                             id="state"
                                             name="state"
+                                            value={form.state}
                                             type="select"
                                             className="app_input"
                                             required
-                                            value={form.state}
                                         >
                                             <option value={''}>
                                                 Select State

@@ -60,9 +60,9 @@ export default function SideBar() {
         </div>
 
         <div
-          onClick={() => goto("/VehicleReg")}
+          onClick={() => goto("/Vehicleownertabel")}
           className={`link_item ${
-            location.pathname === "/VehicleReg" && "active_side_menu"
+            location.pathname === "/Vehicleownertabel" && "active_side_menu"
           }`}
         >
           {/* <GiArchiveRegister className="icon shadow" /> */}

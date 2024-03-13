@@ -12,6 +12,7 @@ import SuperAgentTable from "../Component/SuperAgent/SuperAgentTable";
 import Agent from "../Component/SuperAgent/Agent";
 import AgentTable from "../Component/SuperAgent/AgentTable";
 import VendorReg from "../Component/Vendor/VendorReg";
+import VehicleOwnerTable from "../Component/vehicleOwner/VehicleOwnerTable";
 import TopUp from "../Component/SignIn/signUp/TopUp";
 
 export default function AppNavigation() {
@@ -62,6 +63,10 @@ export default function AppNavigation() {
         {
           path: "/VehicleOwner",
           element: <VehicleOwner />,
+        },
+        {
+          path: "/Vehicleownertabel",
+          element: <VehicleOwnerTable />,
         },
         {
           path: "/VehicleReg",

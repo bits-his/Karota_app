@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { CiSearch } from "react-icons/ci";
-import { Button, Card, Col, Row, Table } from "reactstrap";
+import {
+  Button,
+  Card,
+  Col,
+  Input,
+  Label,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  Row,
+  Table,
+} from "reactstrap";
 
 export default function TopUp() {
+  const [modal, setModal] = useState(false);
+  const toggle = () => setModal(!modal);
+  const [currentItem, setCurrentItem] = useState({});
+  const [data, setData] = useState([]);
   return (
     <div>
       <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
@@ -99,7 +115,7 @@ export default function TopUp() {
                         width: "25%",
                       }}
                     >
-                      Lata No
+                      plate No
                     </th>
                     <th
                       style={{
@@ -112,58 +128,84 @@ export default function TopUp() {
                     </th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <th
-                      scope="row"
-                      style={{
-                        padding: "5px 10px",
-                        border: "1px solid #f5c005",
-                        width: "25%",
-                      }}
-                    >
-                      1
-                    </th>
-                    <td
-                      style={{
-                        padding: "5px 10px",
-                        border: "1px solid #f5c005",
-                        width: "25%",
-                      }}
-                    >
-                      Mark
-                    </td>
-                    <td
-                      style={{
-                        padding: "5px 10px",
-                        border: "1px solid #f5c005",
-                        width: "25%",
-                      }}
-                    >
-                      Otto
-                    </td>
-                    <td
-                      style={{
-                        padding: "5px 10px",
-                        border: "1px solid #f5c005",
-                        width: "25%",
-                      }}
-                    >
-                      <Row>
-                        <Col md={6}>
-                          <Button>Pay</Button>
-                        </Col>
-                        <Col md={6}>
-                          <Button>View</Button>
-                        </Col>
-                      </Row>
-                    </td>
-                  </tr>
-                </tbody>
+                {data &&
+                  data.map((i) => (
+                    <tbody>
+                      <tr>
+                        <th
+                          scope="row"
+                          style={{
+                            padding: "5px 10px",
+                            border: "1px solid #f5c005",
+                            width: "25%",
+                          }}
+                        >
+                          1
+                        </th>
+                        <td
+                          style={{
+                            padding: "5px 10px",
+                            border: "1px solid #f5c005",
+                            width: "25%",
+                          }}
+                        >
+                          Mark
+                        </td>
+                        <td
+                          style={{
+                            padding: "5px 10px",
+                            border: "1px solid #f5c005",
+                            width: "25%",
+                          }}
+                        >
+                          Otto
+                        </td>
+                        <td
+                          style={{
+                            padding: "5px 10px",
+                            border: "1px solid #f5c005",
+                            width: "25%",
+                          }}
+                        >
+                          <Row>
+                            <Col md={6}>
+                              <Button
+                                onClick={() => {
+                                  setCurrentItem(currentItem);
+                                  toggle();
+                                }}
+                              >
+                                Pay
+                              </Button>
+                            </Col>
+                            <Col md={6}>
+                              <Button>View</Button>
+                            </Col>
+                          </Row>
+                        </td>
+                      </tr>
+                    </tbody>
+                  ))}
               </Table>
             </div>
           </Row>
         </Row>
+        <Modal show={modal} toggle={toggle}>
+          <ModalHeader toggle={toggle}>
+            Registration KN/KRT/ Balance: 100
+          </ModalHeader>
+          <ModalBody>
+            {" "}
+            <Label>Amount</Label>
+            <Input type="number" />
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={toggle}>
+              Cancel
+            </Button>{" "}
+            <Button variant="danger">Okay</Button>
+          </ModalFooter>
+        </Modal>
       </Card>
     </div>
   );

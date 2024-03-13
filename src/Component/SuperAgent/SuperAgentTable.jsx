@@ -35,9 +35,7 @@ export default function SuperAgentTable() {
       <Row>
         <Col md={12}>
           <div style={{ display: "flex", flexDirection: "row", marginTop: 30 }}>
-            <label className="label_title" style={{ color: "#000" }}>
-              Search
-            </label>
+           
             <Col md={12}>
               <div className="search">
                 <CiSearch
@@ -57,7 +55,10 @@ export default function SuperAgentTable() {
                   placeholder="Search Individual"
                 />
               </div>
-            </Col>
+            </Col> 
+             <label className="label_title" style={{ color: "#000" }}>
+              Search
+            </label>
           </div>
         </Col>
 

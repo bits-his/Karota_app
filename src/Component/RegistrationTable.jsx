@@ -61,9 +61,7 @@ export default function RegistrationTable() {
       </button>
       <Col md={12}>
         <div style={{ display: "flex", flexDirection: "row", marginTop: 30 }}>
-          <label className="label_title" style={{ color: "#000" }}>
-            Search
-          </label>
+          
           <Col md={12}>
             <div className="search">
               <CiSearch
@@ -83,9 +81,13 @@ export default function RegistrationTable() {
                 placeholder="Search Individual"
                 value={searchList}
                 onChange={(e) => setSearchList(e.target.value)}
-              />
-            </div>
-          </Col>
+              /> 
+              
+            </div> 
+          </Col>  
+          <label className="label_title" style={{ color: "#000" }}>
+            Search
+          </label>
         </div>
       </Col>
       <Row>

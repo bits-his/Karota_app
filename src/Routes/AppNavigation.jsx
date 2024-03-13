@@ -5,7 +5,7 @@ import Registration from "../Component/Registration";
 import RegistrationTable from "../Component/RegistrationTable";
 import Vendor from "../Component/Vendor/Vendor";
 import Login from "../Component/SignIn/signUp/Login";
-import VehicleOwner from "../Component/vehicleOwner/VehicleOwner"
+import VehicleOwner from "../Component/vehicleOwner/VehicleOwner";
 import VehicleReg from "../Component/vehicleReg/VehicleReg";
 import SuperAgent from "../Component/SuperAgent/SuperAgent";
 import SuperAgentTable from "../Component/SuperAgent/SuperAgentTable";
@@ -13,6 +13,7 @@ import Agent from "../Component/SuperAgent/Agent";
 import AgentTable from "../Component/SuperAgent/AgentTable";
 import VendorReg from "../Component/Vendor/VendorReg";
 import VehicleOwnerTable from "../Component/vehicleOwner/VehicleOwnerTable";
+import TopUp from "../Component/SignIn/signUp/TopUp";
 
 export default function AppNavigation() {
   let Pages = useRoutes([
@@ -61,7 +62,7 @@ export default function AppNavigation() {
         },
         {
           path: "/VehicleOwner",
-          element: <VehicleOwner/>,
+          element: <VehicleOwner />,
         },
         {
           path: "/Vehicleownertabel",
@@ -71,8 +72,10 @@ export default function AppNavigation() {
           path: "/VehicleReg",
           element: <VehicleReg />,
         },
-        
-        
+        {
+          path: "/top-up",
+          element: <TopUp />,
+        },
       ],
     },
   ]);

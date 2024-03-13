@@ -84,11 +84,11 @@ export default function RegistrationTable() {
                 </Col>
             </div>
         </Col>
-        <Row>
+        {/*<Row>
             <Col md={12}>
-                <div className="table_overflow">
+                 <div className="table_overflow">
                     <table 
-                        style={{ border: "1px solid #ccc", padding: 0, marginTop: 40 }}
+                        style={{ border: "1px solid #ccc", padding: 0, marginTop: 40, maxWidth: "90%"}}
                         className="mt-5"
                     >
                         <thead>
@@ -491,7 +491,7 @@ export default function RegistrationTable() {
                     </table>
                 </div>
             </Col>
-        </Row>
+        </Row> */}
     </Card>
   )
 }

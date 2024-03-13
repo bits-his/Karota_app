@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Card, Col, Row, Form, FormGroup, Label, Input } from 'reactstrap'
-import { stateLga } from '../../assets/state_and_lgas'
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Card, Col, Row, Form, FormGroup, Label, Input } from "reactstrap";
+import { stateLga } from "../../assets/state_and_lgas";
 
 export default function SuperAgent() {
     const _form = {
@@ -37,7 +37,7 @@ export default function SuperAgent() {
         Create agent
       </button> */}
             <Card className="app_card dashboard_card m-0 p-0">
-                {/* {JSON.stringify({ form })} */}
+                {JSON.stringify({ form })}
                 <Row>
                     <Col md={12}>
                         <div
@@ -47,347 +47,202 @@ export default function SuperAgent() {
                                 alignItems: "center",
                             }}
                         >
-                            Agent
+                            <h4 className="app_title">Super Agent Registeration</h4>
+                            <button
+                                className="app_button"
+                                style={{
+                                    width: 150,
+                                    padding: 10,
+                                    marginLeft: 15,
+                                    color: "#000",
+                                    borderRadius: 10,
+                                }}
+                                onClick={() => navigate("/agent")}
+                            >
+                                Create Agent
+                            </button>
                         </div>
                     </Col>
-
                     <hr />
+
                 </Row>
                 <Col md={12}>
                     <Form className='mx-auto'>
-                        {form.step > 0 ?
-                            <>
-                                <Row className='margin-bottom-input'>
-                                    <Col md={6} className='first-col'>
-                                        <FormGroup>
-                                            <Label for="contact_name">
-                                                Contact Name
-                                            </Label>
-                                            <Input
-                                                onChange={handleChange}
-                                                id="contact_name"
-                                                name="contact_name"
-                                                placeholder="Vendor's name"
-                                                type="text"
-                                                className="app_input"
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md={6}>
-                                        <FormGroup>
-                                            <Label for="contact_phone">
-                                                Contact Phone
-                                            </Label>
-                                            <Input
-                                                onChange={handleChange}
-                                                id="contact_phone"
-                                                name="contact_phone"
-                                                placeholder="+234-8100000000"
-                                                type="tel"
-                                                className="app_input"
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
-                                <Row className='margin-bottom-input'>
-                                    <Col md={6} className='first-col'>
-                                        <FormGroup>
-                                            <Label for="contact_address">
-                                                Contact Address
-                                            </Label>
-                                            <Input
-                                                onChange={handleChange}
-                                                id="contact_address"
-                                                name="contact_address"
-                                                type="text"
+                        <>
+                            <Row className='margin-bottom-input'>
+                                <Col md={6} className='first-col'>
+                                    <FormGroup>
+                                        <Label for="superName">
+                                            Name
+                                        </Label>
+                                        <Input
+                                            onChange={handleChange}
+                                            id="superName"
+                                            name="superName"
+                                            placeholder="John Doe"
+                                            type="text"
+                                            className="app_input"
+                                        />
+                                    </FormGroup>
+                                </Col>
+                                <Col md={6}>
+                                    <FormGroup>
+                                        <Label for="superVendor">
+                                            Vendor
+                                        </Label>
+                                        <Input
+                                            onChange={handleChange}
+                                            id="superVendor"
+                                            name="superVendor"
+                                            placeholder="Select vendor"
+                                            type="select"
+                                            className="app_input"
+                                        >
+                                            <option value={''}>
+                                                Select vendor
+                                            </option>
+                                            {stateLga.map((item) => <option>
+                                                {item.state}
+                                            </option>)}
+                                        </Input>
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+                            <Row className='margin-bottom-input'>
+                                <Col md={6} className='first-col'>
+                                    <FormGroup>
+                                        <Label for="superPhone">
+                                            Phone
+                                        </Label>
+                                        <Input
+                                            onChange={handleChange}
+                                            id="superPhone"
+                                            name="superPhone"
+                                            type="tel"
+                                            pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                                            placeholder='081XXXXXXXX'
+                                            className="app_input"
+                                        />
+                                    </FormGroup>
+                                </Col>
+                                <Col md={6}>
+                                    <FormGroup>
+                                        <Label for="superEmail">
+                                            Email
+                                        </Label>
+                                        <Input
+                                            onChange={handleChange}
+                                            id="superEmail"
+                                            name="superEmail"
+                                            placeholder="organization@fake.com"
+                                            type="email"
 
-                                                className="app_input"
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md={6}>
-                                        <FormGroup>
-                                            <Label for="contact_email">
-                                                Contact E-mail
-                                            </Label>
-                                            <Input
-                                                onChange={handleChange}
-                                                id="contact_emailexample"
-                                                name="contact_email"
-                                                placeholder="organization@fake.com"
-                                                type="email"
+                                            className="app_input"
+                                        />
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+                            <Row className='margin-bottom-input'>
+                                <Col md={6} className='first-col'>
+                                    <FormGroup>
+                                        <Label for="superState">
+                                            State
+                                        </Label>
+                                        <Input
+                                            onChange={handleChange}
+                                            id="superState"
+                                            name="superState"
+                                            value={form.state}
+                                            type="select"
+                                            className="app_input"
+                                            required
+                                        >
+                                            <option value={''}>
+                                                Select State
+                                            </option>
+                                            {stateLga.map((item) => <option>
+                                                {item.state}
+                                            </option>)}
 
-                                                className="app_input"
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
-                                <Row className='margin-bottom-input'>
-                                    <Col md={6} className='first-col'>
-                                        <FormGroup>
-                                            <Label for="residential_state">
-                                                State of Residence
-                                            </Label>
-                                            <Input
-                                                onChange={handleChange}
-                                                id="residential_state"
-                                                name="residential_state"
-                                                type="select"
-                                                value={form.residential_state}
-                                                className="app_input"
-                                            >
-                                                <option value={''}>
-                                                    Select State
-                                                </option>
-                                                {stateLga.map((item) => <option>
-                                                    {item.state}
-                                                </option>)}
-                                            </Input>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md={6}>
-                                        <FormGroup>
-                                            <Label for="residential_state">
-                                                L.G.A. of Residence
-                                            </Label>
-                                            <Input
-                                                onChange={handleChange}
-                                                id="residential_lga"
-                                                name="residential_lga"
-                                                type="select"
-                                                required
-                                                value={form.residential_lga}
-                                                className="app_input"
-                                            >
-                                                <option value={''}>
-                                                    --Select LGA--
-                                                </option>
-                                                {stateLga.filter(
-                                                    (item) => item.state === form.residential_state
-                                                )[0]?.lgas?.map((lga, idx) => <option key={idx}>
-                                                    {lga.name}
-                                                </option>)
-                                                }
-                                            </Input>
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
+                                        </Input>
+                                    </FormGroup>
+                                </Col>
+                                <Col md={6} className='first-col'>
+                                    <FormGroup>
+                                        <Label for="lga">
+                                            LGA
+                                        </Label>
+                                        <Input
+                                            onChange={handleChange}
+                                            id="lga"
+                                            name="lga"
+                                            type="select"
+                                            className="app_input"
+                                        >
+                                            <option value={''}>
+                                                --Select LGA--
+                                            </option>
+                                            {stateLga.filter(
+                                                (item) => item.state === form.state
+                                            )[0]?.lgas?.map((lga, idx) => <option key={idx}>
+                                                {lga}
+                                            </option>)
+                                            }
+                                        </Input>
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+                            <Row className='margin-bottom-input'>
+                                <Col md={6}>
+                                    <FormGroup>
+                                        <Label for="superAddress">
+                                            Contact address
+                                        </Label>
+                                        <Input
+                                            onChange={handleChange}
+                                            id="superAddress"
+                                            name="superAddress"
+                                            type="text"
+                                            className="app_input"
+                                        />
+                                    </FormGroup>
+                                </Col>
+                                <Col md={6}>
+                                    <FormGroup>
+                                        <Label for="superDOB">
+                                            Date of birth (D.O.B)
+                                        </Label>
+                                        <Input
+                                            onChange={handleChange}
+                                            id="superDOB"
+                                            name="superDOB"
+                                            type="date"
 
-                                <Row>
-                                    <Col md={6}>
-                                        <FormGroup>
-                                            <Label for="examplePassword">
-                                                Password
-                                            </Label>
-                                            <Input
-                                                onChange={handleChange}
-                                                id="examplePassword"
-                                                name="password"
-                                                placeholder="password placeholder"
-                                                type="password"
-
-                                                className="app_input"
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
-                            </> :
-                            <>
-                                <Row className='margin-bottom-input'>
-                                    <Col md={6} className='first-col'>
-                                        <FormGroup>
-                                            <Label for="vendorName">
-                                                Vendor's name
-                                            </Label>
-                                            <Input
-                                                onChange={handleChange}
-                                                id="vendorName"
-                                                name="vendorName"
-                                                placeholder="Vendor's name"
-                                                type="text"
-                                                className="app_input"
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md={6}>
-                                        <FormGroup>
-                                            <Label for="orgPhone">
-                                                Organization's phone
-                                            </Label>
-                                            <Input
-                                                onChange={handleChange}
-                                                id="orgPhone"
-                                                name="orgPhone"
-                                                placeholder="+234-8100000000"
-                                                type="tel"
-                                                className="app_input"
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
-                                <Row className='margin-bottom-input'>
-                                    <Col md={6} className='first-col'>
-                                        <FormGroup>
-                                            <Label for="office_address">
-                                                Office Address
-                                            </Label>
-                                            <Input
-                                                onChange={handleChange}
-                                                id="office_address"
-                                                name="office_address"
-                                                type="text"
-
-                                                className="app_input"
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md={6}>
-                                        <FormGroup>
-                                            <Label for="org_email">
-                                                Organization's email
-                                            </Label>
-                                            <Input
-                                                onChange={handleChange}
-                                                id="org_emailexample"
-                                                name="org_email"
-                                                placeholder="organization@fake.com"
-                                                type="email"
-
-                                                className="app_input"
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
-                                <Row className='margin-bottom-input'>
-                                    <Col md={6} className='first-col'>
-                                        <FormGroup>
-                                            <Label for="state">
-                                                State
-                                            </Label>
-                                            <Input
-                                                onChange={handleChange}
-                                                id="state"
-                                                name="state"
-                                                value={form.state}
-                                                type="select"
-                                                className="app_input"
-                                                required
-                                            >
-                                                <option value={''}>
-                                                    Select State
-                                                </option>
-                                                {stateLga.map((item) => <option>
-                                                    {item.state}
-                                                </option>)}
-
-                                            </Input>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md={6}>
-                                        <FormGroup>
-                                            <Label for="tin">
-                                                Tin
-                                            </Label>
-                                            <Input
-                                                onChange={handleChange}
-                                                id="tin"
-                                                name="tin"
-                                                type="number"
-                                                className="app_input"
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
-                                <Row className='margin-bottom-input'>
-                                    <Col md={6} className='first-col'>
-                                        <FormGroup>
-                                            <Label for="lga">
-                                                LGA
-                                            </Label>
-                                            <Input
-                                                onChange={handleChange}
-                                                id="lga"
-                                                name="lga"
-                                                type="select"
-                                                className="app_input"
-                                            >
-                                                <option value={''}>
-                                                    --Select LGA--
-                                                </option>
-                                                {stateLga.filter(
-                                                    (item) => item.state === form.state
-                                                )[0]?.lgas?.map((lga, idx) => <option key={idx}>
-                                                    {lga}
-                                                </option>)
-                                                }
-                                            </Input>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md={6}>
-                                        <FormGroup>
-                                            <Label for="bn_rc">
-                                                BN/RC
-                                            </Label>
-                                            <Input
-                                                onChange={handleChange}
-                                                id="bn_rc"
-                                                name="bn_rc"
-                                                type="text"
-
-                                                className="app_input"
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
-                            </>}
-                        <Row className="mt-3" style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignContent: 'center',
-                            marginTop: 30,
-                        }}
-                        >
-                            {form.step > 0 ? <Row>
-                                <Col md={6} className='text-left'> <button
-                                    className="app_button"
-                                    style={{
-                                        width: 150,
-                                        marginLeft: 30,
-                                        padding: 10,
-                                        color: "",
-                                        cursor: "pointer",
-                                    }}
-                                    onClick={() => setForm((p) => ({ ...p, step: 0 }))}
-                                >
-                                    Prev
-                                </button></Col>
-                                <Col md={6} className='text-right'> <button
-                                    className="app_button"
-                                    style={{
-                                        width: 150,
-                                        marginLeft: 30,
-                                        padding: 10,
-                                        color: "",
-                                        cursor: "pointer",
-                                    }}
-                                    onClick={handleSubmit}
-                                >
+                                            className="app_input"
+                                        />
+                                    </FormGroup>
+                                </Col>
+                            </Row>
+                        </>
+                        <Row>
+                            <Col md={12}
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                }}
+                            > <button
+                                className="app_button"
+                                style={{
+                                    width: 150,
+                                    padding: 10,
+                                    color: "",
+                                    cursor: "pointer",
+                                    borderRadius: 7,
+                                }}
+                                onClick={handleSubmit}
+                            >
                                     Submit
                                 </button></Col>
-                            </Row> :
-                                <button
-                                    className="app_button p-4"
-                                    style={{
-                                        width: 150,
-                                        marginLeft: 30,
-                                        padding: 10,
-                                        color: "",
-                                        cursor: "pointer",
-                                    }}
-                                    onClick={() => setForm((p) => ({ ...p, step: 1 }))}
-                                >
-                                    Next
-                                </button>}
                         </Row>
                     </Form>
                 </Col>

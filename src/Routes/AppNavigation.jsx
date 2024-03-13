@@ -5,8 +5,13 @@ import Registration from "../Component/Registration";
 import RegistrationTable from "../Component/RegistrationTable";
 import Vendor from "../Component/Vendor/Vendor";
 import Login from "../Component/SignIn/signUp/Login";
+import VehicleOwner from "../Component/vehicleOwner/VehicleOwner"
+import VehicleReg from "../Component/vehicleReg/VehicleReg";
 import SuperAgent from "../Component/SuperAgent/SuperAgent";
 import SuperAgentTable from "../Component/SuperAgent/SuperAgentTable";
+import Agent from "../Component/SuperAgent/Agent";
+import AgentTable from "../Component/SuperAgent/AgentTable";
+import VendorReg from "../Component/Vendor/VendorReg";
 
 export default function AppNavigation() {
   let Pages = useRoutes([
@@ -31,16 +36,38 @@ export default function AppNavigation() {
         },
         {
           path: "/superagent",
-          element: <SuperAgent />
+          element: <SuperAgent />,
+        },
+        {
+          path: "/agent",
+          element: <Agent />,
         },
         {
           path: "/superagentable",
-          element: <SuperAgentTable />
+          element: <SuperAgentTable />,
+        },
+        {
+          path: "/agentable",
+          element: <AgentTable />,
         },
         {
           path: "/vendor",
           element: <Vendor />,
         },
+        {
+          path: "/vendorReg",
+          element: <VendorReg />,
+        },
+        {
+          path: "/VehicleOwner",
+          element: <VehicleOwner/>,
+        },
+        {
+          path: "/VehicleReg",
+          element: <VehicleReg />,
+        },
+        
+        
       ],
     },
   ]);

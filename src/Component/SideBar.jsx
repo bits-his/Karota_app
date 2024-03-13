@@ -51,7 +51,7 @@ export default function SideBar() {
           Agent
         </div>
         <div
-          onClick={() => goto("/vendor")}
+          onClick={() => goto("/vendorReg")}
           className={`link_item ${
             location.pathname === "/vendor" && "active_side_menu"
           }`}
@@ -75,7 +75,7 @@ export default function SideBar() {
           }`}
         >
           {/* <GiArchiveRegister className="icon shadow" /> */}
-          VehicleOwner's.
+          Vehicle Owners
         </div>
       </section>
     </>

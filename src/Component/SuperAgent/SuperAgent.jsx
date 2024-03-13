@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, Col, Row, Form, FormGroup, Label, Input } from "reactstrap";
 import { stateLga } from "../../assets/state_and_lgas";
-import SuperAgentTable from "./SuperAgentTable";
 
 export default function SuperAgent() {
   const _form = {};
@@ -111,6 +110,8 @@ export default function SuperAgent() {
                         id="superPhone"
                         name="superPhone"
                         type="tel"
+                        pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                        placeholder="081XXXXXXXX"
                         className="app_input"
                       />
                     </FormGroup>
@@ -177,7 +178,7 @@ export default function SuperAgent() {
                         onChange={handleChange}
                         id="superAddress"
                         name="superAddress"
-                        type="textarea"
+                        type="text"
                         className="app_input"
                       />
                     </FormGroup>
@@ -201,7 +202,7 @@ export default function SuperAgent() {
                   md={12}
                   style={{
                     display: "flex",
-                    justifyContent: "right",
+                    justifyContent: "center",
                   }}
                 >
                   {" "}
@@ -224,7 +225,6 @@ export default function SuperAgent() {
           </Col>
         </Row>
       </Card>
-      <SuperAgentTable data={submittedData} />
     </div>
   );
 }

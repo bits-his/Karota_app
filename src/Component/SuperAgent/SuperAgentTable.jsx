@@ -10,7 +10,7 @@ export default function SuperAgentTable() {
     <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
       <Row>
           <Col md={12}>
-            <h4 className="app_title"> Registered List </h4>
+            <h4 className="app_title"> Super Agent List </h4>
             <hr />
         </Col>
         <button 
@@ -19,11 +19,12 @@ export default function SuperAgentTable() {
                 width: 150 ,
                 padding: 10,
                 marginLeft: 15,
-                color: '#000'
+                color: '#000',
+                borderRadius: 7,
             }}
             onClick={() => navigate ("/superagent")}
         >
-            Register New +
+            Create New +
         </button>
        
       </Row>

@@ -6,18 +6,18 @@ import { stateLga } from '../../assets/state_and_lgas'
 export default function RegistrationTable() {
     const _form = {
     }
-    
+
     const [form, setForm] = useState(_form)
     const handleChange = ({ target: { name, value } }) => {
         setForm((p) => ({ ...p, [name]: value }))
     }
     const navigate = useNavigate()
+
     const handleSubmit = () => {
         setLoading(true);
-        let obj = { ...form, qrcode: qrCodeGenerator };
         _post(
-            "api/create_users",
-            obj,
+            "api/vendors/create",
+            form,
             (res) => {
                 setLoading(false);
                 alert("sucessful");
@@ -34,7 +34,7 @@ export default function RegistrationTable() {
 
     return (
         <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
-            {JSON.stringify({ form })}
+            {/* {JSON.stringify({ form })} */}
             <Row>
                 <Col md={12}>
                     <div
@@ -134,15 +134,15 @@ export default function RegistrationTable() {
                                 <Row className='margin-bottom-input'>
                                     <Col md={6} className='first-col'>
                                         <FormGroup>
-                                            <Label for="residential_state">
+                                            <Label for="contact_state">
                                                 State of Residence
                                             </Label>
                                             <Input
                                                 onChange={handleChange}
-                                                id="residential_state"
-                                                name="residential_state"
+                                                id="contact_state"
+                                                name="contact_state"
                                                 type="select"
-                                                value={form.residential_state}
+                                                value={form.contact_state}
                                                 className="app_input"
                                             >
                                                 <option value={''}>
@@ -156,25 +156,25 @@ export default function RegistrationTable() {
                                     </Col>
                                     <Col md={6}>
                                         <FormGroup>
-                                            <Label for="residential_state">
+                                            <Label for="contact_lga">
                                                 L.G.A. of Residence
                                             </Label>
                                             <Input
                                                 onChange={handleChange}
-                                                id="residential_lga"
-                                                name="residential_lga"
+                                                id="contact_lga"
+                                                name="contact_lga"
                                                 type="select"
                                                 required
-                                                value={form.residential_lga}
+                                                value={form.contact_lga}
                                                 className="app_input"
                                             >
                                                 <option value={''}>
                                                     --Select LGA--
                                                 </option>
                                                 {stateLga.filter(
-                                                    (item) => item.state === form.residential_state
+                                                    (item) => item.state === form.contact_lga
                                                 )[0]?.lgas?.map((lga, idx) => <option key={idx}>
-                                                    {lga.name}
+                                                    {lga}
                                                 </option>)
                                                 }
                                             </Input>
@@ -366,12 +366,12 @@ export default function RegistrationTable() {
                                 </Row>
                             </>}
                         <Row className="mt-3" style={{
-                                        display: "flex",
-                                        justifyContent: "space-between",
-                                        alignContent: 'center',
-                                        marginTop: 30,
-                                    }}
-                                    >
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignContent: 'center',
+                            marginTop: 30,
+                        }}
+                        >
                             {form.step > 0 ? <Row>
                                 <Col md={6} className='text-left'> <button
                                     className="app_button"

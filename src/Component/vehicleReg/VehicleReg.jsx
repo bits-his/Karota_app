@@ -141,7 +141,28 @@ export default function OwnerReg() {
                                 </Col>
                                 
                             </Row>
-                            <Button type="submit"  onClick={() => navigate ("/")}   className="app_button" color="Warning">Submit</Button>{' '}
+                            <Row>
+                                <Col md={12}
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                    }}
+                                > 
+                                    <button
+                                        className="app_button"
+                                        style={{
+                                            width: 150,
+                                            padding: 10,
+                                            color: "",
+                                            cursor: "pointer",
+                                            borderRadius: 7,
+                                        }}
+                                        onClick={() => navigate ("/")}
+                                    >
+                                        Submit
+                                    </button>
+                                </Col>
+                            </Row>
                             
                         </Form>
                     ) : (

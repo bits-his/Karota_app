@@ -37,14 +37,14 @@ export default function OwnerReg() {
             <Row>
             <Col md={12}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                        <h4 className="app_title">Vehicle Registration</h4>
+                        <h4 className="app_title">Vehicle Owner Registration</h4>
                         {!showForm ? (
                             <Button
                                 className="app_button"
                                 style={{ width: 150, padding: 10, marginLeft: 15, color: '#000', borderRadius: 10 }}
                                 onClick={handleShowForm}
                             >
-                                Add Vehicle
+                                Add vehicle owner
                             </Button>
                         ) : (
                             <Button
@@ -150,16 +150,31 @@ export default function OwnerReg() {
                                 <Col md={6}>
                                     <FormGroup>
                                         <Label for="examplePassword">Password</Label>
-                                        <Input id="examplePassword" name="password" placeholder="password placeholder" type="password" />
+                                        <Input id="examplePassword" name="password" placeholder="password" type="password" />
                                     </FormGroup>
                                 </Col>
                             </Row>
-                            <Row className='margin-bottom-input'>
-                                <Col md={6}>
-                                <Button type="submit"  onClick={() => navigate ("/")}   className="app_button" color="Warning">Submit</Button>{' '}
-                                </Col>
-                                
-                            </Row>
+                            <Row>
+                            <Col md={12}
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    marginTop: 30,
+                                }}
+                            > <button
+                                className="app_button"
+                                style={{
+                                    width: 150,
+                                    padding: 10,
+                                    color: "",
+                                    cursor: "pointer",
+                                    borderRadius: 7,
+                                }}
+                                onClick={() => navigate ("/")}
+                            >
+                                Submit
+                            </button></Col>
+                        </Row>
                         </Form>
                     )}
                 </Col>

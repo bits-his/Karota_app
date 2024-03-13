@@ -37,7 +37,7 @@ export default function RegistrationTable() {
         e.preventDefault();
         setLoading(true);
         _post(
-            "api/vendors/create",
+            "vendors/create",
             form,
             (res) => {
                 if (res.success) {

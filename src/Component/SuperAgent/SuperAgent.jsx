@@ -2,22 +2,36 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, Col, Row, Form, FormGroup, Label, Input } from "reactstrap";
 import { stateLga } from "../../assets/state_and_lgas";
+import { _post } from "../../Utils/Helper";
 
 export default function SuperAgent() {
-    const _form = {};
+    const _form = {
+        query_type: "insert",
+        name: "",
+        phone: "",
+        nin: "",
+        state: "",
+        lga: "",
+        address: "",
+        name: "",
+        dob: "",
+        vendor: 1
+
+    };
 
     const [form, setForm] = useState(_form);
     const [submittedData, setSubmittedData] = useState([]);
+    const [loading, setLoading] = useState(false)
     const handleChange = ({ target: { name, value } }) => {
         setForm((p) => ({ ...p, [name]: value }));
     };
     const navigate = useNavigate();
-    const handleSubmit = (formData) => {
-        setLoading(true);
-        let obj = { ...form, qrcode: qrCodeGenerator };
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        setLoading(true)
         _post(
-            "api/create_users",
-            obj,
+            "superagent/create",
+            form,
             (res) => {
                 setLoading(false);
                 alert("sucessful");
@@ -37,7 +51,7 @@ export default function SuperAgent() {
         Create agent
       </button> */}
             <Card className="app_card dashboard_card m-0 p-0">
-                {JSON.stringify({ form })}
+                {/* {JSON.stringify({ form })} */}
                 <Row>
                     <Col md={12}>
                         <div
@@ -71,11 +85,12 @@ export default function SuperAgent() {
                                 <Row className="margin-bottom-input">
                                     <Col md={6} className="first-col">
                                         <FormGroup>
-                                            <Label for="superName">Name</Label>
+                                            <Label for="name">Name</Label>
                                             <Input
                                                 onChange={handleChange}
-                                                id="superName"
-                                                name="superName"
+                                                id="name"
+                                                name="name"
+                                                value={form.name}
                                                 placeholder="John Doe"
                                                 type="text"
                                                 className="app_input"
@@ -84,33 +99,30 @@ export default function SuperAgent() {
                                     </Col>
                                     <Col md={6}>
                                         <FormGroup>
-                                            <Label for="superVendor">Vendor</Label>
+                                            <Label for="vendor">Date of Birth</Label>
                                             <Input
                                                 onChange={handleChange}
-                                                id="superVendor"
-                                                name="superVendor"
-                                                placeholder="Select vendor"
-                                                type="select"
+                                                id="dob"
+                                                name="dob"
+                                                value={form.dob}
+                                                placeholder="Date of birth"
+                                                type="date"
                                                 className="app_input"
-                                            >
-                                                <option value={""}>Select vendor</option>
-                                                {stateLga.map((item) => (
-                                                    <option>{item.state}</option>
-                                                ))}
-                                            </Input>
+                                            />
                                         </FormGroup>
                                     </Col>
                                 </Row>
                                 <Row className="margin-bottom-input">
                                     <Col md={6} className="first-col">
                                         <FormGroup>
-                                            <Label for="superPhone">Phone</Label>
+                                            <Label for="phone">Phone</Label>
                                             <Input
                                                 onChange={handleChange}
-                                                id="superPhone"
-                                                name="superPhone"
+                                                id="phone"
+                                                name="phone"
+                                                value={form.phone}
                                                 type="tel"
-                                                pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                                                pattern="[0-9]{11}"
                                                 placeholder="081XXXXXXXX"
                                                 className="app_input"
                                             />
@@ -118,11 +130,12 @@ export default function SuperAgent() {
                                     </Col>
                                     <Col md={6}>
                                         <FormGroup>
-                                            <Label for="superEmail">Email</Label>
+                                            <Label for="email">Email</Label>
                                             <Input
                                                 onChange={handleChange}
-                                                id="superEmail"
-                                                name="superEmail"
+                                                id="email"
+                                                name="email"
+                                                value={form.email}
                                                 placeholder="organization@fake.com"
                                                 type="email"
                                                 className="app_input"
@@ -133,12 +146,11 @@ export default function SuperAgent() {
                                 <Row className="margin-bottom-input">
                                     <Col md={6} className="first-col">
                                         <FormGroup>
-                                            <Label for="superState">State</Label>
+                                            <Label for="state">State</Label>
                                             <Input
                                                 onChange={handleChange}
-                                                id="superState"
-                                                name="superState"
-                                                value={form.state}
+                                                id="state"
+                                                name="state"
                                                 type="select"
                                                 className="app_input"
                                                 required
@@ -173,11 +185,12 @@ export default function SuperAgent() {
                                 <Row className="margin-bottom-input">
                                     <Col md={6}>
                                         <FormGroup>
-                                            <Label for="superAddress">Contact address</Label>
+                                            <Label for="address">Contact address</Label>
                                             <Input
                                                 onChange={handleChange}
-                                                id="superAddress"
-                                                name="superAddress"
+                                                id="address"
+                                                name="address"
+                                                vlaue={form.address}
                                                 type="text"
                                                 className="app_input"
                                             />
@@ -185,12 +198,34 @@ export default function SuperAgent() {
                                     </Col>
                                     <Col md={6}>
                                         <FormGroup>
-                                            <Label for="superDOB">Date of birth (D.O.B)</Label>
+                                            <Label for="nin">NIN</Label>
                                             <Input
                                                 onChange={handleChange}
-                                                id="superDOB"
-                                                name="superDOB"
-                                                type="date"
+                                                id="nin"
+                                                name="nin"
+                                                value={form.nin}
+                                                placeholder="NIN"
+                                                type="text"
+                                                className="app_input"
+                                            />
+                                        </FormGroup>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={6}>
+
+                                    </Col>
+
+                                    <Col md={6}>
+                                        <FormGroup>
+                                            <Label for="password">Password</Label>
+                                            <Input
+                                                onChange={handleChange}
+                                                id="Password"
+                                                name="password"
+                                                value={form.password}
+                                                placeholder="Select Password"
+                                                type="password"
                                                 className="app_input"
                                             />
                                         </FormGroup>
@@ -224,7 +259,7 @@ export default function SuperAgent() {
                         </Form>
                     </Col>
                 </Row>
-            </Card>
-        </div>
+            </Card >
+        </div >
     );
 }

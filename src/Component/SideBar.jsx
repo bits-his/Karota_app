@@ -75,7 +75,7 @@ export default function SideBar() {
           }`}
         >
           {/* <GiArchiveRegister className="icon shadow" /> */}
-          VehicleOwner's.
+          Vehicle Owners
         </div>
       </section>
     </>

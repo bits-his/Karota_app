@@ -10,38 +10,36 @@ export default function SideBar() {
         <center>
           <div className="user_image"></div>
         </center>
-        <h4 className="mt-4 app_title" style={{ fontSize: "26px", textAlign: 'center', color: 'black', marginBottom: 40,}}>
-            Keke App
-        </h4>  
+        <h4 className="mt-4 app_title" style={{ fontSize: "26px", textAlign: 'center', color: 'black', marginBottom: 40, }}>
+          Keke App
+        </h4>
       </div>
       <section className="link" activeclassName="active">
         <div
-          onClick={() => goto("/")}
-          className={`link_item ${
-            location.pathname === "/" && "active_side_menu"
-          }`}
+          onClick={() => goto("/vendor")}
+          className={`link_item ${location.pathname === "/vendor" && "active_side_menu"
+            }`}
         >
           {/* <GiArchiveRegister className="icon shadow" /> */}
-          Regitration
+          Vendors
         </div>
+        {/* <div
+          onClick={() => goto("/")}
+          className={`link_item ${location.pathname === "/" && "active_side_menu"
+            }`}
+        >
+          {/* <GiArchiveRegister className="icon shadow" /> 
+          Regitration
+        </div> */}
         <div
           onClick={() => goto("/superagentable")}
-          className={`link_item ${
-            location.pathname === "/superagentable" && "active_side_menu"
-          }`}
+          className={`link_item ${location.pathname === "/superagentable" && "active_side_menu"
+            }`}
         >
           {/* <GiArchiveRegister className="icon shadow" /> */}
-          Super Agent
+          Super Agents
         </div>
-        <div
-          onClick={() => goto("/vendor")}
-          className={`link_item ${
-            location.pathname === "/vendor" && "active_side_menu"
-          }`}
-        >
-          {/* <GiArchiveRegister className="icon shadow" /> */}
-          Vendor Reg.
-        </div>
+
       </section>
     </>
   );

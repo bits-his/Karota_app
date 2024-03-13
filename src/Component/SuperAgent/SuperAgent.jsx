@@ -5,13 +5,9 @@ import { stateLga } from '../../assets/state_and_lgas'
 
 export default function SuperAgent() {
     const _form = {
-        step: 0,
-        name: "",
-        vendor_name: '',
-        lga: "",
-        contact_lga: ''
 
     }
+
     const [form, setForm] = useState(_form)
     const handleChange = ({ target: { name, value } }) => {
         setForm((p) => ({ ...p, [name]: value }))
@@ -51,29 +47,18 @@ export default function SuperAgent() {
                                 alignItems: "center",
                             }}
                         >
-                            <h4 className="app_title">Super Agent Registeration</h4>
-                            <button
-                                className="app_button"
-                                style={{
-                                    width: 150,
-                                    padding: 10,
-                                    marginLeft: 15,
-                                    color: '#000',
-                                    borderRadius: 10,
-                                }}
-                                onClick={() => navigate("/agent")}
-                            >
-                                Agent
-                            </button>
+                            Agent
                         </div>
-
-                        <hr />
                     </Col>
-                    <Form>
+
+                    <hr />
+                </Row>
+                <Col md={12}>
+                    <Form className='mx-auto'>
                         {form.step > 0 ?
                             <>
-                                <Row className="p-4">
-                                    <Col md={6}>
+                                <Row className='margin-bottom-input'>
+                                    <Col md={6} className='first-col'>
                                         <FormGroup>
                                             <Label for="contact_name">
                                                 Contact Name
@@ -104,8 +89,8 @@ export default function SuperAgent() {
                                         </FormGroup>
                                     </Col>
                                 </Row>
-                                <Row className="p-4">
-                                    <Col md={6}>
+                                <Row className='margin-bottom-input'>
+                                    <Col md={6} className='first-col'>
                                         <FormGroup>
                                             <Label for="contact_address">
                                                 Contact Address
@@ -137,8 +122,8 @@ export default function SuperAgent() {
                                         </FormGroup>
                                     </Col>
                                 </Row>
-                                <Row className="p-4">
-                                    <Col md={6}>
+                                <Row className='margin-bottom-input'>
+                                    <Col md={6} className='first-col'>
                                         <FormGroup>
                                             <Label for="residential_state">
                                                 State of Residence
@@ -180,7 +165,7 @@ export default function SuperAgent() {
                                                 {stateLga.filter(
                                                     (item) => item.state === form.residential_state
                                                 )[0]?.lgas?.map((lga, idx) => <option key={idx}>
-                                                    {lga}
+                                                    {lga.name}
                                                 </option>)
                                                 }
                                             </Input>
@@ -208,8 +193,8 @@ export default function SuperAgent() {
                                 </Row>
                             </> :
                             <>
-                                <Row className="p-4">
-                                    <Col md={6}>
+                                <Row className='margin-bottom-input'>
+                                    <Col md={6} className='first-col'>
                                         <FormGroup>
                                             <Label for="vendorName">
                                                 Vendor's name
@@ -240,8 +225,8 @@ export default function SuperAgent() {
                                         </FormGroup>
                                     </Col>
                                 </Row>
-                                <Row className="p-4">
-                                    <Col md={6}>
+                                <Row className='margin-bottom-input'>
+                                    <Col md={6} className='first-col'>
                                         <FormGroup>
                                             <Label for="office_address">
                                                 Office Address
@@ -273,8 +258,8 @@ export default function SuperAgent() {
                                         </FormGroup>
                                     </Col>
                                 </Row>
-                                <Row className="p-4">
-                                    <Col md={6}>
+                                <Row className='margin-bottom-input'>
+                                    <Col md={6} className='first-col'>
                                         <FormGroup>
                                             <Label for="state">
                                                 State
@@ -313,8 +298,8 @@ export default function SuperAgent() {
                                         </FormGroup>
                                     </Col>
                                 </Row>
-                                <Row className="p-4">
-                                    <Col md={6}>
+                                <Row className='margin-bottom-input'>
+                                    <Col md={6} className='first-col'>
                                         <FormGroup>
                                             <Label for="lga">
                                                 LGA
@@ -355,14 +340,19 @@ export default function SuperAgent() {
                                     </Col>
                                 </Row>
                             </>}
-                        <Row className="mt-3 ">
+                        <Row className="mt-3" style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignContent: 'center',
+                            marginTop: 30,
+                        }}
+                        >
                             {form.step > 0 ? <Row>
-                                <Col className='text-left'> <button
+                                <Col md={6} className='text-left'> <button
                                     className="app_button"
                                     style={{
                                         width: 150,
                                         marginLeft: 30,
-                                        marginTop: 20,
                                         padding: 10,
                                         color: "",
                                         cursor: "pointer",
@@ -371,12 +361,11 @@ export default function SuperAgent() {
                                 >
                                     Prev
                                 </button></Col>
-                                <Col className='text-right'> <button
+                                <Col md={6} className='text-right'> <button
                                     className="app_button"
                                     style={{
                                         width: 150,
                                         marginLeft: 30,
-                                        marginTop: 20,
                                         padding: 10,
                                         color: "",
                                         cursor: "pointer",
@@ -391,7 +380,6 @@ export default function SuperAgent() {
                                     style={{
                                         width: 150,
                                         marginLeft: 30,
-                                        marginTop: 20,
                                         padding: 10,
                                         color: "",
                                         cursor: "pointer",
@@ -402,8 +390,8 @@ export default function SuperAgent() {
                                 </button>}
                         </Row>
                     </Form>
-                </Row>
+                </Col>
             </Card>
-        </div>
+        </div >
     );
 }

@@ -15,7 +15,7 @@
     "@mui/icons-material": "5.11.16",
     "@mui/material": "5.12.3",
     "@themesberg/react-bootstrap": "^1.4.1",
-    "bootstrap": "^3.4.1",
+    "boostrap": "^2.0.0",
     "qrcode.react": "^3.1.0",
     "react": "^18.2.0",
     "react-bootstrap": "^1.6.8",

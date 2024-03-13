@@ -156,24 +156,10 @@ export default function RegistrationTable() {
                                 </FormGroup>
                             </Col>
                         </Row>
-                        <Row className='margin-bottom-input'>
-                            <Col md={6}>
-                                <FormGroup>
-                                    <Label for="examplePassword">
-                                    Password
-                                    </Label>
-                                    <Input
-                                    id="examplePassword"
-                                    name="password"
-                                    placeholder="password placeholder"
-                                    type="password"
-                                    />
-                                </FormGroup>
-                            </Col>
-                        </Row>
                     </Form>
                 </Col>
             </Row>
+
         </Card>
     )
 }

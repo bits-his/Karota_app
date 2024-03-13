@@ -69,7 +69,7 @@ export default function SuperAgentTable() {
                 marginTop: 40,
                 marginLeft: 30,
                 maxWidth: 800,
-                tableLayout: "fixed", 
+                tableLayout: "fixed",
               }}
             >
               <thead>
@@ -78,7 +78,7 @@ export default function SuperAgentTable() {
                     style={{
                       padding: "5px 10px",
                       border: "1px solid #f5c005",
-                      width: "25%", 
+                      width: "25%",
                     }}
                   >
                     S/N
@@ -90,7 +90,7 @@ export default function SuperAgentTable() {
                       width: "25%",
                     }}
                   >
-                    First Name
+                    Name
                   </th>
                   <th
                     style={{
@@ -99,7 +99,7 @@ export default function SuperAgentTable() {
                       width: "25%",
                     }}
                   >
-                    Last Name
+                    Phone
                   </th>
                   <th
                     style={{
@@ -108,7 +108,16 @@ export default function SuperAgentTable() {
                       width: "25%",
                     }}
                   >
-                    Username
+                    Email
+                  </th>
+                  <th
+                    style={{
+                      padding: "5px 10px",
+                      border: "1px solid #f5c005",
+                      width: "25%",
+                    }}
+                  >
+                    Contact Address
                   </th>
                 </tr>
               </thead>
@@ -140,7 +149,7 @@ export default function SuperAgentTable() {
                       width: "25%",
                     }}
                   >
-                    Otto
+                    990022
                   </td>
                   <td
                     style={{
@@ -150,6 +159,15 @@ export default function SuperAgentTable() {
                     }}
                   >
                     @mdo
+                  </td>
+                  <td
+                    style={{
+                      padding: "5px 10px",
+                      border: "1px solid #f5c005",
+                      width: "25%",
+                    }}
+                  >
+                    Kano
                   </td>
                 </tr>
               </tbody>

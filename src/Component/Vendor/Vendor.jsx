@@ -34,7 +34,7 @@ export default function RegistrationTable() {
 
     return (
         <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
-            {JSON.stringify({ form })}
+            {/* {JSON.stringify({ form })} */}
             <Row>
                 <Col md={12}>
                     <div

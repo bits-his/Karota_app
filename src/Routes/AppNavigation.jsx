@@ -12,6 +12,7 @@ import SuperAgentTable from "../Component/SuperAgent/SuperAgentTable";
 import Agent from "../Component/SuperAgent/Agent";
 import AgentTable from "../Component/SuperAgent/AgentTable";
 import VendorReg from "../Component/Vendor/VendorReg";
+import VehicleOwnerTable from "../Component/vehicleOwner/VehicleOwnerTable";
 
 export default function AppNavigation() {
   let Pages = useRoutes([
@@ -61,6 +62,10 @@ export default function AppNavigation() {
         {
           path: "/VehicleOwner",
           element: <VehicleOwner/>,
+        },
+        {
+          path: "/Vehicleownertabel",
+          element: <VehicleOwnerTable />,
         },
         {
           path: "/VehicleReg",

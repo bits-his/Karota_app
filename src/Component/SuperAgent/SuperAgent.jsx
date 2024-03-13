@@ -4,16 +4,15 @@ import { Card, Col, Row, Form, FormGroup, Label, Input } from "reactstrap";
 import { stateLga } from "../../assets/state_and_lgas";
 
 export default function SuperAgent() {
-    const _form = {
-        
-    }
+    const _form = {};
 
-    const [form, setForm] = useState(_form)
+    const [form, setForm] = useState(_form);
+    const [submittedData, setSubmittedData] = useState([]);
     const handleChange = ({ target: { name, value } }) => {
-        setForm((p) => ({ ...p, [name]: value }))
-    }
-    const navigate = useNavigate()
-    const handleSubmit = () => {
+        setForm((p) => ({ ...p, [name]: value }));
+    };
+    const navigate = useNavigate();
+    const handleSubmit = (formData) => {
         setLoading(true);
         let obj = { ...form, qrcode: qrCodeGenerator };
         _post(
@@ -30,50 +29,49 @@ export default function SuperAgent() {
                 console.log(err);
             }
         );
+        setSubmittedData([...submittedData, formData]);
     };
-  return (
-    <div>
-      {/* <button className="app_button" onClick={() => navigate("/agent")}>
+    return (
+        <div>
+            {/* <button className="app_button" onClick={() => navigate("/agent")}>
         Create agent
       </button> */}
-      <Card className="app_card dashboard_card m-0 p-0">
-        {JSON.stringify({ form })}
-        <Row>
-          <Col md={12}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <h4 className="app_title">Super Agent Registeration</h4>
-              <button
-                className="app_button"
-                style={{
-                  width: 150,
-                  padding: 10,
-                  marginLeft: 15,
-                  color: "#000",
-                  borderRadius: 10,
-                }}
-                onClick={() => navigate("/agent")}
-              >
-                Create Agent
-              </button>
-            </div>
+            <Card className="app_card dashboard_card m-0 p-0">
+                {JSON.stringify({ form })}
+                <Row>
+                    <Col md={12}>
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                alignItems: "center",
+                            }}
+                        >
+                            <h4 className="app_title">Super Agent Registeration</h4>
+                            <button
+                                className="app_button"
+                                style={{
+                                    width: 150,
+                                    padding: 10,
+                                    marginLeft: 15,
+                                    color: "#000",
+                                    borderRadius: 10,
+                                }}
+                                onClick={() => navigate("/agent")}
+                            >
+                                Create Agent
+                            </button>
+                        </div>
 
-                    <hr />
-                </Col>
-                <Col md={12}>
-                    <Form className='mx-auto'>
+                        <hr />
+                    </Col>
+                    <Col md={12}>
+                        <Form className="mx-auto">
                             <>
-                                <Row className='margin-bottom-input'>
-                                    <Col md={6} className='first-col'>
+                                <Row className="margin-bottom-input">
+                                    <Col md={6} className="first-col">
                                         <FormGroup>
-                                            <Label for="superName">
-                                                Name
-                                            </Label>
+                                            <Label for="superName">Name</Label>
                                             <Input
                                                 onChange={handleChange}
                                                 id="superName"
@@ -86,9 +84,7 @@ export default function SuperAgent() {
                                     </Col>
                                     <Col md={6}>
                                         <FormGroup>
-                                            <Label for="superVendor">
-                                                Vendor
-                                            </Label>
+                                            <Label for="superVendor">Vendor</Label>
                                             <Input
                                                 onChange={handleChange}
                                                 id="superVendor"
@@ -97,56 +93,47 @@ export default function SuperAgent() {
                                                 type="select"
                                                 className="app_input"
                                             >
-                                            <option value={''}>
-                                                Select vendor
-                                            </option>
-                                            {stateLga.map((item) => <option>
-                                                {item.state}
-                                            </option>)}
+                                                <option value={""}>Select vendor</option>
+                                                {stateLga.map((item) => (
+                                                    <option>{item.state}</option>
+                                                ))}
                                             </Input>
                                         </FormGroup>
                                     </Col>
                                 </Row>
-                                <Row className='margin-bottom-input'>
-                                    <Col md={6} className='first-col'>
+                                <Row className="margin-bottom-input">
+                                    <Col md={6} className="first-col">
                                         <FormGroup>
-                                            <Label for="superPhone">
-                                                Phone
-                                            </Label>
+                                            <Label for="superPhone">Phone</Label>
                                             <Input
                                                 onChange={handleChange}
                                                 id="superPhone"
                                                 name="superPhone"
                                                 type="tel"
                                                 pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-                                                placeholder='081XXXXXXXX'
+                                                placeholder="081XXXXXXXX"
                                                 className="app_input"
                                             />
                                         </FormGroup>
                                     </Col>
                                     <Col md={6}>
                                         <FormGroup>
-                                            <Label for="superEmail">
-                                                Email
-                                            </Label>
+                                            <Label for="superEmail">Email</Label>
                                             <Input
                                                 onChange={handleChange}
                                                 id="superEmail"
                                                 name="superEmail"
                                                 placeholder="organization@fake.com"
                                                 type="email"
-
                                                 className="app_input"
                                             />
                                         </FormGroup>
                                     </Col>
                                 </Row>
-                                <Row className='margin-bottom-input'>
-                                    <Col md={6} className='first-col'>
+                                <Row className="margin-bottom-input">
+                                    <Col md={6} className="first-col">
                                         <FormGroup>
-                                            <Label for="superState">
-                                                State
-                                            </Label>
+                                            <Label for="superState">State</Label>
                                             <Input
                                                 onChange={handleChange}
                                                 id="superState"
@@ -156,21 +143,16 @@ export default function SuperAgent() {
                                                 className="app_input"
                                                 required
                                             >
-                                                <option value={''}>
-                                                    Select State
-                                                </option>
-                                                {stateLga.map((item) => <option>
-                                                    {item.state}
-                                                </option>)}
-
+                                                <option value={""}>Select State</option>
+                                                {stateLga.map((item) => (
+                                                    <option>{item.state}</option>
+                                                ))}
                                             </Input>
                                         </FormGroup>
                                     </Col>
-                                    <Col md={6} className='first-col'>
+                                    <Col md={6} className="first-col">
                                         <FormGroup>
-                                            <Label for="lga">
-                                                LGA
-                                            </Label>
+                                            <Label for="lga">LGA</Label>
                                             <Input
                                                 onChange={handleChange}
                                                 id="lga"
@@ -178,25 +160,20 @@ export default function SuperAgent() {
                                                 type="select"
                                                 className="app_input"
                                             >
-                                                <option value={''}>
-                                                    --Select LGA--
-                                                </option>
-                                                {stateLga.filter(
-                                                    (item) => item.state === form.state
-                                                )[0]?.lgas?.map((lga, idx) => <option key={idx}>
-                                                    {lga}
-                                                </option>)
-                                                }
+                                                <option value={""}>--Select LGA--</option>
+                                                {stateLga
+                                                    .filter((item) => item.state === form.state)[0]
+                                                    ?.lgas?.map((lga, idx) => (
+                                                        <option key={idx}>{lga}</option>
+                                                    ))}
                                             </Input>
                                         </FormGroup>
                                     </Col>
                                 </Row>
-                                <Row className='margin-bottom-input'>
+                                <Row className="margin-bottom-input">
                                     <Col md={6}>
                                         <FormGroup>
-                                            <Label for="superAddress">
-                                                Contact address
-                                            </Label>
+                                            <Label for="superAddress">Contact address</Label>
                                             <Input
                                                 onChange={handleChange}
                                                 id="superAddress"
@@ -208,45 +185,46 @@ export default function SuperAgent() {
                                     </Col>
                                     <Col md={6}>
                                         <FormGroup>
-                                            <Label for="superDOB">
-                                                Date of birth (D.O.B)
-                                            </Label>
+                                            <Label for="superDOB">Date of birth (D.O.B)</Label>
                                             <Input
                                                 onChange={handleChange}
                                                 id="superDOB"
                                                 name="superDOB"
                                                 type="date"
-
                                                 className="app_input"
                                             />
                                         </FormGroup>
                                     </Col>
                                 </Row>
                             </>
-                        <Row>
-                            <Col md={12}
-                                style={{
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                }}
-                            > <button
-                                className="app_button"
-                                style={{
-                                    width: 150,
-                                    padding: 10,
-                                    color: "",
-                                    cursor: "pointer",
-                                    borderRadius: 7,
-                                }}
-                                onClick={handleSubmit}
-                            >
-                                Submit
-                            </button></Col>
-                        </Row>
-                    </Form>
-                </Col>
-            </Row>
-      </Card>
-    </div>
-  );
+                            <Row>
+                                <Col
+                                    md={12}
+                                    style={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                    }}
+                                >
+                                    {" "}
+                                    <button
+                                        className="app_button"
+                                        style={{
+                                            width: 150,
+                                            padding: 10,
+                                            color: "",
+                                            cursor: "pointer",
+                                            borderRadius: 7,
+                                        }}
+                                        onClick={handleSubmit}
+                                    >
+                                        Submit
+                                    </button>
+                                </Col>
+                            </Row>
+                        </Form>
+                    </Col>
+                </Row>
+            </Card>
+        </div>
+    );
 }

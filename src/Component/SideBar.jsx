@@ -24,60 +24,47 @@ export default function SideBar() {
       </div>
       <section className="link" activeclassName="active">
         <div
-          onClick={() => goto("/")}
-          className={`link_item ${
-            location.pathname === "/" && "active_side_menu"
-          }`}
+          onClick={() => goto("/vendorReg")}
+          className={`link_item ${location.pathname.includes("vendor") && "active_side_menu"
+            }`}
         >
           {/* <GiArchiveRegister className="icon shadow" /> */}
-          Regitration
+          Vendors
         </div>
+        {/* <div
+          onClick={() => goto("/")}
+          className={`link_item ${location.pathname === "/" && "active_side_menu"
+            }`}
+        >
+          {/* <GiArchiveRegister className="icon shadow" /> 
+          Regitration
+        </div> */}
         <div
           onClick={() => goto("/superagentable")}
-          className={`link_item ${
-            location.pathname === "/superagentable" && "active_side_menu"
-          }`}
+          className={`link_item ${location.pathname.includes("super") && "active_side_menu"
+            }`}
         >
           {/* <GiArchiveRegister className="icon shadow" /> */}
-          Super Agent
+          Super Agents
         </div>
         <div
           onClick={() => goto("/agentable")}
-          className={`link_item ${
-            location.pathname === "/agentable" && "active_side_menu"
-          }`}
+          className={`link_item ${location.pathname === "/agentable" && "active_side_menu"
+            }`}
         >
           {/* <GiArchiveRegister className="icon shadow" /> */}
-          Agent
+          Agents
         </div>
+
         <div
-          onClick={() => goto("/vendorReg")}
-          className={`link_item ${
-            location.pathname === "/vendor" && "active_side_menu"
-          }`}
+          onClick={() => goto("/Vehicleownertabel")}
+          className={`link_item ${location.pathname === "/Vehicleownertabel" && "active_side_menu"
+            }`}
         >
           {/* <GiArchiveRegister className="icon shadow" /> */}
-          Vendor Reg.
+          Vehicles
         </div>
-        <div
-          onClick={() => goto("/VehicleReg")}
-          className={`link_item ${
-            location.pathname === "/VehicleReg" && "active_side_menu"
-          }`}
-        >
-          {/* <GiArchiveRegister className="icon shadow" /> */}
-          Vehicle Reg.
-        </div>
-        <div
-          onClick={() => goto("/VehicleOwner")}
-          className={`link_item ${
-            location.pathname === "/VehicleOwner" && "active_side_menu"
-          }`}
-        >
-          {/* <GiArchiveRegister className="icon shadow" /> */}
-          Vehicle Owners
-        </div>
-      </section>
+      </section >
     </>
   );
 }

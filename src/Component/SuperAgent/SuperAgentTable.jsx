@@ -9,31 +9,33 @@ export default function SuperAgentTable() {
   return (
     <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
       <Row>
-        <Col md={12}>
+        <Col md={9}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <h4 className="app_title"> Registered List </h4>
-
-            <button
-              className="app_button"
-              style={{
-                width: 150,
-                padding: 10,
-                marginLeft: 15,
-                color: "#000",
-              }}
-              onClick={() => navigate("/superagent")}
-            >
-              Register New +
-            </button>
+            <h4 className="app_title"> Super Agents </h4>
           </div>
-          <hr />
         </Col>
 
+        <Col>
+          <button
+            className="app_button text-right"
+            style={{
+              width: 150,
+              padding: 10,
+              marginLeft: 15,
+              color: "#000",
+            }}
+            onClick={() => navigate("/superagent")}
+          >
+            Add SuperAgent
+          </button>
+        </Col>
+      </Row>
+
+      <hr />
+      <Row>
         <Col md={12}>
           <div style={{ display: "flex", flexDirection: "row", marginTop: 30 }}>
-            <label className="label_title" style={{ color: "#000" }}>
-              Search
-            </label>
+           
             <Col md={12}>
               <div className="search">
                 <CiSearch
@@ -53,7 +55,10 @@ export default function SuperAgentTable() {
                   placeholder="Search Individual"
                 />
               </div>
-            </Col>
+            </Col> 
+             <label className="label_title" style={{ color: "#000" }}>
+              Search
+            </label>
           </div>
         </Col>
 
@@ -69,7 +74,7 @@ export default function SuperAgentTable() {
                 marginTop: 40,
                 marginLeft: 30,
                 maxWidth: 800,
-                tableLayout: "fixed", 
+                tableLayout: "fixed",
               }}
             >
               <thead>
@@ -78,7 +83,7 @@ export default function SuperAgentTable() {
                     style={{
                       padding: "5px 10px",
                       border: "1px solid #f5c005",
-                      width: "25%", 
+                      width: "25%",
                     }}
                   >
                     S/N
@@ -90,7 +95,7 @@ export default function SuperAgentTable() {
                       width: "25%",
                     }}
                   >
-                    First Name
+                    Name
                   </th>
                   <th
                     style={{
@@ -99,7 +104,7 @@ export default function SuperAgentTable() {
                       width: "25%",
                     }}
                   >
-                    Last Name
+                    Phone
                   </th>
                   <th
                     style={{
@@ -108,7 +113,16 @@ export default function SuperAgentTable() {
                       width: "25%",
                     }}
                   >
-                    Username
+                    Email
+                  </th>
+                  <th
+                    style={{
+                      padding: "5px 10px",
+                      border: "1px solid #f5c005",
+                      width: "25%",
+                    }}
+                  >
+                    Contact Address
                   </th>
                 </tr>
               </thead>
@@ -140,7 +154,7 @@ export default function SuperAgentTable() {
                       width: "25%",
                     }}
                   >
-                    Otto
+                    990022
                   </td>
                   <td
                     style={{
@@ -150,6 +164,15 @@ export default function SuperAgentTable() {
                     }}
                   >
                     @mdo
+                  </td>
+                  <td
+                    style={{
+                      padding: "5px 10px",
+                      border: "1px solid #f5c005",
+                      width: "25%",
+                    }}
+                  >
+                    Kano
                   </td>
                 </tr>
               </tbody>

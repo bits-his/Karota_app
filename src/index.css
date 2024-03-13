@@ -113,7 +113,9 @@
   width: 90%;
   padding: 3px 10px;
   border: none !important;
-  border-radius: 8px;
+  border-radius: 8px; 
+  border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
   font-size: 20px;
   outline: none;
 }
@@ -126,7 +128,8 @@
 }
 .search_input_form {
   display: flex;
-  border: 1px solid #f5c005;
+  border: 1px solid #f5c005; 
+  
 }
 .search_icon {
   font-size: 30px;
@@ -148,8 +151,8 @@
   flex-direction: row;
   padding: 3px 10px;
   border-radius: 5px;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
   margin-left: -13px;
   width: 104%;
   border: 1px solid #f5c005;
@@ -161,11 +164,11 @@
   color: #fff;
   padding: 6px;
   border: 1px solid #f5c005;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
   text-align: center;
   margin-top: -18px;
-  /* height: 70px; */
+  /* height: 70px; */ 
 }
 .app_input:focus {
   outline: 1px #f5c005 solid;
@@ -595,4 +598,8 @@ Input.form-control {
 }
 select.form-select {
   padding: 10px;
+}
+
+.link_item{
+  text-align: left;
 }

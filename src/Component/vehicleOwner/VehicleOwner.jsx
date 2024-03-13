@@ -20,22 +20,22 @@ export default function OwnerReg() {
     ];
 
     const handleShowForm = () => {
-      setShowForm(true);
-  };
-  const handleBackToTable = () => {
-      setShowForm(false);
-  };
-  const handleSubmit = (e) => {
-     
-      e.preventDefault(); 
-      console.log('Form submitted');
-      
-  };
+        setShowForm(true);
+    };
+    const handleBackToTable = () => {
+        setShowForm(false);
+    };
+    const handleSubmit = (e) => {
+
+        e.preventDefault();
+        console.log('Form submitted');
+
+    };
 
     return (
         <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
             <Row>
-            <Col md={12}>
+                <Col md={12}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                         <h4 className="app_title">Vehicle Owner Registration</h4>
                         {!showForm ? (
@@ -59,88 +59,88 @@ export default function OwnerReg() {
                     <hr />
                 </Col>
                 <Col md={12}>
-                        <Form onSubmit={handleSubmit}>
-                            <Row className='margin-bottom-input'>
-                                <Col md={6} className='first-col'>
-                                    <FormGroup>
-                                        <Label for="OwnerName">Owner's name</Label>
-                                        <Input id="OwnerName" name="OwnerName" placeholder="Owner's name" type="text" />
-                                    </FormGroup>
-                                </Col>
-                                <Col md={6}>
-                                    <FormGroup>
-                                        <Label for="orgPhone">Phone</Label>
-                                        <Input id="Phone" name="Phone" placeholder="+234-8100000000" type="tel" />
-                                    </FormGroup>
-                                </Col>
-                            </Row>
-                            <Row className='margin-bottom-input'>
-                                <Col md={6} className='first-col'>
-                                    <FormGroup>
-                                        <Label for="officeAddress">Address</Label>
-                                        <Input id="Address" name="Address" type="text" />
-                                    </FormGroup>
-                                </Col>
-                                <Col md={6}>
-                                    <FormGroup>
-                                        <Label for="orgEmail">Owner's email</Label>
-                                        <Input id="Emailexample" name="Email" placeholder="owner@fake.com" type="email" />
-                                    </FormGroup>
-                                </Col>
-                            </Row>
-                            <Row className='margin-bottom-input'>
-                                <Col md={6} className='first-col'>
-                                    <FormGroup>
-                                        <Label for="state">State of residence</Label>
-                                        <Input id="state" name="state" type="select">
-                                            <option value="">-- Select State --</option>
-                                            {nigeriaStates.map((state) => (
-                                                <option key={state} value={state}>{state}</option>
-                                            ))}
-                                        </Input>
-                                    </FormGroup>
-                                </Col>
-                                <Col md={6}>
-                                    <FormGroup>
-                                        <Label for="NIN">NIN</Label>
-                                        <Input id="NIN" name="NIN" type="number" />
-                                    </FormGroup>
-                                </Col>
-                            </Row>
-                            <Row className='margin-bottom-input'>
-                                <Col md={6} className='first-col'>
-                                    <FormGroup>
-                                        <Label for="lga">Local Government Area</Label>
-                                        <Input id="lga" name="lga" type="select">
-                                            <option value="">-- Select LGA --</option>
-                                            {kanoLGAs.map((lga) => (
-                                                <option key={lga} value={lga}>{lga}</option>
-                                            ))}
-                                        </Input>
-                                    </FormGroup>
-                                </Col>
-                                <Col md={6}>
-                                    <FormGroup>
-                                        <Label for="d.o.b">D.o.B</Label>
-                                        <Input id="d.o.b" name="d.o.b" type="date" />
-                                    </FormGroup>
-                                </Col>
-                            </Row>
-                            <Row className='margin-bottom-input'>
-                                <Col md={6}>
-                                    <FormGroup>
-                                        <Label for="examplePassword">Password</Label>
-                                        <Input id="examplePassword" name="password" placeholder="password" type="password" />
-                                    </FormGroup>
-                                </Col>
-                            </Row>
-                            <Row>
+                    <Form onSubmit={handleSubmit}>
+                        <Row className='margin-bottom-input'>
+                            <Col md={6} className='first-col'>
+                                <FormGroup>
+                                    <Label for="OwnerName">Owner's name</Label>
+                                    <Input id="OwnerName" name="OwnerName" placeholder="Owner's name" type="text" />
+                                </FormGroup>
+                            </Col>
+                            <Col md={6}>
+                                <FormGroup>
+                                    <Label for="orgPhone">Phone</Label>
+                                    <Input id="Phone" name="Phone" placeholder="+234-8100000000" type="tel" />
+                                </FormGroup>
+                            </Col>
+                        </Row>
+                        <Row className='margin-bottom-input'>
+                            <Col md={6} className='first-col'>
+                                <FormGroup>
+                                    <Label for="officeAddress">Address</Label>
+                                    <Input id="Address" name="Address" type="text" />
+                                </FormGroup>
+                            </Col>
+                            <Col md={6}>
+                                <FormGroup>
+                                    <Label for="orgEmail">Owner's email</Label>
+                                    <Input id="Emailexample" name="Email" placeholder="owner@fake.com" type="email" />
+                                </FormGroup>
+                            </Col>
+                        </Row>
+                        <Row className='margin-bottom-input'>
+                            <Col md={6} className='first-col'>
+                                <FormGroup>
+                                    <Label for="state">State of residence</Label>
+                                    <Input id="state" name="state" type="select">
+                                        <option value="">-- Select State --</option>
+                                        {nigeriaStates.map((state) => (
+                                            <option key={state} value={state}>{state}</option>
+                                        ))}
+                                    </Input>
+                                </FormGroup>
+                            </Col>
+                            <Col md={6}>
+                                <FormGroup>
+                                    <Label for="NIN">NIN</Label>
+                                    <Input id="NIN" name="NIN" type="number" />
+                                </FormGroup>
+                            </Col>
+                        </Row>
+                        <Row className='margin-bottom-input'>
+                            <Col md={6} className='first-col'>
+                                <FormGroup>
+                                    <Label for="lga">Local Government Area</Label>
+                                    <Input id="lga" name="lga" type="select">
+                                        <option value="">-- Select LGA --</option>
+                                        {kanoLGAs.map((lga) => (
+                                            <option key={lga} value={lga}>{lga}</option>
+                                        ))}
+                                    </Input>
+                                </FormGroup>
+                            </Col>
+                            <Col md={6}>
+                                <FormGroup>
+                                    <Label for="d.o.b">D.o.B</Label>
+                                    <Input id="d.o.b" name="d.o.b" type="date" />
+                                </FormGroup>
+                            </Col>
+                        </Row>
+                        <Row className='margin-bottom-input'>
+                            <Col md={6}>
+                                <FormGroup>
+                                    <Label for="examplePassword">Password</Label>
+                                    <Input id="examplePassword" name="password" placeholder="password" type="password" />
+                                </FormGroup>
+                            </Col>
+                        </Row>
+                        <Row>
                             <Col md={12}
                                 style={{
                                     display: 'flex',
                                     justifyContent: 'space-between',
                                     marginTop: 30,
-                                    
+
                                 }}
                             > <button
                                 className="app_button"
@@ -151,28 +151,28 @@ export default function OwnerReg() {
                                     cursor: "pointer",
                                     borderRadius: 7,
                                 }}
-                                onClick={() => navigate ("/")}
+                                onClick={() => navigate("/")}
                             >
-                                Submit
-                            </button>
-                            <button
-                                className="app_button"
-                                style={{
-                                    width: 150,
-                                    padding: 10,
-                                    color: "",
-                                    cursor: "pointer",
-                                    borderRadius: 7,
-                                }}
-                                onClick={() => navigate ("/VehicleReg")}
-                            >
-                                prev
-                            </button>
-                           
-                             </Col>
+                                    Submit
+                                </button>
+                                <button
+                                    className="app_button"
+                                    style={{
+                                        width: 150,
+                                        padding: 10,
+                                        color: "",
+                                        cursor: "pointer",
+                                        borderRadius: 7,
+                                    }}
+                                    onClick={() => navigate("/VehicleReg")}
+                                >
+                                    prev
+                                </button>
+
+                            </Col>
                         </Row>
-                        </Form>
-                
+                    </Form>
+
                 </Col>
             </Row>
         </Card>

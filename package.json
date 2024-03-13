@@ -14,6 +14,7 @@
     "@emotion/styled": "11.10.8",
     "@mui/icons-material": "5.11.16",
     "@mui/material": "5.12.3",
+    "@themesberg/react-bootstrap": "^1.4.1",
     "bootstrap": "^3.3.7",
     "qrcode.react": "^3.1.0",
     "react": "^18.2.0",

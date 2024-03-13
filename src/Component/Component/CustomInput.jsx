@@ -16,7 +16,7 @@ export default function CustomInput(props) {
   };
 
   return (
-    <Form.Group id="email" className="mb-4">
+    <Form.Group id="email" className="mb-4 ">
       <Form.Label>
         {label}
         {required ? <span style={{ color: "red" }}> *</span> : ""}

@@ -5,6 +5,8 @@ import Registration from "../Component/Registration";
 import RegistrationTable from "../Component/RegistrationTable";
 import Vendor from "../Component/Vendor/Vendor";
 import Login from "../Component/SignIn/signUp/Login";
+import VehicleOwner from "../Component/vehicleOwner/VehicleOwner"
+import VehicleReg from "../Component/vehicleReg/VehicleReg";
 import SuperAgent from "../Component/SuperAgent/SuperAgent";
 import SuperAgentTable from "../Component/SuperAgent/SuperAgentTable";
 
@@ -41,6 +43,16 @@ export default function AppNavigation() {
           path: "/vendor",
           element: <Vendor />,
         },
+        {
+          path: "/VehicleOwner",
+          element: <VehicleOwner/>,
+        },
+        {
+          path: "/VehicleReg",
+          element: <VehicleReg />,
+        },
+        
+        
       ],
     },
   ]);

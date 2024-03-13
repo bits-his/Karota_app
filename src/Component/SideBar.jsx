@@ -14,35 +14,35 @@ export default function SideBar() {
             Keke App
         </h4>  
       </div>
-      <div className="link" activeclassName="active">
-        <li
+      <section className="link" activeclassName="active">
+        <div
           onClick={() => goto("/")}
           className={`link_item ${
             location.pathname === "/" && "active_side_menu"
           }`}
         >
-          <GiArchiveRegister className="icon shadow" />
+          {/* <GiArchiveRegister className="icon shadow" /> */}
           Regitration
-        </li>
-        <li
+        </div>
+        <div
           onClick={() => goto("/superagent")}
           className={`link_item ${
             location.pathname === "/superagent" && "active_side_menu"
           }`}
         >
-          <GiArchiveRegister className="icon shadow" />
+          {/* <GiArchiveRegister className="icon shadow" /> */}
           Super Agent
-        </li>
-        <li
+        </div>
+        <div
           onClick={() => goto("/vendor")}
           className={`link_item ${
             location.pathname === "/vendor" && "active_side_menu"
           }`}
         >
-          <GiArchiveRegister className="icon shadow" />
+          {/* <GiArchiveRegister className="icon shadow" /> */}
           Vendor Reg.
-        </li>
-      </div>
+        </div>
+      </section>
     </>
   );
 }

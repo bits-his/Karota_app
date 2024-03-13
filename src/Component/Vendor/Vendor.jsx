@@ -403,7 +403,7 @@ export default function RegistrationTable() {
                             </button></Col>
                         </Row> :
                             <button
-                                 className="app_button p-4"
+                                className="app_button p-4"
                                 style={{
                                     width: 150,
                                     marginLeft: 30,

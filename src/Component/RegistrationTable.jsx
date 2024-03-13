@@ -54,7 +54,7 @@ export default function RegistrationTable() {
                 marginLeft: 15,
                 color: '#000'
             }}
-            onClick={() => navigate ("/registration-form")}
+            onClick={() => navigate ("/registration")}
         >
             Register New +
         </button>
@@ -86,9 +86,9 @@ export default function RegistrationTable() {
         </Col>
         <Row>
             <Col md={12}>
-                <div className="table_overflow">
+                 <div className="table_overflow">
                     <table 
-                        style={{ border: "1px solid #ccc", padding: 0, marginTop: 40 }}
+                        style={{ border: "1px solid #ccc", padding: 0, marginTop: 40, maxWidth: "90%"}}
                         className="mt-5"
                     >
                         <thead>

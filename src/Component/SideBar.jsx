@@ -5,27 +5,44 @@ import { GiArchiveRegister } from "react-icons/gi";
 export default function SideBar() {
   const goto = useNavigate()
   return (
-    <div className="">
+    <>
       <div>
         <center>
-          <div className='user_image'>
-            
-          </div>
+          <div className="user_image"></div>
         </center>
-        <h4 className="mt-4 app_title" style={{ fontSize: "26px", textAlign: 'center', color: 'black'}}>
-            Karota App
+        <h4 className="mt-4 app_title" style={{ fontSize: "26px", textAlign: 'center', color: 'black', marginBottom: 40,}}>
+            Keke App
         </h4>  
       </div>
-      <div className="link" activeclassName="active">
-        <li
-          onClick={() => goto("/registration")}
+      <section className="link" activeclassName="active">
+        <div
+          onClick={() => goto("/")}
           className={`link_item ${
-            location.pathname === "/registration" && "active_side_menu"
+            location.pathname === "/" && "active_side_menu"
           }`}
         >
-          <GiArchiveRegister className="icon shadow" />Regitration
-        </li>
-      </div>
-    </div>
-  )
+          {/* <GiArchiveRegister className="icon shadow" /> */}
+          Regitration
+        </div>
+        <div
+          onClick={() => goto("/superagentable")}
+          className={`link_item ${
+            location.pathname === "/superagentable" && "active_side_menu"
+          }`}
+        >
+          {/* <GiArchiveRegister className="icon shadow" /> */}
+          Super Agent
+        </div>
+        <div
+          onClick={() => goto("/vendor")}
+          className={`link_item ${
+            location.pathname === "/vendor" && "active_side_menu"
+          }`}
+        >
+          {/* <GiArchiveRegister className="icon shadow" /> */}
+          Vendor Reg.
+        </div>
+      </section>
+    </>
+  );
 }

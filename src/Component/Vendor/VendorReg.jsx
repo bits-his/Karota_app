@@ -28,7 +28,7 @@ function VendorReg() {
         </button>
       </Row>
         <hr style={{position: 'relative', width: '97.3%', top: "25px"}}/>
-        <Table>
+        <Table style={{width: '97.3%'}}>
             <thead>
                 <tr>
                     <th>#</th>
@@ -40,11 +40,11 @@ function VendorReg() {
             </thead>
             <tbody>
                 <tr>
-                    <th>1</th>
-                    <th>Auwal Sani</th>
-                    <th>08012345678</th>
-                    <th>Auwaul@mail.com</th>
-                    <th>No 3 Zungeru Rd</th>
+                    <th scope="row">1</th>
+                    <td>Auwal Sani</td>
+                    <td>08012345678</td>
+                    <td>Auwaul@mail.com</td>
+                    <td>No 3 Zungeru Rd</td>
                 </tr>
             </tbody>
         </Table>

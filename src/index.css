@@ -167,7 +167,7 @@
 }
 .app_title {
   color: #000;
-  text-shadow: 3px 4px 5px #000000
+  text-shadow: 3px 4px 5px #000000;
 }
 hr{
     border: 1px solid #f5c005;    
@@ -227,7 +227,7 @@ label {
 }
 .link {
   margin-top: 20px;
-  width: 111%;
+  width: 110%;
   margin-left: -25px;
 }
 .table-div {
@@ -239,8 +239,8 @@ label {
     padding-top: 0px;
     font-family: monospace;
     font-size: 20px;
-    margin-top: 30px;
-    width: 258px;
+    margin-bottom: 10px;
+    width: 100%;
     padding: 10px 30px;
     list-style: none;
     cursor: pointer;
@@ -248,8 +248,7 @@ label {
 
 .active_side_menu {
   background-color: #a88504;
-
-  /* color: #f5c005; */
+  width: 100%;
   border-right: 5px solid white;
 }
 

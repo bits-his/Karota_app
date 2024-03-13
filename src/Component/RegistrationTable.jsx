@@ -54,7 +54,7 @@ export default function RegistrationTable() {
                 marginLeft: 15,
                 color: '#000'
             }}
-            onClick={() => navigate ("/registration-form")}
+            onClick={() => navigate ("/registration")}
         >
             Register New +
         </button>
@@ -84,7 +84,7 @@ export default function RegistrationTable() {
                 </Col>
             </div>
         </Col>
-        {/*<Row>
+        <Row>
             <Col md={12}>
                  <div className="table_overflow">
                     <table 
@@ -491,7 +491,7 @@ export default function RegistrationTable() {
                     </table>
                 </div>
             </Col>
-        </Row> */}
+        </Row>
     </Card>
   )
 }

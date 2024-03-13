@@ -25,9 +25,9 @@ export default function SideBar() {
           Regitration
         </div>
         <div
-          onClick={() => goto("/superagent")}
+          onClick={() => goto("/superagentable")}
           className={`link_item ${
-            location.pathname === "/superagent" && "active_side_menu"
+            location.pathname === "/superagentable" && "active_side_menu"
           }`}
         >
           {/* <GiArchiveRegister className="icon shadow" /> */}

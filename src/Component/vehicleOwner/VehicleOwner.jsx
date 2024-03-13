@@ -59,26 +59,6 @@ export default function OwnerReg() {
                     <hr />
                 </Col>
                 <Col md={12}>
-                    {!showForm ? (
-                        <Table bordered>
-                            <thead>
-                                <tr>
-                                    <th>Owner's Name</th>
-                                    <th>Phone</th>
-                                    <th>Address</th>
-                                    <th>Email</th>
-                                    <th>State</th>
-                                    <th>NIN</th>
-                                    <th>LGA</th>
-                                    <th>D.o.B</th>
-                                    <th>Password</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {/* Table rows will be populated dynamically */}
-                            </tbody>
-                        </Table>
-                    ) : (
                         <Form onSubmit={handleSubmit}>
                             <Row className='margin-bottom-input'>
                                 <Col md={6} className='first-col'>
@@ -158,8 +138,9 @@ export default function OwnerReg() {
                             <Col md={12}
                                 style={{
                                     display: 'flex',
-                                    justifyContent: 'center',
+                                    justifyContent: 'space-between',
                                     marginTop: 30,
+                                    
                                 }}
                             > <button
                                 className="app_button"
@@ -173,10 +154,25 @@ export default function OwnerReg() {
                                 onClick={() => navigate ("/")}
                             >
                                 Submit
-                            </button></Col>
+                            </button>
+                            <button
+                                className="app_button"
+                                style={{
+                                    width: 150,
+                                    padding: 10,
+                                    color: "",
+                                    cursor: "pointer",
+                                    borderRadius: 7,
+                                }}
+                                onClick={() => navigate ("/VehicleReg")}
+                            >
+                                prev
+                            </button>
+                           
+                             </Col>
                         </Row>
                         </Form>
-                    )}
+                
                 </Col>
             </Row>
         </Card>

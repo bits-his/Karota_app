@@ -42,6 +42,24 @@ export default function SideBar() {
           {/* <GiArchiveRegister className="icon shadow" /> */}
           Vendor Reg.
         </div>
+        <div
+          onClick={() => goto("/VehicleReg")}
+          className={`link_item ${
+            location.pathname === "/VehicleReg" && "active_side_menu"
+          }`}
+        >
+          {/* <GiArchiveRegister className="icon shadow" /> */}
+          Vehicle Reg.
+        </div>
+        <div
+          onClick={() => goto("/VehicleOwner")}
+          className={`link_item ${
+            location.pathname === "/VehicleOwner" && "active_side_menu"
+          }`}
+        >
+          {/* <GiArchiveRegister className="icon shadow" /> */}
+          VehicleOwner's.
+        </div>
       </section>
     </>
   );

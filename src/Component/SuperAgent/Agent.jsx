@@ -1,9 +1,10 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, Col, Row, Form, FormGroup, Label, Input } from "reactstrap";
 import { stateLga } from "../../assets/state_and_lgas";
 
-export default function SuperAgent() {
+export default function Agent() {
     const _form = {
         
     }
@@ -47,8 +48,8 @@ export default function SuperAgent() {
                 alignItems: "center",
               }}
             >
-              <h4 className="app_title">Super Agent Registeration</h4>
-              <button
+              <h4 className="app_title">Agent Registeration</h4>
+              {/* <button
                 className="app_button"
                 style={{
                   width: 150,
@@ -60,7 +61,7 @@ export default function SuperAgent() {
                 onClick={() => navigate("/agent")}
               >
                 Create Agent
-              </button>
+              </button> */}
             </div>
 
                     <hr />
@@ -118,8 +119,7 @@ export default function SuperAgent() {
                                                 id="superPhone"
                                                 name="superPhone"
                                                 type="tel"
-                                                pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-                                                placeholder='081XXXXXXXX'
+
                                                 className="app_input"
                                             />
                                         </FormGroup>
@@ -201,7 +201,7 @@ export default function SuperAgent() {
                                                 onChange={handleChange}
                                                 id="superAddress"
                                                 name="superAddress"
-                                                type="text"
+                                                type="textarea"
                                                 className="app_input"
                                             />
                                         </FormGroup>
@@ -227,7 +227,7 @@ export default function SuperAgent() {
                             <Col md={12}
                                 style={{
                                     display: 'flex',
-                                    justifyContent: 'center',
+                                    justifyContent: 'right',
                                 }}
                             > <button
                                 className="app_button"
@@ -250,3 +250,4 @@ export default function SuperAgent() {
     </div>
   );
 }
+

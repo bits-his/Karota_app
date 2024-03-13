@@ -1,9 +1,10 @@
+
 import React from "react";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import { Card, Col, Row, Table } from "reactstrap";
 
-export default function SuperAgentTable() {
+export default function AgentTable() {
   const navigate = useNavigate();
 
   return (
@@ -21,7 +22,7 @@ export default function SuperAgentTable() {
                 marginLeft: 15,
                 color: "#000",
               }}
-              onClick={() => navigate("/superagent")}
+              onClick={() => navigate("/agent")}
             >
               Register New +
             </button>
@@ -69,7 +70,7 @@ export default function SuperAgentTable() {
                 marginTop: 40,
                 marginLeft: 30,
                 maxWidth: 800,
-                tableLayout: "fixed", 
+                tableLayout: "fixed",
               }}
             >
               <thead>
@@ -78,7 +79,7 @@ export default function SuperAgentTable() {
                     style={{
                       padding: "5px 10px",
                       border: "1px solid #f5c005",
-                      width: "25%", 
+                      width: "25%",
                     }}
                   >
                     S/N
@@ -160,3 +161,4 @@ export default function SuperAgentTable() {
     </Card>
   );
 }
+

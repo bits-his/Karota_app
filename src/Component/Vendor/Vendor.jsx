@@ -174,7 +174,7 @@ export default function RegistrationTable() {
                                                 {stateLga.filter(
                                                     (item) => item.state === form.residential_state
                                                 )[0]?.lgas?.map((lga, idx) => <option key={idx}>
-                                                    {lga.name}
+                                                    {lga}
                                                 </option>)
                                                 }
                                             </Input>

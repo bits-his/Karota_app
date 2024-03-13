@@ -27,8 +27,8 @@ function VendorReg() {
             Register New +
         </button>
       </Row>
-        <hr style={{position: 'relative', width: '97.3%', top: "25px"}}/>
-        <Table style={{width: '97.3%'}}>
+        <hr style={{position: 'relative', width: '100%', top: "25px"}}/>
+        <Table>
             <thead>
                 <tr>
                     <th>#</th>
@@ -40,7 +40,7 @@ function VendorReg() {
             </thead>
             <tbody>
                 <tr>
-                    <th scope="row">1</th>
+                    <th>1</th>
                     <td>Auwal Sani</td>
                     <td>08012345678</td>
                     <td>Auwaul@mail.com</td>

@@ -20,7 +20,16 @@ export default function RegistrationTable() {
 		owner_state: "",
 		owner_lga: "",
 		owner_dob: "",
-		owner_address: ""
+		owner_nin: "",
+		owner_address: "",
+		driver_name: "",
+		driver_email: "",
+		driver_phone: "",
+		driver_state: "",
+		driver_lga: "",
+		driver_dob: "",
+		driver_nin: "",
+		driver_address: ""
 	}
 
 	const [form, setForm] = useState(_form)
@@ -32,13 +41,15 @@ export default function RegistrationTable() {
 		setLoading(true);
 		let obj = { ...form, qrcode: qrCodeGenerator };
 		_post(
-			"api/create_users",
+			"vehicles/registration",
 			obj,
 			(res) => {
 				setLoading(false);
-				alert("sucessful");
-				console.log(form);
-				setForm(_form);
+				if (res.success) {
+					alert("sucessful");
+					console.log(form);
+					setForm(_form);
+				}
 			},
 			(err) => {
 				setLoading(false);
@@ -245,12 +256,12 @@ export default function RegistrationTable() {
 										<Col md={6} className='first-col'>
 											<FormGroup>
 
-												<Label for="owner_phone">
+												<Label for="owner_name">
 													Name
 												</Label>
 												<Input
 													onChange={handleChange}
-													id="Name"
+													id="owner_name"
 													name="owner_name"
 													value={form.owner_name}
 													placeholder="Name of Vehicle owner"
@@ -280,14 +291,14 @@ export default function RegistrationTable() {
 										<Col md={6} className='first-col'>
 											<FormGroup>
 
-												<Label for="Name">
+												<Label for="owner_dob">
 													Owners Date of Birth
 												</Label>
 												<Input
 													onChange={handleChange}
-													id="Name"
+													id="owner_dob"
 													name="owner_dob"
-													value={form.Name}
+													value={form.owner_dob}
 													placeholder="Name of Vehicle owner"
 													type="date"
 													className="app_input"
@@ -334,7 +345,7 @@ export default function RegistrationTable() {
 												</Label>
 												<Input
 													onChange={handleChange}
-													id="owner_emailexample"
+													id="owner_email"
 													name="owner_email"
 													value={form.owner_email}
 													placeholder="owneranization@fake.com"
@@ -398,13 +409,14 @@ export default function RegistrationTable() {
 									<Row>
 										<Col md={6}>
 											<FormGroup>
-												<Label for="tin">
+												<Label for="owner_nin">
 													NIN
 												</Label>
 												<Input
 													onChange={handleChange}
-													id="NIN"
-													name="NIN"
+													name="owner_nin"
+													id="owner_nin"
+													value={form.owner_nin}
 													type="number"
 													className="app_input"
 												/>
@@ -417,8 +429,9 @@ export default function RegistrationTable() {
 												</Label>
 												<Input
 													onChange={handleChange}
-													id="dob"
-													name="dob"
+													id="owner_dob"
+													name="owner_dob"
+													value={form.owner_dob}
 													type="date"
 													className="app_input"
 												/>

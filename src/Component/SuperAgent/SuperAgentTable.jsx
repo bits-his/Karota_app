@@ -64,7 +64,7 @@ export default function SuperAgentTable() {
 
         <Row>
           <div className="table_overflow">
-            <Table
+            {/* <Table
               bordered
               responsive
               className="mt-5"
@@ -176,7 +176,51 @@ export default function SuperAgentTable() {
                   </td>
                 </tr>
               </tbody>
-            </Table>
+            </Table> */}
+            <Table
+              bordered
+              responsive
+              style={{ position: 'relative', top: '10px',  width: '95.3%', left: "32px", marginTop: '4px' }}
+            >
+              <thead>
+                <tr>
+                  <th>
+                    S/N
+                  </th>
+                  <th>
+                    Name
+                  </th>
+                  <th>
+                    Phone
+                  </th>
+                  <th>
+                    Email
+                  </th>
+                  <th>
+                    Contact Address
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>
+                    1
+                  </th>
+                  <td>
+                    Mark
+                  </td>
+                  <td>
+                    990022
+                  </td>
+                  <td>
+                    @mdo
+                  </td>
+                  <td>
+                    Kano
+                  </td>
+                </tr>
+              </tbody>
+            </Table> 
           </div>
         </Row>
       </Row>

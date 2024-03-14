@@ -18,6 +18,8 @@ function VendorReg() {
                     <button
                         className="app_button"
                         style={{
+                            position: 'relative',
+                            left: 34,
                             width: 150,
                             padding: 10,
                             marginLeft: 15,
@@ -30,7 +32,10 @@ function VendorReg() {
 
             </Row>
             <hr style={{ position: 'relative', width: '100%', top: "25px" }} />
-            <Table borderedn responsive style={{ position: 'relative', top: '10px',  width: '100%', marginTop: '4px' }}>
+            <Table 
+            bordered 
+            responsive 
+            style={{ position: 'relative', top: '20px',  width: '100%', marginTop: '4px' }}>
                 <thead>
                     <tr>
                         <th>#</th>

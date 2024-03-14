@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Card, Col, Row, Form, FormGroup, Label, Input } from "reactstrap";
 import { stateLga } from "../../assets/state_and_lgas";
 import { _post } from "../../Utils/Helper";
+import toast from 'react-hot-toast';
 
 export default function SuperAgent() {
     const _form = {
@@ -33,7 +34,7 @@ export default function SuperAgent() {
             form,
             (res) => {
                 setLoading(false);
-                alert("sucessful");
+                toast.success("Successful");
                 console.log(form);
                 setForm(_form);
             },

@@ -19,7 +19,7 @@ const App = () => {
 
 
     return (
-        <Container>
+        <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
             <Row>
                 <Col md={6}>
                     <Card className='shadow'>
@@ -35,7 +35,7 @@ const App = () => {
                 </Col>
             </Row>
             <hr />
-        </Container>
+        </Card>
     );
 };
 

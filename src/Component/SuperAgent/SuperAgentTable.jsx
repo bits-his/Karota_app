@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import { Card, Col, Row, Table } from "reactstrap";
+import { Button, Card, Col, Row, Table } from "reactstrap";
+import { _get } from "../../Utils/Helper";
 
 export default function SuperAgentTable() {
   const navigate = useNavigate();
 
+  const [data, setData] = useState([]);
+  const [filter, setFilter] = useState('');
+  const getReg = useCallback(() => {
+    _get(`superagent?query_type=select-all`,
+      (resp) => {
+        if (resp.success && resp.results) {
+          setData(resp.results);
+        }
+      });
+  }, [filter]);
+
+  useEffect(() => {
+    getReg();
+  }, [getReg]);
   return (
     <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
       <Row>
@@ -19,6 +34,8 @@ export default function SuperAgentTable() {
           <button
             className="app_button text-right"
             style={{
+              position: 'relative',
+              left: 138,
               width: 150,
               padding: 10,
               marginLeft: 15,
@@ -35,7 +52,7 @@ export default function SuperAgentTable() {
       <Row>
         <Col md={12}>
           <div style={{ display: "flex", flexDirection: "row", marginTop: 30 }}>
-           
+
             <Col md={12}>
               <div className="search">
                 <CiSearch
@@ -55,8 +72,8 @@ export default function SuperAgentTable() {
                   placeholder="Search Individual"
                 />
               </div>
-            </Col> 
-             <label className="label_title" style={{ color: "#000" }}>
+            </Col>
+            <label className="label_title" style={{ color: "#000" }}>
               Search
             </label>
           </div>
@@ -64,123 +81,10 @@ export default function SuperAgentTable() {
 
         <Row>
           <div className="table_overflow">
-            {/* <Table
-              bordered
-              responsive
-              className="mt-5"
-              style={{
-                border: "1px solid #ccc",
-                padding: 0,
-                marginTop: 40,
-                marginLeft: 30,
-                maxWidth: 800,
-                tableLayout: "fixed",
-              }}
-            >
-              <thead>
-                <tr>
-                  <th
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
-                    S/N
-                  </th>
-                  <th
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
-                    Name
-                  </th>
-                  <th
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
-                    Phone
-                  </th>
-                  <th
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
-                    Email
-                  </th>
-                  <th
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
-                    Contact Address
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th
-                    scope="row"
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
-                    1
-                  </th>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
-                    Mark
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
-                    990022
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
-                    @mdo
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
-                    Kano
-                  </td>
-                </tr>
-              </tbody>
-            </Table> */}
             <Table
               bordered
               responsive
-              style={{ position: 'relative', top: '10px',  width: '95.3%', left: "32px", marginTop: '4px' }}
+              style={{ position: 'relative', top: '10px', width: '95.3%', left: "32px", marginTop: '4px' }}
             >
               <thead>
                 <tr>
@@ -199,28 +103,34 @@ export default function SuperAgentTable() {
                   <th>
                     Contact Address
                   </th>
+                  <th className="text-center">
+                    Action
+                  </th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                {data.map((agent, idx) => <tr key={idx}>
                   <th>
-                    1
+                    {idx + 1}
                   </th>
                   <td>
-                    Mark
+                    {agent.name}
                   </td>
                   <td>
-                    990022
+                    {agent.phone}
                   </td>
                   <td>
-                    @mdo
+                    {agent.email}
                   </td>
                   <td>
-                    Kano
+                    {agent.address}
                   </td>
-                </tr>
+                  <td className="text-center">
+                            <Button color="info">View</Button>
+                        </td>
+                </tr>)}
               </tbody>
-            </Table> 
+            </Table>
           </div>
         </Row>
       </Row>

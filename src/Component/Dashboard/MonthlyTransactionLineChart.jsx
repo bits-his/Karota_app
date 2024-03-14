@@ -23,10 +23,10 @@ const MonthlyTransactionLineChart = ({ data }) => {
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Monthly Transaction Count',
+                        label: 'Monthly Transactions',
                         data: transactionCounts,
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: '#f5c005',
+                        borderColor: '#f5c005',
                         borderWidth: 2,
                         tension: 0.4 // Adjust the tension for curved lines (0 for straight lines, 1 for maximum curve)
                     }]

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, Col, Row, Form, FormGroup, Label, Input, Button } from 'reactstrap'
 import { stateLga } from '../../assets/state_and_lgas'
+import toast from 'react-hot-toast';
 
 export default function RegistrationTable() {
 	const _form = {
@@ -36,7 +37,7 @@ export default function RegistrationTable() {
 			obj,
 			(res) => {
 				setLoading(false);
-				alert("sucessful");
+				toast.success("Successful");
 				console.log(form);
 				setForm(_form);
 			},

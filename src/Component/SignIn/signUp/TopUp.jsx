@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import {
   Button,
+  ButtonGroup,
   Card,
   Col,
+  Form,
+  FormGroup,
   Input,
   Label,
   Modal,
@@ -13,43 +16,47 @@ import {
   Row,
   Table,
 } from "reactstrap";
+import { _get } from "../../../Utils/Helper";
 
 export default function TopUp() {
   const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
   const [currentItem, setCurrentItem] = useState({});
   const [data, setData] = useState([]);
+  const [filter, setFilter] = useState('');
+
+  const toggleModal = () => {
+    setModal(!modal);
+  };
+
+  const handlePay = () => {
+    // Implement payment logic here
+    // For now, just close the modal
+    toggleModal();
+  };
+
+  const getReg = useCallback(() => {
+    _get(`vehicles?plate_no=${filter}`, (resp) => {
+      setData(resp.data);
+    });
+  }, [filter]);
+
+  useEffect(() => {
+    getReg();
+  }, [getReg]);
+
   return (
     <div>
       <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
         <Row>
           <Col md={12}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <h4 className="app_title"> Top Up </h4>
-
-              {/* <button
-                className="app_button"
-                style={{
-                  width: 150,
-                  padding: 10,
-                  marginLeft: 15,
-                  color: "#000",
-                }}
-                onClick={() => navigate("/agent")}
-              >
-                Register New +
-              </button> */}
+              <h4 className="app_title">Top Up</h4>
             </div>
             <hr />
           </Col>
 
           <Col md={12}>
-            <div
-              style={{ display: "flex", flexDirection: "row", marginTop: 30 }}
-            >
-              <label className="label_title" style={{ color: "#000" }}>
-                Search
-              </label>
+            <div style={{ display: "flex", flexDirection: "row", marginTop: 30 }}>
               <Col md={12}>
                 <div className="search">
                   <CiSearch
@@ -60,152 +67,87 @@ export default function TopUp() {
                       color: "#000",
                     }}
                   />
-                  <input
+                  <Input
                     style={{
                       width: "100%",
                       fontSize: 20,
                     }}
+                    name="filter"
+                    value={filter}
+                    type="text"
                     className="app_input2"
-                    placeholder="Search Top Up"
+                    onChange={({ target: { value } }) => setFilter(value)}
+                    placeholder="Search: Reg. No | Vehicle No. | Phone No"
                   />
                 </div>
               </Col>
+              <Label
+                onClick={getReg}
+                className="label_title"
+                style={{ color: "#000", cursor: "pointer" }}
+              >
+                Search
+              </Label>
             </div>
           </Col>
 
-          <Row>
+          <Card className="mt-5 shadow">
             <div className="table_overflow">
-              <Table
-                bordered
-                responsive
-                className="mt-5"
-                style={{
-                  border: "1px solid #ccc",
-                  padding: 0,
-                  marginTop: 40,
-                  marginLeft: 30,
-                  maxWidth: 800,
-                  tableLayout: "fixed",
-                }}
-              >
+              <Table bordered responsive className="mt-5">
                 <thead>
                   <tr>
-                    <th
-                      style={{
-                        padding: "5px 10px",
-                        border: "1px solid #f5c005",
-                        width: "25%",
-                      }}
-                    >
-                      I/D
-                    </th>
-                    <th
-                      style={{
-                        padding: "5px 10px",
-                        border: "1px solid #f5c005",
-                        width: "25%",
-                      }}
-                    >
-                      Registration No
-                    </th>
-                    <th
-                      style={{
-                        padding: "5px 10px",
-                        border: "1px solid #f5c005",
-                        width: "25%",
-                      }}
-                    >
-                      plate No
-                    </th>
-                    <th
-                      style={{
-                        padding: "5px 10px",
-                        border: "1px solid #f5c005",
-                        width: "25%",
-                      }}
-                    >
-                      Action
-                    </th>
+                    <th>Reg. No.</th>
+                    <th>Plate No.</th>
+                    <th>Balance</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
-                {data &&
-                  data.map((i) => (
-                    <tbody>
-                      <tr>
-                        <th
-                          scope="row"
-                          style={{
-                            padding: "5px 10px",
-                            border: "1px solid #f5c005",
-                            width: "25%",
-                          }}
-                        >
-                          1
-                        </th>
-                        <td
-                          style={{
-                            padding: "5px 10px",
-                            border: "1px solid #f5c005",
-                            width: "25%",
-                          }}
-                        >
-                          Mark
-                        </td>
-                        <td
-                          style={{
-                            padding: "5px 10px",
-                            border: "1px solid #f5c005",
-                            width: "25%",
-                          }}
-                        >
-                          Otto
-                        </td>
-                        <td
-                          style={{
-                            padding: "5px 10px",
-                            border: "1px solid #f5c005",
-                            width: "25%",
-                          }}
-                        >
-                          <Row>
-                            <Col md={6}>
-                              <Button
-                                onClick={() => {
-                                  setCurrentItem(currentItem);
-                                  toggle();
-                                }}
-                              >
-                                Pay
-                              </Button>
-                            </Col>
-                            <Col md={6}>
-                              <Button>View</Button>
-                            </Col>
-                          </Row>
-                        </td>
-                      </tr>
-                    </tbody>
+                <tbody>
+                  {data.map((vehicle, idx) => (
+                    <tr key={idx}>
+                      <td>{vehicle.vehicle_id}</td>
+                      <td>{vehicle.plate_no}</td>
+                      <td>N{vehicle.balance}</td>
+                      <td className="text-center p-2">
+                        <ButtonGroup>
+                          <Button onClick={() => {
+                            setCurrentItem(vehicle);
+                            toggleModal();
+                          }} color="success">
+                            Pay
+                          </Button>
+                          <Button color="info">View</Button>
+                        </ButtonGroup>
+                      </td>
+                    </tr>
                   ))}
+                </tbody>
               </Table>
             </div>
-          </Row>
+          </Card>
+
+          <Modal isOpen={modal} toggle={toggleModal}>
+            <ModalHeader toggle={toggleModal}>
+              Registration {currentItem.vehicle_id} / Balance: {currentItem.balance}
+            </ModalHeader>
+            <ModalBody>
+              <Form>
+                <FormGroup>
+                  <Label htmlFor="amount">Amount</Label>
+                  <Input type="number" name="amount" id="amount" />
+                </FormGroup>
+              </Form>
+            </ModalBody>
+            <ModalFooter>
+              <Button color="primary" onClick={toggleModal}>
+                Cancel
+              </Button>{" "}
+              <Button variant="danger" onClick={handlePay}>
+                Pay
+              </Button>
+            </ModalFooter>
+          </Modal>
         </Row>
-        <Modal show={modal} toggle={toggle}>
-          <ModalHeader toggle={toggle}>
-            Registration KN/KRT/ Balance: 100
-          </ModalHeader>
-          <ModalBody>
-            {" "}
-            <Label>Amount</Label>
-            <Input type="number" />
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={toggle}>
-              Cancel
-            </Button>{" "}
-            <Button variant="danger">Okay</Button>
-          </ModalFooter>
-        </Modal>
       </Card>
     </div>
   );

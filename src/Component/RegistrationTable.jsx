@@ -9,6 +9,7 @@ export default function RegistrationTable() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [searchList, setSearchList] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const getState = () => {
     _get(
@@ -33,7 +34,7 @@ export default function RegistrationTable() {
       if (
         item.phone_no.toLowerCase().indexOf(searchList.toLowerCase()) === -1 &&
         item.classes_number.toLowerCase().indexOf(searchList.toLowerCase()) ===
-          -1 &&
+        -1 &&
         item.name.toLowerCase().indexOf(searchList.toLowerCase()) === -1 &&
         item.plate_number.toLowerCase().indexOf(searchList.toLowerCase()) === -1
       ) {
@@ -61,7 +62,7 @@ export default function RegistrationTable() {
       </button>
       <Col md={12}>
         <div style={{ display: "flex", flexDirection: "row", marginTop: 30 }}>
-          
+
           <Col md={12}>
             <div className="search">
               <CiSearch
@@ -81,10 +82,10 @@ export default function RegistrationTable() {
                 placeholder="Search Individual"
                 value={searchList}
                 onChange={(e) => setSearchList(e.target.value)}
-              /> 
-              
-            </div> 
-          </Col>  
+              />
+
+            </div>
+          </Col>
           <label className="label_title" style={{ color: "#000" }}>
             Search
           </label>

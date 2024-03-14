@@ -13,7 +13,6 @@ export default function SuperAgent() {
         state: "",
         lga: "",
         address: "",
-        name: "",
         dob: "",
         vendor: 1
 

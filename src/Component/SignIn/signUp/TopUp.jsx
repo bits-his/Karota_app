@@ -35,8 +35,10 @@ export default function TopUp() {
   };
 
   const getReg = useCallback(() => {
-    _get(`vehicles?plate_no=${filter}`, (resp) => {
-      setData(resp.data);
+    _get(`vehicles?query_type=select-all&plate_no=${filter}`, (resp) => {
+      if (resp.success && resp.data) {
+        setData(resp.data);
+      }
     });
   }, [filter]);
 
@@ -95,10 +97,10 @@ export default function TopUp() {
 
           <Card className="mt-5 shadow">
             <div className="table_overflow1">
-              <Table 
-              bordered 
-              responsive  
-              style={{ position: 'relative', top: '10px',  width: '97.5%',left: '17px', marginTop: '4px' }}>
+              <Table
+                bordered
+                responsive
+                style={{ position: 'relative', top: '10px', width: '97.5%', left: '17px', marginTop: '4px' }}>
                 <thead>
                   <tr>
                     <th>Reg. No.</th>

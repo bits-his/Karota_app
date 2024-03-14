@@ -14,7 +14,7 @@ export default function RegistrationTable() {
 		manufacturing_date: '',
 		purchase_date: "",
 		state_registered: "",
-		lga_registered: "",
+		registered_lg: "",
 		lga_reg_no: "",
 		owners_name: "",
 		owners_email: "",
@@ -198,13 +198,13 @@ export default function RegistrationTable() {
 									</Col>
 									<Col md={6}>
 										<FormGroup>
-											<Label for="lga_registered">
+											<Label for="registered_lg">
 												L.G.A. Registred
 											</Label>
 											<Input
 												onChange={handleChange}
-												id="lga_registered"
-												name="lga_registered"
+												id="registered_lg"
+												name="registered_lg"
 												type="select"
 												className="app_input"
 											>

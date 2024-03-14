@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import kekeLogo from '../assets/keke_napep.png'
 import { GiArchiveRegister } from "react-icons/gi";
 
 export default function SideBar() {
@@ -8,7 +9,9 @@ export default function SideBar() {
     <>
       <div>
         <center>
-          <div className="user_image"></div>
+          <div className="user_image">
+            <img src={kekeLogo} alt="Keke logo" className="keke-logo"/>
+          </div>
         </center>
         <h4
           className="mt-4 app_title"

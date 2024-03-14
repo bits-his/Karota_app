@@ -219,6 +219,14 @@ label {
   background-color: #fff;
   box-shadow: 0 14px 28px rgba(17, 16, 16, 0.25),
     0 10px 10px rgba(49, 48, 48, 0.22);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.keke-logo {
+  position: absolute;
+  width: 100px;
 }
 
 .dashboard_card {

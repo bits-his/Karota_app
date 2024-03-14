@@ -68,111 +68,41 @@ export default function VehicleOwnerTable() {
             <Table
               bordered
               responsive
-              className="mt-5"
-              style={{
-                border: "1px solid #ccc",
-                padding: 0,
-                marginTop: 40,
-                marginLeft: 30,
-                maxWidth: 800,
-                tableLayout: "fixed",
-              }}
-            >
+              style={{ position: 'relative', top: '10px',  width: '95.5%',left:'30px', marginTop: '4px' }}>
               <thead>
                 <tr>
-                  <th
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
+                  <th>
                     S/N
                   </th>
-                  <th
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
+                  <th>
                     Name
                   </th>
-                  <th
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
+                  <th>
                     Phone
                   </th>
-                  <th
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
+                  <th>
                     Email
                   </th>
-                  <th
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
+                  <th>
                     Contact Address
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <th
-                    scope="row"
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
+                  <th>
                     1
                   </th>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
+                  <td>
                     Mark
                   </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
+                  <td>
                     990022
                   </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
+                  <td>
                     @mdo
                   </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
+                  <td>
                     Kano
                   </td>
                 </tr>

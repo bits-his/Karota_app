@@ -35,7 +35,7 @@ export default function Agent() {
         Create agent
       </button> */}
       <Card className="app_card dashboard_card m-0 p-0">
-        {JSON.stringify({ form })}
+        {/* {JSON.stringify({ form })} */}
         <Row>
           <Col md={12}>
             <div
@@ -46,21 +46,7 @@ export default function Agent() {
               }}
             >
               <h4 className="app_title">Agent Registeration</h4>
-              {/* <button
-                className="app_button"
-                style={{
-                  width: 150,
-                  padding: 10,
-                  marginLeft: 15,
-                  color: "#000",
-                  borderRadius: 10,
-                }}
-                onClick={() => navigate("/agent")}
-              >
-                Create Agent
-              </button> */}
             </div>
-
             <hr />
           </Col>
           <Col md={12}>

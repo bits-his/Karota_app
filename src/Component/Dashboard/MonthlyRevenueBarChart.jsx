@@ -25,8 +25,8 @@ const MonthlyRevenueBarChart = ({ data }) => {
                     datasets: [{
                         label: 'Monthly Revenue',
                         data: revenueData,
-                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: '#f5c005',
+                        borderColor: 'rgba(54, 54, 54, 1)',
                         borderWidth: 1
                     }]
                 },

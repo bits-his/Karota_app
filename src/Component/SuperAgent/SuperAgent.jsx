@@ -50,7 +50,7 @@ export default function SuperAgent() {
         Create agent
       </button> */}
             <Card className="app_card dashboard_card m-0 p-0">
-                {/* {JSON.stringify({ form })} */}
+                {JSON.stringify({ form })}
                 <Row>
                     <Col md={12}>
                         <div

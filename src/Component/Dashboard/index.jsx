@@ -1,7 +1,7 @@
 import React from 'react';
 import MonthlyRevenueBarChart from './MonthlyRevenueBarChart';
 import MonthlyTransactionLineChart from './MonthlyTransactionLineChart'
-import { Col, Container, Row } from 'reactstrap';
+import { Card, Col, Container, Row } from 'reactstrap';
 
 const App = () => {
     const monthlyRevenueData = [
@@ -22,15 +22,19 @@ const App = () => {
         <Container>
             <Row>
                 <Col md={6}>
-
-                    <h1 className='text-center'>Monthly Revenue</h1>
-                    <MonthlyRevenueBarChart data={monthlyRevenueData} />
+                    <Card className='shadow'>
+                        <h1 className='text-center'>Monthly Revenue</h1>
+                        <MonthlyRevenueBarChart data={monthlyRevenueData} />
+                    </Card>
                 </Col>
                 <Col md={6}>
-                    <h1>Monthly Transaction Count</h1>
-                    <MonthlyTransactionLineChart data={monthlyTransactionData} />
+                    <Card className='shadow border'>
+                        <h1 className='text-center'>Monthly Transactions</h1>
+                        <MonthlyTransactionLineChart data={monthlyTransactionData} />
+                    </Card>
                 </Col>
             </Row>
+            <hr />
         </Container>
     );
 };

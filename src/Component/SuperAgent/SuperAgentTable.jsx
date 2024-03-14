@@ -19,6 +19,8 @@ export default function SuperAgentTable() {
           <button
             className="app_button text-right"
             style={{
+              position: 'relative',
+              left: 138,
               width: 150,
               padding: 10,
               marginLeft: 15,
@@ -64,119 +66,6 @@ export default function SuperAgentTable() {
 
         <Row>
           <div className="table_overflow">
-            {/* <Table
-              bordered
-              responsive
-              className="mt-5"
-              style={{
-                border: "1px solid #ccc",
-                padding: 0,
-                marginTop: 40,
-                marginLeft: 30,
-                maxWidth: 800,
-                tableLayout: "fixed",
-              }}
-            >
-              <thead>
-                <tr>
-                  <th
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
-                    S/N
-                  </th>
-                  <th
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
-                    Name
-                  </th>
-                  <th
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
-                    Phone
-                  </th>
-                  <th
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
-                    Email
-                  </th>
-                  <th
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
-                    Contact Address
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th
-                    scope="row"
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
-                    1
-                  </th>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
-                    Mark
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
-                    990022
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
-                    @mdo
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                      width: "25%",
-                    }}
-                  >
-                    Kano
-                  </td>
-                </tr>
-              </tbody>
-            </Table> */}
             <Table
               bordered
               responsive

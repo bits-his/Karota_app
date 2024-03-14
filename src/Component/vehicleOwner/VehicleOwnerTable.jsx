@@ -20,6 +20,8 @@ export default function VehicleOwnerTable() {
           <button
             className="app_button text-right"
             style={{
+              position: 'relative',
+              left: 139,
               width: 150,
               padding: 10,
               marginLeft: 15,

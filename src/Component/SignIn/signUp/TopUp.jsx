@@ -56,7 +56,7 @@ export default function TopUp() {
           </Col>
 
           <Col md={12}>
-            <div style={{ display: "flex", flexDirection: "row", marginTop: 30 }}>
+            <div style={{ display: "flex", flexDirection: "row" }}>
               <Col md={12}>
                 <div className="search">
                   <CiSearch
@@ -69,8 +69,10 @@ export default function TopUp() {
                   />
                   <Input
                     style={{
+                      position: 'relative',
                       width: "100%",
                       fontSize: 20,
+                      top: -5
                     }}
                     name="filter"
                     value={filter}
@@ -93,7 +95,10 @@ export default function TopUp() {
 
           <Card className="mt-5 shadow">
             <div className="table_overflow">
-              <Table bordered responsive className="mt-5">
+              <Table 
+              bordered 
+              responsive  
+              style={{ position: 'relative', top: '10px',  width: '97.5%',left: '17px', marginTop: '4px' }}>
                 <thead>
                   <tr>
                     <th>Reg. No.</th>

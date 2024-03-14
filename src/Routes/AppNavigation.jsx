@@ -66,7 +66,7 @@ export default function AppNavigation() {
           element: <VehicleOwner />,
         },
         {
-          path: "/Vehicleownertabel",
+          path: "/Vehicleownertable",
           element: <VehicleOwnerTable />,
         },
         {

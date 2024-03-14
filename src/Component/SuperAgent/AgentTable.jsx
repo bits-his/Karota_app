@@ -1,18 +1,34 @@
 
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import { Card, Col, Row, Table } from "reactstrap";
+import { Button, Card, Col, Row, Table } from "reactstrap";
+import { _get } from "../../Utils/Helper";
 
 export default function AgentTable() {
   const navigate = useNavigate();
+
+  const [data, setData] = useState([]);
+  const [filter, setFilter] = useState('');
+  const getReg = useCallback(() => {
+    _get(`agents?query_type=select-all&plate_no=${filter}`,
+      (resp) => {
+        if (resp.success && resp.results) {
+          setData(resp.results);
+        }
+      });
+  }, [filter]);
+
+  useEffect(() => {
+    getReg();
+  }, [getReg]);
 
   return (
     <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
       <Row>
         <Col md={12}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <h4 className="app_title"> Registered List </h4>
+            <h4 className="app_title"> Registered Agents </h4>
 
             <button
               className="app_button"
@@ -24,7 +40,7 @@ export default function AgentTable() {
               }}
               onClick={() => navigate("/agent")}
             >
-              Register New +
+              New Agent +
             </button>
           </div>
           <hr />
@@ -52,8 +68,8 @@ export default function AgentTable() {
                   placeholder="Search Individual"
                 />
               </div>
-            </Col> 
-                        <label className="label_title" style={{ color: "#000" }}>
+            </Col>
+            <label className="label_title" style={{ color: "#000" }}>
               Search
             </label>
           </div>
@@ -64,39 +80,51 @@ export default function AgentTable() {
             <Table
               bordered
               responsive
-              style={{ position: 'relative', top: '10px',  width: '95.5%',left: '30px', marginTop: '4px' }}
-              >
+              style={{ position: 'relative', top: '10px', width: '95.3%', left: "32px", marginTop: '4px' }}
+            >
               <thead>
                 <tr>
                   <th>
                     S/N
                   </th>
                   <th>
-                    First Name
+                    Name
                   </th>
                   <th>
-                    Last Name
+                    Phone
                   </th>
                   <th>
-                    Username
+                    Email
+                  </th>
+                  <th>
+                    Contact Address
+                  </th>
+                  <th className="text-center">
+                    Action
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                {data.map((agent, idx) => <tr key={idx}>
                   <th>
-                    1
+                    {idx + 1}
                   </th>
                   <td>
-                    Mark
+                    {agent.name}
                   </td>
                   <td>
-                    Otto
+                    {agent.phone}
                   </td>
                   <td>
-                    @mdo
+                    {agent.email}
                   </td>
-                </tr>
+                  <td>
+                    {agent.address}
+                  </td>
+                  <td className="text-center">
+                    <Button color="info">View</Button>
+                  </td>
+                </tr>)}
               </tbody>
             </Table>
           </div>

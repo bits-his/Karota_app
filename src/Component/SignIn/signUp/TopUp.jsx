@@ -107,10 +107,10 @@ export default function TopUp() {
 
           <Card className="mt-5 shadow">
             <div className="table_overflow1">
-              <Table 
-              bordered 
-              responsive  
-              style={{ position: 'relative', top: '10px',  width: '97.5%',left: '17px', marginTop: '4px' }}>
+              <Table
+                bordered
+                responsive
+                style={{ position: 'relative', top: '10px', width: '97.5%', left: '17px', marginTop: '4px' }}>
                 <thead>
                   <tr>
                     <th>Reg. No.</th>

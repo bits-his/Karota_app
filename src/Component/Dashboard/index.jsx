@@ -2,6 +2,10 @@ import React from 'react';
 import MonthlyRevenueBarChart from './MonthlyRevenueBarChart';
 import MonthlyTransactionLineChart from './MonthlyTransactionLineChart'
 import { Card, Col, Container, Row } from 'reactstrap';
+import toast, { Toaster } from 'react-hot-toast';
+
+const notify = () => toast('Here is your toast.');
+
 
 const App = () => {
     const monthlyRevenueData = [
@@ -35,6 +39,9 @@ const App = () => {
                 </Col>
             </Row>
             <hr />
+
+            <button onClick={notify}>Make me a toast</button>
+            <Toaster />
         </Container>
     );
 };

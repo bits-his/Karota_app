@@ -2,7 +2,11 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, Col, Row, Form, FormGroup, Label, Input, Button } from 'reactstrap'
 import { stateLga } from '../../assets/state_and_lgas'
+<<<<<<< HEAD
+import toast from 'react-hot-toast';
+=======
 import { _post } from '../../Utils/Helper'
+>>>>>>> 7f399851e73cf8aade7ae25838d3ea144f84ac88
 
 export default function RegistrationTable() {
 
@@ -14,7 +18,7 @@ export default function RegistrationTable() {
 		manufacturing_date: '',
 		purchase_date: "",
 		state_registered: "",
-		lga_registered: "",
+		registered_lg: "",
 		lga_reg_no: "",
 		owners_name: "",
 		owners_email: "",
@@ -52,11 +56,17 @@ export default function RegistrationTable() {
 			form,
 			(res) => {
 				setLoading(false);
+<<<<<<< HEAD
+				toast.success("Successful");
+				console.log(form);
+				setForm(_form);
+=======
 				if (res.success) {
 					alert("sucessful");
 					console.log(form);
 					setForm(_form);
 				}
+>>>>>>> 7f399851e73cf8aade7ae25838d3ea144f84ac88
 			},
 			(err) => {
 				setLoading(false);
@@ -198,13 +208,13 @@ export default function RegistrationTable() {
 									</Col>
 									<Col md={6}>
 										<FormGroup>
-											<Label for="lga_registered">
+											<Label for="registered_lg">
 												L.G.A. Registred
 											</Label>
 											<Input
 												onChange={handleChange}
-												id="lga_registered"
-												name="lga_registered"
+												id="registered_lg"
+												name="registered_lg"
 												type="select"
 												className="app_input"
 											>

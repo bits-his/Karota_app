@@ -1,11 +1,27 @@
 
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import { Card, Col, Row, Table } from "reactstrap";
+import { Button, Card, Col, Row, Table } from "reactstrap";
+import { _get } from "../../Utils/Helper";
 
 export default function VehicleOwnerTable() {
   const navigate = useNavigate();
+
+  const [data, setData] = useState([]);
+  const [filter, setFilter] = useState('');
+  const getReg = useCallback(() => {
+    _get(`vehicles?query_type=select-all&plate_no=${filter}`,
+      (resp) => {
+        if (resp.success && resp.data) {
+          setData(resp.data);
+        }
+      });
+  }, [filter]);
+
+  useEffect(() => {
+    getReg();
+  }, [getReg]);
 
   return (
     <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
@@ -38,7 +54,7 @@ export default function VehicleOwnerTable() {
       <Row>
         <Col md={12}>
           <div style={{ display: "flex", flexDirection: "row", marginTop: 30 }}>
-           
+
             <Col md={12}>
               <div className="search">
                 <CiSearch
@@ -58,8 +74,8 @@ export default function VehicleOwnerTable() {
                   placeholder="Search Individual"
                 />
               </div>
-            </Col> 
-             <label className="label_title" style={{ color: "#000" }}>
+            </Col>
+            <label className="label_title" style={{ color: "#000" }}>
               Search
             </label>
           </div>
@@ -70,44 +86,51 @@ export default function VehicleOwnerTable() {
             <Table
               bordered
               responsive
-              style={{ position: 'relative', top: '10px',  width: '95.5%',left:'30px', marginTop: '4px' }}>
+              style={{ position: 'relative', top: '10px', width: '95.5%', left: '30px', marginTop: '4px' }}>
               <thead>
                 <tr>
                   <th>
                     S/N
                   </th>
                   <th>
-                    Name
+                    Engine. No.
                   </th>
                   <th>
-                    Phone
+                    Plate No
                   </th>
                   <th>
-                    Email
+                    Reg. Date
                   </th>
                   <th>
-                    Contact Address
+                    Balance
+                  </th>
+                  <th>
+                    Action
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                {data.map((item, idx) => <tr>
                   <th>
-                    1
+                    {idx + 1}
                   </th>
                   <td>
-                    Mark
+                    {item.vehicle_id}
                   </td>
                   <td>
-                    990022
+                    {item.engine_no}
+
                   </td>
                   <td>
-                    @mdo
+                    {item.plate_no}
                   </td>
                   <td>
-                    Kano
+                    NGN 0.00
                   </td>
-                </tr>
+                  <td className="text-center">
+                    <Button color="info">View</Button>
+                  </td>
+                </tr>)}
               </tbody>
             </Table>
           </div>

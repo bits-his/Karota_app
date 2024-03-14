@@ -45,7 +45,7 @@ export default function RegistrationTable() {
   return (
     <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
       <Col md={12}>
-        <h4 className="app_title"> Registered List </h4>
+        <h4 className="app_title"> Registered Agents </h4>
         <hr />
       </Col>
       <button

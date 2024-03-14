@@ -33,9 +33,9 @@ function VendorReg() {
             </Row>
             <hr style={{ position: 'relative', width: '100%', top: "25px" }} />
             <Table 
-            borderedn 
+            bordered 
             responsive 
-            style={{ position: 'relative', top: '10px',  width: '100%', marginTop: '4px' }}>
+            style={{ position: 'relative', top: '20px',  width: '100%', marginTop: '4px' }}>
                 <thead>
                     <tr>
                         <th>#</th>

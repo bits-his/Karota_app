@@ -242,6 +242,8 @@ label {
   overflow-y: auto;
   margin: 0;
   width: 250px;
+  position: sticky;
+  top: 0;
 }
 
 .user_image {

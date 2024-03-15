@@ -31,7 +31,7 @@ export default function AppNavigation() {
       children: [
         {
           path: "/",
-          element: <RegistrationTable />,
+          element: <Dashboard />,
         },
         {
           path: "/registration",
@@ -76,11 +76,6 @@ export default function AppNavigation() {
         {
           path: "/top-up",
           element: <TopUp />,
-        },
-
-        {
-          path: "/dashboard",
-          element: <Dashboard />,
         },
       ],
     },

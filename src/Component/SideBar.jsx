@@ -27,8 +27,8 @@ export default function SideBar() {
       </div>
       <section className="link" >
         <div
-          onClick={() => goto("/dashboard")}
-          className={`link_item ${location.pathname.includes("dashboard") && "active_side_menu"
+          onClick={() => goto("/")}
+          className={`link_item ${location.pathname === "/" && "active_side_menu"
             }`}
         >
           Dashboard

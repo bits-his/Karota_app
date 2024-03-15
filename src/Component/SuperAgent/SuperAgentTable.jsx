@@ -1,16 +1,20 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import { Button, Card, Col, Row, Table } from "reactstrap";
+import { Button, Card, Col, Row, Table, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { _get } from "../../Utils/Helper";
 import { useLocation } from "react-router-dom";
 
 export default function SuperAgentTable() {
   const navigate = useNavigate();
   const location = useLocation();
-const formData = location.state && location.state.formData;
+  const formData = location.state && location.state.formData;
+
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
+
   const getReg = useCallback(() => {
     _get(`superagent?query_type=select-all`, (resp) => {
       if (resp.success && resp.results) {
@@ -20,13 +24,18 @@ const formData = location.state && location.state.formData;
   }, [filter]);
 
   useEffect(() => {
-    if (formData) {
-    }
-  }, [formData]);
-  
-  useEffect(() => {
     getReg();
   }, [getReg]);
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const handleViewUser = (userData) => {
+    setSelectedUser(userData);
+    setIsModalOpen(true);
+  };
+
   return (
     <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
       <div
@@ -116,7 +125,7 @@ const formData = location.state && location.state.formData;
                     <td>{agent.email}</td>
                     <td>{agent.address}</td>
                     <td className="text-center">
-                      <Button color="info">View</Button>
+                      <Button color="info" onClick={() => handleViewUser(agent)}>View</Button>
                     </td>
                   </tr>
                 ))}
@@ -125,6 +134,25 @@ const formData = location.state && location.state.formData;
           </div>
         </Row>
       </Row>
+
+      {/* Modal */}
+      <Modal isOpen={isModalOpen} toggle={toggleModal}>
+        <ModalHeader toggle={toggleModal}>User Details</ModalHeader>
+        <ModalBody>
+          {selectedUser && (
+            <>
+              <p>Name: {selectedUser.name}</p>
+              <p>Phone: {selectedUser.phone}</p>
+              <p>Email: {selectedUser.email}</p>
+              <p>Contact Address: {selectedUser.address}</p>
+            </>
+          )}
+        </ModalBody>
+        <ModalFooter>
+          <Button color="secondary" onClick={toggleModal}>Close</Button>
+          <Button color="danger" onClick={toggleModal}>Delete</Button>
+        </ModalFooter>
+      </Modal>
     </Card>
   );
 }

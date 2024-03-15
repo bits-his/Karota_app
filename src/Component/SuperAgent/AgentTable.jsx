@@ -123,6 +123,7 @@ export default function AgentTable() {
                   </td>
                   <td className="text-center">
                     <Button color="info">View</Button>
+                    
                   </td>
                 </tr>)}
               </tbody>

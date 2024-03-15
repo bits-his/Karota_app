@@ -95,7 +95,8 @@ const QuickActivityWrap = () => {
             <Row>
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
                 <Link to="/superagentable"style={{ textDecoration: 'none' }}>
-                    <Card className="single_quick_activity " style={totalIncomeStyle}>
+                  
+                    <Card className="single_quick_activity " style={totalIncomeStyle} >
                         <CardBody>
                             <CardTitle>Total No. of superagent</CardTitle>
                             <h3><span>{superAgentCount}</span></h3>

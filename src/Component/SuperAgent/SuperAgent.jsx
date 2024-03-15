@@ -32,17 +32,16 @@ export default function SuperAgent() {
       "superagent/create",
       form,
       (res) => {
-        setLoading(false);
-        alert("sucessful");
-        console.log(form);
-        setForm(_form);
+        setLoading(true);
+        toast.success("super agent created successfully");
+        setSubmittedData([...submittedData, res]);
+        navigate("/superagentable");
       },
-      (err) => {
+      () => {
         setLoading(false);
-        console.log(err);
+        toast.error("An error occurred while creating super agent");
       }
     );
-    setSubmittedData([...submittedData, formData]);
   };
   return (
     <div>
@@ -50,34 +49,36 @@ export default function SuperAgent() {
         Create agent
       </button> */}
             <Card className="app_card dashboard_card m-0 p-0">
-                {JSON.stringify({ form })}
+                {/* {JSON.stringify({ form })} */}  
                 <Row>
-                    <Col md={12}>
-                        <div
-                            style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                            }}
-                        >
-                            <h4 className="app_title">Super Agent Registeration</h4>
-                            <Button
-                                className="app_button"
-                                style={{
-                                    width: 150,
-                                    padding: 10,
-                                    marginLeft: 15,
-                                    color: "#000",
-                                    borderRadius: 10,
-                                }}
-                                onClick={() => navigate("/superagentable")}
-                            >
-                                Back
-                            </Button>
-                        </div>
+               <Col md={12}>
+                    <div
+                        style={{                       
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent:"space-between",
+                            padding: "5px"
+                        }}
+                    >
 
-            <hr />
-          </Col>
+                        <button
+							className="app_button"
+							style={{
+								width: "10rem",
+								padding: 10,
+								color: '#000',
+								borderRadius: 10,
+							}}
+							onClick={() => navigate("/superagentable")}
+						>
+							Back
+						</button>
+                        <h4 className="app_title">Super Agent Registeration{form.step}</h4>
+
+                    </div>
+
+                    <hr />
+                </Col>
           <Col md={12}>
             <Form className="mx-auto">
               <>
@@ -96,22 +97,6 @@ export default function SuperAgent() {
                       />
                     </FormGroup>
                   </Col>
-                  <Col md={6}>
-                    <FormGroup>
-                      <Label for="vendor">Date of Birth</Label>
-                      <Input
-                        onChange={handleChange}
-                        id="dob"
-                        name="dob"
-                        value={form.dob}
-                        placeholder="Date of birth"
-                        type="date"
-                        className="app_input"
-                      />
-                    </FormGroup>
-                  </Col>
-                </Row>
-                <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
                       <Label for="phone">Phone</Label>
@@ -127,7 +112,9 @@ export default function SuperAgent() {
                       />
                     </FormGroup>
                   </Col>
-                  <Col md={6}>
+                </Row>
+                <Row className="margin-bottom-input">
+                <Col md={6}>
                     <FormGroup>
                       <Label for="email">Email</Label>
                       <Input
@@ -141,8 +128,6 @@ export default function SuperAgent() {
                       />
                     </FormGroup>
                   </Col>
-                </Row>
-                <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
                       <Label for="state">State</Label>
@@ -161,7 +146,9 @@ export default function SuperAgent() {
                       </Input>
                     </FormGroup>
                   </Col>
-                  <Col md={6} className="first-col">
+                </Row>
+                <Row className="margin-bottom-input">
+                <Col md={6} className="first-col">
                     <FormGroup>
                       <Label for="lga">LGA</Label>
                       <Input
@@ -180,8 +167,6 @@ export default function SuperAgent() {
                       </Input>
                     </FormGroup>
                   </Col>
-                </Row>
-                <Row className="margin-bottom-input">
                   <Col md={6}>
                     <FormGroup>
                       <Label for="address">Contact address</Label>
@@ -195,7 +180,9 @@ export default function SuperAgent() {
                       />
                     </FormGroup>
                   </Col>
-                  <Col md={6}>
+                </Row>
+                <Row className="margin-bottom-input">
+                <Col md={6}>
                     <FormGroup>
                       <Label for="nin">NIN</Label>
                       <Input
@@ -209,10 +196,6 @@ export default function SuperAgent() {
                       />
                     </FormGroup>
                   </Col>
-                </Row>
-                <Row>
-                  <Col md={6}></Col>
-
                   <Col md={6}>
                     <FormGroup>
                       <Label for="password">Password</Label>

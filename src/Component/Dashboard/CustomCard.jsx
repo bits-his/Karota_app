@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardBody, CardTitle, Row, Col } from 'reactstrap';
-import { FaMagento } from "react-icons/fa6";
+// import { FaMagento } from "react-icons/fa6";s
 import { SiAnalogue } from "react-icons/si";
 import { SiApachekafka } from "react-icons/si";
 import { SiAqua } from "react-icons/si";

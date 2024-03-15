@@ -92,7 +92,7 @@ export default function RegistrationTable() {
 								color: '#000',
 								borderRadius: 10,
 							}}
-							onClick={() => navigate("/")}
+							onClick={() => navigate("/Vehicleownertable")}
 						>
 							Back
 						</button>

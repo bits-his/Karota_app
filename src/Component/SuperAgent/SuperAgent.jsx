@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Card, Col, Row, Form, FormGroup, Label, Input } from "reactstrap";
+import { Card, Col, Row, Form, FormGroup, Label, Button, Input } from "reactstrap";
 import { stateLga } from "../../assets/state_and_lgas";
 import { _post } from "../../Utils/Helper";
 import toast from 'react-hot-toast';
@@ -62,7 +62,7 @@ export default function SuperAgent() {
                             }}
                         >
                             <h4 className="app_title">Super Agent Registeration</h4>
-                            <button
+                            <Button
                                 className="app_button"
                                 style={{
                                     width: 150,
@@ -74,7 +74,7 @@ export default function SuperAgent() {
                                 onClick={() => navigate("/superagentable")}
                             >
                                 Back
-                            </button>
+                            </Button>
                         </div>
 
                         <hr />

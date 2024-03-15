@@ -80,6 +80,18 @@ export default function RegistrationTable() {
 							Back
 						</button>
                         <h4 className="app_title vendor_title">{form.step > 0 ? "Vendor contact person" : "Vendor Registeration"}</h4>
+                        <button
+							className="app_button imaginary"
+							style={{
+								width: "10rem",
+								padding: 10,
+								color: '#000',
+								borderRadius: 10
+							}}
+							onClick={() => navigate("/vendorReg")}
+						>
+							Back
+						</button>
                     </div>
 
                     <hr />
@@ -208,21 +220,6 @@ export default function RegistrationTable() {
 
                                 <Row>
                                     <Col md={6}>
-                                        <FormGroup>
-                                            <Label for="exampleDOB">
-                                                Date of Birth
-                                            </Label>
-                                            <Input
-                                                onChange={handleChange}
-                                                id="exampleDOB"
-                                                name="contact_dob"
-                                                value={form.contact_dob}
-                                                placeholder="Date of birth"
-                                                type="date"
-                                                className="app_input"
-                                            />
-                                        </FormGroup>
-                                    </Col><Col md={6}>
                                         <FormGroup>
                                             <Label for="exampleDOB">
                                                 Password

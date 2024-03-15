@@ -3,10 +3,12 @@ import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import { Button, Card, Col, Row, Table } from "reactstrap";
 import { _get } from "../../Utils/Helper";
+import { useLocation } from "react-router-dom";
 
 export default function SuperAgentTable() {
   const navigate = useNavigate();
-
+  const location = useLocation();
+const formData = location.state && location.state.formData;
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("");
   const getReg = useCallback(() => {
@@ -17,6 +19,11 @@ export default function SuperAgentTable() {
     });
   }, [filter]);
 
+  useEffect(() => {
+    if (formData) {
+    }
+  }, [formData]);
+  
   useEffect(() => {
     getReg();
   }, [getReg]);

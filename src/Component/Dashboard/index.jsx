@@ -163,11 +163,7 @@ const App = () => {
 
     return (
         <div>
-            <Container>
-                <DashboardCard />
-            </Container>
-            <hr />
-            <Row className='mx-0 p-3'>
+            <Row className='mx-0 pt-2'>
                 <Col md={12}>
                     <CustomDateRange
                         type={dateRange.type}
@@ -195,6 +191,9 @@ const App = () => {
                         </Card>
                     </Col>
                 </Row>
+                <hr />
+                <DashboardCard />
+
 
             </div>
         </div>

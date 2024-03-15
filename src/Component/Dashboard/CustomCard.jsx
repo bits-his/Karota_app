@@ -8,12 +8,12 @@ import { SiAqua } from "react-icons/si";
 const QuickActivityWrap = () => {
     const totalIncomeStyle = {
         backgroundColor: '#f5c005 ',
-        borderRadius: '15px', 
-        padding: '20px', 
+        borderRadius: '15px',
+        padding: '20px',
         height: '100%',
-        color:'#fff',
+        color: '#fff',
         transition: 'background-color 0.3s ease !important',
-        cusor:"pointer"
+        cusor: "pointer"
 
     };
 
@@ -22,9 +22,9 @@ const QuickActivityWrap = () => {
         borderRadius: '15px',
         padding: '20px',
         height: '100%',
-        color:'#fff',
+        color: '#fff',
         transition: 'background-color 0.3s ease !important',
-        cusor:"pointer"
+        cusor: "pointer"
     };
 
     const cashOnHandStyle = {
@@ -32,9 +32,9 @@ const QuickActivityWrap = () => {
         borderRadius: '15px',
         padding: '20px',
         height: '100%',
-        color:'#fff',
+        color: '#fff',
         transition: 'background-color 0.3s ease !important',
-        cusor:"pointer"
+        cusor: "pointer"
     };
 
     const netProfitMarginStyle = {
@@ -42,9 +42,9 @@ const QuickActivityWrap = () => {
         borderRadius: '15px',
         padding: '20px',
         height: '100%',
-        color:'#fff',
+        color: '#fff',
         transition: 'background-color 0.3s ease !important',
-        cusor:"pointer"
+        cusor: "pointer"
     };
     const iconStyle = {
         fontSize: '50px',
@@ -83,43 +83,43 @@ const QuickActivityWrap = () => {
         return () => clearInterval(interval);
     }, [superAgentCount, vendorCount, vehicleCount, agentCount]);
 
-   
+
     return (
         <div className="quick_activity_wrap">
             <Row>
                 <Col xs={12} sm={6} lg={3}>
-                    <Card  className="single_quick_activity " style={totalIncomeStyle}>
+                    <Card className="single_quick_activity " style={totalIncomeStyle}>
                         <CardBody>
                             <CardTitle>Registred superagent</CardTitle>
                             <h3><span>{superAgentCount}</span></h3>
-                            <div style={iconStyle}><FaMagento/></div>
+                            <div style={iconStyle}><FaMagento /></div>
                         </CardBody>
                     </Card>
                 </Col>
                 <Col xs={12} sm={6} lg={3}>
-                    <Card  className="single_quick_activity " style={totalExpensesStyle}>
+                    <Card className="single_quick_activity " style={totalExpensesStyle}>
                         <CardBody>
                             <CardTitle>Registred vendors</CardTitle>
                             <h3><span>{vendorCount}</span></h3>
-                            <div style={iconStyle}><SiAnalogue/></div>
+                            <div style={iconStyle}><SiAnalogue /></div>
                         </CardBody>
                     </Card>
                 </Col>
                 <Col xs={12} sm={6} lg={3}>
-                    <Card  className="single_quick_activity " style={cashOnHandStyle}>
+                    <Card className="single_quick_activity " style={cashOnHandStyle}>
                         <CardBody>
                             <CardTitle>Registred vehicle</CardTitle>
                             <h3><span>{vehicleCount}</span></h3>
-                            <div style={iconStyle}><SiApachekafka/></div>
+                            <div style={iconStyle}><SiApachekafka /></div>
                         </CardBody>
                     </Card>
                 </Col>
                 <Col xs={12} sm={6} lg={3}>
-                    <Card  className="single_quick_activity " style={netProfitMarginStyle}>
+                    <Card className="single_quick_activity " style={netProfitMarginStyle}>
                         <CardBody>
                             <CardTitle>Agent</CardTitle>
                             <h3><span>{agentCount}</span></h3>
-                            <div style={iconStyle}><SiAqua/></div>
+                            <div style={iconStyle}><SiAqua /></div>
                         </CardBody>
                     </Card>
                 </Col>

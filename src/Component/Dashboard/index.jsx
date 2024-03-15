@@ -5,6 +5,7 @@ import { Card, Col, Container, Row } from 'reactstrap';
 import CustomDateRange from '../UI/CustomDateRange';
 import moment from 'moment'
 import { toParagraph } from '../../Utils/Helper';
+import DashboardCard from "./CustomCard"
 
 const App = () => {
 
@@ -161,8 +162,12 @@ const App = () => {
 
 
     return (
-        <Container>
-            <Row className='mx-0 pt-2'>
+        <div>
+            <Container>
+                <DashboardCard />
+            </Container>
+            <hr />
+            <Row className='mx-0 p-3'>
                 <Col md={12}>
                     <CustomDateRange
                         type={dateRange.type}
@@ -175,22 +180,24 @@ const App = () => {
                     />
                 </Col>
             </Row>
-            <Row>
-                <Col md={6}>
-                    <Card className='shadow'>
-                        <h1 className='text-center'>{toParagraph(dateRange.type)} Revenue</h1>
-                        <MonthlyRevenueBarChart data={monthlyRevenueData} />
-                    </Card>
-                </Col>
-                <Col md={6}>
-                    <Card className='shadow border'>
-                        <h1 className='text-center'>{toParagraph(dateRange.type)} Transactions</h1>
-                        <MonthlyTransactionLineChart data={monthlyTransactionData} />
-                    </Card>
-                </Col>
-            </Row>
-            <hr />
-        </Container>
+            <div className="app_card dashboard_card shadow p-4 m-2 mt-2">
+                <Row>
+                    <Col md={6}>
+                        <Card className='shadow'>
+                            <h1 className='text-center'>{toParagraph(dateRange.type)} Revenue</h1>
+                            <MonthlyRevenueBarChart data={monthlyRevenueData} />
+                        </Card>
+                    </Col>
+                    <Col md={6}>
+                        <Card className='shadow border'>
+                            <h1 className='text-center'>{toParagraph(dateRange.type)} Transactions</h1>
+                            <MonthlyTransactionLineChart data={monthlyTransactionData} />
+                        </Card>
+                    </Col>
+                </Row>
+
+            </div>
+        </div>
     );
 };
 

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Card, Col, Row, Form, FormGroup, Label, Input } from 'reactstrap'
 import { stateLga } from '../../assets/state_and_lgas'
 import { _post } from '../../Utils/Helper'
+import toast from 'react-hot-toast';
 
 export default function RegistrationTable() {
     const _form = {
@@ -42,7 +43,7 @@ export default function RegistrationTable() {
             (res) => {
                 if (res.success) {
                     setLoading(false);
-                    alert("sucessful");
+                    toast.success("Successful");
                     console.log(form);
                     setForm(_form);
                 }
@@ -63,24 +64,34 @@ export default function RegistrationTable() {
                     <div
                         style={{
                             display: "flex",
-                            justifyContent: "space-between",
                             alignItems: "center",
                         }}
                     >
-                        <h4 className="app_title">{form.step > 0 ? "Vendor contact person" : "Vendor Registeration"}</h4>
-                        {/* <button
-                            className="app_button"
-                            style={{
-                                width: 150,
-                                padding: 10,
-                                marginLeft: 15,
-                                color: '#000',
-                                borderRadius: 10,
-                            }}
-                            onClick={() => navigate("/superagent")}
-                        >
-                            Super agent
-                        </button> */}
+                        <button
+							className="app_button"
+							style={{
+								width: "10rem",
+								padding: 10,
+								color: '#000',
+								borderRadius: 10,
+							}}
+							onClick={() => navigate("/vendorReg")}
+						>
+							Back
+						</button>
+                        <h4 className="app_title vendor_title">{form.step > 0 ? "Vendor contact person" : "Vendor Registeration"}</h4>
+                        <button
+							className="app_button imaginary"
+							style={{
+								width: "10rem",
+								padding: 10,
+								color: '#000',
+								borderRadius: 10
+							}}
+							onClick={() => navigate("/vendorReg")}
+						>
+							Back
+						</button>
                     </div>
 
                     <hr />
@@ -209,21 +220,6 @@ export default function RegistrationTable() {
 
                                 <Row>
                                     <Col md={6}>
-                                        <FormGroup>
-                                            <Label for="exampleDOB">
-                                                Date of Birth
-                                            </Label>
-                                            <Input
-                                                onChange={handleChange}
-                                                id="exampleDOB"
-                                                name="contact_dob"
-                                                value={form.contact_dob}
-                                                placeholder="Date of birth"
-                                                type="date"
-                                                className="app_input"
-                                            />
-                                        </FormGroup>
-                                    </Col><Col md={6}>
                                         <FormGroup>
                                             <Label for="exampleDOB">
                                                 Password
@@ -417,12 +413,17 @@ export default function RegistrationTable() {
                             marginTop: 30,
                         }}
                         >
-                            {form.step > 0 ? <Row>
+                            {form.step > 0 ? <Row
+                                    style={{
+                                        display: "flex",
+
+                                    }}
+                                >
                                 <Col md={6} className='text-left'> <button
                                     className="app_button"
                                     style={{
                                         width: 150,
-                                        marginLeft: 30,
+                                        marginLeft: 0,
                                         padding: 10,
                                         color: "",
                                         cursor: "pointer",
@@ -435,7 +436,7 @@ export default function RegistrationTable() {
                                     className="app_button"
                                     style={{
                                         width: 150,
-                                        marginLeft: 30,
+                                        marginLeft: 0,
                                         padding: 10,
                                         color: "",
                                         cursor: "pointer",
@@ -452,7 +453,7 @@ export default function RegistrationTable() {
                                         marginLeft: 30,
                                         padding: 10,
                                         color: "",
-                                        cursor: "pointer",
+                                        cursor: "pointer"
                                     }}
                                     disabled={loading}
                                     onClick={() => setForm((p) => ({ ...p, step: 1 }))}

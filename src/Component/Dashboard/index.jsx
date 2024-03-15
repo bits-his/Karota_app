@@ -186,7 +186,7 @@ const App = () => {
                     </Col>
                     <Col md={6}>
                         <Card className='shadow border'>
-                            <h1 className='text-center'>{toParagraph(dateRange.type)} Transactions</h1>
+                            <h1 className='text-center'>{toParagraph(dateRange.type)} Transaction count</h1>
                             <MonthlyTransactionLineChart data={monthlyTransactionData} />
                         </Card>
                     </Col>

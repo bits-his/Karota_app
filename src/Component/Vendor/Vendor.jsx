@@ -159,8 +159,7 @@ export default function RegistrationTable() {
                                             <Input
                                                 onChange={handleChange}
                                                 id="contact_emailexample"
-                                                name="contact_email"
-                                                value={form.contact_email}
+                                                 value={form.contact_email}
                                                 placeholder="organization@fake.com"
                                                 type="email"
                                                 className="app_input"

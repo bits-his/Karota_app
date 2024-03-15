@@ -37,10 +37,11 @@ export default function TopUp() {
     console.log(modal)
   };
 
-  const handlePay = () => {
+  const handlePay = (id) => {
     // Implement payment logic here
     // For now, just close the modal
     toggleModal();
+    console.log(id)
   };
 
   const getReg = useCallback(() => {
@@ -115,7 +116,7 @@ export default function TopUp() {
                   <tr>
                     <th>Reg. No.</th>
                     <th>Plate No.</th>
-                    <th>Balance</th>
+                    <th>Balance (₦)</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -124,12 +125,12 @@ export default function TopUp() {
                     <tr key={idx}>
                       <td>00{vehicle.vehicle_id}</td>
                       <td>{vehicle.plate_no}</td>
-                      <td>N{vehicle.balance}</td>
+                      <td className="text-right">{parseFloat(vehicle.balance).toFixed(2)}</td>
                       <td className="text-center p-2">
                         <ButtonGroup>
-                          <Button onClick={() => {
+                          <Button onClick={(id) => {
                             setCurrentItem(vehicle);
-                            toggleModal();
+                            handlePay(id);
                           }} color="success">
                             Pay
                           </Button>
@@ -177,7 +178,7 @@ export default function TopUp() {
                 maxWidth: "20%",
                 width: "20%",
                 left: '80%',
-                top: '15%'
+                top: '5%'
               }}
               value={userDetail.Reg_no}
               viewBox={`0 0 256 256`}
@@ -185,17 +186,17 @@ export default function TopUp() {
             <div
               style={{
                 position: 'absolute',
-                top: '20px'
+                top: '10px'
               }}
             >
               <h3>Reg No: 00{currentItem.vehicle_id}</h3>
               <h3>Plate No: {currentItem.plate_no}</h3>
-              <h3>Balance: 200</h3>
+              <h3>Balance: ₦{parseFloat(currentItem.balance).toFixed(2)}</h3>
             </div>
             <Form
               style={{
                 position: "absolute",
-                top: "32rem",
+                top: "20rem",
                 left: "10rem",
                 width: '60%',
                 // backgroundColor: "red"

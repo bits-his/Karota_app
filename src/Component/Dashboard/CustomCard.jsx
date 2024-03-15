@@ -7,7 +7,7 @@ import { SiAqua } from "react-icons/si";
 
 const QuickActivityWrap = () => {
     const totalIncomeStyle = {
-        backgroundColor: '#f39c12',
+        backgroundColor: '#f5c005 ',
         borderRadius: '15px', 
         padding: '20px', 
         height: '100%',
@@ -18,7 +18,7 @@ const QuickActivityWrap = () => {
     };
 
     const totalExpensesStyle = {
-        backgroundColor: '#f39c12',
+        backgroundColor: '#f5c005 ',
         borderRadius: '15px',
         padding: '20px',
         height: '100%',
@@ -28,7 +28,7 @@ const QuickActivityWrap = () => {
     };
 
     const cashOnHandStyle = {
-        backgroundColor: '#f39c12',
+        backgroundColor: '#f5c005 ',
         borderRadius: '15px',
         padding: '20px',
         height: '100%',
@@ -38,7 +38,7 @@ const QuickActivityWrap = () => {
     };
 
     const netProfitMarginStyle = {
-        backgroundColor: '#f39c12',
+        backgroundColor: '#f5c005 ',
         borderRadius: '15px',
         padding: '20px',
         height: '100%',

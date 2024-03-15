@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardBody, CardTitle, Row, Col } from 'reactstrap';
-import { FaMagento } from "react-icons/fa6";
+// import { FaMagento } from "react-icons/fa6";s
 import { SiAnalogue } from "react-icons/si";
 import { SiApachekafka } from "react-icons/si";
 import { SiAqua } from "react-icons/si";
+import { FaMagento } from 'react-icons/fa';
 
 const QuickActivityWrap = () => {
     const columnMarginBottom = {
@@ -94,7 +95,7 @@ const QuickActivityWrap = () => {
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
                     <Card className="single_quick_activity " style={totalIncomeStyle} >
                         <CardBody>
-                            <CardTitle>Registred superagent</CardTitle>
+                            <CardTitle>Total No. of superagent</CardTitle>
                             <h3><span>{superAgentCount}</span></h3>
                             <div style={iconStyle}><FaMagento /></div>
                         </CardBody>
@@ -103,7 +104,7 @@ const QuickActivityWrap = () => {
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
                     <Card className="single_quick_activity " style={totalExpensesStyle}>
                         <CardBody>
-                            <CardTitle>Registred vendors</CardTitle>
+                            <CardTitle>Total No. of vendors</CardTitle>
                             <h3><span>{vendorCount}</span></h3>
                             <div style={iconStyle}><SiAnalogue /></div>
                         </CardBody>
@@ -112,7 +113,7 @@ const QuickActivityWrap = () => {
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
                     <Card className="single_quick_activity " style={cashOnHandStyle}>
                         <CardBody>
-                            <CardTitle>Registred vehicle</CardTitle>
+                            <CardTitle>Total No. of vehicles</CardTitle>
                             <h3><span>{vehicleCount}</span></h3>
                             <div style={iconStyle}><SiApachekafka /></div>
                         </CardBody>
@@ -121,7 +122,7 @@ const QuickActivityWrap = () => {
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
                     <Card className="single_quick_activity " style={netProfitMarginStyle}>
                         <CardBody>
-                            <CardTitle>Agent</CardTitle>
+                            <CardTitle>Total No. of Agents</CardTitle>
                             <h3><span>{agentCount}</span></h3>
                             <div style={iconStyle}><SiAqua /></div>
                         </CardBody>

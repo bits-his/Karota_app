@@ -56,3 +56,24 @@ export function useQuery() {
   return new URLSearchParams(useLocation().search)
 }
 export default useQuery
+
+
+export function toParagraph(text) {
+  // Split the text into paragraphs
+  let paragraphs = text.split("\n");
+
+  // Capitalize the first letter of each paragraph
+  for (let i = 0; i < paragraphs.length; i++) {
+    // Trim the paragraph to remove any leading/trailing whitespace
+    paragraphs[i] = paragraphs[i].trim();
+
+    // Capitalize the first letter
+    if (paragraphs[i].length > 0) {
+      paragraphs[i] = paragraphs[i][0].toUpperCase() + paragraphs[i].slice(1);
+    }
+  }
+
+  // Join the paragraphs back together
+  return paragraphs.join("\n");
+}
+

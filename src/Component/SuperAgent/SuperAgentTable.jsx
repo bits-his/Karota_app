@@ -26,13 +26,13 @@ export default function SuperAgentTable() {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          width: "80%",
+          width: "88%",
         }}
       >
         <h4 className="app_title"> Super Agents </h4>
 
         <button
-          className="app_button text-right"
+          className="app_button text-right rounded"
           style={{
             position: "relative",
             left: 138,

@@ -370,6 +370,14 @@ td, th{
   text-align: left;
   padding: 8px;
 }
+.login{
+  /* position: relative;
+  top: '80rem'; 
+  left: 20px;
+   height: '10px';
+  background:  url('./assets/keke_napep.png') no-repeat; */
+  
+}
 @media only screen and (max-width: 600px) {
   .customer-page {
     display: none;

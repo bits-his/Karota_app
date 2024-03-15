@@ -6,6 +6,10 @@ import { SiApachekafka } from "react-icons/si";
 import { SiAqua } from "react-icons/si";
 
 const QuickActivityWrap = () => {
+    const columnMarginBottom = {
+        marginBottom: '2rem'
+    }
+
     const totalIncomeStyle = {
         backgroundColor: '#f5c005 ',
         borderRadius: '15px', 
@@ -87,7 +91,7 @@ const QuickActivityWrap = () => {
     return (
         <div className="quick_activity_wrap">
             <Row>
-                <Col xs={12} sm={6} lg={3}>
+                <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
                     <Card  className="single_quick_activity " style={totalIncomeStyle}>
                         <CardBody>
                             <CardTitle>Registred superagent</CardTitle>
@@ -96,7 +100,7 @@ const QuickActivityWrap = () => {
                         </CardBody>
                     </Card>
                 </Col>
-                <Col xs={12} sm={6} lg={3}>
+                <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
                     <Card  className="single_quick_activity " style={totalExpensesStyle}>
                         <CardBody>
                             <CardTitle>Registred vendors</CardTitle>
@@ -105,7 +109,7 @@ const QuickActivityWrap = () => {
                         </CardBody>
                     </Card>
                 </Col>
-                <Col xs={12} sm={6} lg={3}>
+                <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
                     <Card  className="single_quick_activity " style={cashOnHandStyle}>
                         <CardBody>
                             <CardTitle>Registred vehicle</CardTitle>
@@ -114,7 +118,7 @@ const QuickActivityWrap = () => {
                         </CardBody>
                     </Card>
                 </Col>
-                <Col xs={12} sm={6} lg={3}>
+                <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
                     <Card  className="single_quick_activity " style={netProfitMarginStyle}>
                         <CardBody>
                             <CardTitle>Agent</CardTitle>

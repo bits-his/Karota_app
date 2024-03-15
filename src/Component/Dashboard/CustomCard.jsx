@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardBody, CardTitle, Row, Col } from 'reactstrap';
+import { Link } from 'react-router-dom';
 // import { FaMagento } from "react-icons/fa6";s
 import { SiAnalogue } from "react-icons/si";
 import { SiApachekafka } from "react-icons/si";
@@ -93,6 +94,7 @@ const QuickActivityWrap = () => {
         <div className="quick_activity_wrap">
             <Row>
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
+                <Link to="/superagentable"style={{ textDecoration: 'none' }}>
                     <Card className="single_quick_activity " style={totalIncomeStyle}>
                         <CardBody>
                             <CardTitle>Total No. of superagent</CardTitle>
@@ -100,17 +102,22 @@ const QuickActivityWrap = () => {
                             <div style={iconStyle}><FaMagento /></div>
                         </CardBody>
                     </Card>
+                    </Link>
                 </Col>
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
+                <Link to="/vendorReg"style={{ textDecoration: 'none' }}>
                     <Card className="single_quick_activity " style={totalExpensesStyle}>
                         <CardBody>
                             <CardTitle>Total No. of vendors</CardTitle>
                             <h3><span>{vendorCount}</span></h3>
                             <div style={iconStyle}><SiAnalogue /></div>
                         </CardBody>
+                        
                     </Card>
+                    </Link>
                 </Col>
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
+                <Link to="/Vehicleownertable"style={{ textDecoration: 'none' }}>
                     <Card className="single_quick_activity " style={cashOnHandStyle}>
                         <CardBody>
                             <CardTitle>Total No. of vehicles</CardTitle>
@@ -118,8 +125,10 @@ const QuickActivityWrap = () => {
                             <div style={iconStyle}><SiApachekafka /></div>
                         </CardBody>
                     </Card>
+                    </Link>
                 </Col>
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
+                <Link to="/agentable"style={{ textDecoration: 'none' }}>
                     <Card className="single_quick_activity " style={netProfitMarginStyle}>
                         <CardBody>
                             <CardTitle>Total No. of Agents</CardTitle>
@@ -127,6 +136,7 @@ const QuickActivityWrap = () => {
                             <div style={iconStyle}><SiAqua /></div>
                         </CardBody>
                     </Card>
+                    </Link>
                 </Col>
             </Row>
         </div>

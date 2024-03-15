@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Card, CardBody, Col, Input, Label, Row } from "reactstrap";
+import keke from '../../../assets/keke_napep.png'
 
 export default function Login() {
   const [form, setForm] = useState({
@@ -19,11 +20,29 @@ export default function Login() {
     console.log(form)
   }
   return (
-    <div style={{ marginTop: 80 }}>
+    <div className='login' 
+    style={{ 
+      marginTop: 130,
+      // backgroundColor: '#f5c005', 
+      }}
+      >
       <Row>
+        <div 
+        style={{
+          position: 'absolute',
+          left: '63.4rem',
+          borderRadius: '50%',
+          top: '1px',
+          height: '10rem',
+          width: '10rem',
+          background: '#fff'
+          }}
+          >
+        <img src={keke} alt="kek Image" style={{position: 'absolute', left: '6px', width: '15rem' }}/>
+        </div>
         <Col md={4}></Col>
         <Col md={4}>
-          <CardBody  style={{border: "1px solid black", borderRadius: "20px", padding: "90px"}}>
+          <CardBody  style={{border: "1px solid black", borderRadius: "20px", padding: "90px", background: '#f5c005'}}>
           <Card>
             <Col>
               <Col component="form" role="form">
@@ -40,7 +59,7 @@ export default function Login() {
                   />
                 </Col>
                 <Col mb={12} className="mt-4">
-                  <Label>Password</Label>
+                  <Label style={{}}>Password</Label>
                   <Input
                     type="password"
                     label="Password"
@@ -54,7 +73,7 @@ export default function Login() {
 
                 <Col mt={4} mb={1}>
                   <Button
-                    style={{ marginTop: 15 }}
+                    style={{ position: 'relative', marginTop: 15, background: '#fff', color: '#000', fontWeight: '700', left: '100px'}}
                     variant="gradient"
                     color="info"
                     fullWidth

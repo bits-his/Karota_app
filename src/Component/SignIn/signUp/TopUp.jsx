@@ -37,10 +37,11 @@ export default function TopUp() {
     console.log(modal)
   };
 
-  const handlePay = () => {
+  const handlePay = (id) => {
     // Implement payment logic here
     // For now, just close the modal
     toggleModal();
+    console.log(id)
   };
 
   const getReg = useCallback(() => {
@@ -127,9 +128,9 @@ export default function TopUp() {
                       <td>N{vehicle.balance}</td>
                       <td className="text-center p-2">
                         <ButtonGroup>
-                          <Button onClick={() => {
+                          <Button onClick={(id) => {
                             setCurrentItem(vehicle);
-                            toggleModal();
+                            handlePay(id);
                           }} color="success">
                             Pay
                           </Button>
@@ -185,17 +186,19 @@ export default function TopUp() {
             <div
             style={{
               position: 'absolute',
-              top: '10px'
+              top: '70px',
+              left: '10rem',
+              // marginBottom: '30px'
             }}
             >
-              <h3>Reg No:</h3>
-              <h3>Plate No:</h3>
-              <h3>Balance: 200</h3>
+              <h4>Reg No:</h4>
+              <h4>Plate No:</h4>
+              <h4>Balance: 200</h4>
             </div>
             <Form
             style={{
               position: "absolute",
-              top: "32rem",
+              top: "30rem",
               left: "10rem",
               width: '60%',
               // backgroundColor: "red"

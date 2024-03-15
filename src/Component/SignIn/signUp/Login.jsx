@@ -23,7 +23,7 @@ export default function Login() {
     setForm(form)
     console.log(form)
     dispatch(login({ username: form.email, password: form.password, history: navigate }, (res) => {
-      
+      navigate('/')
     }, (err) => {
 
     }))

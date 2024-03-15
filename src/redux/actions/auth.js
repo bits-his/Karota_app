@@ -4,17 +4,15 @@ import {
     LOGOUT,
     LOADING_APP,
     ERRORS,
-    TAX_ACCOUNT,
-} from "./type";
-import { apiURL } from "./api";
-import { _get } from "../../Utils/Helper";
-import { WALLET } from "../types";
+    MY_WALLET
+} from "../types";
+import { _get, server_url } from "../../Utils/Helper";
 // import { useHistory } from 'react-router-dom';
 
 export function login({ username, password, history }, success, error) {
     return (dispatch) => {
         dispatch({ type: LOADING_LOGIN });
-        fetch(`${apiURL}/sign_in`, {
+        fetch(`${server_url}/users/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -23,8 +21,6 @@ export function login({ username, password, history }, success, error) {
         })
             .then((raw) => raw.json())
             .then((data) => {
-                // console.log(data, "KKDKDKDDK");
-                dispatch({ type: LOADING_LOGIN });
                 // console.log(data);
                 if (data.success) {
                     const { token } = data;
@@ -93,7 +89,7 @@ export function login({ username, password, history }, success, error) {
 
 export async function getUserProfile(_token) {
     try {
-        let response = await fetch(`${apiURL}/verify-token`, {
+        let response = await fetch(`${server_url}/verify-token`, {
             method: "GET",
             headers: {
                 authorization: _token,
@@ -117,7 +113,7 @@ export function getWallet(cb = (f) => f, err = (f) => f) {
             (resp) => {
                 if (resp.success) {
                     dispatch({
-                        type: WALLET,
+                        type: MY_WALLET,
                         payload: resp.data,
                     });
                     cb();

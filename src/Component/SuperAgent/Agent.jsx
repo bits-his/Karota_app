@@ -8,7 +8,8 @@ export default function Agent() {
   const _form = {
     query_type: "create",
   };
-
+  
+  const [submittedData, setSubmittedData] = useState([]);
   const [form, setForm] = useState(_form);
   const handleChange = ({ target: { name, value } }) => {
     setForm((p) => ({ ...p, [name]: value }));
@@ -20,14 +21,14 @@ export default function Agent() {
       "agents/create",
       form,
       (res) => {
-        setLoading(false);
-        toast.success("Successful");
-        console.log(form);
-        setForm(_form);
+        setLoading(true);
+        toast.success("Agent created successfully");
+        setSubmittedData([...submittedData, res]);
+        navigate("/agentable");
       },
-      (err) => {
-        setLoading(false);
-        console.log(err);
+      () => {
+          setLoading(false);
+          toast.error("An error occurred while creating Agent");
       }
     );
   };

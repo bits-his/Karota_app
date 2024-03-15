@@ -163,11 +163,7 @@ const App = () => {
 
     return (
         <div>
-            <Container>
-                <DashboardCard />
-            </Container>
-            <hr />
-            <Row className='mx-0 p-3'>
+            <Row className='mx-0 pt-2'>
                 <Col md={12}>
                     <CustomDateRange
                         type={dateRange.type}
@@ -190,11 +186,14 @@ const App = () => {
                     </Col>
                     <Col md={6}>
                         <Card className='shadow border'>
-                            <h1 className='text-center'>{toParagraph(dateRange.type)} Transactions</h1>
+                            <h1 className='text-center'>{toParagraph(dateRange.type)} Transaction count</h1>
                             <MonthlyTransactionLineChart data={monthlyTransactionData} />
                         </Card>
                     </Col>
                 </Row>
+                <hr />
+                <DashboardCard />
+
 
             </div>
         </div>

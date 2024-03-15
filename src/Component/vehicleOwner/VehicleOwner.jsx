@@ -23,7 +23,7 @@ export default function OwnerReg() {
         setShowForm(true);
     };
     const handleBackToTable = () => {
-        setShowForm(false);
+        navigate('/Vehicleownertable')
     };
     const handleSubmit = (e) => {
 
@@ -39,13 +39,13 @@ export default function OwnerReg() {
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                         <h4 className="app_title">Vehicle Owner Registration</h4>
                         {!showForm ? (
-                            <Button
-                                className="app_button"
-                                style={{ width: 150, padding: 10, marginLeft: 15, color: '#000', borderRadius: 10 }}
-                                onClick={handleShowForm}
-                            >
-                                Add vehicle owner
-                            </Button>
+                             <Button
+                             className="app_button"
+                             style={{ width: 150, padding: 10, marginLeft: 15, color: '#000', borderRadius: 10 }}
+                             onClick={handleBackToTable}
+                         >
+                             Back
+                         </Button>
                         ) : (
                             <Button
                                 className="app_button"
@@ -138,7 +138,7 @@ export default function OwnerReg() {
                             <Col md={12}
                                 style={{
                                     display: 'flex',
-                                    justifyContent: 'space-between',
+                                    justifyContent: 'center',
                                     marginTop: 30,
 
                                 }}
@@ -151,11 +151,11 @@ export default function OwnerReg() {
                                     cursor: "pointer",
                                     borderRadius: 7,
                                 }}
-                                onClick={() => navigate("/")}
+                                onClick={() => navigate("/ehicleownertable")}
                             >
                                     Submit
                                 </button>
-                                <button
+                                {/* <button
                                     className="app_button"
                                     style={{
                                         width: 150,
@@ -167,7 +167,7 @@ export default function OwnerReg() {
                                     onClick={() => navigate("/VehicleReg")}
                                 >
                                     prev
-                                </button>
+                                </button> */}
 
                             </Col>
                         </Row>

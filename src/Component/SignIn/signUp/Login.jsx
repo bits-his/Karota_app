@@ -3,6 +3,7 @@ import { Button, Card, CardBody, Col, Input, Label, Row } from "reactstrap";
 import keke from '../../../assets/keke_napep.png'
 import { useDispatch } from "react-redux";
 import { login } from "../../../redux/actions/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [form, setForm] = useState({
@@ -12,7 +13,7 @@ export default function Login() {
     password: "",
   });
   const dispatch = useDispatch()
-
+  const navigate = useNavigate()
   const handleChange = ({ target: { name, value } }) => {
     setForm((p) => ({ ...p, [name]: value }));
     console.log(form);
@@ -21,7 +22,11 @@ export default function Login() {
   const handleSubmit = () => {
     setForm(form)
     console.log(form)
-    dispatch(login({username:form.email_address}))
+    dispatch(login({ username: form.email, password: form.password, history: navigate }, (res) => {
+      
+    }, (err) => {
+
+    }))
   }
   return (
     <div className='login'

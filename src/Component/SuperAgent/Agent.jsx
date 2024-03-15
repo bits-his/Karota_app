@@ -2,12 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, Col, Row, Form, FormGroup, Label, Input } from "reactstrap";
 import { stateLga } from "../../assets/state_and_lgas";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 
 export default function Agent() {
   const _form = {
-    query_type: 'create',
-
+    query_type: "create",
   };
 
   const [form, setForm] = useState(_form);
@@ -44,11 +43,22 @@ export default function Agent() {
             <div
               style={{
                 display: "flex",
-                justifyContent: "space-between",
                 alignItems: "center",
               }}
             >
-              <h4 className="app_title">Agent Registeration</h4>
+              <button
+                className="app_button"
+                style={{
+                  width: "10rem",
+                  padding: 10,
+                  color: "#000",
+                  borderRadius: 10,
+                }}
+                onClick={() => navigate("/agentable")}
+              >
+                Back
+              </button>
+              <h4 className="app_title vendor_title">Agent Registration</h4>
             </div>
             <hr />
           </Col>
@@ -165,28 +175,13 @@ export default function Agent() {
                         name="address"
                         type="textarea"
                         className="app_input"
+                        rows="1.5"
                       />
                     </FormGroup>
                   </Col>
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="dob">Date of birth (D.O.B)</Label>
-                      <Input
-                        onChange={handleChange}
-                        id="dob"
-                        name="dob"
-                        type="date"
-                        className="app_input"
-                      />
-                    </FormGroup>
-                  </Col>
-                </Row>
-                <Row className="margin-bottom-input">
-                  <Col md={12}>
-                    <FormGroup>
-                      <Label for="service_location">
-                        Service Location
-                      </Label>
+                      <Label for="service_location">Service Location</Label>
                       <Input
                         onChange={handleChange}
                         id="service_location"
@@ -216,6 +211,7 @@ export default function Agent() {
                       color: "",
                       cursor: "pointer",
                       borderRadius: 7,
+                      margin: "auto",
                     }}
                     onClick={handleSubmit}
                   >

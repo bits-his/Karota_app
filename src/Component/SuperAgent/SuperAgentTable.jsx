@@ -8,14 +8,13 @@ export default function SuperAgentTable() {
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState("");
   const getReg = useCallback(() => {
-    _get(`superagent?query_type=select-all`,
-      (resp) => {
-        if (resp.success && resp.results) {
-          setData(resp.results);
-        }
-      });
+    _get(`superagent?query_type=select-all`, (resp) => {
+      if (resp.success && resp.results) {
+        setData(resp.results);
+      }
+    });
   }, [filter]);
 
   useEffect(() => {
@@ -23,36 +22,35 @@ export default function SuperAgentTable() {
   }, [getReg]);
   return (
     <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
-      <Row>
-        <Col md={9}>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <h4 className="app_title"> Super Agents </h4>
-          </div>
-        </Col>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          width: "88%",
+        }}
+      >
+        <h4 className="app_title"> Super Agents </h4>
 
-        <Col>
-          <button
-            className="app_button text-right"
-            style={{
-              position: 'relative',
-              left: 138,
-              width: 150,
-              padding: 10,
-              marginLeft: 15,
-              color: "#000",
-            }}
-            onClick={() => navigate("/superagent")}
-          >
-            Add SuperAgent
-          </button>
-        </Col>
-      </Row>
+        <button
+          className="app_button text-right rounded"
+          style={{
+            position: "relative",
+            left: 138,
+            width: 150,
+            padding: 10,
+            marginLeft: 15,
+            color: "#000",
+          }}
+          onClick={() => navigate("/superagent")}
+        >
+          Add SuperAgent
+        </button>
+      </div>
 
       <hr />
       <Row>
         <Col md={12}>
           <div style={{ display: "flex", flexDirection: "row", marginTop: 30 }}>
-
             <Col md={12}>
               <div className="search">
                 <CiSearch
@@ -84,51 +82,37 @@ export default function SuperAgentTable() {
             <Table
               bordered
               responsive
-              style={{ position: 'relative', top: '10px', width: '95.3%', left: "32px", marginTop: '4px' }}
+              style={{
+                position: "relative",
+                top: "10px",
+                width: "95.3%",
+                left: "32px",
+                marginTop: "4px",
+              }}
             >
               <thead>
                 <tr>
-                  <th>
-                    S/N
-                  </th>
-                  <th>
-                    Name
-                  </th>
-                  <th>
-                    Phone
-                  </th>
-                  <th>
-                    Email
-                  </th>
-                  <th>
-                    Contact Address
-                  </th>
-                  <th className="text-center">
-                    Action
-                  </th>
+                  <th>S/N</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Contact Address</th>
+                  <th className="text-center">Action</th>
                 </tr>
               </thead>
               <tbody>
-                {data.map((agent, idx) => <tr key={idx}>
-                  <th>
-                    {idx + 1}
-                  </th>
-                  <td>
-                    {agent.name}
-                  </td>
-                  <td>
-                    {agent.phone}
-                  </td>
-                  <td>
-                    {agent.email}
-                  </td>
-                  <td>
-                    {agent.address}
-                  </td>
-                  <td className="text-center">
-                            <Button color="info">View</Button>
-                        </td>
-                </tr>)}
+                {data.map((agent, idx) => (
+                  <tr key={idx}>
+                    <th>{idx + 1}</th>
+                    <td>{agent.name}</td>
+                    <td>{agent.phone}</td>
+                    <td>{agent.email}</td>
+                    <td>{agent.address}</td>
+                    <td className="text-center">
+                      <Button color="info">View</Button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </Table>
           </div>

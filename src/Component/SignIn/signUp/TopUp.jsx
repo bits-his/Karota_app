@@ -37,10 +37,11 @@ export default function TopUp() {
     console.log(modal)
   };
 
-  const handlePay = () => {
+  const handlePay = (id) => {
     // Implement payment logic here
     // For now, just close the modal
     toggleModal();
+    console.log(id)
   };
 
   const getReg = useCallback(() => {
@@ -127,9 +128,9 @@ export default function TopUp() {
                       <td className="text-right">{parseFloat(vehicle.balance).toFixed(2)}</td>
                       <td className="text-center p-2">
                         <ButtonGroup>
-                          <Button onClick={() => {
+                          <Button onClick={(id) => {
                             setCurrentItem(vehicle);
-                            toggleModal();
+                            handlePay(id);
                           }} color="success">
                             Pay
                           </Button>

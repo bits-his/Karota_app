@@ -6,6 +6,10 @@ import { SiApachekafka } from "react-icons/si";
 import { SiAqua } from "react-icons/si";
 
 const QuickActivityWrap = () => {
+    const columnMarginBottom = {
+        marginBottom: '2rem'
+    }
+
     const totalIncomeStyle = {
         backgroundColor: '#f5c005 ',
         borderRadius: '15px',
@@ -87,8 +91,13 @@ const QuickActivityWrap = () => {
     return (
         <div className="quick_activity_wrap">
             <Row>
+<<<<<<< HEAD
                 <Col xs={12} sm={6} lg={3}>
                     <Card className="single_quick_activity " style={totalIncomeStyle}>
+=======
+                <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
+                    <Card  className="single_quick_activity " style={totalIncomeStyle}>
+>>>>>>> beaf3bc670d0f0f40e394721b0c48326fdbb7677
                         <CardBody>
                             <CardTitle>Registred superagent</CardTitle>
                             <h3><span>{superAgentCount}</span></h3>
@@ -96,8 +105,13 @@ const QuickActivityWrap = () => {
                         </CardBody>
                     </Card>
                 </Col>
+<<<<<<< HEAD
                 <Col xs={12} sm={6} lg={3}>
                     <Card className="single_quick_activity " style={totalExpensesStyle}>
+=======
+                <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
+                    <Card  className="single_quick_activity " style={totalExpensesStyle}>
+>>>>>>> beaf3bc670d0f0f40e394721b0c48326fdbb7677
                         <CardBody>
                             <CardTitle>Registred vendors</CardTitle>
                             <h3><span>{vendorCount}</span></h3>
@@ -105,8 +119,13 @@ const QuickActivityWrap = () => {
                         </CardBody>
                     </Card>
                 </Col>
+<<<<<<< HEAD
                 <Col xs={12} sm={6} lg={3}>
                     <Card className="single_quick_activity " style={cashOnHandStyle}>
+=======
+                <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
+                    <Card  className="single_quick_activity " style={cashOnHandStyle}>
+>>>>>>> beaf3bc670d0f0f40e394721b0c48326fdbb7677
                         <CardBody>
                             <CardTitle>Registred vehicle</CardTitle>
                             <h3><span>{vehicleCount}</span></h3>
@@ -114,8 +133,13 @@ const QuickActivityWrap = () => {
                         </CardBody>
                     </Card>
                 </Col>
+<<<<<<< HEAD
                 <Col xs={12} sm={6} lg={3}>
                     <Card className="single_quick_activity " style={netProfitMarginStyle}>
+=======
+                <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
+                    <Card  className="single_quick_activity " style={netProfitMarginStyle}>
+>>>>>>> beaf3bc670d0f0f40e394721b0c48326fdbb7677
                         <CardBody>
                             <CardTitle>Agent</CardTitle>
                             <h3><span>{agentCount}</span></h3>

@@ -70,7 +70,7 @@ export default function AppNavigation() {
           element: <VehicleOwnerTable />,
         },
         {
-          path: "/VehicleReg",
+          path: "/VehicleOwner",
           element: <VehicleReg />,
         },
         {

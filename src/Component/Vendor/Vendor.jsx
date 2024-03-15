@@ -26,6 +26,7 @@ export default function RegistrationTable() {
         contact_email: '',
         contact_lga: '',
     }
+    const [submittedData, setSubmittedData] = useState([]);
 
     const [form, setForm] = useState(_form)
     const [loading, setLoading] = useState(false)
@@ -41,16 +42,14 @@ export default function RegistrationTable() {
             "vendors/create",
             form,
             (res) => {
-                if (res.success) {
-                    setLoading(false);
-                    toast.success("Successful");
-                    console.log(form);
-                    setForm(_form);
-                }
+                setLoading(true);
+                toast.success("Vendor created successfully");
+                setSubmittedData([...submittedData, res]);
+                navigate("/vendorReg");
             },
-            (err) => {
+            () => {
                 setLoading(false);
-                console.log(err);
+                toast.error("An error occurred while creating Vendor");
             }
         );
     };
@@ -114,6 +113,7 @@ export default function RegistrationTable() {
                                                 placeholder="Vendor's contact name"
                                                 type="text"
                                                 className="app_input"
+                                                required
                                             />
                                         </FormGroup>
                                     </Col>
@@ -130,6 +130,7 @@ export default function RegistrationTable() {
                                                 placeholder="+234-8100000000"
                                                 type="tel"
                                                 className="app_input"
+                                                required
                                             />
                                         </FormGroup>
                                     </Col>
@@ -163,6 +164,7 @@ export default function RegistrationTable() {
                                                 placeholder="organization@fake.com"
                                                 type="email"
                                                 className="app_input"
+                                                required
                                             />
                                         </FormGroup>
                                     </Col>

@@ -29,24 +29,25 @@ export default function VehicleOwnerTable() {
         <Col md={9}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h4 className="app_title"> Vehicle Owner </h4>
-          </div>
-        </Col>
-
-        <Col>
-          <button
+             <button
             className="app_button text-right"
             style={{
-              position: 'relative',
-              left: 139,
               width: 150,
               padding: 10,
               marginLeft: 15,
               color: "#000",
+              textAlign: "center"
             }}
-            onClick={() => navigate("/VehicleReg")}
+            onClick={() => navigate("/VehicleOwner")}
           >
-            Register New +
+            Add New Owner+
           </button>
+          </div>  
+         
+        </Col>
+
+        <Col>
+        
         </Col>
       </Row>
 
@@ -93,6 +94,12 @@ export default function VehicleOwnerTable() {
                     S/N
                   </th>
                   <th>
+                    Owners Name
+                  </th>
+                  <th>
+                    Car Name
+                  </th>
+                  <th>
                     Engine. No.
                   </th>
                   <th>
@@ -117,6 +124,12 @@ export default function VehicleOwnerTable() {
                   <td>
                     {item.vehicle_id}
                   </td>
+                  <th>
+                    Owner
+                  </th>
+                  <th>
+                    Napep
+                  </th>
                   <td>
                     {item.engine_no}
 
@@ -129,6 +142,10 @@ export default function VehicleOwnerTable() {
                   </td>
                   <td className="text-center">
                     <Button color="info">View</Button>
+                    <button 
+                    className="btn btn-primary"
+                    onClick={() => navigate('/VehicleOwner')}
+                    > Add</button>
                   </td>
                 </tr>)}
               </tbody>

@@ -96,6 +96,7 @@ export default function RegistrationTable() {
                     <hr />
                 </Col>
                 <Col md={12}>
+                    
                     <Form className='mx-auto'>
                         {form.step > 0 ?
                             <>
@@ -401,7 +402,7 @@ export default function RegistrationTable() {
                                                 id="companyProfile"
                                                 name="companyProfile"
                                                 type="file"
-                                                className="app_input"
+                                                className=  "app_input"
                                             />
                                         </FormGroup>
                                     </Col>

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import { Button, Card, Col, Row, Table, Label, Input } from "reactstrap";
+import { Button, Card, Col, Row, Table, Label, Input, Spinner } from "reactstrap";
 import { _get } from "../../Utils/Helper";
 
 function VendorReg() {
@@ -9,8 +9,12 @@ function VendorReg() {
 
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("");
+  const [loading, setLoading] = useState(false); // Add loading state
+
   const getReg = useCallback(() => {
+    setLoading(true); // Set loading to true before API call
     _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
+      setLoading(false); // Set loading to false after receiving response
       if (resp.success && resp.results) {
         setData(resp.results);
       }
@@ -20,6 +24,7 @@ function VendorReg() {
   useEffect(() => {
     getReg();
   }, [getReg]);
+
   return (
     <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
       <Row>
@@ -80,42 +85,50 @@ function VendorReg() {
           </div>
         </Col>
       </Row>
-      <Table
-        bordered
-        responsive
-        style={{
-          position: "relative",
-          top: "20px",
-          width: "100%",
-          marginTop: "4px",
-        }}
-      >
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Vendor Name</th>
-            <th>Phone Number</th>
-            <th>Vendor email</th>
-            <th>Office Address</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((vendor, idx) => (
-            <tr key={idx}>
-              <th scope="row">{idx + 1}</th>
-              <td>{vendor.vendor_name}</td>
-              <td>{vendor.vendor_org_phone}</td>
-              <td>{vendor.vendor_org_email}</td>
-              <td>{vendor.vendor_ofiice_address}</td>
-              <td className="text-center">
-                <Button color="info" className="marginResponsive">View</Button>
-                <Button color="success">Top up</Button>
-              </td>
+      
+      {data.length === 0 ? ( 
+        <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
+       ""
+      </Spinner>
+      
+      ) : (
+        <Table
+          bordered
+          responsive
+          style={{
+            position: "relative",
+            top: "20px",
+            width: "100%",
+            marginTop: "4px",
+          }}
+        >
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Vendor Name</th>
+              <th>Phone Number</th>
+              <th>Vendor email</th>
+              <th>Office Address</th>
+              <th>Action</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {data.map((vendor, idx) => (
+              <tr key={idx}>
+                <th scope="row">{idx + 1}</th>
+                <td>{vendor.vendor_name}</td>
+                <td>{vendor.vendor_org_phone}</td>
+                <td>{vendor.vendor_org_email}</td>
+                <td>{vendor.vendor_ofiice_address}</td>
+                <td className="text-center">
+                  <Button color="info" className="marginResponsive">View</Button>
+                  <Button color="success">Top up</Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      )}
     </Card>
   );
 }

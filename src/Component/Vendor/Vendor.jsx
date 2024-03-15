@@ -45,7 +45,7 @@ export default function RegistrationTable() {
                 setLoading(true);
                 toast.success("Vendor created successfully");
                 setSubmittedData([...submittedData, res]);
-                navigate("/");
+                navigate("/vendorReg");
             },
             () => {
                 setLoading(false);
@@ -113,6 +113,7 @@ export default function RegistrationTable() {
                                                 placeholder="Vendor's contact name"
                                                 type="text"
                                                 className="app_input"
+                                                required
                                             />
                                         </FormGroup>
                                     </Col>
@@ -129,6 +130,7 @@ export default function RegistrationTable() {
                                                 placeholder="+234-8100000000"
                                                 type="tel"
                                                 className="app_input"
+                                                required
                                             />
                                         </FormGroup>
                                     </Col>
@@ -162,6 +164,7 @@ export default function RegistrationTable() {
                                                 placeholder="organization@fake.com"
                                                 type="email"
                                                 className="app_input"
+                                                required
                                             />
                                         </FormGroup>
                                     </Col>

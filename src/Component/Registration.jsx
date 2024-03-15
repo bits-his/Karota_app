@@ -4,6 +4,7 @@ import InputForm from "./Component/InputForm";
 import { _post } from "../Utils/Helper";
 import QRCode from "qrcode.react";
 import { useNavigate } from "react-router-dom";
+import toast from 'react-hot-toast';
 
 export default function Registration() {
   const navigate = useNavigate();
@@ -51,7 +52,7 @@ export default function Registration() {
       obj,
       (res) => {
         setLoading(false);
-        alert("sucessful");
+        toast.success("Successful");
         console.log(form);
         setForm({
           name: "",

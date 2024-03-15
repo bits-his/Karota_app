@@ -71,9 +71,9 @@ export default function SuperAgent() {
                                     color: "#000",
                                     borderRadius: 10,
                                 }}
-                                onClick={() => navigate("/agent")}
+                                onClick={() => navigate("/superagentable")}
                             >
-                                Create Agent
+                                Back
                             </button>
                         </div>
 

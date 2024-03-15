@@ -2,8 +2,10 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, Col, Row, Form, FormGroup, Label, Input, Button } from 'reactstrap'
 import { stateLga } from '../../assets/state_and_lgas'
+import { _post } from '../../Utils/Helper'
 
 export default function RegistrationTable() {
+
 	const _form = {
 		step: 0,
 		engine_no: "",
@@ -12,33 +14,49 @@ export default function RegistrationTable() {
 		manufacturing_date: '',
 		purchase_date: "",
 		state_registered: "",
-		lga_registered: "",
+		registered_lg: "",
 		lga_reg_no: "",
-		owner_name: "",
-		owner_email: "",
-		owner_phone: "",
-		owner_state: "",
-		owner_lga: "",
-		owner_dob: "",
-		owner_address: ""
+		owners_name: "",
+		owners_email: "",
+		owners_phone: "",
+		owners_state: "",
+		owners_lga: "",
+		owners_next_of_kin: "",
+		owners_dob: "",
+		owners_nin: "",
+		owners_address: "",
+		driver_name: "",
+		driver_email: "",
+		driver_phone: "",
+		driver_state: "",
+		driver_lga: "",
+		driver_dob: "",
+		driver_nin: "",
+		driver_address: "",
+		password: ""
 	}
 
 	const [form, setForm] = useState(_form)
+	const [loading, setLoading] = useState(false)
+
 	const handleChange = ({ target: { name, value } }) => {
 		setForm((p) => ({ ...p, [name]: value }))
 	}
 	const navigate = useNavigate()
-	const handleSubmit = () => {
+
+	const handleSubmit = (e) => {
+		e.preventDefault()
 		setLoading(true);
-		let obj = { ...form, qrcode: qrCodeGenerator };
 		_post(
-			"api/create_users",
-			obj,
+			"vehicles/registration",
+			form,
 			(res) => {
 				setLoading(false);
-				alert("sucessful");
-				console.log(form);
-				setForm(_form);
+				if (res.success) {
+					alert("sucessful");
+					console.log(form);
+					setForm(_form);
+				}
 			},
 			(err) => {
 				setLoading(false);
@@ -54,7 +72,7 @@ export default function RegistrationTable() {
 
 	return (
 		<Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
-			{/* {JSON.stringify({ form })} */}
+			{JSON.stringify({ form })}
 			<Row>
 				<Col md={12}>
 					<div
@@ -84,7 +102,7 @@ export default function RegistrationTable() {
 				</Col>
 				<Col md={12}>
 
-					<Form className='mx-auto'>
+					<Form onSubmit={handleSubmit} className='mx-auto'>
 						{form.step < 1 ?
 							<>
 								<Row className='margin-bottom-input'>
@@ -107,7 +125,7 @@ export default function RegistrationTable() {
 									<Col md={6}>
 										<FormGroup>
 											<Label for="engine_no">
-												Engine No
+												Engine No.
 											</Label>
 											<Input
 												onChange={handleChange}
@@ -115,7 +133,7 @@ export default function RegistrationTable() {
 												name="engine_no"
 												value={form.engine_no}
 												placeholder="Engine No."
-												type="number"
+												type="text"
 												className="app_input"
 											/>
 										</FormGroup>
@@ -164,7 +182,6 @@ export default function RegistrationTable() {
 												onChange={handleChange}
 												id="state_registered"
 												name="state_registered"
-												value={form.state_registered}
 												type="select"
 												className="app_input"
 												required
@@ -172,7 +189,7 @@ export default function RegistrationTable() {
 												<option value={''}>
 													Select State
 												</option>
-												{stateLga.map((item) => <option>
+												{stateLga.map((item, idx) => <option key={idx}>
 													{item.state}
 												</option>)}
 
@@ -181,14 +198,13 @@ export default function RegistrationTable() {
 									</Col>
 									<Col md={6}>
 										<FormGroup>
-											<Label for="lga_registered">
+											<Label for="registered_lg">
 												L.G.A. Registred
 											</Label>
 											<Input
 												onChange={handleChange}
-												id="lga_registered"
-												name="lga_registered"
-												value={form.lga_registered}
+												id="registered_lg"
+												name="registered_lg"
 												type="select"
 												className="app_input"
 											>
@@ -230,6 +246,7 @@ export default function RegistrationTable() {
 											<Input
 												onChange={handleChange}
 												name="purchase_date"
+												id="purchase_date"
 												value={form.purchase_date}
 												placeholder='Purchase Date'
 												type="date"
@@ -245,14 +262,14 @@ export default function RegistrationTable() {
 										<Col md={6} className='first-col'>
 											<FormGroup>
 
-												<Label for="owner_phone">
+												<Label for="owners_name">
 													Name
 												</Label>
 												<Input
 													onChange={handleChange}
-													id="Name"
-													name="owner_name"
-													value={form.owner_name}
+													id="owners_name"
+													name="owners_name"
+													value={form.owners_name}
 													placeholder="Name of Vehicle owner"
 													type="text"
 													className="app_input"
@@ -261,14 +278,14 @@ export default function RegistrationTable() {
 										</Col>
 										<Col md={6}>
 											<FormGroup>
-												<Label for="owner_phone">
+												<Label for="owners_phone">
 													Phone
 												</Label>
 												<Input
 													onChange={handleChange}
-													id="owner_phone"
-													name="owner_phone"
-													value={form.owner_phone}
+													id="owners_phone"
+													name="owners_phone"
+													value={form.owners_phone}
 													placeholder="+234-8100000000"
 													type="tel"
 													className="app_input"
@@ -280,14 +297,14 @@ export default function RegistrationTable() {
 										<Col md={6} className='first-col'>
 											<FormGroup>
 
-												<Label for="Name">
+												<Label for="owners_dob">
 													Owners Date of Birth
 												</Label>
 												<Input
 													onChange={handleChange}
-													id="Name"
-													name="owner_dob"
-													value={form.Name}
+													id="owners_dob"
+													name="owners_dob"
+													value={form.owners_dob}
 													placeholder="Name of Vehicle owner"
 													type="date"
 													className="app_input"
@@ -296,14 +313,14 @@ export default function RegistrationTable() {
 										</Col>
 										<Col md={6}>
 											<FormGroup>
-												<Label for="owner_next_of_kin">
+												<Label for="owners_next_of_kin">
 													Next of kin
 												</Label>
 												<Input
 													onChange={handleChange}
-													id="owner_next_of_kin"
-													name="owner_next_of_kin"
-													value={form.owner_next_of_kin}
+													id="owners_next_of_kin"
+													name="owners_next_of_kin"
+													value={form.owners_next_of_kin}
 													placeholder="Next of kin"
 													type="text"
 													className="app_input"
@@ -314,14 +331,14 @@ export default function RegistrationTable() {
 									<Row className='margin-bottom-input'>
 										<Col md={6} className='first-col'>
 											<FormGroup>
-												<Label for="owner_address">
+												<Label for="owners_address">
 													Residential Address
 												</Label>
 												<Input
 													onChange={handleChange}
-													id="owner_address"
-													name="owner_address"
-													value={form.owner_address}
+													id="owners_address"
+													name="owners_address"
+													value={form.owners_address}
 													type="text"
 													className="app_input"
 												/>
@@ -329,14 +346,14 @@ export default function RegistrationTable() {
 										</Col>
 										<Col md={6}>
 											<FormGroup>
-												<Label for="owner_email">
+												<Label for="owners_email">
 													email
 												</Label>
 												<Input
 													onChange={handleChange}
-													id="owner_emailexample"
-													name="owner_email"
-													value={form.owner_email}
+													id="owners_email"
+													name="owners_email"
+													value={form.owners_email}
 													placeholder="owneranization@fake.com"
 													type="email"
 													className="app_input"
@@ -347,14 +364,13 @@ export default function RegistrationTable() {
 									<Row className='margin-bottom-input'>
 										<Col md={6} className='first-col'>
 											<FormGroup>
-												<Label for="owner_state">
+												<Label for="owners_state">
 													State of residence
 												</Label>
 												<Input
 													onChange={handleChange}
-													id="owner_state"
-													name="owner_state"
-													value={form.owner_state}
+													id="owners_state"
+													name="owners_state"
 													type="select"
 													className="app_input"
 													required
@@ -362,7 +378,7 @@ export default function RegistrationTable() {
 													<option value={''}>
 														Select State
 													</option>
-													{stateLga.map((item) => <option>
+													{stateLga.map((item, idx) => <option key={idx}>
 														{item.state}
 													</option>)}
 
@@ -371,14 +387,13 @@ export default function RegistrationTable() {
 										</Col>
 										<Col md={6}>
 											<FormGroup>
-												<Label for="owner_lga">
+												<Label for="owners_lga">
 													LGA of residence
 												</Label>
 												<Input
 													onChange={handleChange}
-													id="owner_lga"
-													name="owner_lga"
-													value={form.owner_lga}
+													id="owners_lga"
+													name="owners_lga"
 													type="select"
 													className="app_input"
 												>
@@ -386,7 +401,7 @@ export default function RegistrationTable() {
 														--Select LGA--
 													</option>
 													{stateLga.filter(
-														(item) => item.state === form.owner_state
+														(item) => item.state === form.owners_state
 													)[0]?.lgas?.map((lga, idx) => <option key={idx}>
 														{lga}
 													</option>)
@@ -398,13 +413,14 @@ export default function RegistrationTable() {
 									<Row>
 										<Col md={6}>
 											<FormGroup>
-												<Label for="tin">
+												<Label for="owners_nin">
 													NIN
 												</Label>
 												<Input
 													onChange={handleChange}
-													id="NIN"
-													name="NIN"
+													name="owners_nin"
+													id="owners_nin"
+													value={form.owners_nin}
 													type="number"
 													className="app_input"
 												/>
@@ -413,13 +429,14 @@ export default function RegistrationTable() {
 										<Col md={6}>
 											<FormGroup>
 												<Label for="tin">
-													D.O.B
+													Password
 												</Label>
 												<Input
 													onChange={handleChange}
-													id="dob"
-													name="dob"
-													type="date"
+													id="password"
+													name="password"
+													value={form.password}
+													type="password"
 													className="app_input"
 												/>
 											</FormGroup>
@@ -517,7 +534,7 @@ export default function RegistrationTable() {
 													<option value={''}>
 														Select State
 													</option>
-													{stateLga.map((item) => <option>
+													{stateLga.map((item, idx) => <option key={idx}>
 														{item.state}
 													</option>)}
 

@@ -45,7 +45,7 @@ export default function RegistrationTable() {
   return (
     <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
       <Col md={12}>
-        <h4 className="app_title"> Registered List </h4>
+        <h4 className="app_title"> Registered Agents </h4>
         <hr />
       </Col>
       <button
@@ -297,209 +297,213 @@ export default function RegistrationTable() {
                   QR Code
                 </th>
               </thead>
-              {search?.map((i) => (
-                <tbody>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.name}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.middle_name}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.surname}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.gender}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.status}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.nationality}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.state_of_origin}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.lg}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.date_of_birth}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.place_of_birth}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.phone_no}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.blood_group}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.genotype}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.address}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.NIN_number}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.next_of_kin}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.next_of_kin_address}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.phone_no2}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.plate_number}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.classes_number}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.side_number}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.phone_no3}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    {i.name_of_company}
-                  </td>
-                  <td
-                    style={{
-                      padding: "5px 10px",
-                      border: "1px solid #f5c005",
-                    }}
-                  >
-                    <QRCode
-                      value={i.qrcode}
-                      renderAs="canvas"
+
+              <tbody>
+                {search?.map((i, idx) => (
+                  <tr key={idx}>
+                    <td
                       style={{
-                        width: 50,
-                        height: 50,
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
                       }}
-                    />
-                  </td>
-                </tbody>
-              ))}
+                    >
+                      {i.name}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.middle_name}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.surname}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.gender}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.status}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.nationality}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.state_of_origin}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.lg}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.date_of_birth}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.place_of_birth}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.phone_no}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.blood_group}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.genotype}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.address}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.NIN_number}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.next_of_kin}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.next_of_kin_address}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.phone_no2}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.plate_number}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.classes_number}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.side_number}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.phone_no3}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      {i.name_of_company}
+                    </td>
+                    <td
+                      style={{
+                        padding: "5px 10px",
+                        border: "1px solid #f5c005",
+                      }}
+                    >
+                      <QRCode
+                        value={i.qrcode}
+                        renderAs="canvas"
+                        style={{
+                          width: 50,
+                          height: 50,
+                        }}
+                      />
+                    </td>
+                  </tr>
+                ))}
+
+              </tbody>
             </table>
           </div>
         </Col>

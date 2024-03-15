@@ -28,7 +28,7 @@ export default function TopUp() {
   const [userDetail, setUserDetail] = useState({
     Reg_no: "",
     Plate_no: ""
-})
+  })
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState('');
 
@@ -46,10 +46,10 @@ export default function TopUp() {
 
   const getReg = useCallback(() => {
     _get(`vehicles?query_type=select-all=${filter}`, (resp) => {
-      if(resp.success){
+      if (resp.success) {
         setData(resp.data);
         console.log(resp.data)
-      } 
+      }
     });
   }, [filter]);
 
@@ -116,16 +116,16 @@ export default function TopUp() {
                   <tr>
                     <th>Reg. No.</th>
                     <th>Plate No.</th>
-                    <th>Balance</th>
+                    <th>Balance (₦)</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {data.map((vehicle, idx) => (
                     <tr key={idx}>
-                      <td>{vehicle.vehicle_id}</td>
+                      <td>00{vehicle.vehicle_id}</td>
                       <td>{vehicle.plate_no}</td>
-                      <td>N{vehicle.balance}</td>
+                      <td className="text-right">{parseFloat(vehicle.balance).toFixed(2)}</td>
                       <td className="text-center p-2">
                         <ButtonGroup>
                           <Button onClick={(id) => {
@@ -145,88 +145,86 @@ export default function TopUp() {
           </Card>
 
           <Modal isOpen={modal}
-          style={{
-            overlay: {
-              width: '100%',
-              // left: '20rem'
-            },
-            content: {
-              position: 'relative',
-              top: '15rem',
-              width: '60%',
-              left: '40rem',
-              height: '60vh'
-            }
-          }}
-          >
-            <div 
             style={{
-              position: "relative",
-              float: "right",
+              overlay: {
+                width: '100%',
+                // left: '20rem'
+              },
+              content: {
+                position: 'relative',
+                top: '15rem',
+                width: '60%',
+                left: '40rem',
+                height: '60vh'
+              }
             }}
+          >
+            <div
+              style={{
+                position: "relative",
+                float: "right",
+              }}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" 
-              onClick={() => toggleModal()}>
-                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"
+                onClick={() => toggleModal()}>
+                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
               </svg>
             </div>
-            <QRCode 
+            <QRCode
               size={256}
               style={{
-                position: 'relative', 
-                height: "auto", 
-                maxWidth: "20%", 
-                width: "20%", 
+                position: 'relative',
+                height: "auto",
+                maxWidth: "20%",
+                width: "20%",
                 left: '80%',
-                top: '15%'
+                top: '5%'
               }}
               value={userDetail.Reg_no}
               viewBox={`0 0 256 256`}
             />
             <div
-            style={{
-              position: 'absolute',
-              top: '70px',
-              left: '10rem',
-              // marginBottom: '30px'
-            }}
+              style={{
+                position: 'absolute',
+                top: '10px'
+              }}
             >
-              <h4>Reg No:</h4>
-              <h4>Plate No:</h4>
-              <h4>Balance: 200</h4>
+              <h3>Reg No: 00{currentItem.vehicle_id}</h3>
+              <h3>Plate No: {currentItem.plate_no}</h3>
+              <h3>Balance: ₦{parseFloat(currentItem.balance).toFixed(2)}</h3>
             </div>
             <Form
-            style={{
-              position: "absolute",
-              top: "30rem",
-              left: "10rem",
-              width: '60%',
-              // backgroundColor: "red"
-            }}
+              style={{
+                position: "absolute",
+                top: "20rem",
+                left: "10rem",
+                width: '60%',
+                // backgroundColor: "red"
+              }}
             >
               <label
-              style={{width: '20%', fontSize: '150%'}}>Top-up</label>
-              <input 
-              style={{
-                width: '80%',
-                height: "40px",
-                borderRadius: "5px",
-                border: "1px  solid ",
-                paddingLeft: '8px'
-              }}
-              placeholder="Enter amount here"
+                style={{ width: '20%', fontSize: '150%' }}>Top-up</label>
+              <input
+                style={{
+                  width: '80%',
+                  height: "40px",
+                  borderRadius: "5px",
+                  border: "1px  solid ",
+                  paddingLeft: '8px'
+                }}
+                placeholder="Enter amount here"
               />
               <Button
-              style={{
-                position: "relative",
-                display: 'flex',
-                // alignContent: 'center',
-                justifyContent: 'center',
-                left: "50%",
-                top: '20px',
-                width: "25%",
-                backgroundColor: "#f5c005"
-              }}>Submit</Button>
+                style={{
+                  position: "relative",
+                  display: 'flex',
+                  // alignContent: 'center',
+                  justifyContent: 'center',
+                  left: "50%",
+                  top: '20px',
+                  width: "25%",
+                  backgroundColor: "#f5c005"
+                }}>Submit</Button>
             </Form>
           </Modal>
 

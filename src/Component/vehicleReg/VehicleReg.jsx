@@ -8,31 +8,15 @@ export default function RegistrationTable() {
 
 	const _form = {
 		step: 0,
+		owner_id: "",
+		lg_reg_no: "",
 		engine_no: "",
 		plate_no: "",
-		manufacturer: '',
-		manufacturing_date: '',
-		purchase_date: "",
-		state_registered: "",
+		manifacturer: "",
+		manifacturing_date: "",
+		purchased_date: "",
+		state_registrered: "",
 		registered_lg: "",
-		lga_reg_no: "",
-		owners_name: "",
-		owners_email: "",
-		owners_phone: "",
-		owners_state: "",
-		owners_lga: "",
-		owners_next_of_kin: "",
-		owners_dob: "",
-		owners_nin: "",
-		owners_address: "",
-		driver_name: "",
-		driver_email: "",
-		driver_phone: "",
-		driver_state: "",
-		driver_lga: "",
-		driver_dob: "",
-		driver_nin: "",
-		driver_address: "",
 		password: ""
 	}
 
@@ -72,7 +56,7 @@ export default function RegistrationTable() {
 
 	return (
 		<Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
-			{JSON.stringify({ form })}
+			{/* {JSON.stringify({ form })} */}
 			<Row>
 				<Col md={12}>
 					<div
@@ -92,7 +76,7 @@ export default function RegistrationTable() {
 								color: '#000',
 								borderRadius: 10,
 							}}
-							onClick={() => navigate("/")}
+							onClick={() => navigate("/Vehicleownertable")}
 						>
 							Back
 						</button>

@@ -82,6 +82,7 @@
   color: white;
   font-size: 1.5rem;
   font-weight: bold;
+  border-radius: 7px;
   transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 .app_button:hover {
@@ -211,6 +212,9 @@
   color: #020202;
   text-shadow: 3px 4px 5px #4b4b4b;
 }
+.vendor_title {
+  margin: 0 auto;
+}
 hr {
   border: 1px solid #f5c005;
 }
@@ -242,6 +246,8 @@ label {
   overflow-y: auto;
   margin: 0;
   width: 250px;
+  position: sticky;
+  top: 0;
 }
 
 .user_image {
@@ -409,6 +415,18 @@ td, th{
 @media only screen and (max-width: 991px) {
   .first-col {
     margin-bottom: 2rem;
+  }
+}
+@media only screen and (max-width: 991px) {
+  .imaginary {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .imaginary {
+    opacity: 0;
+    display: inline-block;
   }
 }
 

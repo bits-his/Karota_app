@@ -23,7 +23,7 @@ const MonthlyTransactionLineChart = ({ data }) => {
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Monthly Transaction Count',
+                        label: 'Monthly Transactions',
                         data: transactionCounts,
                         backgroundColor: '#f5c005',
                         borderColor: '#f5c005',

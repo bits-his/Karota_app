@@ -2,9 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, Col, Row, Form, FormGroup, Label, Input } from "reactstrap";
 import { stateLga } from "../../assets/state_and_lgas";
+import toast from "react-hot-toast";
 
 export default function Agent() {
-  const _form = {};
+  const _form = {
+    query_type: "create",
+  };
 
   const [form, setForm] = useState(_form);
   const handleChange = ({ target: { name, value } }) => {
@@ -13,13 +16,12 @@ export default function Agent() {
   const navigate = useNavigate();
   const handleSubmit = () => {
     setLoading(true);
-    let obj = { ...form, qrcode: qrCodeGenerator };
     _post(
-      "api/create_users",
-      obj,
+      "agents/create",
+      form,
       (res) => {
         setLoading(false);
-        alert("sucessful");
+        toast.success("Successful");
         console.log(form);
         setForm(_form);
       },
@@ -41,11 +43,22 @@ export default function Agent() {
             <div
               style={{
                 display: "flex",
-                justifyContent: "space-between",
                 alignItems: "center",
               }}
             >
-              <h4 className="app_title">Agent Registeration</h4>
+              <button
+                className="app_button"
+                style={{
+                  width: "10rem",
+                  padding: 10,
+                  color: "#000",
+                  borderRadius: 10,
+                }}
+                onClick={() => navigate("/agentable")}
+              >
+                Back
+              </button>
+              <h4 className="app_title vendor_title">Agent Registration</h4>
             </div>
             <hr />
           </Col>
@@ -55,11 +68,11 @@ export default function Agent() {
                 <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
-                      <Label for="agentName">Name</Label>
+                      <Label for="name">Name</Label>
                       <Input
                         onChange={handleChange}
-                        id="agentName"
-                        name="agentName"
+                        id="name"
+                        name="name"
                         placeholder="John Doe"
                         type="text"
                         className="app_input"
@@ -68,11 +81,11 @@ export default function Agent() {
                   </Col>
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="superAgent">Super Agent</Label>
+                      <Label for="super_agent">Super Agent</Label>
                       <Input
                         onChange={handleChange}
-                        id="superAgent"
-                        name="superAgent"
+                        id="super_agent"
+                        name="super_agent"
                         placeholder="Select vendor"
                         type="select"
                         className="app_input"
@@ -88,11 +101,11 @@ export default function Agent() {
                 <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
-                      <Label for="agentPhone">Phone</Label>
+                      <Label for="phone">Phone</Label>
                       <Input
                         onChange={handleChange}
-                        id="agentPhone"
-                        name="agentPhone"
+                        id="phone"
+                        name="phone"
                         type="tel"
                         className="app_input"
                       />
@@ -100,11 +113,11 @@ export default function Agent() {
                   </Col>
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="agentEmail">Email</Label>
+                      <Label for="email">Email</Label>
                       <Input
                         onChange={handleChange}
-                        id="agentEmail"
-                        name="agentEmail"
+                        id="email"
+                        name="email"
                         placeholder="organization@fake.com"
                         type="email"
                         className="app_input"
@@ -115,11 +128,11 @@ export default function Agent() {
                 <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
-                      <Label for="agentState">State</Label>
+                      <Label for="state">State</Label>
                       <Input
                         onChange={handleChange}
-                        id="agentState"
-                        name="agentState"
+                        id="state"
+                        name="state"
                         value={form.state}
                         type="select"
                         className="app_input"
@@ -155,39 +168,24 @@ export default function Agent() {
                 <Row className="margin-bottom-input">
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="agentAddress">Contact address</Label>
+                      <Label for="address">Contact address</Label>
                       <Input
                         onChange={handleChange}
-                        id="agentAddress"
-                        name="agentAddress"
+                        id="address"
+                        name="address"
                         type="textarea"
                         className="app_input"
+                        rows="1.5"
                       />
                     </FormGroup>
                   </Col>
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="agentDOB">Date of birth (D.O.B)</Label>
+                      <Label for="service_location">Service Location</Label>
                       <Input
                         onChange={handleChange}
-                        id="agentDOB"
-                        name="agentDOB"
-                        type="date"
-                        className="app_input"
-                      />
-                    </FormGroup>
-                  </Col>
-                </Row>
-                <Row className="margin-bottom-input">
-                  <Col md={12}>
-                    <FormGroup>
-                      <Label for="agentservicelocation">
-                        Service Location
-                      </Label>
-                      <Input
-                        onChange={handleChange}
-                        id="agentservicelocation"
-                        name="agentservicelocation"
+                        id="service_location"
+                        name="service_location"
                         placeholder="Bata"
                         type="text"
                         className="app_input"
@@ -213,6 +211,7 @@ export default function Agent() {
                       color: "",
                       cursor: "pointer",
                       borderRadius: 7,
+                      margin: "auto",
                     }}
                     onClick={handleSubmit}
                   >

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button, Card, CardBody, Col, Input, Label, Row } from "reactstrap";
 import keke from '../../../assets/keke_napep.png'
+import { useDispatch } from "react-redux";
+import { login } from "../../../redux/actions/auth";
 
 export default function Login() {
   const [form, setForm] = useState({
@@ -9,15 +11,17 @@ export default function Login() {
     email_address: "",
     password: "",
   });
+  const dispatch = useDispatch()
 
   const handleChange = ({ target: { name, value } }) => {
     setForm((p) => ({ ...p, [name]: value }));
     console.log(form);
   };
 
-  const handleAdd = () => {
+  const handleSubmit = () => {
     setForm(form)
     console.log(form)
+    dispatch(login({username:form.email_address}))
   }
   return (
     <div className='login'
@@ -38,10 +42,8 @@ export default function Login() {
             background: '#fff'
           }}
         >
-          <div style={{width}}>
-            <img src={keke} alt="kek Image" style={{ position: 'absolute', left: '6px', width: '15rem' }} />
+          <img src={keke} alt="kek Image" style={{ position: 'absolute', left: '6px', width: '15rem' }} />
 
-          </div>
         </div>
         <Col md={4}></Col>
         <Col md={4}>
@@ -76,11 +78,11 @@ export default function Login() {
 
                   <Col mt={4} mb={1}>
                     <Button
-                      style={{ position: 'relative', marginTop: 15, background: '#fff', color: '#000', fontWeight: '700', left: '100px' }}
+                      style={{ position: 'relative', marginTop: 15, background: '#fff', color: '#000', fontWeight: '700', left: '100px', border: '1px solid black' }}
                       variant="gradient"
                       color="info"
                       fullWidth
-                      onClick={handleAdd}
+                      onClick={handleSubmit}
                     >
                       sign In
                     </Button>

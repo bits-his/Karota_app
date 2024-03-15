@@ -8,28 +8,8 @@ import {
 } from "./type";
 import { apiURL } from "./api";
 import { _get } from "../../Utils/Helper";
-import { WALLET } from "../type";
+import { WALLET } from "../types";
 // import { useHistory } from 'react-router-dom';
-
-export const navigateBasedOnAccess = (access, history) => {
-    // if (access && access.length) {
-    switch (access[0]) {
-        case "Dashbord":
-            return history.push("/dashboard/overview");
-        // case "MDA Reports":
-        //   return history.push("/receipt-report");
-        case "Admin Manager":
-            return history.push("/admin/dashboard/admins-manager");
-        case "Tax Admins":
-            return history.push("/admin/dashboard/admins-manager");
-        case "Tax Payers":
-            return history.push("/tax-report");
-        case "Tax Setup":
-            return history.push("/admin/dashboard/tax-mngr-table");
-        default:
-            return history.push("/admin/pay-invoice");
-    }
-};
 
 export function login({ username, password, history }, success, error) {
     return (dispatch) => {

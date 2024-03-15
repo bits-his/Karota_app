@@ -1,2 +1,0 @@
-export const AUTHENTICATION = 'AUTHENTICATION'
-export const WALLET = 'WALLET'

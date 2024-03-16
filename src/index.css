@@ -685,6 +685,18 @@ select.form-select {
 .link_item{
   text-align: left;
 }
+.modal-open .modal {
+  opacity: 1;
+}
+.modal-content {
+  top: 50px;
+}
+.modal-row-details {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 
 
 

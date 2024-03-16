@@ -2,7 +2,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import { Button, Card, Col, Row, Table } from "reactstrap";
+import { Button, Card, Col, Row, Table,Spinner } from "reactstrap";
 import { _get } from "../../Utils/Helper";
 
 export default function AgentTable() {
@@ -77,6 +77,12 @@ export default function AgentTable() {
 
         <Row>
           <div className="table_overflow">
+          {data.length === 0 ? ( 
+        <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
+       ""
+      </Spinner>
+      
+      ) : (
             <Table
               bordered
               responsive
@@ -127,7 +133,7 @@ export default function AgentTable() {
                   </td>
                 </tr>)}
               </tbody>
-            </Table>
+            </Table>)}
           </div>
         </Row>
       </Row>

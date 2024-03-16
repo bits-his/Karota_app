@@ -22,6 +22,7 @@ function VendorReg() {
 
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("");
+  const [currentVendor, setCurrentVendor] = useState({});
 
   const [loading, setLoading] = useState(false); // Add loading state
 
@@ -151,7 +152,9 @@ function VendorReg() {
                   <Button color="info" className="marginResponsive">
                     View
                   </Button>
-                  <Button color="success" onClick={toggle}>
+                  <Button color="success" onClick={toggle}
+                  // {() => {setCurrentVendor(vendor);}}
+                  >
                     Top up
                   </Button>
                 </td>
@@ -161,48 +164,52 @@ function VendorReg() {
         </Table>
       )}
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader>Vendor top up</ModalHeader>
+        <ModalHeader className="text-center modal-head-vendor-topup">Vendor top up</ModalHeader>
         <ModalBody>
-          <div>
             <div className="modal-row-details">
-              <div>
+              <div className="modal-row-content small-margin-right">
                 <span>Name:</span>
                 <div></div>
               </div>
-              <div>
-                <span>Plate no.:</span>
+              <div className="modal-row-content">
+                <span>Vendor no.:</span>
                 <div></div>
               </div>
             </div>
             <div className="modal-row-details">
-              <div>
+              <div className="modal-row-content small-margin-right">
                 <span>E-mail:</span>
                 <div></div>
               </div>
-              <div>
+              <div className="modal-row-content">
                 <span>Balance:</span>
                 <div></div>
               </div>
             </div>
-            <div className="modal-row-details">
-              <div>
-                period
-                <div>From</div>
-                <Input type="date" />
-              </div>
-              <div>
-                <div>To</div>
-                <Input type="date" />
+            <div>
+            <div className="period-bigger">period</div>
+              <div className="modal-row-details">
+                <div className="modal-row-content small-margin-right">
+                  <div>From</div>
+                  <Input type="date" />
+                </div>
+                <div className="modal-row-content">
+                  <div>To</div>
+                  <Input type="date" />
+                </div>
               </div>
             </div>
-          </div>
+            <div className="modal-row-details modal-amount">
+                <span>Amount: </span>
+                <Input type="number" style={{ width: "50%" }} />
+            </div>
         </ModalBody>
         <ModalFooter>
-          <Button color="success" onClick={toggle}>
-            Pay
-          </Button>
           <Button color="danger" onClick={toggle}>
             Cancel
+          </Button>
+          <Button color="success" onClick={toggle}>
+            Pay
           </Button>
         </ModalFooter>
       </Modal>

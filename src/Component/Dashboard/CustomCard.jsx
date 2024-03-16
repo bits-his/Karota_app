@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardBody, CardTitle, Row, Col } from 'reactstrap';
-import { FaMagento } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
+// import { FaMagento } from "react-icons/fa6";s
 import { SiAnalogue } from "react-icons/si";
 import { SiApachekafka } from "react-icons/si";
 import { SiAqua } from "react-icons/si";
+import { FaMagento } from 'react-icons/fa';
 
 const QuickActivityWrap = () => {
     const columnMarginBottom = {
@@ -12,12 +14,12 @@ const QuickActivityWrap = () => {
 
     const totalIncomeStyle = {
         backgroundColor: '#f5c005 ',
-        borderRadius: '15px', 
-        padding: '20px', 
+        borderRadius: '15px',
+        padding: '20px',
         height: '100%',
-        color:'#fff',
+        color: '#fff',
         transition: 'background-color 0.3s ease !important',
-        cusor:"pointer"
+        cusor: "pointer"
 
     };
 
@@ -26,9 +28,9 @@ const QuickActivityWrap = () => {
         borderRadius: '15px',
         padding: '20px',
         height: '100%',
-        color:'#fff',
+        color: '#fff',
         transition: 'background-color 0.3s ease !important',
-        cusor:"pointer"
+        cusor: "pointer"
     };
 
     const cashOnHandStyle = {
@@ -36,9 +38,9 @@ const QuickActivityWrap = () => {
         borderRadius: '15px',
         padding: '20px',
         height: '100%',
-        color:'#fff',
+        color: '#fff',
         transition: 'background-color 0.3s ease !important',
-        cusor:"pointer"
+        cusor: "pointer"
     };
 
     const netProfitMarginStyle = {
@@ -46,9 +48,9 @@ const QuickActivityWrap = () => {
         borderRadius: '15px',
         padding: '20px',
         height: '100%',
-        color:'#fff',
+        color: '#fff',
         transition: 'background-color 0.3s ease !important',
-        cusor:"pointer"
+        cusor: "pointer"
     };
     const iconStyle = {
         fontSize: '50px',
@@ -87,45 +89,56 @@ const QuickActivityWrap = () => {
         return () => clearInterval(interval);
     }, [superAgentCount, vendorCount, vehicleCount, agentCount]);
 
-   
+
     return (
         <div className="quick_activity_wrap">
+            
             <Row>
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
-                    <Card  className="single_quick_activity " style={totalIncomeStyle}>
+                <Link to="/superagentable"style={{ textDecoration: 'none' }}>
+                  
+                    <Card className="single_quick_activity " style={totalIncomeStyle} >
                         <CardBody>
-                            <CardTitle>Registred superagent</CardTitle>
+                            <CardTitle>Total No. of super agent</CardTitle>
                             <h3><span>{superAgentCount}</span></h3>
-                            <div style={iconStyle}><FaMagento/></div>
+                            <div style={iconStyle}><FaMagento /></div>
                         </CardBody>
                     </Card>
+                    </Link>
                 </Col>
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
-                    <Card  className="single_quick_activity " style={totalExpensesStyle}>
+                <Link to="/vendorReg"style={{ textDecoration: 'none' }}>
+                    <Card className="single_quick_activity " style={totalExpensesStyle}>
                         <CardBody>
-                            <CardTitle>Registred vendors</CardTitle>
+                            <CardTitle>Total No. of vendors</CardTitle>
                             <h3><span>{vendorCount}</span></h3>
-                            <div style={iconStyle}><SiAnalogue/></div>
+                            <div style={iconStyle}><SiAnalogue /></div>
                         </CardBody>
+                        
                     </Card>
+                    </Link>
                 </Col>
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
-                    <Card  className="single_quick_activity " style={cashOnHandStyle}>
+                <Link to="/Vehicleownertable"style={{ textDecoration: 'none' }}>
+                    <Card className="single_quick_activity " style={cashOnHandStyle}>
                         <CardBody>
-                            <CardTitle>Registred vehicle</CardTitle>
+                            <CardTitle>Total No. of vehicles</CardTitle>
                             <h3><span>{vehicleCount}</span></h3>
-                            <div style={iconStyle}><SiApachekafka/></div>
+                            <div style={iconStyle}><SiApachekafka /></div>
                         </CardBody>
                     </Card>
+                    </Link>
                 </Col>
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
-                    <Card  className="single_quick_activity " style={netProfitMarginStyle}>
+                <Link to="/agentable"style={{ textDecoration: 'none' }}>
+                    <Card className="single_quick_activity " style={netProfitMarginStyle}>
                         <CardBody>
-                            <CardTitle>Agent</CardTitle>
+                            <CardTitle>Total No. of Agents</CardTitle>
                             <h3><span>{agentCount}</span></h3>
-                            <div style={iconStyle}><SiAqua/></div>
+                            <div style={iconStyle}><SiAqua /></div>
                         </CardBody>
                     </Card>
+                    </Link>
                 </Col>
             </Row>
         </div>

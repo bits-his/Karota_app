@@ -17,6 +17,7 @@ import {
   // ModalHeader,
   Row,
   Table,
+  Spinner
 } from "reactstrap";
 import { _get } from "../../../Utils/Helper";
 
@@ -43,7 +44,11 @@ export default function TopUp() {
     toggleModal();
     console.log(id)
   };
-
+  const agentDetails = {
+    name: "Ahmad Ibrahim",
+    id: 123,
+    bal: 2000
+  } 
   const getReg = useCallback(() => {
     _get(`vehicles?query_type=select-all=${filter}`, (resp) => {
       if (resp.success) {
@@ -64,6 +69,19 @@ export default function TopUp() {
           <Col md={12}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <h4 className="app_title">Top Up</h4>
+            </div>
+            <div
+            style={{
+              position: 'absolute',
+              left: '90rem',
+              top: '-25px',
+              fontSize: '20px',
+              // display: 'flex',
+              float: 'right'
+            }}>
+              <div>Name: {agentDetails.name}</div>
+              <div>ID: {agentDetails.id}</div>
+              <div>Bal: {agentDetails.bal}</div>
             </div>
             <hr />
           </Col>
@@ -108,6 +126,12 @@ export default function TopUp() {
 
           <Card className="mt-5 shadow">
             <div className="table_overflow1">
+            {data.length === 0 ? ( 
+        <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
+       ""
+      </Spinner>
+      
+      ) : (
               <Table
                 bordered
                 responsive
@@ -140,7 +164,7 @@ export default function TopUp() {
                     </tr>
                   ))}
                 </tbody>
-              </Table>
+              </Table>)}
             </div>
           </Card>
 
@@ -178,7 +202,7 @@ export default function TopUp() {
                 maxWidth: "20%",
                 width: "20%",
                 left: '80%',
-                top: '5%'
+                top: '9%'
               }}
               value={userDetail.Reg_no}
               viewBox={`0 0 256 256`}
@@ -186,7 +210,8 @@ export default function TopUp() {
             <div
               style={{
                 position: 'absolute',
-                top: '10px'
+                top: '40px',
+                left: '100px'
               }}
             >
               <h3>Reg No: 00{currentItem.vehicle_id}</h3>
@@ -203,9 +228,11 @@ export default function TopUp() {
               }}
             >
               <label
-                style={{ width: '20%', fontSize: '150%' }}>Top-up</label>
+                style={{ position: 'relative', width: '20%', fontSize: '150%', top: '80px' }}>Top-up</label>
               <input
                 style={{
+                  position: 'relative',
+                  top: '80px',
                   width: '80%',
                   height: "40px",
                   borderRadius: "5px",
@@ -221,7 +248,7 @@ export default function TopUp() {
                   // alignContent: 'center',
                   justifyContent: 'center',
                   left: "50%",
-                  top: '20px',
+                  top: '100px',
                   width: "25%",
                   backgroundColor: "#f5c005"
                 }}>Submit</Button>

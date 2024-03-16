@@ -163,24 +163,24 @@ const App = () => {
 
     return (
         <div>
-            <Container>
-                <DashboardCard />
-            </Container>
-            <hr />
-            <Row className='mx-0 p-3'>
-                <Col md={12}>
-                    <CustomDateRange
-                        type={dateRange.type}
-                        month={dateRange.month}
-                        quarter={dateRange.quarter}
-                        year={dateRange.year}
-                        from={dateRange.from}
-                        to={dateRange.to}
-                        handleChangeDate={handleChangeDate}
-                    />
-                </Col>
-            </Row>
+          
             <div className="app_card dashboard_card shadow p-4 m-2 mt-2">
+            <Row className='mx-0 pt-5' style={{ marginBottom: '30px' }}>
+    <Col md={12}>
+        <CustomDateRange
+            type={dateRange.type}
+            month={dateRange.month}
+            quarter={dateRange.quarter}
+            year={dateRange.year}
+            from={dateRange.from}
+            to={dateRange.to}
+            handleChangeDate={handleChangeDate}
+        />
+    </Col>
+</Row>
+
+            <DashboardCard />
+
                 <Row>
                     <Col md={6}>
                         <Card className='shadow'>
@@ -190,11 +190,13 @@ const App = () => {
                     </Col>
                     <Col md={6}>
                         <Card className='shadow border'>
-                            <h1 className='text-center'>{toParagraph(dateRange.type)} Transactions</h1>
+                            <h1 className='text-center'>{toParagraph(dateRange.type)} Transaction count</h1>
                             <MonthlyTransactionLineChart data={monthlyTransactionData} />
                         </Card>
                     </Col>
                 </Row>
+                <hr />
+               
 
             </div>
         </div>

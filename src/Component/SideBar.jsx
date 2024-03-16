@@ -2,15 +2,18 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import kekeLogo from '../assets/keke_napep.png'
 import { GiArchiveRegister } from "react-icons/gi";
+import { useSelector } from "react-redux";
+import { toParagraph } from "../Utils/Helper";
 
 export default function SideBar() {
   const goto = useNavigate();
+  const { user } = useSelector(p => p.auth)
   return (
     <>
       <div>
         <center>
           <div className="user_image">
-            <img src={kekeLogo} alt="Keke logo" className="keke-logo"/>
+            <img src={kekeLogo} alt="Keke logo" className="keke-logo" />
           </div>
         </center>
         <h4
@@ -31,16 +34,16 @@ export default function SideBar() {
           className={`link_item ${location.pathname === "/" && "active_side_menu"
             }`}
         >
-          Dashboard
+          {toParagraph(user.role)} Dashboard
         </div>
-        <div
+        {user.role === 'admin' ? (<div
           onClick={() => goto("/vendorReg")}
           className={`link_item ${location.pathname.includes("vendor") && "active_side_menu"
             }`}
         >
           {/* <GiArchiveRegister className="icon shadow" /> */}
           Vendors
-        </div>
+        </div>) : ""}
         {/* <div
           onClick={() => goto("/")}
           className={`link_item ${location.pathname === "/" && "active_side_menu"
@@ -49,38 +52,38 @@ export default function SideBar() {
           {/* <GiArchiveRegister className="icon shadow" /> 
           Regitration
         </div> */}
-        <div
+        {['admin', 'vendor'].includes(user.role) ? (<div
           onClick={() => goto("/superagentable")}
           className={`link_item ${location.pathname.includes("super") && "active_side_menu"
             }`}
         >
           {/* <GiArchiveRegister className="icon shadow" /> */}
           Super Agents
-        </div>
-        <div
+        </div>) : ""}
+        {['admin', 'vendor'].includes(user.role) ? (<div
           onClick={() => goto("/agentable")}
           className={`link_item ${location.pathname === "/agentable" && "active_side_menu"
             }`}
         >
           {/* <GiArchiveRegister className="icon shadow" /> */}
           Agents
-        </div>
+        </div>) : ""}
 
-        <div
-          onClick={() => goto("/vehicleownertable")}
+        {['admin', 'vendor', 'agent', 'super_agent'].includes(user.role) ? (<div
+          onClick={() => goto("/Vehicleownertable")}
           className={`link_item ${location.pathname === "/Vehicleownertable" && "active_side_menu"
             }`}
         >
           {/* <GiArchiveRegister className="icon shadow" /> */}
           Vehicles
-        </div>
-        <div
+        </div>) : ""}
+        {['admin', 'vendor', 'agent', 'super_agent'].includes(user.role) ? (<div
           onClick={() => goto("/top-up")}
           className={`link_item ${location.pathname.includes("top-up") ? "active_side_menu" : ""}`}
         >
           {/* <GiArchiveRegister className="icon shadow" /> */}
           Top Up
-        </div>
+        </div>) : ""}
       </section >
     </>
   );

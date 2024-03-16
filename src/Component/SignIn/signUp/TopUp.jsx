@@ -17,6 +17,7 @@ import {
   // ModalHeader,
   Row,
   Table,
+  Spinner
 } from "reactstrap";
 import { _get } from "../../../Utils/Helper";
 
@@ -125,6 +126,12 @@ export default function TopUp() {
 
           <Card className="mt-5 shadow">
             <div className="table_overflow1">
+            {data.length === 0 ? ( 
+        <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
+       ""
+      </Spinner>
+      
+      ) : (
               <Table
                 bordered
                 responsive
@@ -157,7 +164,7 @@ export default function TopUp() {
                     </tr>
                   ))}
                 </tbody>
-              </Table>
+              </Table>)}
             </div>
           </Card>
 

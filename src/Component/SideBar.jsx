@@ -70,8 +70,8 @@ export default function SideBar() {
         </div>) : ""}
 
         {['admin', 'vendor', 'agent', 'super_agent'].includes(user.role) ? (<div
-          onClick={() => goto("/Vehicleownertable")}
-          className={`link_item ${location.pathname === "/Vehicleownertable" && "active_side_menu"
+          onClick={() => goto("/vehicleownertable")}
+          className={`link_item ${location.pathname === "/vehicleownertable" && "active_side_menu"
             }`}
         >
           {/* <GiArchiveRegister className="icon shadow" /> */}

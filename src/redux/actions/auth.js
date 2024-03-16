@@ -21,7 +21,7 @@ export function login({ username, password, history }, success, error) {
         })
             .then((raw) => raw.json())
             .then((data) => {
-                // console.log(data);
+                 console.log(data);
                 if (data.success) {
                     const { token } = data;
                     // console.log(token);

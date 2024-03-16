@@ -25,8 +25,9 @@ import { _get } from "../../../Utils/Helper";
 
 
 export default function TopUp() {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const [modal, setModal] = useState(false);
+  const [fund, setFund] = useState(false)
   const [currentItem, setCurrentItem] = useState({});
   const [userDetail, setUserDetail] = useState({
     Reg_no: "",
@@ -46,6 +47,11 @@ export default function TopUp() {
     toggleModal();
     console.log(id)
   };
+
+  const fund_us = () => {
+    setFund(true)
+    toggleModal();
+  }
   const agentDetails = {
     name: "Ahmad Ibrahim",
     id: 123,
@@ -209,13 +215,58 @@ export default function TopUp() {
       </FormGroup>
       <div className="text-center">
       
-      <Button color="warning" block style={{ marginTop: '10px', marginBottom: '10px' }}>pay</Button>
+      <Button color="warning" block style={{ marginTop: '10px', marginBottom: '10px' }} onClick={fund_us}>pay</Button>
 
       </div>
     </Form>
   </ModalBody>
 </Modal>
-
+        {fund ? 
+           <div>
+            <Form 
+              style={{
+                position: 'relative',
+                top: '-40rem',
+                left: '25rem',
+                backgroundColor: 'white',
+                borderRadius:' 5px',
+                height: '60rem',
+                width: '50%',
+                border: "1px solid black"
+              }}
+            >
+              <div
+              style={{
+                position: 'relative',
+                left: '40%',
+                top: '15px',
+                fontSize: '20px',
+                fontWeight: '600',
+              }}
+              >Top Up</div>
+              <hr style={{width: '90%', position: 'relative', left: '30px'}}/>
+              <FormGroup>
+                <Label for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px'}}>Balance:</Label>
+                <Input 
+                type="text" 
+                name="topUpAmount" 
+                id="topUpAmount" 
+                placeholder="Enter amount here" 
+                style={{
+                  position: 'relative',
+                  width: '80%',
+                  left: '16%'
+                }}
+                />
+              </FormGroup>
+              <div className="text-center">
+              
+              <Button color="warning" block style={{ marginTop: '10px', marginBottom: '10px' }} onClick={fund_us}>pay</Button>
+              </div>
+            </Form>
+           </div>
+           : <></>
+        }
         </Row>
       </Card>
     </div>

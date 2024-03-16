@@ -77,10 +77,10 @@ export default function AppNavigation() {
           path: "/top-up",
           element: <TopUp />,
         },
-        {
-          path: "/found_us",
-          element: <Found_us />,
-        },
+        // {
+        //   path: "/found_us",
+        //   element: <Found_us />,
+        // },
       ],
     },
   ]);

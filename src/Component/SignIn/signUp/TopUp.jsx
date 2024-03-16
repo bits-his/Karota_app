@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
-import { useNavigate } from 'react-router-dom'
-import Modal from "react-modal";
+// import Modal from "react-modal";
 import QRCode from "react-qr-code"
 import {
   Button,
@@ -12,13 +11,14 @@ import {
   FormGroup,
   Input,
   Label,
-  // Modal,
-  // ModalBody,
-  // ModalFooter,
-  // ModalHeader,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
   Row,
   Table,
-  Spinner
+  Spinner,
+  NavLink
 } from "reactstrap";
 import { _get } from "../../../Utils/Helper";
 
@@ -170,93 +170,51 @@ export default function TopUp() {
             </div>
           </Card>
 
-          <Modal isOpen={modal}
-            style={{
-              overlay: {
-                width: '100%',
-                // left: '20rem'
-              },
-              content: {
-                position: 'relative',
-                top: '15rem',
-                width: '60%',
-                left: '40rem',
-                height: '60vh'
-              }
-            }}
-          >
-            <div
-              style={{
-                position: "relative",
-                float: "right",
-              }}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"
-                onClick={() => toggleModal()}>
-                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
-              </svg>
-            </div>
-            <QRCode
-              size={256}
-              style={{
-                position: 'relative',
-                height: "auto",
-                maxWidth: "20%",
-                width: "20%",
-                left: '80%',
-                top: '9%'
-              }}
-              value={userDetail.Reg_no}
-              viewBox={`0 0 256 256`}
-            />
-            <div
-              style={{
-                position: 'absolute',
-                top: '40px',
-                left: '100px'
-              }}
-            >
-              <h3>Reg No: 00{currentItem.vehicle_id}</h3>
-              <h3>Plate No: {currentItem.plate_no}</h3>
-              <h3>Balance: ₦{parseFloat(currentItem.balance).toFixed(2)}</h3>
-            </div>
-            <Form
-              style={{
-                position: "absolute",
-                top: "20rem",
-                left: "10rem",
-                width: '60%',
-                // backgroundColor: "red"
-              }}
-            >
-              <label
-                style={{ position: 'relative', width: '20%', fontSize: '150%', top: '80px' }}>Top-up</label>
-              <input
-                style={{
-                  position: 'relative',
-                  top: '80px',
-                  width: '80%',
-                  height: "40px",
-                  borderRadius: "5px",
-                  border: "1px  solid ",
-                  paddingLeft: '8px'
-                }}
-                placeholder="Enter amount here"
-              />
-              <Button
-              onClick={()=> navigate('funding')}
-                style={{
-                  position: "relative",
-                  display: 'flex',
-                  // alignContent: 'center',
-                  justifyContent: 'center',
-                  left: "50%",
-                  top: '100px',
-                  width: "25%",
-                  backgroundColor: "#f5c005"
-                }}>Submit</Button>
-            </Form>
-          </Modal>
+          <Modal isOpen={modal} toggle={toggleModal} style={{
+    content: {
+      position: 'relative',
+      top: '50%',
+      transform: 'translateY(-50%)'
+    }
+  }}>
+  <ModalHeader toggle={toggleModal} style={{paddingTop:"6rem"}}centered>
+    <div style={{ float: "right" }}>
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" onClick={() => toggleModal()}>
+        <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+      </svg>
+    </div>
+  </ModalHeader>
+  <ModalBody>
+    <div style={{ textAlign: 'center' }}>
+      <QRCode
+        size={256}
+        style={{
+          height: "auto",
+          maxWidth: "20%",
+          width: "20%"
+        }}
+        value={userDetail.Reg_no}
+        viewBox={`0 0 256 256`}
+      />
+    </div>
+    <div style={{ textAlign: 'center', marginTop: '20px' }}>
+      <h3>Reg No: 00{currentItem.vehicle_id}</h3>
+      <h3>Plate No: {currentItem.plate_no}</h3>
+      <h3>Balance: ₦{parseFloat(currentItem.balance).toFixed(2)}</h3>
+    </div>
+    <Form>
+      <FormGroup>
+        <Label for="topUpAmount">Top-up</Label>
+        <Input type="text" name="topUpAmount" id="topUpAmount" placeholder="Enter amount here" />
+      </FormGroup>
+      <div className="text-center">
+      
+      <Button color="warning" block style={{ marginTop: '10px', marginBottom: '10px' }}>pay</Button>
+
+      </div>
+    </Form>
+  </ModalBody>
+</Modal>
 
         </Row>
       </Card>

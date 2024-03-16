@@ -230,7 +230,7 @@ export default function TopUp() {
                 left: '25rem',
                 backgroundColor: 'white',
                 borderRadius:' 5px',
-                height: '60rem',
+                height: '55rem',
                 width: '50%',
                 border: "1px solid black"
               }}
@@ -244,9 +244,10 @@ export default function TopUp() {
                 fontWeight: '600',
               }}
               >Top Up</div>
-              <hr style={{width: '90%', position: 'relative', left: '30px'}}/>
+              <hr style={{width: '95%', position: 'relative', left: '12px'}}/>
               <FormGroup>
-                <Label for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px'}}>Balance:</Label>
+                <div for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px', fontWeight: '600', marginBottom: '15px'}}>Balance: 20000</div>
+                <Label for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px'}}>Enter Amount:</Label>
                 <Input 
                 type="text" 
                 name="topUpAmount" 
@@ -254,14 +255,74 @@ export default function TopUp() {
                 placeholder="Enter amount here" 
                 style={{
                   position: 'relative',
-                  width: '80%',
-                  left: '16%'
+                  width: '70%',
+                  left: '26%'
+                }}
+                />
+                <Label for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px'}}>Plate No:</Label>
+                <Input 
+                type="text" 
+                name="topUpAmount" 
+                id="topUpAmount" 
+                placeholder="Enter amount here" 
+                style={{
+                  position: 'relative',
+                  width: '70%',
+                  left: '26%'
+                }}
+                />
+                <Label for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px'}}>Class No:</Label>
+                <Input 
+                type="text" 
+                name="topUpAmount" 
+                id="topUpAmount" 
+                placeholder="Enter amount here" 
+                style={{
+                  position: 'relative',
+                  width: '70%',
+                  left: '26%'
+                }}
+                />
+                <Label for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px'}}>Last Pay Date:</Label>
+                <Input 
+                type="text" 
+                name="topUpAmount" 
+                id="topUpAmount" 
+                placeholder="Enter amount here" 
+                style={{
+                  position: 'relative',
+                  width: '70%',
+                  left: '26%'
+                }}
+                />
+                <Label for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px'}}>Payment From:</Label>
+                <Input 
+                type="text" 
+                name="topUpAmount" 
+                id="topUpAmount" 
+                placeholder="Enter amount here" 
+                style={{
+                  position: 'relative',
+                  width: '70%',
+                  left: '26%'
+                }}
+                />
+                <Label for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px'}}>Payment To:</Label>
+                <Input 
+                type="text" 
+                name="topUpAmount" 
+                id="topUpAmount" 
+                placeholder="Enter amount here" 
+                style={{
+                  position: 'relative',
+                  width: '70%',
+                  left: '26%'
                 }}
                 />
               </FormGroup>
               <div className="text-center">
               
-              <Button color="warning" block style={{ marginTop: '10px', marginBottom: '10px' }} onClick={fund_us}>pay</Button>
+              <Button color="warning" block style={{ marginTop: '10px', marginBottom: '10px', width: '30%' }} onClick={fund_us}>pay</Button>
               </div>
             </Form>
            </div>

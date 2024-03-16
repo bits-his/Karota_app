@@ -67,30 +67,30 @@ export default function RegistrationTable() {
                         }}
                     >
                         <button
-							className="app_button"
-							style={{
-								width: "10rem",
-								padding: 10,
-								color: '#000',
-								borderRadius: 10,
-							}}
-							onClick={() => navigate("/vendorReg")}
-						>
-							Back
-						</button>
+                            className="app_button"
+                            style={{
+                                width: "10rem",
+                                padding: 10,
+                                color: '#000',
+                                borderRadius: 10,
+                            }}
+                            onClick={() => navigate("/vendorReg")}
+                        >
+                            Back
+                        </button>
                         <h4 className="app_title vendor_title">{form.step > 0 ? "Vendor contact person" : "Vendor Registeration"}</h4>
                         <button
-							className="app_button imaginary"
-							style={{
-								width: "10rem",
-								padding: 10,
-								color: '#000',
-								borderRadius: 10
-							}}
-							onClick={() => navigate("/vendorReg")}
-						>
-							Back
-						</button>
+                            className="app_button imaginary"
+                            style={{
+                                width: "10rem",
+                                padding: 10,
+                                color: '#000',
+                                borderRadius: 10
+                            }}
+                            onClick={() => navigate("/vendorReg")}
+                        >
+                            Back
+                        </button>
                     </div>
 
                     <hr />
@@ -159,7 +159,8 @@ export default function RegistrationTable() {
                                             <Input
                                                 onChange={handleChange}
                                                 id="contact_emailexample"
-                                                 value={form.contact_email}
+                                                value={form.contact_email}
+                                                name="contact_email"
                                                 placeholder="organization@fake.com"
                                                 type="email"
                                                 className="app_input"
@@ -415,11 +416,11 @@ export default function RegistrationTable() {
                         }}
                         >
                             {form.step > 0 ? <Row
-                                    style={{
-                                        display: "flex",
+                                style={{
+                                    display: "flex",
 
-                                    }}
-                                >
+                                }}
+                            >
                                 <Col md={6} className='text-left'> <button
                                     className="app_button"
                                     style={{

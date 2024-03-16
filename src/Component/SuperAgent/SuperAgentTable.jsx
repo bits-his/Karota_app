@@ -12,6 +12,8 @@ import {
   ModalBody,
   ModalFooter,
   Spinner,
+  Input,
+  Label,
 } from "reactstrap";
 import { _get } from "../../Utils/Helper";
 import { useLocation } from "react-router-dom";
@@ -89,19 +91,30 @@ export default function SuperAgentTable() {
                     color: "#000",
                   }}
                 />
-                <input
+                <Input
                   style={{
+                    position: "relative",
                     width: "100%",
                     fontSize: 20,
+                    top: -4,
+                    boxShadow: "none",
                   }}
+                  name="filter"
+                  value={filter}
+                  type="text"
                   className="app_input2"
-                  placeholder="Search Individual"
+                  onChange={({ target: { value } }) => setFilter(value)}
+                  placeholder="Search for super agent"
                 />
               </div>
             </Col>
-            <label className="label_title" style={{ color: "#000" }}>
+            <Label
+              onClick={getReg}
+              className="label_title"
+              style={{ color: "#000", cursor: "pointer" }}
+            >
               Search
-            </label>
+            </Label>
           </div>
         </Col>
 

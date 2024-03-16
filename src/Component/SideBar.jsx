@@ -67,7 +67,7 @@ export default function SideBar() {
         </div>
 
         <div
-          onClick={() => goto("/Vehicleownertable")}
+          onClick={() => goto("/vehicleownertable")}
           className={`link_item ${location.pathname === "/Vehicleownertable" && "active_side_menu"
             }`}
         >

@@ -14,6 +14,7 @@ export default function VehicleOwnerTable() {
     _get(`vehicles?query_type=select-all&plate_no=${filter}`,
       (resp) => {
         if (resp.success && resp.data) {
+          console.log(resp.data)
           setData(resp.data);
         }
       });
@@ -24,9 +25,9 @@ export default function VehicleOwnerTable() {
   }, [getReg]);
 
   return (
-    <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
+    <>
       <Row>
-        <Col md={9}>
+        <Col md={12}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h4 className="app_title"> Vehicle Owner </h4>
              <button
@@ -46,9 +47,6 @@ export default function VehicleOwnerTable() {
          
         </Col>
 
-        <Col>
-        
-        </Col>
       </Row>
 
       <hr />
@@ -117,13 +115,10 @@ export default function VehicleOwnerTable() {
                 </tr>
               </thead>
               <tbody>
-                {data.map((item, idx) => <tr>
+                {data.map((item, idx) => <tr key={idx}>
                   <th>
                     {idx + 1}
                   </th>
-                  <td>
-                    {item.vehicle_id}
-                  </td>
                   <th>
                     Owner
                   </th>
@@ -138,14 +133,19 @@ export default function VehicleOwnerTable() {
                     {item.plate_no}
                   </td>
                   <td>
+                    {item.re}
+                  </td>
+                  <td>
                     NGN 0.00
                   </td>
                   <td className="text-center">
-                    <Button color="info">View</Button>
-                    <button 
+                    <Button color="info"
+                    onClick={ () => navigate(`/vehicleownertable/${item.owner_id}`)}
+                    >View</Button>
+                    <Button 
                     className="btn btn-primary"
-                    onClick={() => navigate('/VehicleOwner')}
-                    > Add</button>
+                    onClick={() => navigate("/vehicleregistration")}
+                    > Add vehicle</Button>
                   </td>
                 </tr>)}
               </tbody>
@@ -153,6 +153,6 @@ export default function VehicleOwnerTable() {
           </div>
         </Row>
       </Row>
-    </Card>
+    </>
   );
 }

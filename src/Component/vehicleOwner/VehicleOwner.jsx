@@ -121,14 +121,6 @@ export default function OwnerReg() {
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
-                                    <Label for="d.o.b">D.o.B</Label>
-                                    <Input id="d.o.b" name="d.o.b" type="date" />
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row className='margin-bottom-input'>
-                            <Col md={6}>
-                                <FormGroup>
                                     <Label for="examplePassword">Password</Label>
                                     <Input id="examplePassword" name="password" placeholder="password" type="password" />
                                 </FormGroup>
@@ -151,7 +143,7 @@ export default function OwnerReg() {
                                     cursor: "pointer",
                                     borderRadius: 7,
                                 }}
-                                onClick={() => navigate("/ehicleownertable")}
+                                onClick={() => navigate("/Vehicleownertable")}
                             >
                                     Submit
                                 </button>

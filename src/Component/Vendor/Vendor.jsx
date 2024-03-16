@@ -42,10 +42,12 @@ export default function RegistrationTable() {
             "vendors/create",
             form,
             (res) => {
-                setLoading(true);
-                toast.success("Vendor created successfully");
-                setSubmittedData([...submittedData, res]);
-                navigate("/vendorReg");
+                if (res.success) {
+                    setLoading(true);
+                    toast.success("Vendor created successfully");
+                    setSubmittedData([...submittedData, res]);
+                    navigate("/vendorReg");
+                }
             },
             () => {
                 setLoading(false);
@@ -96,7 +98,7 @@ export default function RegistrationTable() {
                     <hr />
                 </Col>
                 <Col md={12}>
-                    
+
                     <Form className='mx-auto'>
                         {form.step > 0 ?
                             <>
@@ -403,7 +405,7 @@ export default function RegistrationTable() {
                                                 id="companyProfile"
                                                 name="companyProfile"
                                                 type="file"
-                                                className=  "app_input"
+                                                className="app_input"
                                             />
                                         </FormGroup>
                                     </Col>

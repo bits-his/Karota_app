@@ -176,14 +176,14 @@ export default function TopUp() {
       transform: 'translateY(-50%)'
     }
   }}>
-  <ModalHeader toggle={toggleModal} style={{paddingTop:"6rem"}}centered>
+  <ModalHeader toggle={toggleModal} style={{paddingTop:"6rem"}}centered  >
     <div style={{ float: "right" }}>
       <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" onClick={() => toggleModal()}>
         <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
       </svg>
     </div>
   </ModalHeader>
-  <ModalBody>
+  <ModalBody >
     <div style={{ textAlign: 'center' }}>
       <QRCode
         size={256}

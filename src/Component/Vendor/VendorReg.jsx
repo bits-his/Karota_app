@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import { Button, Card, Col, Row, Table, Label, Input } from "reactstrap";
+import { Button, Card, Col, Row, Table, Label, Input, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { _get } from "../../Utils/Helper";
 
 function VendorReg() {
@@ -9,6 +9,10 @@ function VendorReg() {
 
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("");
+
+  const [modal, setModal] = useState(false);
+  const toggle = () => setModal(!modal);
+
   const getReg = useCallback(() => {
     _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
       if (resp.success && resp.results) {
@@ -110,12 +114,32 @@ function VendorReg() {
               <td>{vendor.vendor_ofiice_address}</td>
               <td className="text-center">
                 <Button color="info" className="marginResponsive">View</Button>
-                <Button color="success">Top up</Button>
+                <Button color="success" onClick={toggle}>Top up</Button>
+
+                
+
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
+      <Modal isOpen={modal} toggle={toggle}>
+        <ModalHeader>
+          Vendor top up
+        </ModalHeader>
+        <ModalBody>
+          <div>
+            <div className="modal-row-details">
+              <span className="modal-vendor-details">Name</span>
+              <span className="modal-vendor-details">Plate no</span>
+            </div>
+          </div>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="success" onClick={toggle}>Pay</Button>
+          <Button color="danger" onClick={toggle}>Cancel</Button>
+        </ModalFooter>
+      </Modal>
     </Card>
   );
 }

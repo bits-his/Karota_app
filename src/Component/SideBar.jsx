@@ -36,7 +36,7 @@ export default function SideBar() {
         >
           {toParagraph(user.role)} Dashboard
         </div>
-        {user.role === 'admin' ? (<div
+        {true ? (<div
           onClick={() => goto("/vendorReg")}
           className={`link_item ${location.pathname.includes("vendor") && "active_side_menu"
             }`}
@@ -52,7 +52,7 @@ export default function SideBar() {
           {/* <GiArchiveRegister className="icon shadow" /> 
           Regitration
         </div> */}
-        {['admin', 'vendor'].includes(user.role) ? (<div
+        {true ? (<div
           onClick={() => goto("/superagentable")}
           className={`link_item ${location.pathname.includes("super") && "active_side_menu"
             }`}
@@ -69,7 +69,7 @@ export default function SideBar() {
           Agents
         </div>) : ""}
 
-        {['admin', 'vendor', 'agent', 'super_agent'].includes(user.role) ? (<div
+        {true ? (<div
           onClick={() => goto("/vehicleownertable")}
           className={`link_item ${location.pathname === "/vehicleownertable" && "active_side_menu"
             }`}
@@ -77,7 +77,7 @@ export default function SideBar() {
           {/* <GiArchiveRegister className="icon shadow" /> */}
           Vehicles
         </div>) : ""}
-        {['admin', 'vendor', 'agent', 'super_agent'].includes(user.role) ? (<div
+        {true ? (<div
           onClick={() => goto("/top-up")}
           className={`link_item ${location.pathname.includes("top-up") ? "active_side_menu" : ""}`}
         >

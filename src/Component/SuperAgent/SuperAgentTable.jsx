@@ -1,7 +1,18 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import { Button, Card, Col, Row, Table, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import {
+  Button,
+  Card,
+  Col,
+  Row,
+  Table,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Spinner,
+} from "reactstrap";
 import { _get } from "../../Utils/Helper";
 import { useLocation } from "react-router-dom";
 
@@ -96,47 +107,58 @@ export default function SuperAgentTable() {
 
         <Row>
           <div className="table_overflow">
-            <Table
-              bordered
-              responsive
-              style={{
-                position: "relative",
-                top: "10px",
-                width: "95.3%",
-                left: "32px",
-                marginTop: "4px",
-              }}
-            >
-              <thead>
-                <tr>
-                  <th>S/N</th>
-                  <th>Name</th>
-                  <th>Phone</th>
-                  <th>Email</th>
-                  <th>Contact Address</th>
-                  <th className="text-center">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.map((agent, idx) => (
-                  <tr key={idx}>
-                    <th>{idx + 1}</th>
-                    <td>{agent.name}</td>
-                    <td>{agent.phone}</td>
-                    <td>{agent.email}</td>
-                    <td>{agent.address}</td>
-                    <td className="text-center">
-                      <Button
-                        color="info"
-                        onClick={() => handleViewUser(agent)}
-                      >
-                        View
-                      </Button>
-                    </td>
+            {data.length === 0 ? (
+              <Spinner
+                color="warning"
+                className="spinner"
+                type="grow"
+                style={{ margin: "20px auto" }}
+              >
+                ""
+              </Spinner>
+            ) : (
+              <Table
+                bordered
+                responsive
+                style={{
+                  position: "relative",
+                  top: "10px",
+                  width: "95.3%",
+                  left: "32px",
+                  marginTop: "4px",
+                }}
+              >
+                <thead>
+                  <tr>
+                    <th>S/N</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Contact Address</th>
+                    <th className="text-center">Action</th>
                   </tr>
-                ))}
-              </tbody>
-            </Table>
+                </thead>
+                <tbody>
+                  {data.map((agent, idx) => (
+                    <tr key={idx}>
+                      <th>{idx + 1}</th>
+                      <td>{agent.name}</td>
+                      <td>{agent.phone}</td>
+                      <td>{agent.email}</td>
+                      <td>{agent.address}</td>
+                      <td className="text-center">
+                        <Button
+                          color="info"
+                          onClick={() => handleViewUser(agent)}
+                        >
+                          View
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            )}
           </div>
         </Row>
       </Row>

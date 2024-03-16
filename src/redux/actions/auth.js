@@ -58,11 +58,11 @@ export function login({ username, password, history }, success, error) {
                                     success(data);
                                 }
 
-                                // history.push("/selection");
+                                // history("/selection");
                             } else {
                                 // callback();
                                 localStorage.removeItem("@@token");
-                                // history.push("/");
+                                // history("/");
 
                                 dispatch(logout(history));
                             }
@@ -188,7 +188,7 @@ export function init(history, success = (f) => f, error = (f) => f) {
 
 export function logout(history) {
     return (dispatch) => {
-        history.push("/");
+        history("/");
         localStorage.removeItem("@@token");
         dispatch({ type: LOGOUT });
     };

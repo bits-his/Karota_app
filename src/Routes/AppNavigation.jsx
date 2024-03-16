@@ -15,6 +15,7 @@ import VendorReg from "../Component/Vendor/VendorReg";
 import VehicleOwnerTable from "../Component/vehicleOwner/VehicleOwnerTable";
 import TopUp from "../Component/SignIn/signUp/TopUp";
 import Dashboard from '../Component/Dashboard/index'
+import Funding from "../Component/UI/Funding";
 
 export default function AppNavigation() {
   let Pages = useRoutes([
@@ -23,8 +24,8 @@ export default function AppNavigation() {
       element: <Login />,
     },
     // {
-    //   path: '/login',
-    //   element: <Register />
+    //   path: '/top-up/funding',
+    //   element: <Funding />
     // },
     {
       element: <AppIndex />,

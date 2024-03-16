@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
+import { useNavigate } from 'react-router-dom'
 import Modal from "react-modal";
 import QRCode from "react-qr-code"
 import {
@@ -24,6 +25,7 @@ import { _get } from "../../../Utils/Helper";
 
 
 export default function TopUp() {
+  const navigate = useNavigate()
   const [modal, setModal] = useState(false);
   const [currentItem, setCurrentItem] = useState({});
   const [userDetail, setUserDetail] = useState({
@@ -242,6 +244,7 @@ export default function TopUp() {
                 placeholder="Enter amount here"
               />
               <Button
+              onClick={()=> navigate('funding')}
                 style={{
                   position: "relative",
                   display: 'flex',

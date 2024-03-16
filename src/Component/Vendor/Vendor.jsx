@@ -26,7 +26,7 @@ export default function RegistrationTable() {
         contact_email: '',
         contact_lga: '',
     }
-    const [submittedData, setSubmittedData] = useState([]);
+    // const [submittedData, setSubmittedData] = useState([]);
 
     const [form, setForm] = useState(_form)
     const [loading, setLoading] = useState(false)
@@ -45,7 +45,7 @@ export default function RegistrationTable() {
                 if (res.success) {
                     setLoading(true);
                     toast.success("Vendor created successfully");
-                    setSubmittedData([...submittedData, res]);
+                    // setSubmittedData([...submittedData, res]);
                     navigate("/vendorReg");
                 }
             },

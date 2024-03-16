@@ -34,6 +34,7 @@ export default function TopUp() {
     Plate_no: ""
   })
   const [data, setData] = useState([]);
+  const [vendorData, setVendorData] = useState([]);
   const [filter, setFilter] = useState('');
 
   const toggleModal = () => {
@@ -64,12 +65,19 @@ export default function TopUp() {
         console.log(resp.data)
       }
     });
+    _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
+      setLoading(false); // Set loading to false after receiving response
+      if (resp.success && resp.results) {
+        setVendorData(resp.results);
+      }
+    });
   }, [filter]);
 
   useEffect(() => {
     getReg();
   }, [getReg]);
 
+  console.log(vendorData)
   return (
     <div>
       <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
@@ -87,9 +95,12 @@ export default function TopUp() {
               // display: 'flex',
               float: 'right'
             }}>
-              <div>Name: {agentDetails.name}</div>
+              {/* <div>Name: {agentDetails.name}</div>
               <div>ID: {agentDetails.id}</div>
-              <div>Bal: {agentDetails.bal}</div>
+              <div>Bal: {agentDetails.bal}</div> */}
+              <div>Name: {vendorData.name}</div>
+              <div>ID: {vendorData.id}</div>
+              <div>Bal: {vendorData.bal}</div>
             </div>
             <hr />
           </Col>

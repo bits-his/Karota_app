@@ -38,30 +38,31 @@ export default function SuperAgentTable() {
 
   return (
     <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: "88%",
-        }}
-      >
-        <h4 className="app_title"> Super Agents </h4>
-
-        <button
-          className="app_button text-right rounded"
+      <Row>
+        <Col
+          md={12}
           style={{
-            position: "relative",
-            left: 138,
-            width: 150,
-            padding: 10,
-            marginLeft: 15,
-            color: "#000",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
-          onClick={() => navigate("/superagent")}
         >
-          Add SuperAgent
-        </button>
-      </div>
+          <h4 className="app_title"> Super Agents </h4>
+          <button
+            className="app_button"
+            style={{
+              width: 150,
+              padding: 10,
+              marginLeft: 15,
+              color: "#000",
+              borderRadius: 7,
+            }}
+            onClick={() => navigate("/superagent")}
+          >
+            Add SuperAgent
+          </button>
+        </Col>
+      </Row>
 
       <hr />
       <Row>
@@ -125,7 +126,12 @@ export default function SuperAgentTable() {
                     <td>{agent.email}</td>
                     <td>{agent.address}</td>
                     <td className="text-center">
-                      <Button color="info" onClick={() => handleViewUser(agent)}>View</Button>
+                      <Button
+                        color="info"
+                        onClick={() => handleViewUser(agent)}
+                      >
+                        View
+                      </Button>
                     </td>
                   </tr>
                 ))}
@@ -149,8 +155,12 @@ export default function SuperAgentTable() {
           )}
         </ModalBody>
         <ModalFooter>
-          <Button color="secondary" onClick={toggleModal}>Close</Button>
-          <Button color="danger" onClick={toggleModal}>Delete</Button>
+          <Button color="secondary" onClick={toggleModal}>
+            Close
+          </Button>
+          <Button color="danger" onClick={toggleModal}>
+            Delete
+          </Button>
         </ModalFooter>
       </Modal>
     </Card>

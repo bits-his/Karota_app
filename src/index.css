@@ -685,6 +685,50 @@ select.form-select {
 .link_item{
   text-align: left;
 }
+.modal-open .modal {
+  opacity: 1;
+}
+.modal-content {
+  top: 100px;
+}
+/* .modal-row-details {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+} */
+
+.modal-body{
+  padding: 30px;
+}
+
+.modal-body .modal-row-details {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.modal-body .modal-row-content {
+  width: 50%;
+}
+
+.modal-amount{
+  justify-content: center;
+}
+
+.modal-title {
+  font-weight: bold;
+  font-size: 20px;
+}
+.small-margin-right {
+  margin-right: 10px;
+}
+
+.period-bigger {
+  text-align: center;
+  font-size: 18px;
+}
+
 
 
 

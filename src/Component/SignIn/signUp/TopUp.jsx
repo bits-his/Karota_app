@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
-import Modal from "react-modal";
+// import Modal from "react-modal";
 import QRCode from "react-qr-code"
 import {
   Button,
@@ -11,26 +11,30 @@ import {
   FormGroup,
   Input,
   Label,
-  // Modal,
-  // ModalBody,
-  // ModalFooter,
-  // ModalHeader,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
   Row,
   Table,
-  Spinner
+  Spinner,
+  NavLink
 } from "reactstrap";
 import { _get } from "../../../Utils/Helper";
 
 
 
 export default function TopUp() {
+  // const navigate = useNavigate()
   const [modal, setModal] = useState(false);
+  const [fund, setFund] = useState(false)
   const [currentItem, setCurrentItem] = useState({});
   const [userDetail, setUserDetail] = useState({
     Reg_no: "",
     Plate_no: ""
   })
   const [data, setData] = useState([]);
+  const [vendorData, setVendorData] = useState([]);
   const [filter, setFilter] = useState('');
 
   const toggleModal = () => {
@@ -44,6 +48,11 @@ export default function TopUp() {
     toggleModal();
     console.log(id)
   };
+
+  const fund_us = () => {
+    setFund(true)
+    toggleModal();
+  }
   const agentDetails = {
     name: "Ahmad Ibrahim",
     id: 123,
@@ -56,12 +65,19 @@ export default function TopUp() {
         console.log(resp.data)
       }
     });
+    _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
+      setLoading(false); // Set loading to false after receiving response
+      if (resp.success && resp.results) {
+        setVendorData(resp.results);
+      }
+    });
   }, [filter]);
 
   useEffect(() => {
     getReg();
   }, [getReg]);
 
+  console.log(vendorData)
   return (
     <div>
       <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
@@ -79,9 +95,12 @@ export default function TopUp() {
               // display: 'flex',
               float: 'right'
             }}>
-              <div>Name: {agentDetails.name}</div>
+              {/* <div>Name: {agentDetails.name}</div>
               <div>ID: {agentDetails.id}</div>
-              <div>Bal: {agentDetails.bal}</div>
+              <div>Bal: {agentDetails.bal}</div> */}
+              <div>Name: {vendorData.name}</div>
+              <div>ID: {vendorData.id}</div>
+              <div>Bal: {vendorData.bal}</div>
             </div>
             <hr />
           </Col>
@@ -168,93 +187,158 @@ export default function TopUp() {
             </div>
           </Card>
 
-          <Modal isOpen={modal}
-            style={{
-              overlay: {
-                width: '100%',
-                // left: '20rem'
-              },
-              content: {
+          <Modal isOpen={modal} toggle={toggleModal} style={{
+    content: {
+      position: 'relative',
+      top: '50%',
+      transform: 'translateY(-50%)'
+    }
+  }}>
+  <ModalHeader toggle={toggleModal} style={{paddingTop:"6rem"}}centered>
+    <div style={{ float: "right" }}>
+      <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" onClick={() => toggleModal()}>
+        <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+      </svg>
+    </div>
+  </ModalHeader>
+  <ModalBody>
+    <div style={{ textAlign: 'center' }}>
+      <QRCode
+        size={256}
+        style={{
+          height: "auto",
+          maxWidth: "20%",
+          width: "20%"
+        }}
+        value={userDetail.Reg_no}
+        viewBox={`0 0 256 256`}
+      />
+    </div>
+    <div style={{ textAlign: 'center', marginTop: '20px' }}>
+      <h3>Reg No: 00{currentItem.vehicle_id}</h3>
+      <h3>Plate No: {currentItem.plate_no}</h3>
+      <h3>Balance: ₦{parseFloat(currentItem.balance).toFixed(2)}</h3>
+    </div>
+    <Form>
+      <FormGroup>
+        <Label for="topUpAmount">Top-up</Label>
+        <Input type="text" name="topUpAmount" id="topUpAmount" placeholder="Enter amount here" />
+      </FormGroup>
+      <div className="text-center">
+      
+      <Button color="warning" block style={{ marginTop: '10px', marginBottom: '10px' }} onClick={fund_us}>pay</Button>
+
+      </div>
+    </Form>
+  </ModalBody>
+</Modal>
+        {fund ? 
+           <div>
+            <Form 
+              style={{
                 position: 'relative',
-                top: '15rem',
-                width: '60%',
-                left: '40rem',
-                height: '60vh'
-              }
-            }}
-          >
-            <div
-              style={{
-                position: "relative",
-                float: "right",
+                top: '-40rem',
+                left: '25rem',
+                backgroundColor: 'white',
+                borderRadius:' 5px',
+                height: '55rem',
+                width: '50%',
+                border: "1px solid black"
               }}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"
-                onClick={() => toggleModal()}>
-                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
-              </svg>
-            </div>
-            <QRCode
-              size={256}
+              <div
               style={{
                 position: 'relative',
-                height: "auto",
-                maxWidth: "20%",
-                width: "20%",
-                left: '80%',
-                top: '9%'
+                left: '40%',
+                top: '15px',
+                fontSize: '20px',
+                fontWeight: '600',
               }}
-              value={userDetail.Reg_no}
-              viewBox={`0 0 256 256`}
-            />
-            <div
-              style={{
-                position: 'absolute',
-                top: '40px',
-                left: '100px'
-              }}
-            >
-              <h3>Reg No: 00{currentItem.vehicle_id}</h3>
-              <h3>Plate No: {currentItem.plate_no}</h3>
-              <h3>Balance: ₦{parseFloat(currentItem.balance).toFixed(2)}</h3>
-            </div>
-            <Form
-              style={{
-                position: "absolute",
-                top: "20rem",
-                left: "10rem",
-                width: '60%',
-                // backgroundColor: "red"
-              }}
-            >
-              <label
-                style={{ position: 'relative', width: '20%', fontSize: '150%', top: '80px' }}>Top-up</label>
-              <input
+              >Top Up</div>
+              <hr style={{width: '95%', position: 'relative', left: '12px'}}/>
+              <FormGroup>
+                <div for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px', fontWeight: '600', marginBottom: '15px'}}>Balance: 20000</div>
+                <Label for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px'}}>Enter Amount:</Label>
+                <Input 
+                type="text" 
+                name="topUpAmount" 
+                id="topUpAmount" 
+                placeholder="Enter amount here" 
                 style={{
                   position: 'relative',
-                  top: '80px',
-                  width: '80%',
-                  height: "40px",
-                  borderRadius: "5px",
-                  border: "1px  solid ",
-                  paddingLeft: '8px'
+                  width: '70%',
+                  left: '26%'
                 }}
-                placeholder="Enter amount here"
-              />
-              <Button
+                />
+                <Label for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px'}}>Plate No:</Label>
+                <Input 
+                type="text" 
+                name="topUpAmount" 
+                id="topUpAmount" 
+                placeholder="Enter amount here" 
                 style={{
-                  position: "relative",
-                  display: 'flex',
-                  // alignContent: 'center',
-                  justifyContent: 'center',
-                  left: "50%",
-                  top: '100px',
-                  width: "25%",
-                  backgroundColor: "#f5c005"
-                }}>Submit</Button>
+                  position: 'relative',
+                  width: '70%',
+                  left: '26%'
+                }}
+                />
+                <Label for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px'}}>Class No:</Label>
+                <Input 
+                type="text" 
+                name="topUpAmount" 
+                id="topUpAmount" 
+                placeholder="Enter amount here" 
+                style={{
+                  position: 'relative',
+                  width: '70%',
+                  left: '26%'
+                }}
+                />
+                <Label for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px'}}>Last Pay Date:</Label>
+                <Input 
+                type="text" 
+                name="topUpAmount" 
+                id="topUpAmount" 
+                placeholder="Enter amount here" 
+                style={{
+                  position: 'relative',
+                  width: '70%',
+                  left: '26%'
+                }}
+                />
+                <Label for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px'}}>Payment From:</Label>
+                <Input 
+                type="text" 
+                name="topUpAmount" 
+                id="topUpAmount" 
+                placeholder="Enter amount here" 
+                style={{
+                  position: 'relative',
+                  width: '70%',
+                  left: '26%'
+                }}
+                />
+                <Label for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px'}}>Payment To:</Label>
+                <Input 
+                type="text" 
+                name="topUpAmount" 
+                id="topUpAmount" 
+                placeholder="Enter amount here" 
+                style={{
+                  position: 'relative',
+                  width: '70%',
+                  left: '26%'
+                }}
+                />
+              </FormGroup>
+              <div className="text-center">
+              
+              <Button color="warning" block style={{ marginTop: '10px', marginBottom: '10px', width: '30%' }} onClick={fund_us}>pay</Button>
+              </div>
             </Form>
-          </Modal>
-
+           </div>
+           : <></>
+        }
         </Row>
       </Card>
     </div>

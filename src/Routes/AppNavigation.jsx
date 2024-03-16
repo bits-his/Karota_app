@@ -25,8 +25,8 @@ export default function AppNavigation() {
       element: <Login />,
     },
     // {
-    //   path: '/login',
-    //   element: <Register />
+    //   path: '/top-up/funding',
+    //   element: <Funding />
     // },
     {
       element: <AppIndex />,
@@ -90,6 +90,10 @@ export default function AppNavigation() {
           path: "top-up",
           element: <TopUp />,
         },
+        // {
+        //   path: "/found_us",
+        //   element: <Found_us />,
+        // },
       ],
     },
   ]);

@@ -20,6 +20,7 @@ import AgentTopUp from "../Component/SuperAgent/AgentTopUp";
 import VendorTopUp from "../Component/Vendor/VendorTopUp";
 import VehicleView from "../Component/vehicleOwner/VehicleView";
 import Vehicle from "../Component/vehicleOwner/Vehicle";
+import VehicleTopUp from "../Component/vehicleOwner/vehicleTopUp";
 
 export default function AppNavigation() {
   let Pages = useRoutes([
@@ -111,10 +112,10 @@ export default function AppNavigation() {
           path: "/agenttopup",
           element: <AgentTopUp />,
         },
-        // {
-        //   path: "/superagenttopup",
-        //   element: <SuperAgentTopUp />,
-        // },
+        {
+          path: "/vehicletopup",
+          element: <VehicleTopUp />,
+        },
       ],
     },
   ]);

@@ -86,7 +86,9 @@ export default function TopUp() {
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <h4 className="app_title">Top Up</h4>
             </div>
+            {/* {vendorData.map(item, id) => ( 
             <div
+            key={id}
             style={{
               position: 'absolute',
               left: '90rem',
@@ -98,10 +100,11 @@ export default function TopUp() {
               {/* <div>Name: {agentDetails.name}</div>
               <div>ID: {agentDetails.id}</div>
               <div>Bal: {agentDetails.bal}</div> */}
-              <div>Name: {vendorData.name}</div>
-              <div>ID: {vendorData.id}</div>
-              <div>Bal: {vendorData.bal}</div>
+              {/* <div>Name: {item.name}</div>
+              <div>ID: {item.id}</div>
+              <div>Bal: {item.bal}</div>
             </div>
+             )}   */}
             <hr />
           </Col>
 

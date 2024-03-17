@@ -15,6 +15,9 @@ import VendorReg from "../Component/Vendor/VendorReg";
 import VehicleOwnerTable from "../Component/vehicleOwner/VehicleOwnerTable";
 import TopUp from "../Component/SignIn/signUp/TopUp";
 import Dashboard from '../Component/Dashboard/index'
+import SuperAgentTopUp from "../Component/SuperAgent/SuperAgentTopUp";
+import AgentTopUp from "../Component/SuperAgent/AgentTopUp";
+import VendorTopUp from "../Component/Vendor/VendorTopUp";
 
 export default function AppNavigation() {
   let Pages = useRoutes([
@@ -77,9 +80,21 @@ export default function AppNavigation() {
           path: "/top-up",
           element: <TopUp />,
         },
+        {
+          path: "/superagenttopup",
+          element: <SuperAgentTopUp />,
+        },
+        {
+          path: "/vendortopup",
+          element: <VendorTopUp />,
+        },
+        {
+          path: "/agenttopup",
+          element: <AgentTopUp />,
+        },
         // {
-        //   path: "/found_us",
-        //   element: <Found_us />,
+        //   path: "/superagenttopup",
+        //   element: <SuperAgentTopUp />,
         // },
       ],
     },

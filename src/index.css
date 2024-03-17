@@ -101,6 +101,16 @@
   width: 100%;
   padding: 8px;
 }
+.app_input-topUp {
+  position: relative;
+  top: 7rem;
+  left: 20rem;
+  border-radius: none !important;
+  border: 1px solid #9d9c97;
+  margin-bottom: 15px;
+  width: 43%;
+  padding: 8px;
+}
 /* .app_input_table {
   border-radius: none !important;
   border: 1px solid #f5c005;

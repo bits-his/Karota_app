@@ -41,7 +41,7 @@ function VendorDropdown({ handleChange, selectedVendorValue }) {
         borderRadius: "none !important",
         border: "1px solid #f5c005 !important",
         marginBottom: "15px",
-        width: "100%",
+        width: '100%',
         padding: "8px",
       }}
       isLoading={loading}

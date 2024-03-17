@@ -60,7 +60,7 @@ export default function SideBar() {
           {/* <GiArchiveRegister className="icon shadow" /> */}
           Super Agents
         </div>) : ""}
-        {['admin', 'vendor'].includes(user.role) ? (<div
+        {true ? (<div
           onClick={() => goto("/agentable")}
           className={`link_item ${location.pathname === "/agentable" && "active_side_menu"
             }`}

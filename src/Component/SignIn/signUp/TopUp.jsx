@@ -159,6 +159,7 @@ export default function TopUp() {
                   <tr>
                     <th>Reg. No.</th>
                     <th>Plate No.</th>
+                    <th>Chasis No.</th>
                     <th>Balance (₦)</th>
                     <th>Action</th>
                   </tr>
@@ -168,6 +169,7 @@ export default function TopUp() {
                     <tr key={idx}>
                       <td>00{vehicle.vehicle_id}</td>
                       <td>{vehicle.plate_no}</td>
+                      <td>{vehicle.chasis_no}</td>
                       <td className="text-right">{parseFloat(vehicle.balance).toFixed(2)}</td>
                       <td className="text-center p-2">
                         <ButtonGroup>

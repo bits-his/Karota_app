@@ -83,7 +83,7 @@ export default function AppNavigation() {
           ]
         },
         {
-          path: "vehicleregistration",
+          path: "vehicleregistration/:id",
           element: <VehicleReg />,
         },
         {

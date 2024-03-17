@@ -34,7 +34,7 @@ export default function SuperAgentTable() {
         setData(resp.results);
       }
     });
-  }, [filter]);
+  }, []);
 
   useEffect(() => {
     getReg();

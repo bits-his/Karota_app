@@ -11,10 +11,9 @@ export default function VehicleOwnerTable() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState('');
   const getReg = useCallback(() => {
-    _get(`vehicles?query_type=select-all&plate_no=${filter}`,
+    _get(`vehicle-owners?query_type=select-all`,
       (resp) => {
         if (resp.success && resp.data) {
-          console.log(resp.data)
           setData(resp.data);
         }
       });
@@ -101,17 +100,15 @@ export default function VehicleOwnerTable() {
                     Owners Name
                   </th>
                   <th>
-                    Car Name
+                    Email
                   </th>
                   <th>
-                    Engine. No.
+                    phone Num
                   </th>
                   <th>
                     Plate No
                   </th>
-                  <th>
-                    Reg. Date
-                  </th>
+                  
                   <th>
                     Balance
                   </th>
@@ -122,35 +119,33 @@ export default function VehicleOwnerTable() {
               </thead>
               <tbody>
                 {data.map((item, idx) => <tr key={idx}>
-                  <th>
-                    {idx + 1}
-                  </th>
-                  <th>
-                    Owner
-                  </th>
-                  <th>
-                    Napep
-                  </th>
                   <td>
-                    {item.engine_no}
+                    {idx + 1}
+                  </td>
+                  <td>
+                    {item.name}
+                  </td>
+                  <td>
+                    {item.email}
+                  </td>
+                  <td>
+                    {item.phone}
 
                   </td>
                   <td>
-                    {item.plate_no}
+                    {item.phone}
                   </td>
-                  <td>
-                    {item.re}
-                  </td>
+                  
                   <td>
                     NGN 0.00
                   </td>
                   <td className="text-center">
                     <Button color="info"
-                    onClick={ () => navigate(`/vehicleownertable/${item.owner_id}`)}
+                    onClick={ () => navigate(`/vehicleownertable/${item.id}`)}
                     >View</Button>
                     <Button 
                     className="btn btn-primary"
-                    onClick={() => navigate("/vehicleregistration")}
+                    onClick={() => navigate(`/vehicleregistration/${item.id}`)}
                     > Add vehicle</Button>
                   </td>
                 </tr>)}

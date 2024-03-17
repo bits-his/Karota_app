@@ -45,7 +45,7 @@ export default function SideBar() {
           {/* <GiArchiveRegister className="icon shadow" /> */}
           Vendors
         </div>
-        {/* ) : ""} */}
+         ) : ""}
 
          {/* {user.role === 'admin' ? ( */}
          <div
@@ -82,7 +82,7 @@ export default function SideBar() {
           {/* <GiArchiveRegister className="icon shadow" /> */}
           Agents
         </div>
-         {/* ) : ""} */}
+          ) : ""} 
 
         {true ? (<div
           onClick={() => goto("/vehicleownertable")}
@@ -99,7 +99,7 @@ export default function SideBar() {
           {/* <GiArchiveRegister className="icon shadow" /> */}
           Top Up
         </div>
-        {/* ) : ""} */}
+         ) : ""} 
 
         
       </section >

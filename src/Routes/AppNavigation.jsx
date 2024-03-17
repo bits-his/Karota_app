@@ -61,6 +61,12 @@ export default function AppNavigation() {
         {
           path: "vendor",
           element: <Vendor />,
+            children: [
+              {
+                path: ":id",
+                element: <VehicleView />
+              },
+            ]
         },
         {
           path: "vendorReg",
@@ -79,10 +85,10 @@ export default function AppNavigation() {
                 path: '',
                 element: <VehicleOwnerTable />
               },
-            {
-              path: ":id",
-              element: <VehicleView />
-            },
+              {
+                path: ":id",
+                element: <VehicleView />
+              },
           ]
         },
         {

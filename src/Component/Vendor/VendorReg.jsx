@@ -149,9 +149,8 @@ function VendorReg() {
                 <td>{vendor.vendor_org_email}</td>
                 <td>{vendor.vendor_ofiice_address}</td>
                 <td className="text-center">
-                  <Button color="info" className="marginResponsive">
-                    View
-                  </Button>
+                  <Button color="info" onClick={ () => navigate(`/vehicleownertable/${vendor.id}`)}
+                    >View</Button>
                   <Button color="success" onClick={toggle}
                   // {() => {setCurrentVendor(vendor);}}
                   >

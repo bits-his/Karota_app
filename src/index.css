@@ -101,6 +101,16 @@
   width: 100%;
   padding: 8px;
 }
+.app_input-topUp {
+  position: relative;
+  top: 7rem;
+  left: 20rem;
+  border-radius: none !important;
+  border: 1px solid #9d9c97;
+  margin-bottom: 15px;
+  width: 43%;
+  padding: 8px;
+}
 /* .app_input_table {
   border-radius: none !important;
   border: 1px solid #f5c005;
@@ -378,7 +388,7 @@ td, th{
   background:  url('./assets/keke_napep.png') no-repeat; */
   
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   .customer-page {
     display: none;
   }
@@ -421,12 +431,20 @@ td, th{
   .imaginary {
     display: none;
   }
+  .marginResponsive {
+    margin-bottom: 5px;
+    margin-right: 0;
+  }
 }
 
 @media only screen and (min-width: 992px) {
   .imaginary {
     opacity: 0;
     display: inline-block;
+  }
+  .marginResponsive {
+    margin-bottom: 0;
+    margin-right: 5px;
   }
 }
 
@@ -676,4 +694,72 @@ select.form-select {
 
 .link_item{
   text-align: left;
+}
+.modal-open .modal {
+  opacity: 1;
+}
+.modal-content {
+  top: 100px;
+}
+/* .modal-row-details {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+} */
+
+.modal-body{
+  padding: 30px;
+}
+
+.modal-body .modal-row-details {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.modal-body .modal-row-content {
+  width: 50%;
+}
+
+.modal-amount{
+  justify-content: center;
+}
+
+.modal-title {
+  font-weight: bold;
+  font-size: 20px;
+}
+.small-margin-right {
+  margin-right: 10px;
+}
+
+.period-bigger {
+  text-align: center;
+  font-size: 18px;
+}
+
+
+
+
+
+
+
+
+
+
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #f5c005 ; /* Adjust the color as needed */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto; /* Adjust margin as needed */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

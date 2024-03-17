@@ -1,23 +1,29 @@
 import React, { useState } from "react";
 import { Button, Card, CardBody, Col, Input, Label, Row } from "reactstrap";
 import keke from '../../../assets/keke_napep.png'
+import { useDispatch } from "react-redux";
+import { login } from "../../../redux/actions/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [form, setForm] = useState({
-    full_name: "",
-    phone_no: "",
-    email_address: "",
     password: "",
   });
-
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const handleChange = ({ target: { name, value } }) => {
     setForm((p) => ({ ...p, [name]: value }));
     console.log(form);
   };
 
-  const handleAdd = () => {
+  const handleSubmit = () => {
     setForm(form)
     console.log(form)
+    dispatch(login({ username: form.email, password: form.password, history: navigate }, (res) => {
+      navigate('/')
+    }, (err) => {
+
+    }))
   }
   return (
     <div className='login'
@@ -38,10 +44,8 @@ export default function Login() {
             background: '#fff'
           }}
         >
-          <div style={{width}}>
-            <img src={keke} alt="kek Image" style={{ position: 'absolute', left: '6px', width: '15rem' }} />
+          <img src={keke} alt="kek Image" style={{ position: 'absolute', left: '6px', width: '15rem' }} />
 
-          </div>
         </div>
         <Col md={4}></Col>
         <Col md={4}>
@@ -76,11 +80,11 @@ export default function Login() {
 
                   <Col mt={4} mb={1}>
                     <Button
-                      style={{ position: 'relative', marginTop: 15, background: '#fff', color: '#000', fontWeight: '700', left: '100px' }}
+                      style={{ position: 'relative', marginTop: 15, background: '#fff', color: '#000', fontWeight: '700', left: '100px', border: '1px solid black' }}
                       variant="gradient"
                       color="info"
                       fullWidth
-                      onClick={handleAdd}
+                      onClick={handleSubmit}
                     >
                       sign In
                     </Button>

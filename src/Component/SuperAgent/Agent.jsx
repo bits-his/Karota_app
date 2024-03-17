@@ -3,32 +3,39 @@ import { useNavigate } from "react-router-dom";
 import { Card, Col, Row, Form, FormGroup, Label, Input } from "reactstrap";
 import { stateLga } from "../../assets/state_and_lgas";
 import toast from "react-hot-toast";
+import { _post } from "../../Utils/Helper";
+import { useSelector } from "react-redux";
 
 export default function Agent() {
+  const { user } = useSelector(p => p.auth)
   const _form = {
     query_type: "create",
+    super_agent: user.id
   };
-  
-  const [submittedData, setSubmittedData] = useState([]);
+  const [loading, setLoading] = useState(false)
   const [form, setForm] = useState(_form);
   const handleChange = ({ target: { name, value } }) => {
     setForm((p) => ({ ...p, [name]: value }));
   };
   const navigate = useNavigate();
-  const handleSubmit = () => {
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
     setLoading(true);
     _post(
       "agents/create",
       form,
       (res) => {
-        setLoading(true);
-        toast.success("Agent created successfully");
-        setSubmittedData([...submittedData, res]);
-        navigate("/agentable");
+        if (res.success) {
+          setLoading(true);
+          toast.success("Agent created successfully");
+          navigate("/agentable");
+        }
       },
       () => {
-          setLoading(false);
-          toast.error("An error occurred while creating Agent");
+        setLoading(false);
+        toast.error("An error occurred while creating Agent");
       }
     );
   };
@@ -38,7 +45,7 @@ export default function Agent() {
         Create agent
       </button> */}
       <Card className="app_card dashboard_card m-0 p-0">
-        {/* {JSON.stringify({ form })} */}
+        {JSON.stringify({ form })}
         <Row>
           <Col md={12}>
             <div
@@ -87,14 +94,14 @@ export default function Agent() {
                         onChange={handleChange}
                         id="super_agent"
                         name="super_agent"
-                        placeholder="Select vendor"
-                        type="select"
+                        placeholder="Select agent"
+                        type="text"
                         className="app_input"
                       >
-                        <option value={""}>Select Super Agent</option>
+                        {/* <option value={""}>Select Super Agent</option>
                         {stateLga.map((item) => (
                           <option>{item.state}</option>
-                        ))}
+                        ))} */}
                       </Input>
                     </FormGroup>
                   </Col>

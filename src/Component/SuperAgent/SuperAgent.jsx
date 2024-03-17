@@ -1,20 +1,31 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Card, Col, Row, Form, FormGroup, Label, Button, Input } from "reactstrap";
+import {
+  Card,
+  Col,
+  Row,
+  Form,
+  FormGroup,
+  Label,
+  Button,
+  Input,
+} from "reactstrap";
+import VendorDropdown from "./VendorDropdown";
 import { stateLga } from "../../assets/state_and_lgas";
 import { _post } from "../../Utils/Helper";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 
 export default function SuperAgent() {
+  // const user = "nazif";
   const _form = {
     query_type: "insert",
+    // vendor_name: { user },
     name: "",
     phone: "",
     nin: "",
     state: "",
     lga: "",
     address: "",
-    dob: "",
     vendor: 1,
   };
 
@@ -48,41 +59,50 @@ export default function SuperAgent() {
       {/* <button className="app_button" onClick={() => navigate("/agent")}>
         Create agent
       </button> */}
-            <Card className="app_card dashboard_card m-0 p-0">
-                {/* {JSON.stringify({ form })} */}  
-                <Row>
-               <Col md={12}>
-                    <div
-                        style={{                       
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent:"space-between",
-                            padding: "5px"
-                        }}
-                    >
+      <Card className="app_card dashboard_card m-0 p-0">
+        {JSON.stringify({ form })}
+        <Row>
+          <Col md={12}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "5px",
+              }}
+            >
+              <button
+                className="app_button"
+                style={{
+                  width: "10rem",
+                  padding: 10,
+                  color: "#000",
+                  borderRadius: 10,
+                }}
+                onClick={() => navigate("/superagentable")}
+              >
+                Back
+              </button>
+              <h4 className="app_title">
+                Super Agent Registeration{form.step}
+              </h4>
+            </div>
 
-                        <button
-							className="app_button"
-							style={{
-								width: "10rem",
-								padding: 10,
-								color: '#000',
-								borderRadius: 10,
-							}}
-							onClick={() => navigate("/superagentable")}
-						>
-							Back
-						</button>
-                        <h4 className="app_title">Super Agent Registeration{form.step}</h4>
-
-                    </div>
-
-                    <hr />
-                </Col>
+            <hr />
+          </Col>
           <Col md={12}>
             <Form className="mx-auto">
               <>
                 <Row className="margin-bottom-input">
+                  <Col md={6} className="first-col">
+                    <FormGroup>
+                      <Label for="vendor">Vendor</Label>
+                      <VendorDropdown
+                        handleChange={handleChange}
+                        selectedVendorValue={form.vendor}
+                      />
+                    </FormGroup>
+                  </Col>
                   <Col md={6} className="first-col">
                     <FormGroup>
                       <Label for="name">Name</Label>
@@ -97,7 +117,10 @@ export default function SuperAgent() {
                       />
                     </FormGroup>
                   </Col>
-                  <Col md={6} className="first-col">
+                </Row>
+
+                <Row className="margin-bottom-input">
+                  <Col md={6}>
                     <FormGroup>
                       <Label for="phone">Phone</Label>
                       <Input
@@ -112,9 +135,7 @@ export default function SuperAgent() {
                       />
                     </FormGroup>
                   </Col>
-                </Row>
-                <Row className="margin-bottom-input">
-                <Col md={6}>
+                  <Col md={6}>
                     <FormGroup>
                       <Label for="email">Email</Label>
                       <Input
@@ -128,6 +149,23 @@ export default function SuperAgent() {
                       />
                     </FormGroup>
                   </Col>
+                </Row>
+                <Row className="margin-bottom-input">
+                  <Col md={12} className="first-col">
+                    <FormGroup>
+                      <Label for="address">Contact address</Label>
+                      <Input
+                        onChange={handleChange}
+                        id="address"
+                        name="address"
+                        vlaue={form.address}
+                        type="text"
+                        className="app_input"
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
                       <Label for="state">State</Label>
@@ -146,9 +184,8 @@ export default function SuperAgent() {
                       </Input>
                     </FormGroup>
                   </Col>
-                </Row>
-                <Row className="margin-bottom-input">
-                <Col md={6} className="first-col">
+
+                  <Col md={6} className="first-col">
                     <FormGroup>
                       <Label for="lga">LGA</Label>
                       <Input
@@ -167,22 +204,9 @@ export default function SuperAgent() {
                       </Input>
                     </FormGroup>
                   </Col>
-                  <Col md={6}>
-                    <FormGroup>
-                      <Label for="address">Contact address</Label>
-                      <Input
-                        onChange={handleChange}
-                        id="address"
-                        name="address"
-                        vlaue={form.address}
-                        type="text"
-                        className="app_input"
-                      />
-                    </FormGroup>
-                  </Col>
                 </Row>
                 <Row className="margin-bottom-input">
-                <Col md={6}>
+                  <Col md={6}>
                     <FormGroup>
                       <Label for="nin">NIN</Label>
                       <Input
@@ -196,7 +220,7 @@ export default function SuperAgent() {
                       />
                     </FormGroup>
                   </Col>
-                  <Col md={6}>
+                  {/* <Col md={6}>
                     <FormGroup>
                       <Label for="password">Password</Label>
                       <Input
@@ -209,7 +233,7 @@ export default function SuperAgent() {
                         className="app_input"
                       />
                     </FormGroup>
-                  </Col>
+                  </Col> */}
                 </Row>
               </>
               <Row>

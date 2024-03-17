@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import kekeLogo from '../assets/keke_napep.png'
+import kekeLogo from "../assets/keke_napep.png";
 import { GiArchiveRegister } from "react-icons/gi";
 import { useSelector } from "react-redux";
 import { toParagraph } from "../Utils/Helper";
@@ -29,11 +29,12 @@ export default function SideBar() {
           Keke App
         </h4>
       </div>
-      <section className="link" >
+      <section className="link">
         <div
           onClick={() => goto("/")}
-          className={`link_item ${location.pathname === "/" && "active_side_menu"
-            }`}
+          className={`link_item ${
+            location.pathname === "/" && "active_side_menu"
+          }`}
         >
           {toParagraph(user.role)} Dashboard
         </div>

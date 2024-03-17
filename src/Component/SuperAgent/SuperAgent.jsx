@@ -26,7 +26,6 @@ export default function SuperAgent() {
     state: "",
     lga: "",
     address: "",
-    dob: "",
     vendor: 1,
   };
 
@@ -221,7 +220,7 @@ export default function SuperAgent() {
                       />
                     </FormGroup>
                   </Col>
-                  <Col md={6}>
+                  {/* <Col md={6}>
                     <FormGroup>
                       <Label for="password">Password</Label>
                       <Input
@@ -234,7 +233,7 @@ export default function SuperAgent() {
                         className="app_input"
                       />
                     </FormGroup>
-                  </Col>
+                  </Col> */}
                 </Row>
               </>
               <Row>

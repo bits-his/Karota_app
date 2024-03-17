@@ -11,13 +11,13 @@ export default function AgentTable() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState('');
   const getReg = useCallback(() => {
-    _get(`agents?query_type=select-all&plate_no=${filter}`,
+    _get(`agents?query_type=select-all`,
       (resp) => {
         if (resp.success && resp.results) {
           setData(resp.results);
         }
       });
-  }, [filter]);
+  }, []);
 
   useEffect(() => {
     getReg();
@@ -119,7 +119,7 @@ export default function AgentTable() {
                     {agent.name}
                   </td>
                   <td>
-                    {agent.phone}
+                    {agent.phone_no}
                   </td>
                   <td>
                     {agent.email}

@@ -25,11 +25,40 @@ function AgentDropDown({ handleChange, selectedAgentValue }) {
   useEffect(() => {
     getAgents();
   }, [getAgents]);
-  console.log(selectedAgent);
-  const handleSelectChange = (selectedOption) => {
-    setSelectedAgent(selectedOption);
-    handleChange({ target: { name: selectedOption.name, value: selectedOption.value } });
-  };
+  // const handleSelectChange = (selectedOption) => {
+  //   setSelectedAgent(selectedOption);
+  //   handleChange({ target: { name: selectedOption.name, value: selectedOption.value } });
+  // };
+  // const handleSelectChange = (selectedOption) => {
+  //   setSelectedAgent(selectedOption);
+  //   console.log(selectedOption);
+  //   handleChange({
+  //     target: {
+  //       name: "agent_name",
+  //       value: selectedOption.label,
+  //     },
+  //     target: {
+  //       name: "agent_id",
+  //       value: selectedOption.value,
+  //     },
+  //   });
+  // };
+ const handleSelectChange = (selectedOption) => {
+   setSelectedAgent(selectedOption);
+   handleChange({
+     target: {
+       name: "agent_id",
+       value: selectedOption.value,
+     },
+   });
+   handleChange({
+     target: {
+       name: "agent_name",
+       value: selectedOption.label,
+     },
+   });
+ };
+
 
   return (
     <Select
@@ -41,7 +70,7 @@ function AgentDropDown({ handleChange, selectedAgentValue }) {
         borderRadius: "none !important",
         border: "1px solid #f5c005 !important",
         marginBottom: "15px",
-        width: '100%',
+        width: "100%",
         padding: "8px",
       }}
       isLoading={loading}

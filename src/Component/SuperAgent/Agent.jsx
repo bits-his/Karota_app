@@ -45,7 +45,7 @@ export default function Agent() {
         Create agent
       </button> */}
       <Card className="app_card dashboard_card m-0 p-0">
-        {/* {JSON.stringify({ form })} */}
+        {JSON.stringify({ form })}
         <Row>
           <Col md={12}>
             <div
@@ -89,19 +89,19 @@ export default function Agent() {
                   </Col>
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="super_agent1">Super Agent</Label>
+                      <Label for="super_agent">Super Agent</Label>
                       <Input
                         onChange={handleChange}
-                        id="super_agent1"
-                        name="super_agent1"
+                        id="super_agent"
+                        name="super_agent"
                         placeholder="Select agent"
-                        type="select"
+                        type="text"
                         className="app_input"
                       >
-                        <option value={""}>Select Super Agent</option>
+                        {/* <option value={""}>Select Super Agent</option>
                         {stateLga.map((item) => (
                           <option>{item.state}</option>
-                        ))}
+                        ))} */}
                       </Input>
                     </FormGroup>
                   </Col>

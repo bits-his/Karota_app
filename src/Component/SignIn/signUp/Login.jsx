@@ -7,9 +7,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [form, setForm] = useState({
-    full_name: "",
-    phone_no: "",
-    email_address: "",
     password: "",
   });
   const dispatch = useDispatch()

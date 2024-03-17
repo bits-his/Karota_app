@@ -10,10 +10,6 @@ import {
   Label,
   Input,
   Spinner,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
 } from "reactstrap";
 import { _get } from "../../Utils/Helper";
 
@@ -26,12 +22,12 @@ function VendorReg() {
 
   const [loading, setLoading] = useState(false); // Add loading state
 
-  const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
+  // const [modal, setModal] = useState(false);
+  // const toggle = () => setModal(!modal);
 
   const getReg = useCallback(() => {
     setLoading(true); // Set loading to true before API call
-    _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
+    _get(`vendors?query_type=select-all`, (resp) => {
       setLoading(false); // Set loading to false after receiving response
       if (resp.success && resp.results) {
         setData(resp.results);
@@ -149,20 +145,19 @@ function VendorReg() {
                 <td>{vendor.vendor_org_email}</td>
                 <td>{vendor.vendor_ofiice_address}</td>
                 <td className="text-center">
-                  <Button color="info" onClick={ () => navigate(`/vehicleownertable/${vendor.id}`)}
+                  <Button color="info" onClick={ () => navigate(`/vendorReg/${vendor.id}`)}
                     >View</Button>
-                  <Button color="success" onClick={toggle}
-                  // {() => {setCurrentVendor(vendor);}}
+                  {/* <Button color="success" onClick={toggle}
                   >
                     Top up
-                  </Button>
+                  </Button> */}
                 </td>
               </tr>
             ))}
           </tbody>
         </Table>
       )}
-      <Modal isOpen={modal} toggle={toggle}>
+      {/* <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader className="text-center modal-head-vendor-topup">Vendor top up</ModalHeader>
         <ModalBody>
             <div className="modal-row-details">
@@ -211,7 +206,7 @@ function VendorReg() {
             Pay
           </Button>
         </ModalFooter>
-      </Modal>
+      </Modal> */}
     </Card>
   );
 }

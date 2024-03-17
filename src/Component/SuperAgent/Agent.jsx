@@ -5,14 +5,15 @@ import { stateLga } from "../../assets/state_and_lgas";
 import toast from "react-hot-toast";
 import { _post } from "../../Utils/Helper";
 import { useSelector } from "react-redux";
+import SuperAgentDropdown from "./SuperAgentdropdown";
 
 export default function Agent() {
-  const { user } = useSelector(p => p.auth)
+  const { user } = useSelector((p) => p.auth);
   const _form = {
     query_type: "create",
-    super_agent: user.id
+    super_agent: user.id,
   };
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState(_form);
   const handleChange = ({ target: { name, value } }) => {
     setForm((p) => ({ ...p, [name]: value }));
@@ -20,7 +21,7 @@ export default function Agent() {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     setLoading(true);
     _post(
@@ -74,6 +75,16 @@ export default function Agent() {
             <Form className="mx-auto">
               <>
                 <Row className="margin-bottom-input">
+                  <Col md={6}>
+                    <FormGroup>
+                      <Label for="super_agent">Super Agent</Label>
+
+                      <SuperAgentDropdown
+                        handleChange={handleChange}
+                        selectedVendorValue={form.super_agent}
+                      />
+                    </FormGroup>
+                  </Col>
                   <Col md={6} className="first-col">
                     <FormGroup>
                       <Label for="name">Name</Label>
@@ -85,24 +96,6 @@ export default function Agent() {
                         type="text"
                         className="app_input"
                       />
-                    </FormGroup>
-                  </Col>
-                  <Col md={6}>
-                    <FormGroup>
-                      <Label for="super_agent">Super Agent</Label>
-                      <Input
-                        onChange={handleChange}
-                        id="super_agent"
-                        name="super_agent"
-                        placeholder="Select agent"
-                        type="text"
-                        className="app_input"
-                      >
-                        {/* <option value={""}>Select Super Agent</option>
-                        {stateLga.map((item) => (
-                          <option>{item.state}</option>
-                        ))} */}
-                      </Input>
                     </FormGroup>
                   </Col>
                 </Row>

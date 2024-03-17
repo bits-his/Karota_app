@@ -1,56 +1,45 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import Select from "react-select";
 import { _get } from '../../Utils/Helper';
+import VendorTopUpDropDown from "../Vendor/VendorTopUpDropDown"
 
-function VendorTopUp({selectedAgentValue, selectedSuperAgentsValue}) {
+function VendorTopUp({selectedVendorValue}) {
     const [data, setData] = useState([])
     const [agentData, setAgentData] = useState([])
-    const [selectedAgent, setSelectedAgent] = useState(selectedAgentValue)
-    const [selectedSuperAgents, setSelectedSuperAgents] = useState(selectedSuperAgentsValue)
+    const [selectedVendor, setSelectedVendor] = useState(selectedVendorValue);
     const [loading, setLoading] = useState(false)
 
+    const [form, setForm] = useState({});
 
-    const getSuperAgent = useCallback(() => {
-        setLoading(true);
-        _get(`superagent?query_type=select-all`, (resp) => {
-            setLoading(false);
-            if(resp.success && resp.result){
-                const formattedData = resp.result.map((superagent) => ({
-                    value: superagent.id,
-                    label: superagent._name,
-                }));
-                setData(formattedData);
-            }
-        });
-    }, []);
+    const handleChange = ({ target: { name, value } }) => {
+      setForm((prevForm) => ({
+        ...prevForm,
+        [name]: value,
+      }));
+    };
 
-    const getAgents = useCallback(() => {
-        setLoading(true);
-        _get(`agents?query_type=select-all`, (resp) => {
-            setLoading(false);
-            if(resp.success && resp.result){
-                const formattedAgentData = resp.result.map((agents) => ({
-                    value: agents.id,
-                    label: agents.agents_name,
-                }));
-                console.log(formattedAgentData)
-                setAgentData(formattedAgentData);
-            }
-        });
+
+    const getVendors = useCallback(() => {
+      setLoading(true);
+      _get(`vendors?query_type=select-all`, (resp) => {
+        setLoading(false);
+        if (resp.success && resp.result) {
+          const formattedData = resp.result.map((vendor) => ({
+            value: vendor.id,
+            label: vendor.vendor_name,
+          }));
+          setData(formattedData);
+        }
+      });
     }, []);
 
     useEffect(() => {
-        getSuperAgent();
-        getAgents()
-    }, [getSuperAgent])
+        getVendors();
+    }, [getVendors])
 
-    const handleSelectChange = (selectedOption) => {
-        setSelectedAgent(selectedOption);
-        handleSelectChange({target: {name: "agent", value: selectedOption.value}});
-    };
-    const handleSelectSuperAgentChange = (selectedOption) => {
-        setSelectedSuperAgents(selectedOption);
-        handleSelectSuperAgentChange({target: {name: "superagent", value: selectedOption.value}});
+    const handleSelectVendorChange = (selectedOption) => {
+        setSelectedVendor(selectedOption);
+        handleSelectVendorChange({target: {name: "vendor", value: selectedOption.value}});
     };
   return (
     
@@ -62,7 +51,7 @@ function VendorTopUp({selectedAgentValue, selectedSuperAgentsValue}) {
             fontWeight: '600',
             fontSize: '18px',
           }}
-        >Super Agent Top-Up</span>
+        >Vendor Top-Up</span>
         <div
           style={{
             position: 'relative',
@@ -74,7 +63,7 @@ function VendorTopUp({selectedAgentValue, selectedSuperAgentsValue}) {
             border: '1px solid #f5c005'
           }}
         >
-          <div 
+          {/* <div 
           style={{
             display: 'flex',
             justifyContent: 'center',
@@ -82,10 +71,10 @@ function VendorTopUp({selectedAgentValue, selectedSuperAgentsValue}) {
             }}>
             <span style={{display: 'flex', alignItems: 'center', marginRight: '10px', fontWeight: '600', fontSize: '18px'}}>Vendor:</span>
             <Select 
-              value={selectedAgent}
-              onChange={handleSelectChange}
+              value={selectedVendor}
+              onChange={handleSelectVendorChange}
               options={data}
-              placeholder='Search for a vendor........'
+              placeholder='Search for a vendor...'
               styles={{
                 borderRadius: "none !important",
                 border: "1px solid #f5c005 !important",
@@ -95,85 +84,35 @@ function VendorTopUp({selectedAgentValue, selectedSuperAgentsValue}) {
               }}
               isLoading={loading}
             />
-          </div>
-          <div
-          style={{
-            position: 'relative',
-            left: '26.8%',
-            marginTop: '15px',
-            }}
-          >
-          <span style={{display: 'flex', alignItems: 'center', marginRight: '10px', fontWeight: '600', fontSize: '18px'}}>Name: {selectedAgent}</span>
-          </div>
-          <div
-          style={{
-            position: 'relative',
-            left: '31.5%',
-            marginTop: '15px',
-            }}
-          >
-          <span style={{display: 'flex', alignItems: 'center', marginRight: '10px', fontWeight: '600', fontSize: '18px'}}>ID: {selectedAgent}</span>
-          </div>
-       
-
-
-        <div
-        style={{
-            position: 'relative',
-            top: '30px',            
-          }}
-        >
-           <div 
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            marginTop: '15px',
-            }}>
-            <span style={{display: 'flex', alignItems: 'center', marginRight: '10px', fontWeight: '600', fontSize: '18px'}}>Agent:</span>
-            <Select 
-              value={selectedAgent}
-              onChange={handleSelectSuperAgentChange}
-              options={agentData}
-              placeholder='Search for a agents...'
-              styles={{
-                borderRadius: "none !important",
-                border: "1px solid #f5c005 !important",
-                marginBottom: "15px",
-                width: '60%',
-                padding: "8px",
+          </div> */}
+          <div className="agent">
+            <div
+              style={{
+                display: "flex",
+                marginTop: "15px",
               }}
-              isLoading={loading}
-            />
+            >
+              <h4> Select Agent:</h4>
+              <VendorTopUpDropDown
+                handleChange={handleChange}
+                selectedAgentValue={form.agent_id}
+              />
+            </div>
+            <h3>Name : {form.agent_name}</h3>
+            <h3>ID : {form.agent_id}</h3>
           </div>
-          <div
-          style={{
-            position: 'relative',
-            left: '26.8%',
-            marginTop: '15px',
-            }}
-          >
-          <span style={{display: 'flex', alignItems: 'center', marginRight: '10px', fontWeight: '600', fontSize: '18px'}}>Name: {selectedAgent}</span>
+        
+
+          <span style={{position: 'relative', top: '5rem',left: '12rem', display: 'flex', alignItems: 'center', marginRight: '10px', fontWeight: '600', fontSize: '18px'}}>Balance:</span>
+          <div>
+              <span
+              style={{position: 'absolute', top: '37rem',left: '12rem', display: 'flex', alignItems: 'center', marginRight: '10px', fontWeight: '600', fontSize: '18px'}}
+              >Amount</span>
+              <input 
+                placeholder='Enter amount here...'
+                className='app_input-topUp'
+              />
           </div>
-          <div
-          style={{
-            position: 'relative',
-            left: '31.5%',
-            marginTop: '15px',
-            }}
-          >
-          <span style={{display: 'flex', alignItems: 'center', marginRight: '10px', fontWeight: '600', fontSize: '18px'}}>ID: {selectedAgent}</span>
-          </div>
-        </div>
-        <span style={{position: 'relative', top: '5rem',left: '12rem', display: 'flex', alignItems: 'center', marginRight: '10px', fontWeight: '600', fontSize: '18px'}}>Balance:</span>
-        <div>
-            <span
-            style={{position: 'absolute', top: '37rem',left: '12rem', display: 'flex', alignItems: 'center', marginRight: '10px', fontWeight: '600', fontSize: '18px'}}
-            >Amount</span>
-            <input 
-              placeholder='Enter amount here...'
-              className='app_input-topUp'
-            />
-        </div>
         </div>
     </div>
   )

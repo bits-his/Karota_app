@@ -10,10 +10,6 @@ import {
   Label,
   Input,
   Spinner,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
 } from "reactstrap";
 import { _get, formatNumber } from "../../Utils/Helper";
 import PaymentButton from "../../PayWithInterswitch";
@@ -44,7 +40,7 @@ function VendorReg() {
   };
   const getReg = useCallback(() => {
     setLoading(true); // Set loading to true before API call
-    _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
+    _get(`vendors?query_type=select-all`, (resp) => {
       setLoading(false); // Set loading to false after receiving response
       if (resp.success && resp.results) {
         setData(resp.results);
@@ -165,11 +161,8 @@ function VendorReg() {
                   <Button color="info" className="marginResponsive">
                     View
                   </Button>
-                  <Button
-                    color="success"
-                    onClick={() => {
-                      toggle(vendor);
-                    }}
+                  <Button color="success" onClick={toggle}
+                  // {() => {setCurrentVendor(vendor);}}
                   >
                     Top up
                   </Button>
@@ -180,9 +173,7 @@ function VendorReg() {
         </Table>
       )}
       <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader className="text-center modal-head-vendor-topup">
-          Vendor top up
-        </ModalHeader>
+        <ModalHeader className="text-center modal-head-vendor-topup">Vendor top up</ModalHeader>
         <ModalBody>
           <div className="modal-row-details">
             <div className="modal-row-content small-margin-right">
@@ -263,7 +254,7 @@ function VendorReg() {
             </Col>
           </Row>
         </ModalFooter>
-      </Modal>
+      </Modal> 
     </Card>
   );
 }

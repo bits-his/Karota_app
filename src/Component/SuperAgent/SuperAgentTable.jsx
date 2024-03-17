@@ -70,7 +70,7 @@ export default function SuperAgentTable() {
               color: "#000",
               borderRadius: 7,
             }}
-            onClick={() => navigate("/superagent")}
+            onClick={() => navigate("/supergent")}
           >
             Add SuperAgent
           </button>

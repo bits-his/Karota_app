@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react'
 import Select from "react-select";
 import { _get } from '../../Utils/Helper';
 
-function VehicleTopUp({selectedAgentValue, selectedSuperAgentsValue}) {
+function VendorTopUp({selectedAgentValue, selectedSuperAgentsValue}) {
     const [data, setData] = useState([])
     const [agentData, setAgentData] = useState([])
     const [selectedAgent, setSelectedAgent] = useState(selectedAgentValue)
@@ -179,5 +179,5 @@ function VehicleTopUp({selectedAgentValue, selectedSuperAgentsValue}) {
   )
 }
 
-export default VehicleTopUp
+export default VendorTopUp
 

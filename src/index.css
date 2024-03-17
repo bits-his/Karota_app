@@ -101,6 +101,16 @@
   width: 100%;
   padding: 8px;
 }
+.app_input-topUp {
+  position: relative;
+  top: 7rem;
+  left: 20rem;
+  border-radius: none !important;
+  border: 1px solid #9d9c97;
+  margin-bottom: 15px;
+  width: 43%;
+  padding: 8px;
+}
 /* .app_input_table {
   border-radius: none !important;
   border: 1px solid #f5c005;
@@ -689,12 +699,44 @@ select.form-select {
   opacity: 1;
 }
 .modal-content {
-  top: 50px;
+  top: 100px;
 }
-.modal-row-details {
+/* .modal-row-details {
   display: flex;
   justify-content: space-around;
   align-items: center;
+} */
+
+.modal-body{
+  padding: 30px;
+}
+
+.modal-body .modal-row-details {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.modal-body .modal-row-content {
+  width: 50%;
+}
+
+.modal-amount{
+  justify-content: center;
+}
+
+.modal-title {
+  font-weight: bold;
+  font-size: 20px;
+}
+.small-margin-right {
+  margin-right: 10px;
+}
+
+.period-bigger {
+  text-align: center;
+  font-size: 18px;
 }
 
 

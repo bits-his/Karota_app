@@ -2,20 +2,20 @@ import React, { useState, useEffect, useCallback } from "react";
 import Select from "react-select";
 import { _get } from "../../Utils/Helper";
 
-function VendorDropdown({ handleChange, selectedVendorValue }) {
+function AgentDropDown({ handleChange, selectedAgentValue }) {
   const [data, setData] = useState([]);
-  const [selectedVendor, setSelectedVendor] = useState(selectedVendorValue);
+  const [selectedAgent, setSelectedAgent] = useState(selectedAgentValue);
   const [loading, setLoading] = useState(false);
 
-  const getVendors = useCallback(() => {
+  const getAgents = useCallback(() => {
     setLoading(true);
-    _get(`vendors?query_type=select-all`, (resp) => {
+    _get(`agents?query_type=select-all`, (resp) => {
       setLoading(false);
       if (resp.success && resp.results) {
         // Extract only the name and id properties from the response
-        const formattedData = resp.results.map((vendor) => ({
-          value: vendor.id,
-          label: vendor.vendor_name,
+        const formattedData = resp.results.map((agent) => ({
+          value: agent.id,
+          label: agent.name,
         }));
         setData(formattedData);
       }
@@ -23,20 +23,20 @@ function VendorDropdown({ handleChange, selectedVendorValue }) {
   }, []);
 
   useEffect(() => {
-    getVendors();
-  }, [getVendors]);
-  console.log(selectedVendor);
+    getAgents();
+  }, [getAgents]);
+  console.log(selectedAgent);
   const handleSelectChange = (selectedOption) => {
-    setSelectedVendor(selectedOption);
-    handleChange({ target: { name: "vendor", value: selectedOption.value } });
+    setSelectedAgent(selectedOption);
+    handleChange({ target: { name: selectedOption.name, value: selectedOption.value } });
   };
 
   return (
     <Select
-      value={selectedVendor}
+      value={selectedAgent}
       onChange={handleSelectChange}
       options={data}
-      placeholder="Search for a vendor..."
+      placeholder="Search for an agent..."
       styles={{
         borderRadius: "none !important",
         border: "1px solid #f5c005 !important",
@@ -49,4 +49,4 @@ function VendorDropdown({ handleChange, selectedVendorValue }) {
   );
 }
 
-export default VendorDropdown;
+export default AgentDropDown;

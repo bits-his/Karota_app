@@ -11,7 +11,7 @@ export default function VehicleOwnerTable() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState('');
   const getReg = useCallback(() => {
-    _get(`vehicles?query_type=select-all&plate_no=${filter}`,
+    _get(`vehicle-owners?query_type=select-all`,
       (resp) => {
         if (resp.success && resp.data) {
           setData(resp.data);
@@ -24,9 +24,9 @@ export default function VehicleOwnerTable() {
   }, [getReg]);
 
   return (
-    <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
+    <>
       <Row>
-        <Col md={9}>
+        <Col md={12}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <h4 className="app_title"> Vehicle Owner </h4>
              <button
@@ -46,9 +46,6 @@ export default function VehicleOwnerTable() {
          
         </Col>
 
-        <Col>
-        
-        </Col>
       </Row>
 
       <hr />
@@ -103,17 +100,15 @@ export default function VehicleOwnerTable() {
                     Owners Name
                   </th>
                   <th>
-                    Car Name
+                    Email
                   </th>
                   <th>
-                    Engine. No.
+                    phone Num
                   </th>
                   <th>
                     Plate No
                   </th>
-                  <th>
-                    Reg. Date
-                  </th>
+                  
                   <th>
                     Balance
                   </th>
@@ -123,35 +118,35 @@ export default function VehicleOwnerTable() {
                 </tr>
               </thead>
               <tbody>
-                {data.map((item, idx) => <tr>
-                  <th>
+                {data.map((item, idx) => <tr key={idx}>
+                  <td>
                     {idx + 1}
-                  </th>
-                  <td>
-                    {item.vehicle_id}
                   </td>
-                  <th>
-                    Owner
-                  </th>
-                  <th>
-                    Napep
-                  </th>
                   <td>
-                    {item.engine_no}
+                    {item.name}
+                  </td>
+                  <td>
+                    {item.email}
+                  </td>
+                  <td>
+                    {item.phone}
 
                   </td>
                   <td>
-                    {item.plate_no}
+                    {item.phone}
                   </td>
+                  
                   <td>
                     NGN 0.00
                   </td>
                   <td className="text-center">
-                    <Button color="info">View</Button>
-                    <button 
+                    <Button color="info"
+                    onClick={ () => navigate(`/vehicleownertable/${item.id}`)}
+                    >View</Button>
+                    <Button 
                     className="btn btn-primary"
-                    onClick={() => navigate('/VehicleOwner')}
-                    > Add</button>
+                    onClick={() => navigate(`/vehicleregistration/${item.id}`)}
+                    > Add vehicle</Button>
                   </td>
                 </tr>)}
               </tbody>
@@ -159,6 +154,6 @@ export default function VehicleOwnerTable() {
           </div>
         </Row>
       </Row>
-    </Card>
+    </>
   );
 }

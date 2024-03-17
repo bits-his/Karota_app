@@ -25,13 +25,16 @@ import { _get } from "../../../Utils/Helper";
 
 
 export default function TopUp() {
+  // const navigate = useNavigate()
   const [modal, setModal] = useState(false);
+  const [fund, setFund] = useState(false)
   const [currentItem, setCurrentItem] = useState({});
   const [userDetail, setUserDetail] = useState({
     Reg_no: "",
     Plate_no: ""
   })
   const [data, setData] = useState([]);
+  const [vendorData, setVendorData] = useState([]);
   const [filter, setFilter] = useState('');
 
   const toggleModal = () => {
@@ -45,6 +48,11 @@ export default function TopUp() {
     toggleModal();
     console.log(id)
   };
+
+  const fund_us = () => {
+    setFund(true)
+    toggleModal();
+  }
   const agentDetails = {
     name: "Ahmad Ibrahim",
     id: 123,
@@ -57,12 +65,19 @@ export default function TopUp() {
         console.log(resp.data)
       }
     });
+    _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
+      setLoading(false); // Set loading to false after receiving response
+      if (resp.success && resp.results) {
+        setVendorData(resp.results);
+      }
+    });
   }, [filter]);
 
   useEffect(() => {
     getReg();
   }, [getReg]);
 
+  console.log(vendorData)
   return (
     <div>
       <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
@@ -71,7 +86,9 @@ export default function TopUp() {
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <h4 className="app_title">Top Up</h4>
             </div>
+            {/* {vendorData.map(item, id) => ( 
             <div
+            key={id}
             style={{
               position: 'absolute',
               left: '90rem',
@@ -80,10 +97,14 @@ export default function TopUp() {
               // display: 'flex',
               float: 'right'
             }}>
-              <div>Name: {agentDetails.name}</div>
+              {/* <div>Name: {agentDetails.name}</div>
               <div>ID: {agentDetails.id}</div>
-              <div>Bal: {agentDetails.bal}</div>
+              <div>Bal: {agentDetails.bal}</div> */}
+              {/* <div>Name: {item.name}</div>
+              <div>ID: {item.id}</div>
+              <div>Bal: {item.bal}</div>
             </div>
+             )}   */}
             <hr />
           </Col>
 
@@ -141,6 +162,7 @@ export default function TopUp() {
                   <tr>
                     <th>Reg. No.</th>
                     <th>Plate No.</th>
+                    <th>Chasis No.</th>
                     <th>Balance (₦)</th>
                     <th>Action</th>
                   </tr>
@@ -150,6 +172,7 @@ export default function TopUp() {
                     <tr key={idx}>
                       <td>00{vehicle.vehicle_id}</td>
                       <td>{vehicle.plate_no}</td>
+                      <td>{vehicle.chasis_no}</td>
                       <td className="text-right">{parseFloat(vehicle.balance).toFixed(2)}</td>
                       <td className="text-center p-2">
                         <ButtonGroup>
@@ -208,13 +231,119 @@ export default function TopUp() {
       </FormGroup>
       <div className="text-center">
       
-      <Button color="warning" block style={{ marginTop: '10px', marginBottom: '10px' }}>pay</Button>
+      <Button color="warning" block style={{ marginTop: '10px', marginBottom: '10px' }} onClick={fund_us}>pay</Button>
 
       </div>
     </Form>
   </ModalBody>
 </Modal>
-
+        {fund ? 
+           <div>
+            <Form 
+              style={{
+                position: 'relative',
+                top: '-40rem',
+                left: '25rem',
+                backgroundColor: 'white',
+                borderRadius:' 5px',
+                height: '55rem',
+                width: '50%',
+                border: "1px solid black"
+              }}
+            >
+              <div
+              style={{
+                position: 'relative',
+                left: '40%',
+                top: '15px',
+                fontSize: '20px',
+                fontWeight: '600',
+              }}
+              >Top Up</div>
+              <hr style={{width: '95%', position: 'relative', left: '12px'}}/>
+              <FormGroup>
+                <div for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px', fontWeight: '600', marginBottom: '15px'}}>Balance: 20000</div>
+                <Label for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px'}}>Enter Amount:</Label>
+                <Input 
+                type="text" 
+                name="topUpAmount" 
+                id="topUpAmount" 
+                placeholder="Enter amount here" 
+                style={{
+                  position: 'relative',
+                  width: '70%',
+                  left: '26%'
+                }}
+                />
+                <Label for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px'}}>Plate No:</Label>
+                <Input 
+                type="text" 
+                name="topUpAmount" 
+                id="topUpAmount" 
+                placeholder="Enter amount here" 
+                style={{
+                  position: 'relative',
+                  width: '70%',
+                  left: '26%'
+                }}
+                />
+                <Label for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px'}}>Class No:</Label>
+                <Input 
+                type="text" 
+                name="topUpAmount" 
+                id="topUpAmount" 
+                placeholder="Enter amount here" 
+                style={{
+                  position: 'relative',
+                  width: '70%',
+                  left: '26%'
+                }}
+                />
+                <Label for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px'}}>Last Pay Date:</Label>
+                <Input 
+                type="text" 
+                name="topUpAmount" 
+                id="topUpAmount" 
+                placeholder="Enter amount here" 
+                style={{
+                  position: 'relative',
+                  width: '70%',
+                  left: '26%'
+                }}
+                />
+                <Label for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px'}}>Payment From:</Label>
+                <Input 
+                type="text" 
+                name="topUpAmount" 
+                id="topUpAmount" 
+                placeholder="Enter amount here" 
+                style={{
+                  position: 'relative',
+                  width: '70%',
+                  left: '26%'
+                }}
+                />
+                <Label for="topUpAmount" style={{position: 'relative', top: '25px', left: '20px'}}>Payment To:</Label>
+                <Input 
+                type="text" 
+                name="topUpAmount" 
+                id="topUpAmount" 
+                placeholder="Enter amount here" 
+                style={{
+                  position: 'relative',
+                  width: '70%',
+                  left: '26%'
+                }}
+                />
+              </FormGroup>
+              <div className="text-center">
+              
+              <Button color="warning" block style={{ marginTop: '10px', marginBottom: '10px', width: '30%' }} onClick={fund_us}>pay</Button>
+              </div>
+            </Form>
+           </div>
+           : <></>
+        }
         </Row>
       </Card>
     </div>

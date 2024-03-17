@@ -177,24 +177,53 @@ export default function SuperAgentTable() {
       </Row>
 
       {/* Modal */}
-      <Modal isOpen={isModalOpen} toggle={toggleModal}>
-        <ModalHeader toggle={toggleModal}>User Details</ModalHeader>
+      <Modal isOpen={modal} toggle={toggle}>
+        <ModalHeader className="text-center modal-head-vendor-topup">Vendor top up</ModalHeader>
         <ModalBody>
-          {selectedUser && (
-            <>
-              <p>Name: {selectedUser.name}</p>
-              <p>Phone: {selectedUser.phone}</p>
-              <p>Email: {selectedUser.email}</p>
-              <p>Contact Address: {selectedUser.address}</p>
-            </>
-          )}
+            <div className="modal-row-details">
+              <div className="modal-row-content small-margin-right">
+                <span>Name:</span>
+                <div></div>
+              </div>
+              <div className="modal-row-content">
+                <span>Vendor no.:</span>
+                <div></div>
+              </div>
+            </div>
+            <div className="modal-row-details">
+              <div className="modal-row-content small-margin-right">
+                <span>E-mail:</span>
+                <div></div>
+              </div>
+              <div className="modal-row-content">
+                <span>Balance:</span>
+                <div></div>
+              </div>
+            </div>
+            <div>
+            <div className="period-bigger">period</div>
+              <div className="modal-row-details">
+                <div className="modal-row-content small-margin-right">
+                  <div>From</div>
+                  <Input type="date" />
+                </div>
+                <div className="modal-row-content">
+                  <div>To</div>
+                  <Input type="date" />
+                </div>
+              </div>
+            </div>
+            <div className="modal-row-details modal-amount">
+                <span>Amount: </span>
+                <Input type="number" style={{ width: "50%" }} />
+            </div>
         </ModalBody>
         <ModalFooter>
-          <Button color="secondary" onClick={toggleModal}>
-            Close
+          <Button color="danger" onClick={toggle}>
+            Cancel
           </Button>
-          <Button color="danger" onClick={toggleModal}>
-            Delete
+          <Button color="success" onClick={toggle}>
+            Pay
           </Button>
         </ModalFooter>
       </Modal>

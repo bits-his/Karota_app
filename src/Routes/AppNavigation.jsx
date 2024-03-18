@@ -11,10 +11,18 @@ import SuperAgent from "../Component/SuperAgent/SuperAgent";
 import SuperAgentTable from "../Component/SuperAgent/SuperAgentTable";
 import Agent from "../Component/SuperAgent/Agent";
 import AgentTable from "../Component/SuperAgent/AgentTable";
+import VendorTable from "../Component/Vendor/VendorTable";
 import VendorReg from "../Component/Vendor/VendorReg";
+import VendorView from "../Component/Vendor/VendorView";
 import VehicleOwnerTable from "../Component/vehicleOwner/VehicleOwnerTable";
 import TopUp from "../Component/SignIn/signUp/TopUp";
-import Dashboard from '../Component/Dashboard/index'
+import Dashboard from "../Component/Dashboard/index";
+import SuperAgentTopUp from "../Component/SuperAgent/SuperAgentTopUp";
+// import AgentTopUp from "../Component/SuperAgent/AgentTopUp";
+import VendorTopUp from "../Component/Vendor/VendorTopUp";
+import VehicleView from "../Component/vehicleOwner/VehicleView";
+import Vehicle from "../Component/vehicleOwner/Vehicle";
+import VehicleTopUp from "../Component/vehicleOwner/VehicleTopUp";
 
 export default function AppNavigation() {
   let Pages = useRoutes([
@@ -23,8 +31,8 @@ export default function AppNavigation() {
       element: <Login />,
     },
     // {
-    //   path: '/login',
-    //   element: <Register />
+    //   path: '/top-up/funding',
+    //   element: <Funding />
     // },
     {
       element: <AppIndex />,
@@ -34,49 +42,89 @@ export default function AppNavigation() {
           element: <Dashboard />,
         },
         {
-          path: "/registration",
+          path: "registration",
           element: <Registration />,
         },
         {
-          path: "/superagent",
+          path: "supergent",
           element: <SuperAgent />,
         },
         {
-          path: "/agent",
+          path: "agent",
           element: <Agent />,
         },
         {
-          path: "/superagentable",
+          path: "supergentable",
           element: <SuperAgentTable />,
         },
         {
-          path: "/agentable",
+          path: "agentable",
           element: <AgentTable />,
         },
         {
-          path: "/vendor",
+          path: "vendor",
           element: <Vendor />,
         },
         {
-          path: "/vendorReg",
-          element: <VendorReg />,
+          path: "vendorReg",
+          element: <VendorTable />,
+          children: [
+            {
+              path: "",
+              element: <VendorReg />,
+            },
+            {
+              path: ":id",
+              element: <VendorView />,
+            },
+          ],
         },
         {
-          path: "/VehicleOwner",
+          path: "/vehicleOwner",
           element: <VehicleOwner />,
         },
         {
-          path: "/Vehicleownertable",
-          element: <VehicleOwnerTable />,
+          path: "vehicleownertable",
+          element: <Vehicle />,
+          children: [
+            {
+              path: "",
+              element: <VehicleOwnerTable />,
+            },
+            {
+              path: ":id",
+              element: <VehicleView />,
+            },
+          ],
         },
         {
-          path: "/VehicleOwner",
+          path: "vehicleregistration/:id",
           element: <VehicleReg />,
         },
         {
-          path: "/top-up",
+          path: "top-up",
           element: <TopUp />,
         },
+        {
+          path: "/supatopup",
+          element: <SuperAgentTopUp />,
+        },
+        {
+          path: "/vendortopup",
+          element: <VendorTopUp />,
+        },
+        // {
+        //   path: "/agenttopup",
+        //   element: <AgentTopUp />,
+        // },
+        {
+          path: "/vehicletopup",
+          element: <VehicleTopUp />,
+        },
+        // {
+        //   path: "/superagenttopup",
+        //   element: <SuperAgentTopUp />,
+        // },
       ],
     },
   ]);

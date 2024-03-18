@@ -70,7 +70,7 @@ export default function SuperAgentTable() {
               color: "#000",
               borderRadius: 7,
             }}
-            onClick={() => navigate("/superagent")}
+            onClick={() => navigate("/supergent")}
           >
             Add SuperAgent
           </button>
@@ -175,29 +175,6 @@ export default function SuperAgentTable() {
           </div>
         </Row>
       </Row>
-
-      {/* Modal */}
-      <Modal isOpen={isModalOpen} toggle={toggleModal}>
-        <ModalHeader toggle={toggleModal}>User Details</ModalHeader>
-        <ModalBody>
-          {selectedUser && (
-            <>
-              <p>Name: {selectedUser.name}</p>
-              <p>Phone: {selectedUser.phone}</p>
-              <p>Email: {selectedUser.email}</p>
-              <p>Contact Address: {selectedUser.address}</p>
-            </>
-          )}
-        </ModalBody>
-        <ModalFooter>
-          <Button color="secondary" onClick={toggleModal}>
-            Close
-          </Button>
-          <Button color="danger" onClick={toggleModal}>
-            Delete
-          </Button>
-        </ModalFooter>
-      </Modal>
     </Card>
   );
 }

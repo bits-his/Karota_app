@@ -46,7 +46,7 @@ export default function SuperAgent() {
         setLoading(true);
         toast.success("super agent created successfully");
         setSubmittedData([...submittedData, res]);
-        navigate("/superagentable");
+        navigate("/supergentable");
       },
       () => {
         setLoading(false);
@@ -60,7 +60,7 @@ export default function SuperAgent() {
         Create agent
       </button> */}
       <Card className="app_card dashboard_card m-0 p-0">
-        {JSON.stringify({ form })}
+        {/* {JSON.stringify({ form })} */}
         <Row>
           <Col md={12}>
             <div
@@ -79,7 +79,7 @@ export default function SuperAgent() {
                   color: "#000",
                   borderRadius: 10,
                 }}
-                onClick={() => navigate("/superagentable")}
+                onClick={() => navigate("/supergentable")}
               >
                 Back
               </button>

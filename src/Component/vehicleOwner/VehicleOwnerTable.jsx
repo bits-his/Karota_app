@@ -146,7 +146,7 @@ export default function VehicleOwnerTable() {
                     <Button 
                     className="btn btn-primary"
                     onClick={() => navigate(`/vehicleregistration/${item.id}`)}
-                    > Add vehicle</Button>
+                    > vehicle +</Button>
                   </td>
                 </tr>)}
               </tbody>

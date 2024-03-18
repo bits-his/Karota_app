@@ -10,7 +10,7 @@ export default function SideBar() {
   const { user } = useSelector((p) => p.auth);
 
   return (
-    <>
+    <div style={{marginTop: -40}}>
       <div>
         <center>
           <div className="user_image">
@@ -177,6 +177,6 @@ export default function SideBar() {
           ""
         )}
       </section>
-    </>
+    </div>
   );
 }

@@ -9,18 +9,28 @@ function SuperDropdown({ handleChange, selectedSuperValue }) {
 
   const getSuper = useCallback(() => {
     setLoading(true);
+    // _get(`superagent?query_type=select-all`, (resp) => {
+    //   if (resp.success) {
+    //     const formattedData = resp.data.map((superagent) => ({
+    //       value: superagent.id,
+    //       label: superagent.name,
+    //     }));
+    //     setData(formattedData);
+    //     setLoading(false);
+    //   } else {
+    //     console.error("Failed to fetch super agents data");
+    //     setLoading(false);
+    //   }
+    // });
     _get(`superagent?query_type=select-all`, (resp) => {
-      if (resp.success) {
-        const formattedData = resp.data.map((superagent) => ({
+      if (resp.success && resp.results) {
+        const formattedData = resp.results.map((superagent) => ({
           value: superagent.id,
           label: superagent.name,
         }));
         setData(formattedData);
-        setLoading(false);
-      } else {
-        console.error("Failed to fetch super agents data");
-        setLoading(false);
       }
+      setLoading(false);
     });
   }, []);
 
@@ -28,24 +38,23 @@ function SuperDropdown({ handleChange, selectedSuperValue }) {
     getSuper();
   }, [getSuper]);
 
-const handleSelectChange = (selectedOption) => {
-  setSelectedSuper(selectedOption);
+  const handleSelectChange = (selectedOption) => {
+    setSelectedSuper(selectedOption);
 
-  handleChange({
-    target: {
-      name: "super_id",
-      value: selectedOption ? selectedOption.value : "", // handle if no option is selected
-    },
-  });
+    handleChange({
+      target: {
+        name: "super_id",
+        value: selectedOption ? selectedOption.value : "", // handle if no option is selected
+      },
+    });
 
-  handleChange({
-    target: {
-      name: "super_name",
-      value: selectedOption ? selectedOption.label : "", // handle if no option is selected
-    },
-  });
-};
-
+    handleChange({
+      target: {
+        name: "super_name",
+        value: selectedOption ? selectedOption.label : "", // handle if no option is selected
+      },
+    });
+  };
 
   return (
     <Select

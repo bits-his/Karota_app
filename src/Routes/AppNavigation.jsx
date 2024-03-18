@@ -18,7 +18,7 @@ import VehicleOwnerTable from "../Component/vehicleOwner/VehicleOwnerTable";
 import TopUp from "../Component/SignIn/signUp/TopUp";
 import Dashboard from "../Component/Dashboard/index";
 import SuperAgentTopUp from "../Component/SuperAgent/SuperAgentTopUp";
-import AgentTopUp from "../Component/SuperAgent/AgentTopUp";
+// import AgentTopUp from "../Component/SuperAgent/AgentTopUp";
 import VendorTopUp from "../Component/Vendor/VendorTopUp";
 import VehicleView from "../Component/vehicleOwner/VehicleView";
 import Vehicle from "../Component/vehicleOwner/Vehicle";
@@ -106,17 +106,17 @@ export default function AppNavigation() {
           element: <TopUp />,
         },
         {
-          path: "/supertopup",
+          path: "/supatopup",
           element: <SuperAgentTopUp />,
         },
         {
           path: "/vendortopup",
           element: <VendorTopUp />,
         },
-        {
-          path: "/agintopup",
-          element: <AgentTopUp />,
-        },
+        // {
+        //   path: "/agenttopup",
+        //   element: <AgentTopUp />,
+        // },
         {
           path: "/vehicletopup",
           element: <VehicleTopUp />,

@@ -19,15 +19,15 @@ export default function RegistrationTable() {
     vendor_bn_rc: "",
     contact_name: "",
     contact_address: "",
-    contact_dob: "",
     contact_state: "",
-    contact_password: "",
+    // contact_password: "",
     contact_phone: "",
     contact_email: "",
     contact_lga: "",
   };
-  // const [submittedData, setSubmittedData] = useState([]);
 
+
+  const [submittedData, setSubmittedData] = useState([]);
   const [form, setForm] = useState(_form);
   const [loading, setLoading] = useState(false);
   const handleChange = ({ target: { name, value } }) => {
@@ -45,8 +45,8 @@ export default function RegistrationTable() {
         if (res.success) {
           setLoading(true);
           toast.success("Vendor created successfully");
-          // setSubmittedData([...submittedData, res]);
-          navigate("/vendorReg");
+          setSubmittedData([...submittedData, res]);
+          navigate("/vendorReg/");
         }
       },
       () => {
@@ -412,6 +412,7 @@ export default function RegistrationTable() {
                         color: "",
                         cursor: "pointer",
                       }}
+                      disabled={loading}
                       onClick={handleSubmit}
                     >
                       Submit

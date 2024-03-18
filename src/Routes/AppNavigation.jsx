@@ -9,20 +9,21 @@ import VehicleOwner from "../Component/vehicleOwner/VehicleOwner";
 import VehicleReg from "../Component/vehicleReg/VehicleReg";
 import SuperAgent from "../Component/SuperAgent/SuperAgent";
 import SuperAgentTable from "../Component/SuperAgent/SuperAgentTable";
+import SuperAgentTopUp from "../Component/SuperAgent/SuperAgentTopUp"
 import Agent from "../Component/SuperAgent/Agent";
 import AgentTable from "../Component/SuperAgent/AgentTable";
+import AgentTopUp from "../Component/SuperAgent/AgentTopUp"
 import VendorTable from "../Component/Vendor/VendorTable";
 import VendorReg from "../Component/Vendor/VendorReg";
 import VendorView from "../Component/Vendor/VendorView";
 import VehicleOwnerTable from "../Component/vehicleOwner/VehicleOwnerTable";
 import TopUp from "../Component/SignIn/signUp/TopUp";
 import Dashboard from "../Component/Dashboard/index";
-import SuperAgentTopUp from "../Component/SuperAgent/SuperAgentTopUp";
-// import AgentTopUp from "../Component/SuperAgent/AgentTopUp";
 import VendorTopUp from "../Component/Vendor/VendorTopUp";
 import VehicleView from "../Component/vehicleOwner/VehicleView";
 import Vehicle from "../Component/vehicleOwner/Vehicle";
 import VehicleTopUp from "../Component/vehicleOwner/VehicleTopUp";
+import LicensViever from "../Component/SignIn/signUp/LicensViever";
 
 export default function AppNavigation() {
   let Pages = useRoutes([
@@ -46,7 +47,7 @@ export default function AppNavigation() {
           element: <Registration />,
         },
         {
-          path: "supergent",
+          path: "superagent",
           element: <SuperAgent />,
         },
         {
@@ -54,12 +55,16 @@ export default function AppNavigation() {
           element: <Agent />,
         },
         {
-          path: "supergentable",
+          path: "superagentable",
           element: <SuperAgentTable />,
         },
         {
-          path: "agentable",
+          path: "agenttable",
           element: <AgentTable />,
+        },
+        {
+          path: "/agenttopup",
+          element: <AgentTopUp />,
         },
         {
           path: "vendor",
@@ -106,25 +111,21 @@ export default function AppNavigation() {
           element: <TopUp />,
         },
         {
-          path: "/supatopup",
+          path: "/superagenttopup",
           element: <SuperAgentTopUp />,
+        },
+        {
+          path: "/licens-pdf",
+          element: <LicensViever />,
         },
         {
           path: "/vendortopup",
           element: <VendorTopUp />,
         },
-        // {
-        //   path: "/agenttopup",
-        //   element: <AgentTopUp />,
-        // },
         {
           path: "/vehicletopup",
           element: <VehicleTopUp />,
         },
-        // {
-        //   path: "/superagenttopup",
-        //   element: <SuperAgentTopUp />,
-        // },
       ],
     },
   ]);

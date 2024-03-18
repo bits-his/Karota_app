@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { _get, _post } from "../../Utils/Helper";
 import { Button } from "reactstrap";
 import VendorTopUpDropDown from "../Vendor/VendorTopUpDropDown"
+import VendorDropdown from '../SuperAgent/VendorDropdown';
 
 function VendorTopUp({selectedVendorValue}) {
     const [data, setData] = useState([])
@@ -82,10 +83,12 @@ function VendorTopUp({selectedVendorValue}) {
                 }}
               >
                 <h4> Select Vendor:</h4>
-                <VendorTopUpDropDown
+                {/* <VendorTopUpDropDown
                   handleChange={handleChange}
                   selectedVendorValue={form.vendor_name}
-                />
+              /> */}
+              <VendorDropdown handleChange={handleChange}
+                  selectedVendorValue={form.vendor_name} />
               </div>
               <h3>Name : {form.vendor_name}</h3>
               <h3>ID : {form.id}</h3>

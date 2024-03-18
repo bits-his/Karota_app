@@ -6,6 +6,7 @@ import AgentDropDown from "./AgentDropDown";
 import { Button, Row, Col } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import './vehicletopup.css'
 
 
 function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
@@ -38,10 +39,10 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
     _post(`top-up/create`,
     form,
     (res)=> {
-    
+      if(res.success){
         toast.success(`Sucessfully added ${form.amount}`)
         navigate('/vehicleownertable')
-      
+      }
     },
     err =>{
       console.log(err)
@@ -55,19 +56,6 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
       <div className="app_card dashboard_card m-0 p-0">
         <h3 className="text-center fw-bold">Vehicle Top-Up</h3>
 
-        <div
-          style={{
-            position: 'relative',
-            paddingLeft: '52px',
-            margin: "0 auto",
-            width: "40%",
-            height: "65vh",
-            borderRadius: "8px",
-            border: "1px solid #f5c005",
-            padding: "20px",
-            boxShadow: '1px 2px #f5c005'
-          }}
-        >
           {/* {JSON.stringify(form)} */}
           <div className="agent">
             <div
@@ -82,9 +70,12 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
                 handleChange={handleChange}
                 selectedAgentValue={form.agent_id}
               />
+              <>
+               <p style={{fontSize: '15px', fontWeight: '600', marginBottom: '20px'}}>Name : <span style={{marginLeft: '57px', fontWeight: '400'}}>{form.agent_name}</span></p>
+               <p style={{fontSize: '15px', fontWeight: '600', marginBottom: '20px'}}>ID : <span style={{marginLeft: '80px', fontWeight: '400'}}>{form.agent_id}</span></p>
+              </>
             </div>
-            <p style={{fontSize: '15px', fontWeight: '600', marginBottom: '20px'}}>Name : <span style={{marginLeft: '57px', fontWeight: '400'}}>{form.agent_name}</span></p>
-            <p style={{fontSize: '15px', fontWeight: '600', marginBottom: '20px'}}>ID : <span style={{marginLeft: '80px', fontWeight: '400'}}>{form.agent_id}</span></p>
+           
           </div>
           <div className="vehicle">
             <div
@@ -99,10 +90,13 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
                 handleChange={handleChange}
                 selectedVehicleValue={form.vehicle_id}
               />
-            </div>
-            <p style={{fontSize: '15px', fontWeight: '600', marginRight: '57px', marginBottom: '20px'}}>Name : <span  style={{marginLeft: '54px', fontWeight: '400'}}>{form.Plate_no}</span></p>
-            <p style={{fontSize: '15px', fontWeight: '600', marginRight: '57px', marginBottom: '20px'}}>ID :  <span  style={{marginLeft: '80px', fontWeight: '400'}}>{form.vehicle_id}</span></p>
+              <div>
+                <p style={{fontSize: '15px', fontWeight: '600', marginRight: '57px', marginBottom: '20px'}}>Name : <span  style={{marginLeft: '54px', fontWeight: '400'}}>{form.Plate_no}</span></p>
+               <p style={{fontSize: '15px', fontWeight: '600', marginRight: '57px', marginBottom: '20px'}}>ID :  <span  style={{marginLeft: '80px', fontWeight: '400'}}>{form.vehicle_id}</span></p>
 
+              </div>
+            </div>
+          
             <div style={{ display: "flex" }}>
               <p style={{fontSize: '15px', fontWeight: '600', marginRight: '57px'}}>Amount:</p>
               <input
@@ -142,7 +136,7 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
             }}
             >Submit</Button>
           </div>
-        </div>
+        {/* </div> */}
       </div>
     </>
   );

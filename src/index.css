@@ -738,17 +738,6 @@ select.form-select {
   text-align: center;
   font-size: 18px;
 }
-
-
-
-
-
-
-
-
-
-
-
 .spinner {
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-top: 4px solid #f5c005 ; /* Adjust the color as needed */

@@ -67,31 +67,39 @@ function SuperAgentTopUp({ selectedVendorValue, selectedAgentsValue }) {
       >
         Super Agent Top-Up
       </span>
+
+
       <div
         style={{
           position: "relative",
+          paddingLeft: '52px',
           top: "30px",
-          left: "20%",
-          width: "60%",
-          height: "60vh",
-          borderRadius: "5px",
+          margin: "0 auto",
+          width: "40%",
+          height: "65vh",
+          borderRadius: "8px",
           border: "1px solid #f5c005",
+          boxShadow: '1px 2px #f5c005'
         }}
       >
+        <div>
         <div
           style={{
             display: "flex",
             justifyContent: "center",
             marginTop: "15px",
+            marginBottom: '20px'
           }}
         >
           <span
             style={{
+                position: 'relative',
+                left: '-36px',
               display: "flex",
               alignItems: "center",
-              marginRight: "10px",
+            //   marginRight: "50px",
               fontWeight: "600",
-              fontSize: "18px",
+              fontSize: "15px",
             }}
           >
             Super Agent:
@@ -112,49 +120,14 @@ function SuperAgentTopUp({ selectedVendorValue, selectedAgentsValue }) {
             isLoading={loading}
           /> */}
         </div>
-        <div
-          style={{
-            position: "relative",
-            left: "26.8%",
-            marginTop: "15px",
-          }}
-        >
-          <span
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginRight: "10px",
-              fontWeight: "600",
-              fontSize: "18px",
-            }}
-          >
-            Name: {selectedVendor}
-          </span>
+        <p style={{fontSize: '15px', fontWeight: '600', marginBottom: '20px'}}>Name : <span style={{marginLeft: '72px', fontWeight: '400'}}>Ibrahim Auwal</span></p>
+        <p style={{fontSize: '15px', fontWeight: '600', marginBottom: '20px'}}>ID : <span style={{marginLeft: '95px', fontWeight: '400'}}>12345</span></p>       
         </div>
+       
         <div
           style={{
             position: "relative",
-            left: "31.5%",
-            marginTop: "15px",
-          }}
-        >
-          <span
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginRight: "10px",
-              fontWeight: "600",
-              fontSize: "18px",
-            }}
-          >
-            ID: {selectedVendor}
-          </span>
-        </div>
-
-        <div
-          style={{
-            position: "relative",
-            top: "30px",
+            top: "20px",
           }}
         >
           <div
@@ -166,11 +139,13 @@ function SuperAgentTopUp({ selectedVendorValue, selectedAgentsValue }) {
           >
             <span
               style={{
+                position: 'relative',
+                left: '-35px',
                 display: "flex",
                 alignItems: "center",
-                marginRight: "10px",
+                marginRight: "38px",
                 fontWeight: "600",
-                fontSize: "18px",
+                fontSize: "15px",
               }}
             >
               Agent:
@@ -190,79 +165,67 @@ function SuperAgentTopUp({ selectedVendorValue, selectedAgentsValue }) {
               isLoading={loading}
             />
           </div>
-          <div
-            style={{
-              position: "relative",
-              left: "26.8%",
-              marginTop: "15px",
-            }}
-          >
-            <span
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginRight: "10px",
-                fontWeight: "600",
-                fontSize: "18px",
-              }}
-            >
-              Name: {selectedVendor}
-            </span>
-          </div>
-          <div
-            style={{
-              position: "relative",
-              left: "31.5%",
-              marginTop: "15px",
-            }}
-          >
-            <span
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginRight: "10px",
-                fontWeight: "600",
-                fontSize: "18px",
-              }}
-            >
-              ID: {selectedVendor}
-            </span>
-          </div>
+          <p style={{fontSize: '15px', fontWeight: '600', marginRight: '57px', marginBottom: '20px', marginTop: '20px'}}>Name : <span  style={{marginLeft:  '72px', fontWeight: '400'}}>qwerty</span></p>
+          <p style={{fontSize: '15px', fontWeight: '600', marginRight: '57px', marginBottom: '20px'}}>ID :  <span  style={{marginLeft: '95px', fontWeight: '400'}}>1233344455</span></p>
         </div>
+
+
         <span
           style={{
             position: "relative",
-            top: "5rem",
-            left: "12rem",
+            top: "2.5rem",
             display: "flex",
             alignItems: "center",
             marginRight: "10px",
             fontWeight: "600",
-            fontSize: "18px",
+            fontSize: "15px",
           }}
         >
-          Balance:
+          Balance: 
+          <span  style={{marginLeft: '60px', fontWeight: '400'}}>1233344455</span>
         </span>
         <div>
           <span
             style={{
-              position: "absolute",
-              top: "37rem",
-              left: "12rem",
+              position: "relative",
+              top: "4rem",
               display: "flex",
               alignItems: "center",
               marginRight: "10px",
               fontWeight: "600",
-              fontSize: "18px",
+              fontSize: "15px",
             }}
           >
             Amount
           </span>
           <input
             placeholder="Enter amount here..."
-            className="app_input-topUp"
+            // className="app_input-topUp"
+            style={{
+              position: 'relative',
+              width: '50%',
+              left: '12.7rem',
+              top: '1.7rem',
+              height: '32px',
+              paddingLeft: '5px',
+              borderRadius: '5px',
+              border: '1px solid',
+            }}
           />
         </div>
+        <button
+          style={{
+            position: 'relative',
+                top: '30px',
+                borderRadius: '5px',
+                border: '0px solid',
+                height: '40px',
+                backgroundColor: '#f5c005',
+                left: '13rem',
+                width: '150px',
+                boxShadow: '1px 2px gray'
+          }}
+        >Submit</button>
       </div>
     </div>
   );

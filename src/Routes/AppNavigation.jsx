@@ -85,18 +85,6 @@ export default function AppNavigation() {
         {
           path: "vehicleownertable",
           element: <Vehicle />,
-<<<<<<< HEAD
-            children: [
-              {
-                path: '',
-                element: <VehicleOwnerTable />
-              },
-              {
-                path: ":id",
-                element: <VehicleView />
-              },
-          ]
-=======
           children: [
             {
               path: "",
@@ -107,7 +95,6 @@ export default function AppNavigation() {
               element: <VehicleView />,
             },
           ],
->>>>>>> bd0be33eb66c77be1e0ea0604fa18b3f3c1830e0
         },
         {
           path: "vehicleregistration/:id",

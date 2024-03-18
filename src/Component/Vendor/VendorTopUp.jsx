@@ -1,68 +1,46 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import Select from "react-select";
-import { useNavigate } from "react-router-dom";
-import { _get, _post } from "../../Utils/Helper";
-import { Button } from "reactstrap";
+import { _get } from '../../Utils/Helper';
 import VendorTopUpDropDown from "../Vendor/VendorTopUpDropDown"
-import VendorDropdown from '../SuperAgent/VendorDropdown';
 
-function VendorTopUp({selectedVendorValue}) {
+function VendorTopUp({selectedVendorValue, selectedAgent, handleSelectSuperAgentChange}) {
     const [data, setData] = useState([])
-    const [selectedAgent, setSelectedAgent] = useState(selectedVendorValue);
+    const [agentData, setAgentData] = useState([])
+    const [selectedVendor, setSelectedVendor] = useState(selectedVendorValue);
     const [loading, setLoading] = useState(false)
 
     const [form, setForm] = useState({});
 
-    const handleSelectChange = () => {}
-    const handleSelectSuperAgentChange = () => {}
-    const handleChange = ({ target: { name, value } }) => {
+    const handleSelectChange = ({ target: { name, value } }) => {
       setForm((prevForm) => ({
         ...prevForm,
         [name]: value,
       }));
     };
 
-    const submitTopUp = (e) => {
-      e.preventDefault();
-      _post(`top-up/create`,
-      form,
-      (res)=> {
-      
-          toast.success(`Sucessfully added ${form.amount}`)
-          navigate('/vehicleownertable')
-        
-      },
-      err =>{
-        console.log(err)
-      } 
-      )
-      console.log(form);
+
+    const getVendors = useCallback(() => {
+      setLoading(true);
+      _get(`vendors?query_type=select-all`, (resp) => {
+        setLoading(false);
+        if (resp.success && resp.result) {
+          const formattedData = resp.result.map((vendor) => ({
+            value: vendor.id,
+            label: vendor.vendor_name,
+          }));
+          setData(formattedData);
+        }
+      });
+    }, []);
+
+    useEffect(() => {
+        getVendors();
+    }, [getVendors])
+
+    const handleSelectVendorChange = (selectedOption) => {
+        setSelectedVendor(selectedOption);
+        handleSelectVendorChange({target: {name: "vendor", value: selectedOption.value}});
     };
-
-    const navigate = useNavigate();
-
-    // const getVendors = useCallback(() => {
-    //   setLoading(true);
-    //   _get(`vendors?query_type=select-all`, (resp) => {
-    //     setLoading(false);
-    //     if (resp.success && resp.result) {
-    //       const formattedData = resp.result.map((vendor) => ({
-    //         value: vendor.id,
-    //         label: vendor.vendor_name,
-    //       }));
-    //       setData(formattedData);
-    //     }
-    //   });
-    // }, []);
-
-    // useEffect(() => {
-    //     getVendors();
-    // }, [getVendors])
-
-    // const handleSelectVendorChange = (selectedOption) => {
-    //     setSelectedVendor(selectedOption);
-    //     handleSelectVendorChange({target: {name: "vendor", value: selectedOption.value}});
-    // };
   return (
     
     <div className="app_card dashboard_card m-0 p-0">

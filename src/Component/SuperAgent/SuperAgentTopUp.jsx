@@ -24,6 +24,22 @@ function SuperAgentTopUp() {
       <div className="app_card dashboard_card m-0 p-0">
         <h3 className="text-center fw-bold">Super Agent Top-Up</h3>
 
+
+      <div
+        style={{
+          position: "relative",
+          display: 'flex',
+          paddingLeft: '52px',
+          top: "30px",
+          margin: "0 auto",
+          width: "60%",
+          height: "45vh",
+          borderRadius: "8px",
+          border: "1px solid #f5c005",
+          boxShadow: '1px 2px #f5c005'
+        }}
+      >
+      <div>
         <div
           style={{
             margin: "0 auto",
@@ -88,6 +104,8 @@ function SuperAgentTopUp() {
             <Button onClick={submitTopUp}>Submit</Button>
           </div>
         </div>
+      </div>
+      </div>
       </div>
     </>
   );

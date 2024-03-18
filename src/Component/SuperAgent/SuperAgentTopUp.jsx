@@ -104,7 +104,7 @@ function SuperAgentTopUp() {
           //   padding: "20px",
           // }}
         >
-          {/* {JSON.stringify(form)} */}
+          {JSON.stringify(form)}
           <div className="agent">
             <div
               style={{

@@ -1,11 +1,12 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import Select from "react-select";
-import { _get } from '../../Utils/Helper';
+import { useNavigate } from "react-router-dom";
+import { _get, _post } from "../../Utils/Helper";
+import { Button } from "reactstrap";
 import VendorTopUpDropDown from "../Vendor/VendorTopUpDropDown"
 
 function VendorTopUp({selectedVendorValue}) {
     const [data, setData] = useState([])
-    const [agentData, setAgentData] = useState([])
     const [selectedAgent, setSelectedAgent] = useState(selectedVendorValue);
     const [loading, setLoading] = useState(false)
 
@@ -20,29 +21,47 @@ function VendorTopUp({selectedVendorValue}) {
       }));
     };
 
-
-    const getVendors = useCallback(() => {
-      setLoading(true);
-      _get(`vendors?query_type=select-all`, (resp) => {
-        setLoading(false);
-        if (resp.success && resp.result) {
-          const formattedData = resp.result.map((vendor) => ({
-            value: vendor.id,
-            label: vendor.vendor_name,
-          }));
-          setData(formattedData);
-        }
-      });
-    }, []);
-
-    useEffect(() => {
-        getVendors();
-    }, [getVendors])
-
-    const handleSelectVendorChange = (selectedOption) => {
-        setSelectedVendor(selectedOption);
-        handleSelectVendorChange({target: {name: "vendor", value: selectedOption.value}});
+    const submitTopUp = (e) => {
+      e.preventDefault();
+      _post(`top-up/create`,
+      form,
+      (res)=> {
+      
+          toast.success(`Sucessfully added ${form.amount}`)
+          navigate('/vehicleownertable')
+        
+      },
+      err =>{
+        console.log(err)
+      } 
+      )
+      console.log(form);
     };
+
+    const navigate = useNavigate();
+
+    // const getVendors = useCallback(() => {
+    //   setLoading(true);
+    //   _get(`vendors?query_type=select-all`, (resp) => {
+    //     setLoading(false);
+    //     if (resp.success && resp.result) {
+    //       const formattedData = resp.result.map((vendor) => ({
+    //         value: vendor.id,
+    //         label: vendor.vendor_name,
+    //       }));
+    //       setData(formattedData);
+    //     }
+    //   });
+    // }, []);
+
+    // useEffect(() => {
+    //     getVendors();
+    // }, [getVendors])
+
+    // const handleSelectVendorChange = (selectedOption) => {
+    //     setSelectedVendor(selectedOption);
+    //     handleSelectVendorChange({target: {name: "vendor", value: selectedOption.value}});
+    // };
   return (
     
     <div className="app_card dashboard_card m-0 p-0">

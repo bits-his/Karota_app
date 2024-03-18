@@ -24,12 +24,12 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
     // amount: "",
   });
   const navigate = useNavigate()
- const handleChange = ({ target: { name, value } }) => {
-   setForm((prevForm) => ({
-     ...prevForm,
-     [name]: value,
-   }));
- };
+  const handleChange = ({ target: { name, value } }) => {
+    setForm((prevForm) => ({
+      ...prevForm,
+      [name]: value,
+    }));
+  };
 
 
 

@@ -88,9 +88,9 @@ export default function SideBar() {
         )}
         {true ? (
           <div
-            onClick={() => goto("/supertopup")}
+            onClick={() => goto("/supatopup")}
             className={`link_item ${
-              location.pathname === "/supertopup" && "active_side_menu"
+              location.pathname === "/supatopup" && "active_side_menu"
             }`}
           >
             Super Agents Top Up

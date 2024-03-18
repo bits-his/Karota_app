@@ -11,9 +11,9 @@ import SuperAgent from "../Component/SuperAgent/SuperAgent";
 import SuperAgentTable from "../Component/SuperAgent/SuperAgentTable";
 import Agent from "../Component/SuperAgent/Agent";
 import AgentTable from "../Component/SuperAgent/AgentTable";
-import VendorTable from "../Component/Vendor/VendorTable"
+import VendorTable from "../Component/Vendor/VendorTable";
 import VendorReg from "../Component/Vendor/VendorReg";
-import VendorView from "../Component/Vendor/VendorView"
+import VendorView from "../Component/Vendor/VendorView";
 import VehicleOwnerTable from "../Component/vehicleOwner/VehicleOwnerTable";
 import TopUp from "../Component/SignIn/signUp/TopUp";
 import Dashboard from "../Component/Dashboard/index";
@@ -22,6 +22,7 @@ import AgentTopUp from "../Component/SuperAgent/AgentTopUp";
 import VendorTopUp from "../Component/Vendor/VendorTopUp";
 import VehicleView from "../Component/vehicleOwner/VehicleView";
 import Vehicle from "../Component/vehicleOwner/Vehicle";
+import VehicleTopUp from "../Component/vehicleOwner/VehicleTopUp";
 
 export default function AppNavigation() {
   let Pages = useRoutes([
@@ -69,14 +70,14 @@ export default function AppNavigation() {
           element: <VendorTable />,
           children: [
             {
-              path: '',
-              element: <VendorReg />
+              path: "",
+              element: <VendorReg />,
             },
             {
               path: ":id",
-              element: <VendorView />
+              element: <VendorView />,
             },
-        ]
+          ],
         },
         {
           path: "/vehicleOwner",
@@ -115,6 +116,10 @@ export default function AppNavigation() {
         {
           path: "/agintopup",
           element: <AgentTopUp />,
+        },
+        {
+          path: "/vehicletopup",
+          element: <VehicleTopUp />,
         },
         // {
         //   path: "/superagenttopup",

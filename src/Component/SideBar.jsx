@@ -51,7 +51,6 @@ export default function SideBar() {
         ) : (
           ""
         )}
-
         {true ? (
           <div
             onClick={() => goto("/vendortopup")}
@@ -65,7 +64,6 @@ export default function SideBar() {
         ) : (
           ""
         )}
-
         {/* <div
           onClick={() => goto("/")}
           className={`link_item ${location.pathname === "/" && "active_side_menu"
@@ -76,9 +74,9 @@ export default function SideBar() {
         </div> */}
         {true ? (
           <div
-            onClick={() => goto("/supergentable")}
+            onClick={() => goto("/superagentable")}
             className={`link_item ${
-              location.pathname  === "/super" && "active_side_menu"
+              location.pathname === "/superagentable" && "active_side_menu"
             }`}
           >
             Super Agents
@@ -88,9 +86,9 @@ export default function SideBar() {
         )}
         {true ? (
           <div
-            onClick={() => goto("/supatopup")}
+            onClick={() => goto("/superagenttopup")}
             className={`link_item ${
-              location.pathname === "/supatopup" && "active_side_menu"
+              location.pathname === "/superagenttopup" && "active_side_menu"
             }`}
           >
             Super Agents Top Up
@@ -98,12 +96,11 @@ export default function SideBar() {
         ) : (
           ""
         )}
-
         {true ? (
           <div
-            onClick={() => goto("/agentable")}
+            onClick={() => goto("/agenttable")}
             className={`link_item ${
-              location.pathname.includes("agent") && "active_side_menu"
+              location.pathname === "/agenttable" && "active_side_menu"
             }`}
           >
             {/* <GiArchiveRegister className="icon shadow" /> */}
@@ -124,17 +121,18 @@ export default function SideBar() {
         ) : (
           ""
         )} */}
-
-         {/* {true ? (<div
-          onClick={() => goto("/agenttopup")}
-          className={`link_item ${location.pathname === "/agenttopup" && "active_side_menu"
+        {true ? (
+          <div
+            onClick={() => goto("/agenttopup")}
+            className={`link_item ${
+              location.pathname === "/agenttopup" && "active_side_menu"
             }`}
-        >
-          {/* <GiArchiveRegister className="icon shadow" /> */}
-          Agents Top Up
-        {/* </div> */}
-          {/* ) : ""}  */} 
-
+          >
+            Agents Top Up
+          </div>
+        ) : (
+          ""
+        )}
         {true ? (
           <div
             onClick={() => goto("/vehicleownertable")}
@@ -148,7 +146,6 @@ export default function SideBar() {
         ) : (
           ""
         )}
-
         {true ? (
           <div
             onClick={() => goto("/vehicletopup")}
@@ -162,7 +159,6 @@ export default function SideBar() {
         ) : (
           ""
         )}
-
         {true ? (
           <div
             onClick={() => goto("/top-up")}

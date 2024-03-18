@@ -11,7 +11,7 @@ export default function Agent() {
   const { user } = useSelector((p) => p.auth);
   const _form = {
     query_type: "create",
-    super_agent: user.id,
+    // super_agent: user.id,
   };
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState(_form);
@@ -20,26 +20,51 @@ export default function Agent() {
   };
   const navigate = useNavigate();
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   setLoading(true);
+  //   _post(
+  //     "agents/create",
+  //     form,
+  //     (res) => {
+  //       if (res.success) {
+  //         setLoading(true);
+  //         toast.success("Agent created successfully");
+  //         navigate("/agentable");
+  //       }
+  //     },
+  //     () => {
+  //       setLoading(false);
+  //       toast.error("An error occurred while creating Agent");
+  //     }
+  //   );
+  // };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (loading) return;
+
     setLoading(true);
+
     _post(
-      "agents/create",
+      "/agents/create",
       form,
       (res) => {
-        if (res.success) {
-          setLoading(true);
-          toast.success("Agent created successfully");
-          navigate("/agentable");
-        }
+        setLoading(false); // Set loading to false when submission is successful
+        toast.success("Agent created successfully");
+        // setSubmittedData([...submittedData, res]);
+        navigate("/agenttable");
       },
-      () => {
-        setLoading(false);
+      (err) => {
+        console.log(err);
         toast.error("An error occurred while creating Agent");
+        setLoading(false); // Set loading to false in case of error
       }
     );
   };
+
   return (
     <div>
       {/* <button className="app_button" onClick={() => navigate("/agent")}>
@@ -63,7 +88,7 @@ export default function Agent() {
                   color: "#000",
                   borderRadius: 10,
                 }}
-                onClick={() => navigate("/agentable")}
+                onClick={() => navigate("/agenttable")}
               >
                 Back
               </button>
@@ -81,7 +106,7 @@ export default function Agent() {
 
                       <SuperAgentDropdown
                         handleChange={handleChange}
-                        selectedVendorValue={form.super_agent}
+                        selectedVendorValue={form.super_id}
                       />
                     </FormGroup>
                   </Col>
@@ -212,11 +237,12 @@ export default function Agent() {
                       color: "",
                       cursor: "pointer",
                       borderRadius: 7,
-                      margin: "auto",
                     }}
                     onClick={handleSubmit}
+                    disabled={loading}
                   >
-                    Submit
+                    {loading ? "Submitting..." : "Submit"}
+                           
                   </button>
                 </Col>
               </Row>

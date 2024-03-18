@@ -56,7 +56,7 @@ function VendorReg() {
     getReg();
   }, [getReg]);
   return (
-    <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
+    <>
       <Row>
         <Col
           md={12}
@@ -264,7 +264,7 @@ function VendorReg() {
           </Row>
         </ModalFooter>
       </Modal> 
-    </Card>
+    </>
   );
 }
 

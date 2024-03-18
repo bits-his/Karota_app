@@ -46,7 +46,7 @@ export default function SuperAgent() {
         setLoading(true);
         toast.success("super agent created successfully");
         setSubmittedData([...submittedData, res]);
-        navigate("/superagentable");
+        navigate("/supergentable");
       },
       () => {
         setLoading(false);
@@ -79,7 +79,7 @@ export default function SuperAgent() {
                   color: "#000",
                   borderRadius: 10,
                 }}
-                onClick={() => navigate("/superagentable")}
+                onClick={() => navigate("/supergentable")}
               >
                 Back
               </button>

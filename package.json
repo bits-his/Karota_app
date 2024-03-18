@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm install --legacy-peer-deps && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -27,6 +27,7 @@
     "react-hot-toast": "^2.4.1",
     "react-icon": "^1.0.0",
     "react-icons": "^4.9.0",
+    "react-interswitch": "^1.0.8",
     "react-modal": "^3.16.1",
     "react-qr-code": "^2.0.12",
     "react-redux": "^8.0.5",

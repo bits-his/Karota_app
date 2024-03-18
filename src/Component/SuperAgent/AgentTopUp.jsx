@@ -1,27 +1,29 @@
-import React, { useState, useCallback, useEffect } from 'react'
-import Select from 'react-select';
-import { _get } from '../../Utils/Helper';
+import React, { useState, useCallback, useEffect } from "react";
+import { _get } from "../../Utils/Helper";
+import { Button } from "reactstrap";
+import SuperDropdown from "./SuperDropdown";
+import AgentDropDown from "../vehicleOwner/AgentDropDown";
 
-// &plate_no=${filter}
-function AgentTopUp() {
-    const [data, setData] = useState([])
+function SuperAgentTopUp() {
+  const [form, setForm] = useState({});
+  const handleChange = ({ target: { name, value } }) => {
+    setForm((prevForm) => ({
+      ...prevForm,
+      [name]: value,
+    }));
+  };
 
-    const getReg = useCallback(() => {
-        _get(`agents?query_type=select-all`,
-          (resp) => {
-            if (resp.success && resp.results) {
-              setData(resp.results);
-            }
-          });
-      }, []);
-    
-      useEffect(() => {
-        getReg();
-      }, [getReg]);
+  const submitTopUp = (e) => {
+    e.preventDefault();
+    console.log(form);
+  };
 
   return (
-    <div className="app_card dashboard_card m-0 p-0">
-      <span
+    <>
+      <div className="app_card dashboard_card m-0 p-0">
+        <h3 className="text-center fw-bold">Agent Top-Up</h3>
+
+        <div
           style={{
             display: 'flex',
             justifyContent: 'center',
@@ -146,4 +148,4 @@ function AgentTopUp() {
   )
 }
 
-export default AgentTopUp
+export default SuperAgentTopUp;

@@ -1,56 +1,45 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import Select from "react-select";
 import { _get } from '../../Utils/Helper';
+import VendorTopUpDropDown from "../Vendor/VendorTopUpDropDown"
 
-function VendorTopUp({selectedAgentValue, selectedSuperAgentsValue}) {
+function VendorTopUp({selectedVendorValue}) {
     const [data, setData] = useState([])
     const [agentData, setAgentData] = useState([])
-    const [selectedAgent, setSelectedAgent] = useState(selectedAgentValue)
-    const [selectedSuperAgents, setSelectedSuperAgents] = useState(selectedSuperAgentsValue)
+    const [selectedVendor, setSelectedVendor] = useState(selectedVendorValue);
     const [loading, setLoading] = useState(false)
 
+    const [form, setForm] = useState({});
 
-    const getSuperAgent = useCallback(() => {
-        setLoading(true);
-        _get(`superagent?query_type=select-all`, (resp) => {
-            setLoading(false);
-            if(resp.success && resp.result){
-                const formattedData = resp.result.map((superagent) => ({
-                    value: superagent.id,
-                    label: superagent._name,
-                }));
-                setData(formattedData);
-            }
-        });
-    }, []);
+    const handleChange = ({ target: { name, value } }) => {
+      setForm((prevForm) => ({
+        ...prevForm,
+        [name]: value,
+      }));
+    };
 
-    const getAgents = useCallback(() => {
-        setLoading(true);
-        _get(`agents?query_type=select-all`, (resp) => {
-            setLoading(false);
-            if(resp.success && resp.result){
-                const formattedAgentData = resp.result.map((agents) => ({
-                    value: agents.id,
-                    label: agents.agents_name,
-                }));
-                console.log(formattedAgentData)
-                setAgentData(formattedAgentData);
-            }
-        });
+
+    const getVendors = useCallback(() => {
+      setLoading(true);
+      _get(`vendors?query_type=select-all`, (resp) => {
+        setLoading(false);
+        if (resp.success && resp.result) {
+          const formattedData = resp.result.map((vendor) => ({
+            value: vendor.id,
+            label: vendor.vendor_name,
+          }));
+          setData(formattedData);
+        }
+      });
     }, []);
 
     useEffect(() => {
-        getSuperAgent();
-        getAgents()
-    }, [getSuperAgent])
+        getVendors();
+    }, [getVendors])
 
-    const handleSelectChange = (selectedOption) => {
-        setSelectedAgent(selectedOption);
-        handleSelectChange({target: {name: "agent", value: selectedOption.value}});
-    };
-    const handleSelectSuperAgentChange = (selectedOption) => {
-        setSelectedSuperAgents(selectedOption);
-        handleSelectSuperAgentChange({target: {name: "superagent", value: selectedOption.value}});
+    const handleSelectVendorChange = (selectedOption) => {
+        setSelectedVendor(selectedOption);
+        handleSelectVendorChange({target: {name: "vendor", value: selectedOption.value}});
     };
   return (
     
@@ -62,7 +51,7 @@ function VendorTopUp({selectedAgentValue, selectedSuperAgentsValue}) {
             fontWeight: '600',
             fontSize: '16px',
           }}
-        >Super Agent Top-Up</span>
+        >Vendor Top-Up</span>
         <div
           style={{
             position: 'relative',

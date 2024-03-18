@@ -7,8 +7,8 @@ import { toParagraph } from "../Utils/Helper";
 
 export default function SideBar() {
   const goto = useNavigate();
-  const { user } = useSelector(p => p.auth)
-  
+  const { user } = useSelector((p) => p.auth);
+
   return (
     <>
       <div>
@@ -38,25 +38,33 @@ export default function SideBar() {
         >
           {toParagraph(user.role)} Dashboard
         </div>
-        {true ? (<div
-          onClick={() => goto("/vendorReg")}
-          className={`link_item ${location.pathname === "/vendor" && "active_side_menu"
+        {true ? (
+          <div
+            onClick={() => goto("/vendorReg")}
+            className={`link_item ${
+              location.pathname === "/vendor" && "active_side_menu"
             }`}
-        >
-          {/* <GiArchiveRegister className="icon shadow" /> */}
-          Vendors
-        </div>
-         ) : ""}
+          >
+            {/* <GiArchiveRegister className="icon shadow" /> */}
+            Vendors
+          </div>
+        ) : (
+          ""
+        )}
 
-         {true ? (<div
-          onClick={() => goto("/vendortopup")}
-          className={`link_item ${location.pathname === "/vendortopup" && "active_side_menu"
+        {true ? (
+          <div
+            onClick={() => goto("/vendortopup")}
+            className={`link_item ${
+              location.pathname === "/vendortopup" && "active_side_menu"
             }`}
-        >
-          {/* <GiArchiveRegister className="icon shadow" /> */}
-          Vendors Top Up
-        </div>
-         ) : ""} 
+          >
+            {/* <GiArchiveRegister className="icon shadow" /> */}
+            Vendors Top Up
+          </div>
+        ) : (
+          ""
+        )}
 
         {/* <div
           onClick={() => goto("/")}
@@ -66,33 +74,56 @@ export default function SideBar() {
           {/* <GiArchiveRegister className="icon shadow" /> 
           Regitration
         </div> */}
-        {true ? (<div
-          onClick={() => goto("/superagentable")}
-          className={`link_item ${location.pathname  === "/super" && "active_side_menu"
+        {true ? (
+          <div
+            onClick={() => goto("/supergentable")}
+            className={`link_item ${
+              location.pathname  === "/super" && "active_side_menu"
             }`}
-        >
-          {/* <GiArchiveRegister className="icon shadow" /> */}
-          Super Agents
-        </div>) : ""}
+          >
+            Super Agents
+          </div>
+        ) : (
+          ""
+        )}
+        {true ? (
+          <div
+            onClick={() => goto("/supertopup")}
+            className={`link_item ${
+              location.pathname === "/supertopup" && "active_side_menu"
+            }`}
+          >
+            Super Agents Top Up
+          </div>
+        ) : (
+          ""
+        )}
 
-        {true ? (<div
-          onClick={() => goto("/superagenttopup")}
-          className={`link_item ${location.pathname === "/superagenttopup" && "active_side_menu"
+        {true ? (
+          <div
+            onClick={() => goto("/agentable")}
+            className={`link_item ${
+              location.pathname.includes("agent") && "active_side_menu"
             }`}
-        >
-          {/* <GiArchiveRegister className="icon shadow" /> */}
-          Super Agents Top Up
-        </div>) : ""}
-
-        {true ? (<div
-          onClick={() => goto("/agentable")}
-          className={`link_item ${location.pathname === "/agentable" && "active_side_menu"
+          >
+            {/* <GiArchiveRegister className="icon shadow" /> */}
+            Agents
+          </div>
+        ) : (
+          ""
+        )}
+        {true ? (
+          <div
+            onClick={() => goto("/agintopup")}
+            className={`link_item ${
+              location.pathname === "/agintopup" && "active_side_menu"
             }`}
-        >
-          {/* <GiArchiveRegister className="icon shadow" /> */}
-          Agents
-        </div>
-          ) : ""} 
+          >
+            Agents Top Up
+          </div>
+        ) : (
+          ""
+        )}
 
          {true ? (<div
           onClick={() => goto("/agenttopup")}
@@ -104,35 +135,48 @@ export default function SideBar() {
         </div>
           ) : ""} 
 
-        {true ? (<div
-          onClick={() => goto("/vehicleownertable")}
-          className={`link_item ${location.pathname === "/vehicleownertable" && "active_side_menu"
+        {true ? (
+          <div
+            onClick={() => goto("/vehicleownertable")}
+            className={`link_item ${
+              location.pathname === "/vehicleownertable" && "active_side_menu"
             }`}
-        >
-          {/* <GiArchiveRegister className="icon shadow" /> */}
-          Vehicles
-        </div>) : ""}
+          >
+            {/* <GiArchiveRegister className="icon shadow" /> */}
+            Vehicles
+          </div>
+        ) : (
+          ""
+        )}
 
-        {true ? (<div
-          onClick={() => goto("/vehicletopup")}
-          className={`link_item ${location.pathname === "/vehicletopup" && "active_side_menu"
+        {true ? (
+          <div
+            onClick={() => goto("/vehicletopup")}
+            className={`link_item ${
+              location.pathname === "/vehicletopup" && "active_side_menu"
             }`}
-        >
-          {/* <GiArchiveRegister className="icon shadow" /> */}
-          Vehicles Top Up
-        </div>) : ""}
+          >
+            {/* <GiArchiveRegister className="icon shadow" /> */}
+            Vehicles Top Up
+          </div>
+        ) : (
+          ""
+        )}
 
-        {true ? (<div
-          onClick={() => goto("/top-up")}
-          className={`link_item ${location.pathname.includes("top-up") ? "active_side_menu" : ""}`}
-        >
-          {/* <GiArchiveRegister className="icon shadow" /> */}
-          Top Up
-        </div>
-         ) : ""} 
-
-        
-      </section >
+        {true ? (
+          <div
+            onClick={() => goto("/top-up")}
+            className={`link_item ${
+              location.pathname.includes("top-up") ? "active_side_menu" : ""
+            }`}
+          >
+            {/* <GiArchiveRegister className="icon shadow" /> */}
+            Top Up
+          </div>
+        ) : (
+          ""
+        )}
+      </section>
     </>
   );
 }

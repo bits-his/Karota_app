@@ -1,10 +1,12 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import Select from "react-select";
-import { _get } from "../../Utils/Helper";
+import { _get, _post } from "../../Utils/Helper";
 import VehicleDropDown from "./VehicleDropDown";
 import AgentDropDown from "./AgentDropDown";
 import { Button, Row, Col } from "reactstrap";
-import { json } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+
 
 function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
   const [data, setData] = useState([]);
@@ -21,6 +23,7 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
     // chasis_no: "",
     // amount: "",
   });
+  const navigate = useNavigate()
  const handleChange = ({ target: { name, value } }) => {
    setForm((prevForm) => ({
      ...prevForm,
@@ -32,6 +35,18 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
 
   const submitTopUp = (e) => {
     e.preventDefault();
+    _post(`top-up/create`,
+    form,
+    (res)=> {
+    
+        toast.success(`Sucessfully added ${form.amount}`)
+        navigate('/vehicleownertable')
+      
+    },
+    err =>{
+      console.log(err)
+    } 
+    )
     console.log(form);
   };
 

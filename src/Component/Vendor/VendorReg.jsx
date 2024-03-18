@@ -10,28 +10,37 @@ import {
   Label,
   Input,
   Spinner,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
 } from "reactstrap";
-import { _get } from "../../Utils/Helper";
+import { _get, formatNumber } from "../../Utils/Helper";
+import PaymentButton from "../../PayWithInterswitch";
+import moment from "moment";
 
 function VendorReg() {
+  const _form = {
+    date_from: "",
+    date_to: "",
+    amount: 0,
+  };
   const navigate = useNavigate();
-
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("");
-  const [currentVendor, setCurrentVendor] = useState({});
-
+  const [currentVendor, setCurrentVendor] = useState(_form);
   const [loading, setLoading] = useState(false); // Add loading state
-
   const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
-
+  const [vendor, setVendor] = useState({});
+  const [form, setForm] = useState({});
+  const reference_no = moment().format("YYYYMMDDhhmmssSSS");
+  const onHandleChange = ({ target: { name, value } }) => {
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+  const toggle = (data) => {
+    console.log(data);
+    setVendor(data);
+    setModal(!modal);
+  };
   const getReg = useCallback(() => {
     setLoading(true); // Set loading to true before API call
-    _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
+    _get(`vendors?query_type=select-all`, (resp) => {
       setLoading(false); // Set loading to false after receiving response
       if (resp.success && resp.results) {
         setData(resp.results);
@@ -166,53 +175,86 @@ function VendorReg() {
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader className="text-center modal-head-vendor-topup">Vendor top up</ModalHeader>
         <ModalBody>
-            <div className="modal-row-details">
-              <div className="modal-row-content small-margin-right">
-                <span>Name:</span>
-                <div></div>
-              </div>
-              <div className="modal-row-content">
-                <span>Vendor no.:</span>
-                <div></div>
-              </div>
+          <div className="modal-row-details">
+            <div className="modal-row-content small-margin-right">
+              <span>Name:</span>
+              <div>{vendor?.vendor_name}</div>
             </div>
-            <div className="modal-row-details">
-              <div className="modal-row-content small-margin-right">
-                <span>E-mail:</span>
-                <div></div>
-              </div>
-              <div className="modal-row-content">
-                <span>Balance:</span>
-                <div></div>
-              </div>
+            <div className="modal-row-content">
+              <span>Vendor no.:</span>
+              <div>{vendor?.id}</div>
             </div>
-            <div>
+          </div>
+          <div className="modal-row-details">
+            <div className="modal-row-content small-margin-right">
+              <span>E-mail:</span>
+              <div>{vendor?.vendor_org_email}</div>
+            </div>
+            <div className="modal-row-content">
+              <span>Balance:</span>
+              <div>{formatNumber(vendor?.balance)}</div>
+            </div>
+          </div>
+          <div>
             <div className="period-bigger">period</div>
-              <div className="modal-row-details">
-                <div className="modal-row-content small-margin-right">
-                  <div>From</div>
-                  <Input type="date" />
-                </div>
-                <div className="modal-row-content">
-                  <div>To</div>
-                  <Input type="date" />
-                </div>
+            <div className="modal-row-details">
+              <div className="modal-row-content small-margin-right">
+                <div>From</div>
+                <Input
+                  type="date"
+                  className="text-center"
+                  value={form.date_from}
+                  name="date_from"
+                  onChange={onHandleChange}
+                />
+              </div>
+              <div className="modal-row-content">
+                <div>To</div>
+                <Input
+                  type="date"
+                  className="text-center"
+                  value={form.date_to}
+                  name="date_to"
+                  onChange={onHandleChange}
+                />
               </div>
             </div>
-            <div className="modal-row-details modal-amount">
-                <span>Amount: </span>
-                <Input type="number" style={{ width: "50%" }} />
+          </div>
+          <div className="text-center">
+            <div>
+              <Label>Amount({formatNumber(form.amount)})</Label>
+              <Input
+                type="number"
+                // style={{ width: "50%" }}
+                className="text-center"
+                value={form.amount}
+                name="amount"
+                onChange={onHandleChange}
+              />
             </div>
+          </div>
         </ModalBody>
         <ModalFooter>
-          <Button color="danger" onClick={toggle}>
-            Cancel
-          </Button>
-          <Button color="success" onClick={toggle}>
-            Pay
-          </Button>
+          <Row className="text-center">
+            <Col md={8}>
+              <Button color="danger" onClick={toggle}>
+                Cancel
+              </Button>
+            </Col>
+            <Col md={2}>
+              <PaymentButton
+                color="success"
+                amount={form.amount}
+                label="Pay"
+                email={vendor?.vendor_org_email}
+                user_id={vendor?.id}
+                name={vendor?.vendor_name}
+                reference_no={reference_no}
+              />
+            </Col>
+          </Row>
         </ModalFooter>
-      </Modal>
+      </Modal> 
     </Card>
   );
 }

@@ -1,60 +1,23 @@
 import React, { useState, useCallback, useEffect } from "react";
-import Select from "react-select";
 import { _get } from "../../Utils/Helper";
 import VendorDropdown from "./VendorDropdown";
+import { Button } from "reactstrap";
+import SuperDropdown from "./SuperDropdown";
 
-function SuperAgentTopUp({ selectedVendorValue, selectedAgentsValue }) {
-  const [data, setData] = useState([]);
-  const [agentData, setAgentData] = useState([]);
-  const [selectedVendor, setSelectedVendor] = useState(selectedVendorValue);
-  const [selectedAgents, setSelectedAgents] = useState(selectedAgentsValue);
-  const [loading, setLoading] = useState(false);
-
-  const getVendors = useCallback(() => {
-    setLoading(true);
-    _get(`vendors?query_type=select-all`, (resp) => {
-      setLoading(false);
-      if (resp.success && resp.result) {
-        const formattedData = resp.result.map((vendor) => ({
-          value: vendor.id,
-          label: vendor.vendor_name,
-        }));
-        setData(formattedData);
-      }
-    });
-  }, []);
-
-  const getAgents = useCallback(() => {
-    setLoading(true);
-    _get(`agents?query_type=select-all`, (resp) => {
-      setLoading(false);
-      if (resp.success && resp.result) {
-        const formattedAgentData = resp.result.map((agents) => ({
-          value: agents.id,
-          label: agents.agents_name,
-        }));
-        setAgentData(formattedAgentData);
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    getVendors();
-    getAgents();
-  }, [getVendors]);
-
-  const handleSelectChange = (selectedOption) => {
-    setSelectedVendor(selectedOption);
-    handleSelectChange({
-      target: { name: "vendor", value: selectedOption.value },
-    });
+function SuperAgentTopUp() {
+  const [form, setForm] = useState({});
+  const handleChange = ({ target: { name, value } }) => {
+    setForm((prevForm) => ({
+      ...prevForm,
+      [name]: value,
+    }));
   };
-  const handleSelectAgentChange = (selectedOption) => {
-    setSelectedAgents(selectedOption);
-    handleSelectAgentChange({
-      target: { name: "agents", value: selectedOption.value },
-    });
+
+  const submitTopUp = (e) => {
+    e.preventDefault();
+    console.log(form);
   };
+
   return (
     <div className="app_card dashboard_card m-0 p-0">
       <span
@@ -148,22 +111,14 @@ function SuperAgentTopUp({ selectedVendorValue, selectedAgentsValue }) {
                 fontSize: "15px",
               }}
             >
-              Agent:
-            </span>
-            <Select
-              value={selectedAgents}
-              onChange={handleSelectAgentChange}
-              options={agentData}
-              placeholder="Search for a agents..."
-              styles={{
-                borderRadius: "none !important",
-                border: "1px solid #f5c005 !important",
-                marginBottom: "15px",
-                width: "60%",
-                padding: "8px",
-              }}
-              isLoading={loading}
-            />
+              <h4> Select Vendor:</h4>
+              <VendorDropdown
+                handleChange={handleChange}
+                selectedAgentValue={form.vendor}
+              />
+            </div>
+            <h3>Name : {form.vendor_name}</h3>
+            <h3>ID : {form.vendor_id}</h3>
           </div>
           <p style={{fontSize: '15px', fontWeight: '600', marginRight: '57px', marginBottom: '20px', marginTop: '20px'}}>Name : <span  style={{marginLeft:  '72px', fontWeight: '400'}}>qwerty</span></p>
           <p style={{fontSize: '15px', fontWeight: '600', marginRight: '57px', marginBottom: '20px'}}>ID :  <span  style={{marginLeft: '95px', fontWeight: '400'}}>1233344455</span></p>
@@ -227,7 +182,7 @@ function SuperAgentTopUp({ selectedVendorValue, selectedAgentsValue }) {
           }}
         >Submit</button>
       </div>
-    </div>
+    </>
   );
 }
 

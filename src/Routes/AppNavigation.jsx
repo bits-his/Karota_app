@@ -106,7 +106,7 @@ export default function AppNavigation() {
           element: <TopUp />,
         },
         {
-          path: "/supertopup",
+          path: "/supatopup",
           element: <SuperAgentTopUp />,
         },
         {

@@ -44,6 +44,7 @@ export default function RegistrationTable() {
                 if (res.success) {
                     setLoading(false);
                     toast.success("Successful");
+                    // alert("success")
                     console.log(form);
                     setForm(_form);
                 }

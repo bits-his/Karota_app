@@ -2,11 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, Col, Row, Form, FormGroup, Label, Input, Button } from 'reactstrap'
 import { stateLga } from '../../assets/state_and_lgas'
-<<<<<<< HEAD
 import toast from 'react-hot-toast';
-=======
-import { _post } from '../../Utils/Helper'
->>>>>>> 7f399851e73cf8aade7ae25838d3ea144f84ac88
 
 export default function RegistrationTable() {
 
@@ -56,17 +52,9 @@ export default function RegistrationTable() {
 			form,
 			(res) => {
 				setLoading(false);
-<<<<<<< HEAD
 				toast.success("Successful");
 				console.log(form);
 				setForm(_form);
-=======
-				if (res.success) {
-					alert("sucessful");
-					console.log(form);
-					setForm(_form);
-				}
->>>>>>> 7f399851e73cf8aade7ae25838d3ea144f84ac88
 			},
 			(err) => {
 				setLoading(false);

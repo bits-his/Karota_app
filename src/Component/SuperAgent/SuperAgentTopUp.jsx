@@ -3,6 +3,7 @@ import { _get } from "../../Utils/Helper";
 import VendorDropdown from "./VendorDropdown";
 import { Button } from "reactstrap";
 import SuperDropdown from "./SuperDropdown";
+import VendorTopUpDropDown from "../Vendor/VendorTopUpDropDown";
 
 function SuperAgentTopUp() {
   const [form, setForm] = useState({});
@@ -42,9 +43,9 @@ function SuperAgentTopUp() {
               }}
             >
               <h4> Select Vendor:</h4>
-              <VendorDropdown
+              <VendorTopUpDropDown
                 handleChange={handleChange}
-                selectedAgentValue={form.vendor}
+                selectedVendorValue={form.vendor_id}
               />
             </div>
             <h3>Name : {form.vendor_name}</h3>
@@ -60,11 +61,11 @@ function SuperAgentTopUp() {
               <h4> Select SuperAgent</h4>
               <SuperDropdown
                 handleChange={handleChange}
-                selectedSuperValue={form.super_id}
+                selectedSuperValue={form.superagent_id}
               />
             </div>
-            <h3>Name : {form.super_id}</h3>
-            <h3>ID : {form.super_name}</h3>
+            <h3>Name : {form.superagent_id}</h3>
+            <h3>ID : {form.superagent_name}</h3>
 
             <div style={{ display: "flex" }}>
               <h3>Amount:</h3>

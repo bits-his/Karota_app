@@ -4,18 +4,18 @@ import { Col, Row } from 'reactstrap'
 import SideBar from '../Component/SideBar'
 
 export default function AppIndex() {
-  return (
-    <div >
-        <Row className="m-0 p-0" style={{padding: 0, margin: 0, display: 'flex', flexDirection: 'row'}}>
-            <Col md={2} className="m-0 sidebar">
-                <SideBar />
-            </Col>
-            <Col md={10}>
-                <Col md={12} className="p-0 m-0" style={{position: 'absolute', marginRight: 'auto'}}>
-                    <Outlet />
+    return (
+        <div >
+            <Row className="m-0 p-0" style={{ padding: 0, margin: 0, display: 'flex', flexDirection: 'row' }}>
+                <Col md={2} sm={0} className="m-0 sidebar">
+                    <SideBar />
                 </Col>
-            </Col>
-        </Row>
-    </div>
-  )
+                <Col md={10} sm={12}>
+                    <div className="p-0 m-0" style={{ marginRight: 'auto', width: '100%' }}>
+                        <Outlet />
+                    </div>
+                </Col>
+            </Row>
+        </div>
+    )
 }

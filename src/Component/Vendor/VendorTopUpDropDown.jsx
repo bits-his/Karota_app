@@ -72,7 +72,7 @@ function VendorTopUpDropDown({ handleChange, selectedVendorValue }) {
         value={selectedVendor}
         onChange={handleSelectChange}
         options={data}
-        placeholder="Search for a vehicle..."
+        placeholder="Search for a vendor..."
         styles={{
           borderRadius: "none !important",
           border: "1px solid #f5c005 !important",

@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { _get } from "../../Utils/Helper";
 import VendorDropdown from "./VendorDropdown";
-import { Button, } from "reactstrap";
+import { Button } from "reactstrap";
 import SuperDropdown from "./SuperDropdown";
 
 function SuperAgentTopUp() {
@@ -21,7 +21,7 @@ function SuperAgentTopUp() {
   return (
     <>
       <div className="app_card dashboard_card m-0 p-0">
-        <h3 className="text-center fw-bold">Vehicle Top-Up</h3>
+        <h3 className="text-center fw-bold">Super Agent Top-Up</h3>
 
         <div
           style={{
@@ -58,7 +58,10 @@ function SuperAgentTopUp() {
               }}
             >
               <h4> Select SuperAgent</h4>
-              <SuperDropdown handleChange={handleChange} selectedSuperValue={form.super_id}/>
+              <SuperDropdown
+                handleChange={handleChange}
+                selectedSuperValue={form.super_id}
+              />
             </div>
             <h3>Name : {form.name}</h3>
             <h3>ID : {form.id}</h3>

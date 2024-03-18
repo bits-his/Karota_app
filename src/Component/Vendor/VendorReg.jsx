@@ -263,7 +263,7 @@ function VendorReg() {
             </Col>
           </Row>
         </ModalFooter>
-      </Modal>
+      </Modal> 
     </Card>
   );
 }

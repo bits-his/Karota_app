@@ -6,10 +6,6 @@ import { Button } from "reactstrap";
 import VendorTopUpDropDown from "../Vendor/VendorTopUpDropDown"
 
 function VendorTopUp({selectedVendorValue}) {
-    const [data, setData] = useState([])
-    const [selectedVendor, setSelectedVendor] = useState(selectedVendorValue);
-    const [loading, setLoading] = useState(false)
-
     const [form, setForm] = useState({});
 
     const handleChange = ({ target: { name, value } }) => {
@@ -21,18 +17,7 @@ function VendorTopUp({selectedVendorValue}) {
 
     const submitTopUp = (e) => {
       e.preventDefault();
-      _post(`top-up/create`,
-      form,
-      (res)=> {
-      
-          toast.success(`Sucessfully added ${form.amount}`)
-          navigate('/vehicleownertable')
-        
-      },
-      err =>{
-        console.log(err)
-      } 
-      )
+     
       console.log(form);
     };
 
@@ -63,6 +48,7 @@ function VendorTopUp({selectedVendorValue}) {
   return (
     <>
       <div className="app_card dashboard_card m-0 p-0">
+        <div className='middle-card-topup' style={{margin: "auto"}}>
           <h3
             style={{
               display: 'flex',
@@ -72,40 +58,32 @@ function VendorTopUp({selectedVendorValue}) {
             }}
           >Vendor Top-Up</h3>
           
-          <div style={{ position: 'relative', top: '30px', left: '20%', width: '60%', height: '60vh', borderRadius: '5px', border: '1px solid #f5c005' }} >
+          <div style={{ }} >
             {/* {JSON.stringify(form)} */}
             <div className="agent">
-              <div
-                style={{
-                  display: "flex",
-                  marginTop: "15px",
-                }}
-              >
+              <div style={{display: "flex", marginTop: "15px", alignItems: "center"}}>
                 <h4> Select Vendor:</h4>
                 <VendorTopUpDropDown
                   handleChange={handleChange}
-                  selectedVendorValue={form.vendor_name}
+                  selectedVendorValue={form.vendor_id}
                 />
               </div>
-              <h3>Name : {form.vendor_name}</h3>
-              <h3>ID : {form.id}</h3>
+              <h4>Name : <span className='capitalize-text'>{form.vendor_name}</span></h4>
+              <h4>ID : <span className='capitalize-text'>{form.vendor_id}</span></h4>
             </div>
-          
-
-            <span style={{position: 'relative', top: '5rem',left: '12rem', display: 'flex', alignItems: 'center', marginRight: '10px', fontWeight: '600', fontSize: '18px'}}>Balance:</span>
-            <div>
-                <span
-                style={{position: 'absolute', top: '25.7rem',left: '12rem', display: 'flex', alignItems: 'center', marginRight: '10px', fontWeight: '600', fontSize: '18px'}}
-                >Amount</span>
-                <input 
-                  placeholder='Enter amount here...'
-                  className='app_input-topUp'
-                />
-            </div>
-            <Button onClick={submitTopUp} style={{position: 'relative', top: '19rem', left: '20rem'}}>Submit</Button>
             
-          </div>
-          
+            <h4 style={{}}>
+              Balance: #0
+            </h4>
+            <div style={{ display: "flex" }}>
+              <h4 style={{ marginRight: 5}}>
+                Amount:
+              </h4>
+              <input placeholder='Enter amount here...' className='app_input-topUp' />
+            </div>
+            <Button onClick={submitTopUp} style={{}}>Submit</Button>
+          </div> 
+        </div>  
       </div>
     </>
   )

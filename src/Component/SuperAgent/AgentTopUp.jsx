@@ -43,13 +43,12 @@ function AgentTopUp() {
               }}
             >
               <h4> Select SuperAgent</h4>
-              <SuperDropdown
-                handleChange={handleChange}
-                selectedSuperValue={form.super_id}
+              <SuperDropdown handleChange={handleChange}
+              selectedSuperValue={form.superagent_id}
               />
             </div>
-            <h3>Name : {form.super_name}</h3>
-            <h3>ID : {form.super_id}</h3>
+            <h3>Name : {form.superagent_id}</h3>
+            <h3>ID : {form.superagent_name}</h3>
           </div>
           <div className="agent">
             <div

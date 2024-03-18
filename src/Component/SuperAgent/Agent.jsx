@@ -225,7 +225,7 @@ export default function Agent() {
                   md={12}
                   style={{
                     display: "flex",
-                    justifyContent: "right",
+                    justifyContent: "center",
                   }}
                 >
                   {" "}
@@ -242,7 +242,6 @@ export default function Agent() {
                     disabled={loading}
                   >
                     {loading ? "Submitting..." : "Submit"}
-                           
                   </button>
                 </Col>
               </Row>

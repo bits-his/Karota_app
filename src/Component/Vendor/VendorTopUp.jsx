@@ -6,11 +6,13 @@ import VendorTopUpDropDown from "../Vendor/VendorTopUpDropDown"
 function VendorTopUp({selectedVendorValue}) {
     const [data, setData] = useState([])
     const [agentData, setAgentData] = useState([])
-    const [selectedVendor, setSelectedVendor] = useState(selectedVendorValue);
+    const [selectedAgent, setSelectedAgent] = useState(selectedVendorValue);
     const [loading, setLoading] = useState(false)
 
     const [form, setForm] = useState({});
 
+    const handleSelectChange = () => {}
+    const handleSelectSuperAgentChange = () => {}
     const handleChange = ({ target: { name, value } }) => {
       setForm((prevForm) => ({
         ...prevForm,

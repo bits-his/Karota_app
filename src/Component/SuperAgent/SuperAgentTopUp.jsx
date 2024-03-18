@@ -45,7 +45,7 @@ function SuperAgentTopUp() {
           boxShadow: '1px 2px #f5c005'
         }}
       >
-        <div>
+      <div>
         <div
           style={{
             display: "flex",
@@ -57,10 +57,9 @@ function SuperAgentTopUp() {
           <span
             style={{
                 position: 'relative',
-                left: '-36px',
+                left: '-56px',
               display: "flex",
               alignItems: "center",
-            //   marginRight: "50px",
               fontWeight: "600",
               fontSize: "15px",
             }}
@@ -91,16 +90,23 @@ function SuperAgentTopUp() {
           style={{
             position: "relative",
             top: "20px",
-          }}
+          }}>
+      {/* <div className="app_card dashboard_card m-0 p-0"> */}
+        {/* <h3 className="text-center fw-bold">Super Agent Top-Up</h3> */}
+
+        <div
+          // style={{
+          //   margin: "0 auto",
+          //   width: "60%",
+          //   height: "60vh",
+          //   borderRadius: "5px",
+          //   border: "1px solid #f5c005",
+          //   padding: "20px",
+          // }}
         >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "15px",
-            }}
-          >
-            <span
+          {/* {JSON.stringify(form)} */}
+          <div className="agent">
+            <div
               style={{
                 position: 'relative',
                 left: '-35px',
@@ -109,6 +115,7 @@ function SuperAgentTopUp() {
                 marginRight: "38px",
                 fontWeight: "600",
                 fontSize: "15px",
+                marginTop: "15px",
               }}
             >
               <h4> Select Vendor:</h4>
@@ -117,8 +124,8 @@ function SuperAgentTopUp() {
                 selectedAgentValue={form.vendor}
               />
             </div>
-            <h3>Name : {form.vendor_name}</h3>
-            <h3>ID : {form.vendor_id}</h3>
+            {/* <h3>Name : {form.vendor_name}</h3>
+            <h3>ID : {form.vendor_id}</h3> */}
           </div>
           <p style={{fontSize: '15px', fontWeight: '600', marginRight: '57px', marginBottom: '20px', marginTop: '20px'}}>Name : <span  style={{marginLeft:  '72px', fontWeight: '400'}}>qwerty</span></p>
           <p style={{fontSize: '15px', fontWeight: '600', marginRight: '57px', marginBottom: '20px'}}>ID :  <span  style={{marginLeft: '95px', fontWeight: '400'}}>1233344455</span></p>
@@ -181,9 +188,47 @@ function SuperAgentTopUp() {
                 boxShadow: '1px 2px gray'
           }}
         >Submit</button>
+          {/* <div className="vehicle">
+            <div
+              style={{
+                display: "flex",
+                marginTop: "15px",
+              }}
+            >
+              <h4> Select SuperAgent</h4>
+              <SuperDropdown
+                handleChange={handleChange}
+                selectedSuperValue={form.super_id}
+              />
+            </div>
+            <h3>Name : {form.name}</h3>
+            <h3>ID : {form.id}</h3>
+
+            <div style={{ display: "flex" }}>
+              <h3>Amount:</h3>
+              <input
+                className="app_input"
+                placeholder="Enter amount here..."
+                onChange={handleChange}
+                name="amount"
+                value={form.amount}
+                type="number"
+              />
+            </div>
+          </div> */}
+
+          {/* <div
+            style={{
+              marginTop: "auto",
+            }}
+          >
+            <Button onClick={submitTopUp}>Submit</Button>
+          </div> */}
+        </div>
       </div>
-    </>
-  );
+      </div>
+      // </div>
+      );
 }
 
 export default SuperAgentTopUp;

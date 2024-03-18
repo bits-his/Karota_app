@@ -112,7 +112,7 @@ export default function SideBar() {
         ) : (
           ""
         )}
-        {true ? (
+        {/* {true ? (
           <div
             onClick={() => goto("/agintopup")}
             className={`link_item ${
@@ -123,17 +123,17 @@ export default function SideBar() {
           </div>
         ) : (
           ""
-        )}
+        )} */}
 
-         {true ? (<div
+         {/* {true ? (<div
           onClick={() => goto("/agenttopup")}
           className={`link_item ${location.pathname === "/agenttopup" && "active_side_menu"
             }`}
         >
           {/* <GiArchiveRegister className="icon shadow" /> */}
           Agents Top Up
-        </div>
-          ) : ""} 
+        {/* </div> */}
+          {/* ) : ""}  */} 
 
         {true ? (
           <div

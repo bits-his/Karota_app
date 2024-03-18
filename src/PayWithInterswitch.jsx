@@ -12,7 +12,7 @@ const PaymentButton = ({
   reference_no = "",
 }) => {
   let [refNo, setRefNo] = useState(null);
-  let payItemID = "4351942";
+  let payItemID = "057502";
   const [checker, setChecker] = useState(false);
 
   const handleResponse = (response) => {
@@ -64,10 +64,10 @@ const PaymentButton = ({
   let new_amount = amount * 100;
   let input_amount = new_amount?.toString().split(".")[0];
   const paymentParameters = {
-    merchantCode: `MX${merchantCode}`,
+    merchantCode: `MX188877`,
     payItemID,
     customerEmail: email,
-    redirectURL: `https://kirmas.kn.gov.ng`,
+    redirectURL: `https://kekeapp.netlify.app/`,
     text: label,
     mode: "LIVE", //"TEST",
     payRef: "WEB",

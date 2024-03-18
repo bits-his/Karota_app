@@ -131,7 +131,7 @@ export default function SideBar() {
             }`}
         >
           {/* <GiArchiveRegister className="icon shadow" /> */}
-          Agents Top Up
+          {/* Agents Top Up */}
         {/* </div> */}
           {/* ) : ""}  */} 
 

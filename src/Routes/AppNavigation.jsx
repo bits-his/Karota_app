@@ -23,6 +23,7 @@ import VendorTopUp from "../Component/Vendor/VendorTopUp";
 import VehicleView from "../Component/vehicleOwner/VehicleView";
 import Vehicle from "../Component/vehicleOwner/Vehicle";
 import VehicleTopUp from "../Component/vehicleOwner/VehicleTopUp";
+import LicensViever from "../Component/SignIn/signUp/LicensViever";
 
 export default function AppNavigation() {
   let Pages = useRoutes([
@@ -108,6 +109,10 @@ export default function AppNavigation() {
         {
           path: "/supatopup",
           element: <SuperAgentTopUp />,
+        },
+        {
+          path: "/licens-pdf",
+          element: <LicensViever />,
         },
         {
           path: "/vendortopup",

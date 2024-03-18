@@ -2,33 +2,41 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, Col, Row, Form, FormGroup, Label, Input } from "reactstrap";
 import { stateLga } from "../../assets/state_and_lgas";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
+import { _post } from "../../Utils/Helper";
+import { useSelector } from "react-redux";
+import SuperAgentDropdown from "./SuperAgentdropdown";
 
 export default function Agent() {
+  const { user } = useSelector((p) => p.auth);
   const _form = {
-    query_type: 'create',
-
+    query_type: "create",
+    super_agent: user.id,
   };
-
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState(_form);
   const handleChange = ({ target: { name, value } }) => {
     setForm((p) => ({ ...p, [name]: value }));
   };
   const navigate = useNavigate();
-  const handleSubmit = () => {
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     setLoading(true);
     _post(
       "agents/create",
       form,
       (res) => {
-        setLoading(false);
-        toast.success("Successful");
-        console.log(form);
-        setForm(_form);
+        if (res.success) {
+          setLoading(true);
+          toast.success("Agent created successfully");
+          navigate("/agentable");
+        }
       },
-      (err) => {
+      () => {
         setLoading(false);
-        console.log(err);
+        toast.error("An error occurred while creating Agent");
       }
     );
   };
@@ -38,17 +46,28 @@ export default function Agent() {
         Create agent
       </button> */}
       <Card className="app_card dashboard_card m-0 p-0">
-        {/* {JSON.stringify({ form })} */}
+        {JSON.stringify({ form })}
         <Row>
           <Col md={12}>
             <div
               style={{
                 display: "flex",
-                justifyContent: "space-between",
                 alignItems: "center",
               }}
             >
-              <h4 className="app_title">Agent Registeration</h4>
+              <button
+                className="app_button"
+                style={{
+                  width: "10rem",
+                  padding: 10,
+                  color: "#000",
+                  borderRadius: 10,
+                }}
+                onClick={() => navigate("/agentable")}
+              >
+                Back
+              </button>
+              <h4 className="app_title vendor_title">Agent Registration</h4>
             </div>
             <hr />
           </Col>
@@ -56,6 +75,16 @@ export default function Agent() {
             <Form className="mx-auto">
               <>
                 <Row className="margin-bottom-input">
+                  <Col md={6}>
+                    <FormGroup>
+                      <Label for="super_agent">Super Agent</Label>
+
+                      <SuperAgentDropdown
+                        handleChange={handleChange}
+                        selectedVendorValue={form.super_agent}
+                      />
+                    </FormGroup>
+                  </Col>
                   <Col md={6} className="first-col">
                     <FormGroup>
                       <Label for="name">Name</Label>
@@ -67,24 +96,6 @@ export default function Agent() {
                         type="text"
                         className="app_input"
                       />
-                    </FormGroup>
-                  </Col>
-                  <Col md={6}>
-                    <FormGroup>
-                      <Label for="super_agent">Super Agent</Label>
-                      <Input
-                        onChange={handleChange}
-                        id="super_agent"
-                        name="super_agent"
-                        placeholder="Select vendor"
-                        type="select"
-                        className="app_input"
-                      >
-                        <option value={""}>Select Super Agent</option>
-                        {stateLga.map((item) => (
-                          <option>{item.state}</option>
-                        ))}
-                      </Input>
                     </FormGroup>
                   </Col>
                 </Row>
@@ -165,28 +176,13 @@ export default function Agent() {
                         name="address"
                         type="textarea"
                         className="app_input"
+                        rows="1.5"
                       />
                     </FormGroup>
                   </Col>
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="dob">Date of birth (D.O.B)</Label>
-                      <Input
-                        onChange={handleChange}
-                        id="dob"
-                        name="dob"
-                        type="date"
-                        className="app_input"
-                      />
-                    </FormGroup>
-                  </Col>
-                </Row>
-                <Row className="margin-bottom-input">
-                  <Col md={12}>
-                    <FormGroup>
-                      <Label for="service_location">
-                        Service Location
-                      </Label>
+                      <Label for="service_location">Service Location</Label>
                       <Input
                         onChange={handleChange}
                         id="service_location"
@@ -216,6 +212,7 @@ export default function Agent() {
                       color: "",
                       cursor: "pointer",
                       borderRadius: 7,
+                      margin: "auto",
                     }}
                     onClick={handleSubmit}
                   >

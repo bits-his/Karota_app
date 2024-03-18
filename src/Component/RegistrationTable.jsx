@@ -16,6 +16,7 @@ export default function RegistrationTable() {
       `api/getCreate_user?query_type=select-all`,
       (res) => {
         setData(res.results);
+        console.log(res)
       },
       (err) => {
         setLoading(false);

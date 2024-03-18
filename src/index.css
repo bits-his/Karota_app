@@ -220,7 +220,7 @@
 }
 .app_title {
   color: #020202;
-  text-shadow: 3px 4px 5px #4b4b4b;
+  /* text-shadow: 3px 4px 5px #4b4b4b; */
 }
 .vendor_title {
   margin: 0 auto;
@@ -275,7 +275,7 @@ label {
 }
 .keke-logo {
   position: absolute;
-  width: 100px;
+  width: 100%;
 }
 
 .dashboard_card {

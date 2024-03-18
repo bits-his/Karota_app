@@ -11,42 +11,64 @@ export default function Agent() {
   const { user } = useSelector((p) => p.auth);
   const _form = {
     query_type: "create",
-    super_agent: user.id,
+    // super_agent: user.id,
   };
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState(_form);
+
+
   const handleChange = ({ target: { name, value } }) => {
     setForm((p) => ({ ...p, [name]: value }));
   };
+  // console.log(form)
   const navigate = useNavigate();
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   setLoading(true);
+  //   _post(
+  //     "agents/create",
+  //     form,
+  //     (res) => {
+  //       if (res.success) {
+  //         setLoading(true);
+  //         toast.success("Agent created successfully");
+  //         navigate("/agentable");
+  //       }
+  //     },
+  //     () => {
+  //       setLoading(false);
+  //       toast.error("An error occurred while creating Agent");
+  //     }
+  //   );
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     setLoading(true);
+
     _post(
-      "agents/create",
+      "/agents/create",
       form,
       (res) => {
-        if (res.success) {
-          setLoading(true);
-          toast.success("Agent created successfully");
-          navigate("/agentable");
-        }
+        setLoading(false); // Set loading to false when submission is successful
+        toast.success("Agent created successfully");
+        // setSubmittedData([...submittedData, res]);
+        navigate("/agenttable");
       },
-      () => {
-        setLoading(false);
+      (err) => {
+        console.log(err);
         toast.error("An error occurred while creating Agent");
+        setLoading(false); // Set loading to false in case of error
       }
     );
   };
+
   return (
     <div>
-      {/* <button className="app_button" onClick={() => navigate("/agent")}>
-        Create agent
-      </button> */}
       <Card className="app_card dashboard_card m-0 p-0">
-        {/* {JSON.stringify({ form })} */}
+        
         <Row>
           <Col md={12}>
             <div
@@ -63,7 +85,7 @@ export default function Agent() {
                   color: "#000",
                   borderRadius: 10,
                 }}
-                onClick={() => navigate("/agentable")}
+                onClick={() => navigate("/agenttable")}
               >
                 Back
               </button>
@@ -81,7 +103,7 @@ export default function Agent() {
 
                       <SuperAgentDropdown
                         handleChange={handleChange}
-                        selectedVendorValue={form.super_agent}
+                        selectedVendorValue={form.super_id}
                       />
                     </FormGroup>
                   </Col>
@@ -92,6 +114,7 @@ export default function Agent() {
                         onChange={handleChange}
                         id="name"
                         name="name"
+                        // value={tform.name}
                         placeholder="John Doe"
                         type="text"
                         className="app_input"
@@ -107,6 +130,7 @@ export default function Agent() {
                         onChange={handleChange}
                         id="phone"
                         name="phone"
+                        // value={tform.phone}
                         type="tel"
                         className="app_input"
                       />
@@ -119,6 +143,7 @@ export default function Agent() {
                         onChange={handleChange}
                         id="email"
                         name="email"
+                        // value={tform.email}
                         placeholder="organization@fake.com"
                         type="email"
                         className="app_input"
@@ -134,7 +159,7 @@ export default function Agent() {
                         onChange={handleChange}
                         id="state"
                         name="state"
-                        value={form.state}
+                        // value={tform.state}
                         type="select"
                         className="app_input"
                         required
@@ -153,6 +178,7 @@ export default function Agent() {
                         onChange={handleChange}
                         id="lga"
                         name="lga"
+                        // value={tform.lga}
                         type="select"
                         className="app_input"
                       >
@@ -174,6 +200,7 @@ export default function Agent() {
                         onChange={handleChange}
                         id="address"
                         name="address"
+                        // value={tform.contactAddress}
                         type="textarea"
                         className="app_input"
                         rows="1.5"
@@ -187,6 +214,7 @@ export default function Agent() {
                         onChange={handleChange}
                         id="service_location"
                         name="service_location"
+                        // value={tform.service_location}
                         placeholder="Bata"
                         type="text"
                         className="app_input"
@@ -200,7 +228,7 @@ export default function Agent() {
                   md={12}
                   style={{
                     display: "flex",
-                    justifyContent: "right",
+                    justifyContent: "center",
                   }}
                 >
                   {" "}
@@ -212,11 +240,11 @@ export default function Agent() {
                       color: "",
                       cursor: "pointer",
                       borderRadius: 7,
-                      margin: "auto",
                     }}
                     onClick={handleSubmit}
+                    disabled={loading}
                   >
-                    Submit
+                    {loading ? "Submitting..." : "Submit"}
                   </button>
                 </Col>
               </Row>

@@ -102,15 +102,28 @@
   padding: 8px;
 }
 .app_input-topUp {
-  position: relative;
-  top: 7rem;
-  left: 20rem;
   border-radius: none !important;
   border: 1px solid #9d9c97;
   margin-bottom: 15px;
-  width: 43%;
+  width: 37%;
   padding: 8px;
 }
+
+.middle-card-topup {
+  margin: 0 auto;
+  width: 60%;
+}
+
+@media screen and (max-width: 767px) {
+  .middle-card-topup {
+    width: 90%;
+  }
+}
+
+.capitalize-text {
+  text-transform: capitalize;
+}
+
 /* .app_input_table {
   border-radius: none !important;
   border: 1px solid #f5c005;
@@ -220,7 +233,7 @@
 }
 .app_title {
   color: #020202;
-  text-shadow: 3px 4px 5px #4b4b4b;
+  /* text-shadow: 3px 4px 5px #4b4b4b; */
 }
 .vendor_title {
   margin: 0 auto;
@@ -275,7 +288,7 @@ label {
 }
 .keke-logo {
   position: absolute;
-  width: 100px;
+  width: 100%;
 }
 
 .dashboard_card {
@@ -380,14 +393,14 @@ td, th{
   text-align: left;
   padding: 8px;
 }
-.login{
-  /* position: relative;
-  top: '80rem'; 
+/* .login{
+ position: relative;
+   top: '80rem'; 
   left: 20px;
    height: '10px';
-  background:  url('./assets/keke_napep.png') no-repeat; */
+  background:  url('./assets/keke_napep.png') no-repeat; 
   
-}
+} */
 @media only screen and (max-width: 768px) {
   .customer-page {
     display: none;

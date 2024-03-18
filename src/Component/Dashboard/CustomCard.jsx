@@ -99,7 +99,7 @@ const QuickActivityWrap = () => {
   const data = superAgentMax.length? superAgentMax[0] : {}
     return (
         <div className="quick_activity_wrap">
-            {JSON.stringify(data)}
+            {/* {JSON.stringify(data)} */}
             <Row>
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
                 <Link to="/supergentable"style={{ textDecoration: 'none' }}>

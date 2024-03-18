@@ -50,7 +50,7 @@ function VehicleDropDown({ handleChange, selectedVehicleValue }) {
   // };
   const handleSelectChange = (selectedOption) => {
     setSelectedVehicle(selectedOption);
-    console.log(selectedOption);
+    //console.log(selectedOption);
     handleChange({
       target: {
         name: "vehicle_id",

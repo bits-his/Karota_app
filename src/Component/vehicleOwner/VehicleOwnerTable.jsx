@@ -139,8 +139,9 @@ export default function VehicleOwnerTable() {
                   <td>
                     NGN 0.00
                   </td>
-                  <td className="text-center">
+                  <td className="text-center btn-table">
                     <Button color="info"
+                    className=""
                     onClick={ () => navigate(`/vehicleownertable/${item.id}`)}
                     >View</Button>
                     <Button 

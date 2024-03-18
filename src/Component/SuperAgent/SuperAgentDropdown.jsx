@@ -31,7 +31,7 @@ function SuperAgentDropdown({ handleChange, selectedSuperAgentValue }) {
   const handleSelectChange = (selectedOption) => {
     setselectedSuperAgent(selectedOption);
     handleChange({
-      target: { name: "SuperAgent", value: selectedOption.value },
+      target: { name: "super_agent", value: selectedOption.value },
     });
   };
 

@@ -15,14 +15,16 @@ export default function Agent() {
   };
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState(_form);
+
+
   const handleChange = ({ target: { name, value } }) => {
     setForm((p) => ({ ...p, [name]: value }));
   };
+  // console.log(form)
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     setLoading(true);
     _post(
       "agents/create",
@@ -42,11 +44,8 @@ export default function Agent() {
   };
   return (
     <div>
-      {/* <button className="app_button" onClick={() => navigate("/agent")}>
-        Create agent
-      </button> */}
       <Card className="app_card dashboard_card m-0 p-0">
-        {/* {JSON.stringify({ form })} */}
+        
         <Row>
           <Col md={12}>
             <div
@@ -92,6 +91,7 @@ export default function Agent() {
                         onChange={handleChange}
                         id="name"
                         name="name"
+                        // value={tform.name}
                         placeholder="John Doe"
                         type="text"
                         className="app_input"
@@ -107,6 +107,7 @@ export default function Agent() {
                         onChange={handleChange}
                         id="phone"
                         name="phone"
+                        // value={tform.phone}
                         type="tel"
                         className="app_input"
                       />
@@ -119,6 +120,7 @@ export default function Agent() {
                         onChange={handleChange}
                         id="email"
                         name="email"
+                        // value={tform.email}
                         placeholder="organization@fake.com"
                         type="email"
                         className="app_input"
@@ -134,7 +136,7 @@ export default function Agent() {
                         onChange={handleChange}
                         id="state"
                         name="state"
-                        value={form.state}
+                        // value={tform.state}
                         type="select"
                         className="app_input"
                         required
@@ -153,6 +155,7 @@ export default function Agent() {
                         onChange={handleChange}
                         id="lga"
                         name="lga"
+                        // value={tform.lga}
                         type="select"
                         className="app_input"
                       >
@@ -174,6 +177,7 @@ export default function Agent() {
                         onChange={handleChange}
                         id="address"
                         name="address"
+                        // value={tform.contactAddress}
                         type="textarea"
                         className="app_input"
                         rows="1.5"
@@ -187,6 +191,7 @@ export default function Agent() {
                         onChange={handleChange}
                         id="service_location"
                         name="service_location"
+                        // value={tform.service_location}
                         placeholder="Bata"
                         type="text"
                         className="app_input"

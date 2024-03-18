@@ -35,11 +35,12 @@ function SuperAgentTopUp() {
       <div
         style={{
           position: "relative",
+          display: 'flex',
           paddingLeft: '52px',
           top: "30px",
           margin: "0 auto",
-          width: "40%",
-          height: "65vh",
+          width: "60%",
+          height: "45vh",
           borderRadius: "8px",
           border: "1px solid #f5c005",
           boxShadow: '1px 2px #f5c005'

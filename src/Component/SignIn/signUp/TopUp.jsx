@@ -203,7 +203,7 @@ export default function TopUp() {
                                 goto(`/licens-pdf/${vehicle.plate_no}`)
                               }
                             >
-                              View Licens
+                              View License
                             </Button>
                           </ButtonGroup>
                         </td>

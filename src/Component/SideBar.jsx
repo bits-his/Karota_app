@@ -71,9 +71,10 @@ export default function SideBar() {
         </div> */}
         {true ? (
           <div
-            onClick={() => goto("/superagentable")}
-            className={`link_item ${location.pathname === "/superagentable" && "active_side_menu"
-              }`}
+            onClick={() => goto("/superagenttable")}
+            className={`link_item ${
+              location.pathname === "/superagenttable" && "active_side_menu"
+            }`}
           >
             Super Agents
           </div>

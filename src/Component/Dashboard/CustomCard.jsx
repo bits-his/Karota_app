@@ -85,14 +85,15 @@ const QuickActivityWrap = () => {
             {/* {JSON.stringify(data)} ddd */}
             <Row>
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
-                    <Link to="/superagentable" style={{ textDecoration: 'none' }}>
-                        <Card className="single_quick_activity " style={totalIncomeStyle} >
-                            <CardBody>
-                                <CardTitle>Total No. of super agent</CardTitle>
-                                <h3><span>{data?.super_agents_count}</span></h3>
-                                <div style={iconStyle}><FaUser /></div>
-                            </CardBody>
-                        </Card>
+                <Link to="/superagenttable"style={{ textDecoration: 'none' }}>
+                  
+                    <Card className="single_quick_activity " style={totalIncomeStyle} >
+                        <CardBody>
+                            <CardTitle>Total No. of super agent</CardTitle>
+                            <h3><span>{superAgentMax?.super_agents_count}</span></h3>
+                            <div style={iconStyle}><FaMagento /></div>
+                        </CardBody>
+                    </Card>
                     </Link>
                 </Col>
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
@@ -119,14 +120,14 @@ const QuickActivityWrap = () => {
                     </Link>
                 </Col>
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
-                    <Link to="/agentable" style={{ textDecoration: 'none' }}>
-                        <Card className="single_quick_activity " style={netProfitMarginStyle}>
-                            <CardBody>
-                                <CardTitle>Total No. of Agents</CardTitle>
-                                <h3><span>{data?.agents_count}</span></h3>
-                                <div style={iconStyle}><MdOutlineSupportAgent /></div>
-                            </CardBody>
-                        </Card>
+                <Link to="/agenttable"style={{ textDecoration: 'none' }}>
+                    <Card className="single_quick_activity " style={netProfitMarginStyle}>
+                        <CardBody>
+                            <CardTitle>Total No. of Agents</CardTitle>
+                            <h3><span>{superAgentMax?.agents_count}</span></h3>
+                            <div style={iconStyle}><SiAqua /></div>
+                        </CardBody>
+                    </Card>
                     </Link>
                 </Col>
             </Row >

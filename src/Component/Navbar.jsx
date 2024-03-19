@@ -92,9 +92,9 @@ export default function Navbar() {
         </div> */}
           {true ? (
             <div
-              onClick={() => goto("/superagentable")}
+              onClick={() => goto("/superagenttable")}
               className={`navbar-link-item ${
-                location.pathname === "/superagentable" &&
+                location.pathname === "/superagenttable" &&
                 "navbar-active-side-menu"
               }`}
             >

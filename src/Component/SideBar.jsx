@@ -72,9 +72,8 @@ export default function SideBar() {
         {true ? (
           <div
             onClick={() => goto("/superagenttable")}
-            className={`link_item ${
-              location.pathname === "/superagenttable" && "active_side_menu"
-            }`}
+            className={`link_item ${location.pathname === "/superagenttable" && "active_side_menu"
+              }`}
           >
             Super Agents
           </div>
@@ -139,12 +138,11 @@ export default function SideBar() {
         ) : (
           ""
         )}
-         {true ? (
+        {true ? (
           <div
             onClick={() => goto("/top-up")}
-            className={`link_item ${
-              location.pathname.includes("top-up") ? "active_side_menu" : ""
-            }`}
+            className={`link_item ${location.pathname.includes("top-up") ? "active_side_menu" : ""
+              }`}
           >
             {/* <GiArchiveRegister className="icon shadow" /> */}
             Vehicles

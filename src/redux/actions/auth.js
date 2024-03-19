@@ -21,7 +21,7 @@ export function login({ username, password, history }, success, error) {
         })
             .then((raw) => raw.json())
             .then((data) => {
-                 console.log(data);
+                console.log(data);
                 if (data.success) {
                     const { token } = data;
                     // console.log(token);
@@ -76,7 +76,7 @@ export function login({ username, password, history }, success, error) {
                         });
                 } else {
                     dispatch({ type: ERRORS, payload: data.msg });
-                    error(data.error);
+                    error(data);
                     // console.log(data);
                 }
             })
@@ -137,32 +137,15 @@ export function init(history, success = (f) => f, error = (f) => f) {
             getUserProfile(_token)
                 .then((data) => {
                     if (data.success) {
-                        const { user, tax_accounts } = data;
-                        if (user && user.role !== "user") {
-                            dispatch({
-                                type: AUTH,
-                                payload: {
-                                    user,
-                                },
-                            });
-                            // navigateBasedOnAccess(user.accessTo, history);
-                            success();
-                        } else {
-                            console.log(tax_accounts)
-                            dispatch({
-                                type: AUTH,
-                                payload: {
-                                    user,
-                                    tax_account: tax_accounts[0] || [],
-                                    taxaccounts: tax_accounts,
-                                },
-                            });
-                            success();
-                        }
-                    } else {
-                        // callback();
-                        localStorage.removeItem("@@token");
-                        dispatch(logout(history));
+                        const { user, profile } = data;
+                        dispatch({
+                            type: AUTH,
+                            payload: {
+                                user,
+                                profile
+                            },
+                        });
+                        // navigateBasedOnAccess(user.accessTo, history);
                         success();
                     }
                 })
@@ -188,8 +171,8 @@ export function init(history, success = (f) => f, error = (f) => f) {
 
 export function logout(history) {
     return (dispatch) => {
-        history("/");
         localStorage.removeItem("@@token");
+        history("/login");
         dispatch({ type: LOGOUT });
     };
 }

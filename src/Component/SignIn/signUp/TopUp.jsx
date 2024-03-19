@@ -77,14 +77,14 @@ export default function TopUp() {
     getReg();
   }, [getReg]);
 
-  // console.log(vendorData);
+
   return (
     <div>
       <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
         <Row>
           <Col md={12}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <h4 className="app_title">Top Up</h4>
+              <h4 className="app_title">Point of Collection</h4>
             </div>
             {/* {vendorData.map(item, id) => ( 
             <div
@@ -107,7 +107,6 @@ export default function TopUp() {
              )}   */}
             <hr />
           </Col>
-
           <Col md={12}>
             <div style={{ display: "flex", flexDirection: "row" }}>
               <Col md={12}>
@@ -171,7 +170,7 @@ export default function TopUp() {
                 >
                   <thead>
                     <tr>
-                      <th>Reg. No.</th>
+                      <th>Vehicle ID.</th>
                       <th>Plate No.</th>
                       <th>Chasis No.</th>
                       <th>Balance (₦)</th>
@@ -181,7 +180,7 @@ export default function TopUp() {
                   <tbody>
                     {data.map((vehicle, idx) => (
                       <tr key={idx}>
-                        <td>00{vehicle.vehicle_id}</td>
+                        <td>{vehicle.vehicle_id}</td>
                         <td>{vehicle.plate_no}</td>
                         <td>{vehicle.chasis_no}</td>
                         <td className="text-right">

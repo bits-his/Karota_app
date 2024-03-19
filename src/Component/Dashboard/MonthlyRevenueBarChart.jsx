@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
+import { toParagraph } from '../../Utils/Helper';
 
-const MonthlyRevenueBarChart = ({ data }) => {
+const MonthlyRevenueBarChart = ({ data = [], type = 'Daily' }) => {
     const chartContainer = useRef(null);
 
     useEffect(() => {
@@ -23,7 +24,7 @@ const MonthlyRevenueBarChart = ({ data }) => {
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Monthly Revenue',
+                        label: `${toParagraph(type)} Revenue`,
                         data: revenueData,
                         backgroundColor: '#f5c005',
                         borderColor: 'rgba(54, 54, 54, 1)',

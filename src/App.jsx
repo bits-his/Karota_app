@@ -15,7 +15,7 @@ function App() {
 
   const initUser = useCallback(() => {
     dispatch(
-      init(
+      init(navigate,
         () => {
           navigate(`${location.pathname}${location.search}`);
         },

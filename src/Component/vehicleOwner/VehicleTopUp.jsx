@@ -89,24 +89,13 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
                
               />
             </div>
-            </div>
-          
-          </div>
-          <div className="transaction-details">
-              <h3>Transaction Details</h3>
-              <div className='details'>
-                <p >FROM : <span >{form.agent_name}</span></p>
-                <p >TO : <span  >{form.Plate_no}</span></p>
-               <p >ID : <span >{form.agent_id}</span></p>
-          
-               <p >ID :  <span  >{form.vehicle_id}</span></p>
-               <p >Amount:  <span  >{form.amount}</span></p>
-              </div>
-               
-            
           </div>
 
-          <div className='top-up-submit'>
+          <div
+            style={{
+              marginTop: "auto",
+            }}
+          >
             <Button 
             onClick={submitTopUp}
               disabled={loading}
@@ -115,13 +104,13 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
                 display:'block',
                 height: '40px',
                 backgroundColor: '#f5c005',
-                left: '11rem',
-                width: '150px',
+                left: '23rem',
+                width: '28rem',
                 boxShadow: '1px 2px gray'
             }}
             >Submit</Button>
           </div>
-        {/* </div> */}
+        </div>
       </div>
     </>
   );

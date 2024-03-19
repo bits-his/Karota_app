@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Button, Card, CardBody, Col, Input, Label, Row } from "reactstrap";
+import { Button, Card, CardBody, Col, Input, Label, Row, Spinner } from "reactstrap";
 import keke from '../../../assets/keke_napep.png'
 import { useDispatch } from "react-redux";
 import { login } from "../../../redux/actions/auth";
 import { useNavigate } from "react-router-dom";
+import { toParagraph } from "../../../Utils/Helper";
 
 export default function Login() {
   const [form, setForm] = useState({
@@ -11,18 +12,24 @@ export default function Login() {
   });
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [error, setError] = useState({})
+  const [loading, setLoading] = useState(false)
   const handleChange = ({ target: { name, value } }) => {
     setForm((p) => ({ ...p, [name]: value }));
     console.log(form);
   };
 
   const handleSubmit = () => {
+    setLoading(true)
     setForm(form)
     console.log(form)
     dispatch(login({ username: form.email, password: form.password, history: navigate }, (res) => {
+      setLoading(false)
+
       navigate('/')
     }, (err) => {
-
+      setLoading(false)
+      setError(err)
     }))
   }
   return (
@@ -77,16 +84,18 @@ export default function Login() {
                       onChange={handleChange}
                     />
                   </Col>
-
-                  <Col mt={4} mb={1}>
+                  {/* {JSON.stringify(error)} */}
+                  <p className="mt-3 text-danger text-center"> <b>{toParagraph(Object.keys(error)[0])}</b> <i>{Object.values(error)[0]}</i></p>
+                  <Col mt={12} className=" mt-3 text-center" mb={1}>
                     <Button
-                      style={{ position: 'relative', marginTop: 15, background: '#fff', color: '#000', fontWeight: '700', left: '100px', border: '1px solid black' }}
+
+                      // style={{ position: 'relative', marginTop: 15, background: '#fff', color: '#000', fontWeight: '700', left: '100px', border: '1px solid black' }}
                       variant="gradient"
-                      color="info"
+                      color="light"
                       fullWidth
                       onClick={handleSubmit}
                     >
-                      sign In
+                      {loading && <Spinner size={10} />} sign In
                     </Button>
                   </Col>
                 </Col>

@@ -163,40 +163,40 @@ const App = () => {
 
     return (
         <div>
-          
-            <div className="app_card dashboard_card shadow p-4 m-2 mt-2">
-            <Row className='mx-0 pt-5' style={{ marginBottom: '30px' }}>
-    <Col md={12}>
-        <CustomDateRange
-            type={dateRange.type}
-            month={dateRange.month}
-            quarter={dateRange.quarter}
-            year={dateRange.year}
-            from={dateRange.from}
-            to={dateRange.to}
-            handleChangeDate={handleChangeDate}
-        />
-    </Col>
-</Row>
 
-            <DashboardCard />
+            <div className="app_card dashboard_card shadow p-4 m-2 mt-2">
+                <Row className='mx-0 pt-5' style={{ marginBottom: '30px' }}>
+                    <Col md={12}>
+                        <CustomDateRange
+                            type={dateRange.type}
+                            month={dateRange.month}
+                            quarter={dateRange.quarter}
+                            year={dateRange.year}
+                            from={dateRange.from}
+                            to={dateRange.to}
+                            handleChangeDate={handleChangeDate}
+                        />
+                    </Col>
+                </Row>
+
+                <DashboardCard />
 
                 <Row>
                     <Col md={6}>
                         <Card className='shadow'>
-                            <h1 className='text-center'>{toParagraph(dateRange.type)} Revenue</h1>
-                            <MonthlyRevenueBarChart data={monthlyRevenueData} />
+                            <h2 className='text-center'>{toParagraph(dateRange.type)} Revenue</h2>
+                            <MonthlyRevenueBarChart type={dateRange.type} data={monthlyRevenueData} />
                         </Card>
                     </Col>
                     <Col md={6}>
                         <Card className='shadow border'>
-                            <h1 className='text-center'>{toParagraph(dateRange.type)} Transaction count</h1>
-                            <MonthlyTransactionLineChart data={monthlyTransactionData} />
+                            <h2 className='text-center'>{toParagraph(dateRange.type)} Transaction count</h2>
+                            <MonthlyTransactionLineChart type={dateRange.type} data={monthlyTransactionData} />
                         </Card>
                     </Col>
                 </Row>
                 <hr />
-               
+
 
             </div>
         </div>

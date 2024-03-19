@@ -54,7 +54,7 @@ function VehicleDropDown({ handleChange, selectedVehicleValue }) {
     handleChange({
       target: {
         name: "vehicle_id",
-        value: selectedOption.value,
+        value: selectedOption.value ,
       },
     });
     handleChange({

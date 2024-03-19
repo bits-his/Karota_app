@@ -36,109 +36,84 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
 
   const submitTopUp = (e) => {
     e.preventDefault();
+    setLoading(true)
     _post(`top-up/create`,
-    form,
-    (res)=> {
-      if(res.success){
-        toast.success(`Sucessfully added ${form.amount}`)
-        navigate('/vehicleownertable')
+      form,
+      (res) => {
+        if (res.success) {
+          toast.success(`Sucessfully added ${form.amount}`)
+          navigate('/vehicleownertable')
+        }
+      },
+      err => {
+        console.log(err)
+        setLoading(false)
       }
-    },
-    err =>{
-      console.log(err)
-    } 
     )
-    console.log(form);
+    //setLoading(false)
+    //console.log(form);
   };
 
-  return (
-    <>
-      <div className="app_card dashboard_card m-0 p-0">
-        <h3 className="text-center fw-bold">Vehicle Top-Up</h3>
+  return (<>
+    <div className="app_card dashboard_card m-0 p-0">
+      <div className='middle-card-topup' style={{ margin: "auto" }}>
+        <h3 className="text-center fw-bold ve-t-u" >Vehicle Top-Up</h3>
 
-          {/* {JSON.stringify(form)} */}
-          <div className="agent">
-            <div
-              style={{
-                display: "flex",
-                marginTop: "15px",
-                marginBottom: '20px'
-              }}
-            >
-              <h4 style={{fontSize: '15px', fontWeight: '600', marginRight: '20px'}}> Select Agent:</h4>
+        {/* {JSON.stringify(form)} */}
+        <div className="agent app_card " style={{ padding: "50px" }}>
+          <div className='account-info row'>
+            <div className='info-input col-md-6'>
+              <h4 style={{ marginRight: '20px' }}> Select Agent:</h4>
               <AgentDropDown
                 handleChange={handleChange}
                 selectedAgentValue={form.agent_id}
               />
-              <>
-               <p style={{fontSize: '15px', fontWeight: '600', marginBottom: '20px'}}>Name : <span style={{marginLeft: '57px', fontWeight: '400'}}>{form.agent_name}</span></p>
-               <p style={{fontSize: '15px', fontWeight: '600', marginBottom: '20px'}}>ID : <span style={{marginLeft: '80px', fontWeight: '400'}}>{form.agent_id}</span></p>
-              </>
             </div>
-           
-          </div>
-          <div className="vehicle">
-            <div
-              style={{
-                display: "flex",
-                marginTop: "15px",
-                marginBottom: '20px'
-              }}
-            >
-              <h4 style={{fontSize: '15px', fontWeight: '600', marginRight: '57px'}}> Vehicle:</h4>
+
+            <div className='info-input col-md-6' >
+              <h4 style={{ marginRight: '57px' }}> Vehicle:</h4>
               <VehicleDropDown
                 handleChange={handleChange}
                 selectedVehicleValue={form.vehicle_id}
               />
-              <div>
-                <p style={{fontSize: '15px', fontWeight: '600', marginRight: '57px', marginBottom: '20px'}}>Name : <span  style={{marginLeft: '54px', fontWeight: '400'}}>{form.Plate_no}</span></p>
-               <p style={{fontSize: '15px', fontWeight: '600', marginRight: '57px', marginBottom: '20px'}}>ID :  <span  style={{marginLeft: '80px', fontWeight: '400'}}>{form.vehicle_id}</span></p>
-
-              </div>
             </div>
-          
-            <div style={{ display: "flex" }}>
-              <p style={{fontSize: '15px', fontWeight: '600', marginRight: '57px'}}>Amount:</p>
+            <div className='info-input col-md-6 mx-auto mb-5'>
+              <h4>Amount:</h4>
               <input
-                // className="app_input"
+                className="form-control"
                 placeholder="Enter amount here..."
                 onChange={handleChange}
                 name="amount"
                 value={form.amount}
                 type="number"
-                style={{
-                  position: 'relative',
-                  width: '23.4rem',
-                  height: '3.8rem',
-                  left: '-7.7px',
-                  marginBottom: '20px',
-                  paddingLeft: '10px'
-                }}
+
               />
             </div>
           </div>
 
           <div
             style={{
-              marginTop: "auto",
+              marginTop: "50px",
             }}
           >
-            <Button 
-            onClick={submitTopUp}
-            style={{
-                position: 'relative',
-                top: '20px',
+            <Button
+              onClick={submitTopUp}
+              disabled={loading}
+              style={{
+                marginInline: 'auto',
+                display: 'block',
                 height: '40px',
                 backgroundColor: '#f5c005',
-                left: '11rem',
-                width: '150px',
+                left: '23rem',
+                width: '28rem',
                 boxShadow: '1px 2px gray'
-            }}
+              }}
             >Submit</Button>
           </div>
-        {/* </div> */}
+        </div>
       </div>
-    </>
+    </div>
+  </>
   );
 }
 

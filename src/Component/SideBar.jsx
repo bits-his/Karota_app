@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import kekeLogo from "../assets/keke_napep.png";
-import { GiArchiveRegister } from "react-icons/gi";
 import { useSelector } from "react-redux";
 import { toParagraph } from "../Utils/Helper";
 

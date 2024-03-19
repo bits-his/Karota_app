@@ -52,7 +52,8 @@ export default function Navbar() {
             }`}
           >
             <MdDashboard className="icon shadow" />
-            {toParagraph(user.role)} Dashboard
+            {/* {toParagraph(user.role)}  */}
+            Dashboard
           </div>
           {true ? (
             <div

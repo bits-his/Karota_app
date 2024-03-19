@@ -2,7 +2,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import { Button, Card, Col, Row, Table } from "reactstrap";
+import { Button, Card, Col, Row, Table,Spinner } from "reactstrap";
 import { _get } from "../../Utils/Helper";
 
 export default function AgentTable() {
@@ -11,13 +11,13 @@ export default function AgentTable() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState('');
   const getReg = useCallback(() => {
-    _get(`agents?query_type=select-all&plate_no=${filter}`,
+    _get(`agents?query_type=select-all`,
       (resp) => {
         if (resp.success && resp.results) {
           setData(resp.results);
         }
       });
-  }, [filter]);
+  }, []);
 
   useEffect(() => {
     getReg();
@@ -77,6 +77,12 @@ export default function AgentTable() {
 
         <Row>
           <div className="table_overflow">
+          {data.length === 0 ? ( 
+        <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
+       ""
+      </Spinner>
+      
+      ) : (
             <Table
               bordered
               responsive
@@ -113,7 +119,7 @@ export default function AgentTable() {
                     {agent.name}
                   </td>
                   <td>
-                    {agent.phone}
+                    {agent.phone_no}
                   </td>
                   <td>
                     {agent.email}
@@ -123,10 +129,11 @@ export default function AgentTable() {
                   </td>
                   <td className="text-center">
                     <Button color="info">View</Button>
+                    
                   </td>
                 </tr>)}
               </tbody>
-            </Table>
+            </Table>)}
           </div>
         </Row>
       </Row>

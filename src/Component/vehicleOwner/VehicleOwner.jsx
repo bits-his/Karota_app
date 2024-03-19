@@ -1,35 +1,45 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, Col, Row, Form, FormGroup, Label, Input, Button, Table } from 'reactstrap';
+import { stateLga } from '../../assets/state_and_lgas';
+import { useSelector } from 'react-redux';
+import { _post } from '../../Utils/Helper';
+import toast from 'react-hot-toast';
 
 export default function OwnerReg() {
     const navigate = useNavigate();
+    const { user } = useSelector(s => s.auth)
     const [showForm, setShowForm] = useState(false);
-    const nigeriaStates = [
-        "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno",
-        "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "FCT", "Gombe", "Imo", "Jigawa",
-        "Kaduna", "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Lagos", "Nasarawa", "Niger",
-        "Ogun", "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara"
-    ];
-    const kanoLGAs = [
-        "Ajingi", "Albasu", "Bagwai", "Bebeji", "Bichi", "Bunkure", "Dala", "Dambatta", "Dawakin Kudu",
-        "Dawakin Tofa", "Doguwa", "Fagge", "Gabasawa", "Garko", "Garun Malam", "Gaya", "Gezawa", "Gwale",
-        "Gwarzo", "Kabo", "Kano Municipal", "Karaye", "Kibiya", "Kiru", "Kumbotso", "Kunchi", "Kura",
-        "Madobi", "Makoda", "Minjibir", "Nasarawa", "Rano", "Rimin Gado", "Rogo", "Shanono", "Sumaila",
-        "Takai", "Tarauni", "Tofa", "Tsanyawa", "Tudun Wada", "Ungogo", "Warawa", "Wudil"
-    ];
+    const _form = {
+        query_type: "insert",
+        agent_id: null
+    };
+    const [form, setForm] = useState(_form);
+    const handleChange = ({ target: { name, value } }) => {
+        setForm((p) => ({ ...p, [name]: value }));
+    };
 
     const handleShowForm = () => {
         setShowForm(true);
     };
     const handleBackToTable = () => {
-        setShowForm(false);
+        navigate('/Vehicleownertable')
     };
     const handleSubmit = (e) => {
-
         e.preventDefault();
-        console.log('Form submitted');
+        _post(`vehicle-owners/create` , form, 
+        res =>{
+            console.log(res)
+            if(res.success){
+                toast.success(`A new Vehicle owner ${form.name} Created Successfully`)
+            navigate("/Vehicleownertable")
+            }
+            else{
 
+            }
+            
+        })
+        
     };
 
     return (
@@ -42,9 +52,9 @@ export default function OwnerReg() {
                             <Button
                                 className="app_button"
                                 style={{ width: 150, padding: 10, marginLeft: 15, color: '#000', borderRadius: 10 }}
-                                onClick={handleShowForm}
+                                onClick={handleBackToTable}
                             >
-                                Add vehicle owner
+                                Back
                             </Button>
                         ) : (
                             <Button
@@ -59,32 +69,50 @@ export default function OwnerReg() {
                     <hr />
                 </Col>
                 <Col md={12}>
-                    <Form onSubmit={handleSubmit}>
+                    <Form >
                         <Row className='margin-bottom-input'>
                             <Col md={6} className='first-col'>
                                 <FormGroup>
                                     <Label for="OwnerName">Owner's name</Label>
-                                    <Input id="OwnerName" name="OwnerName" placeholder="Owner's name" type="text" />
+                                    <Input id="OwnerName" 
+                                    name="name" 
+                                    onChange={handleChange}
+                                    value={form.name}
+                                    placeholder="Owner's name" type="text" />
                                 </FormGroup>
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
-                                    <Label for="orgPhone">Phone</Label>
-                                    <Input id="Phone" name="Phone" placeholder="+234-8100000000" type="tel" />
+                                    <Label for="phone">Phone</Label>
+                                    <Input id="phone" 
+                                    name="phone" 
+                                    onChange={handleChange}
+                                    value={form.phone}
+                                    placeholder="+234-8100000000" type="tel" />
                                 </FormGroup>
                             </Col>
                         </Row>
                         <Row className='margin-bottom-input'>
                             <Col md={6} className='first-col'>
                                 <FormGroup>
-                                    <Label for="officeAddress">Address</Label>
-                                    <Input id="Address" name="Address" type="text" />
+                                    <Label for="address">Address</Label>
+                                    <Input id="address" 
+                                    name="address"
+                                    onChange={handleChange}
+                                    value={form.address}
+                                    type="text" />
                                 </FormGroup>
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="orgEmail">Owner's email</Label>
-                                    <Input id="Emailexample" name="Email" placeholder="owner@fake.com" type="email" />
+                                    <Input 
+                                    id="orgEmail" 
+                                    name="email" 
+                                    onChange={handleChange}
+                                    value={form.email}
+                                    placeholder="owner@fake.com" 
+                                    type="email" />
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -92,18 +120,31 @@ export default function OwnerReg() {
                             <Col md={6} className='first-col'>
                                 <FormGroup>
                                     <Label for="state">State of residence</Label>
-                                    <Input id="state" name="state" type="select">
-                                        <option value="">-- Select State --</option>
-                                        {nigeriaStates.map((state) => (
-                                            <option key={state} value={state}>{state}</option>
+                                    <Input
+                                        onChange={handleChange}
+                                        id="state"
+                                        name="state"
+                                        value={form.state}
+                                        type="select"
+                                        className="app_input"
+                                        required
+                                    >
+                                        <option value={""}>Select State</option>
+                                        {stateLga.map((item) => (
+                                            <option>{item.state}</option>
                                         ))}
                                     </Input>
                                 </FormGroup>
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
-                                    <Label for="NIN">NIN</Label>
-                                    <Input id="NIN" name="NIN" type="number" />
+                                    <Label for="nin">NIN</Label>
+                                    <Input 
+                                    id="nin" 
+                                    onChange={handleChange}
+                                    name="nin" 
+                                    value={form.nin}
+                                    type="number" />
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -111,34 +152,38 @@ export default function OwnerReg() {
                             <Col md={6} className='first-col'>
                                 <FormGroup>
                                     <Label for="lga">Local Government Area</Label>
-                                    <Input id="lga" name="lga" type="select">
-                                        <option value="">-- Select LGA --</option>
-                                        {kanoLGAs.map((lga) => (
-                                            <option key={lga} value={lga}>{lga}</option>
-                                        ))}
+                                    <Input
+                                        onChange={handleChange}
+                                        id="lga"
+                                        name="lga"
+                                        type="select"
+                                        className="app_input"
+                                    >
+                                        <option value={""}>--Select LGA--</option>
+                                        {stateLga
+                                            .filter((item) => item.state === form.state)[0]
+                                            ?.lgas?.map((lga, idx) => (
+                                                <option key={idx}>{lga}</option>
+                                            ))}
                                     </Input>
                                 </FormGroup>
                             </Col>
-                            <Col md={6}>
-                                <FormGroup>
-                                    <Label for="d.o.b">D.o.B</Label>
-                                    <Input id="d.o.b" name="d.o.b" type="date" />
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row className='margin-bottom-input'>
-                            <Col md={6}>
+                            {/* <Col md={6}>
                                 <FormGroup>
                                     <Label for="examplePassword">Password</Label>
-                                    <Input id="examplePassword" name="password" placeholder="password" type="password" />
+                                    <Input 
+                                    
+                                    id="examplePassword" 
+                                    name="password" 
+                                    placeholder="password" type="password" />
                                 </FormGroup>
-                            </Col>
+                            </Col> */}
                         </Row>
                         <Row>
                             <Col md={12}
                                 style={{
                                     display: 'flex',
-                                    justifyContent: 'space-between',
+                                    justifyContent: 'center',
                                     marginTop: 30,
 
                                 }}
@@ -151,11 +196,11 @@ export default function OwnerReg() {
                                     cursor: "pointer",
                                     borderRadius: 7,
                                 }}
-                                onClick={() => navigate("/")}
+                                onClick={handleSubmit}
                             >
                                     Submit
                                 </button>
-                                <button
+                                {/* <button
                                     className="app_button"
                                     style={{
                                         width: 150,
@@ -167,7 +212,7 @@ export default function OwnerReg() {
                                     onClick={() => navigate("/VehicleReg")}
                                 >
                                     prev
-                                </button>
+                                </button> */}
 
                             </Col>
                         </Row>

@@ -1,45 +1,74 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import { Button, Card, Col, Row, Table } from "reactstrap";
+import {
+  Button,
+  Card,
+  Col,
+  Row,
+  Table,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Spinner,
+  Input,
+  Label,
+} from "reactstrap";
 import { _get } from "../../Utils/Helper";
+import { useLocation } from "react-router-dom";
 
 export default function SuperAgentTable() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const formData = location.state && location.state.formData;
 
   const [data, setData] = useState([]);
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
+
   const getReg = useCallback(() => {
-    _get(`superagent?query_type=select-all`,
-      (resp) => {
-        if (resp.success && resp.results) {
-          setData(resp.results);
-        }
-      });
-  }, [filter]);
+    _get(`superagent?query_type=select-all`, (resp) => {
+      if (resp.success && resp.results) {
+        setData(resp.results);
+      }
+    });
+  }, []);
 
   useEffect(() => {
     getReg();
   }, [getReg]);
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const handleViewUser = (userData) => {
+    setSelectedUser(userData);
+    setIsModalOpen(true);
+  };
+
   return (
     <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
       <Row>
-        <Col md={9}>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <h4 className="app_title"> Super Agents </h4>
-          </div>
-        </Col>
-
-        <Col>
+        <Col
+          md={12}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <h4 className="app_title"> Super Agents </h4>
           <button
-            className="app_button text-right"
+            className="app_button"
             style={{
-              position: 'relative',
-              left: 138,
               width: 150,
               padding: 10,
               marginLeft: 15,
               color: "#000",
+              borderRadius: 7,
             }}
             onClick={() => navigate("/superagent")}
           >
@@ -52,7 +81,6 @@ export default function SuperAgentTable() {
       <Row>
         <Col md={12}>
           <div style={{ display: "flex", flexDirection: "row", marginTop: 30 }}>
-
             <Col md={12}>
               <div className="search">
                 <CiSearch
@@ -63,74 +91,87 @@ export default function SuperAgentTable() {
                     color: "#000",
                   }}
                 />
-                <input
+                <Input
                   style={{
+                    position: "relative",
                     width: "100%",
                     fontSize: 20,
+                    top: -4,
+                    boxShadow: "none",
                   }}
+                  name="filter"
+                  value={filter}
+                  type="text"
                   className="app_input2"
-                  placeholder="Search Individual"
+                  onChange={({ target: { value } }) => setFilter(value)}
+                  placeholder="Search for super agent"
                 />
               </div>
             </Col>
-            <label className="label_title" style={{ color: "#000" }}>
+            <Label
+              onClick={getReg}
+              className="label_title"
+              style={{ color: "#000", cursor: "pointer" }}
+            >
               Search
-            </label>
+            </Label>
           </div>
         </Col>
 
         <Row>
           <div className="table_overflow">
-            <Table
-              bordered
-              responsive
-              style={{ position: 'relative', top: '10px', width: '95.3%', left: "32px", marginTop: '4px' }}
-            >
-              <thead>
-                <tr>
-                  <th>
-                    S/N
-                  </th>
-                  <th>
-                    Name
-                  </th>
-                  <th>
-                    Phone
-                  </th>
-                  <th>
-                    Email
-                  </th>
-                  <th>
-                    Contact Address
-                  </th>
-                  <th className="text-center">
-                    Action
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.map((agent, idx) => <tr key={idx}>
-                  <th>
-                    {idx + 1}
-                  </th>
-                  <td>
-                    {agent.name}
-                  </td>
-                  <td>
-                    {agent.phone}
-                  </td>
-                  <td>
-                    {agent.email}
-                  </td>
-                  <td>
-                    {agent.address}
-                  </td>
-                  <td className="text-center">
-                            <Button color="info">View</Button>
-                        </td>
-                </tr>)}
-              </tbody>
-            </Table>
+            {data.length === 0 ? (
+              <Spinner
+                color="warning"
+                className="spinner"
+                type="grow"
+                style={{ margin: "20px auto" }}
+              >
+                ""
+              </Spinner>
+            ) : (
+              <Table
+                bordered
+                responsive
+                style={{
+                  position: "relative",
+                  top: "10px",
+                  width: "95.3%",
+                  left: "32px",
+                  marginTop: "4px",
+                }}
+              >
+                <thead>
+                  <tr>
+                    <th>S/N</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Contact Address</th>
+                    <th className="text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.map((agent, idx) => (
+                    <tr key={idx}>
+                      <th>{idx + 1}</th>
+                      <td>{agent.name}</td>
+                      <td>{agent.phone}</td>
+                      <td>{agent.email}</td>
+                      <td>{agent.address}</td>
+                      <td className="text-center">
+                        <Button
+                          color="info"
+                          onClick={() => handleViewUser(agent)}
+                        >
+                          View
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            )}
           </div>
         </Row>
       </Row>

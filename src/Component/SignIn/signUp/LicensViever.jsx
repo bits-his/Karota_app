@@ -24,10 +24,10 @@ export default function LicensViever() {
 
   return (
     <div>
-      {JSON.stringify({ data, vehicle_id })}
-      {/* <PDFViewer style={{ width: "100%", height: "100vh" }}>
+      {/* {JSON.stringify({ data, vehicle_id })} */}
+      <PDFViewer style={{ width: "100%", height: "100vh" }}>
         <LicensPDF />
-      </PDFViewer> */}
+      </PDFViewer>
     </div>
   );
 }

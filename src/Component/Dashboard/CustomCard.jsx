@@ -6,7 +6,6 @@ import { _get, _post } from '../../Utils/Helper';
 import { SiApachekafka } from "react-icons/si";
 import { SiAqua } from "react-icons/si";
 import { FaMagento } from 'react-icons/fa';
-import axios from 'axios';
 
 const QuickActivityWrap = () => {
   const columnMarginBottom = {

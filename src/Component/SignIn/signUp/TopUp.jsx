@@ -84,7 +84,7 @@ export default function TopUp() {
         <Row>
           <Col md={12}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <h4 className="app_title">Top Up</h4>
+              <h4 className="app_title">Point of Collection</h4>
             </div>
             {/* {vendorData.map(item, id) => ( 
             <div
@@ -145,7 +145,7 @@ export default function TopUp() {
             </div>
           </Col>
 
-          {/* <Card className="mt-5 shadow">
+          <Card className="mt-5 shadow">
             <div className="table_overflow1">
               {data?.length === 0 ? (
                 <Spinner
@@ -170,7 +170,7 @@ export default function TopUp() {
                 >
                   <thead>
                     <tr>
-                      <th>Reg. No.</th>
+                      <th>Vehicle ID.</th>
                       <th>Plate No.</th>
                       <th>Chasis No.</th>
                       <th>Balance (₦)</th>
@@ -180,7 +180,7 @@ export default function TopUp() {
                   <tbody>
                     {data.map((vehicle, idx) => (
                       <tr key={idx}>
-                        <td>00{vehicle.vehicle_id}</td>
+                        <td>{vehicle.vehicle_id}</td>
                         <td>{vehicle.plate_no}</td>
                         <td>{vehicle.chasis_no}</td>
                         <td className="text-right">
@@ -213,7 +213,7 @@ export default function TopUp() {
                 </Table>
               )}
             </div>
-          </Card> */}
+          </Card>
 
           <Modal
             isOpen={modal}

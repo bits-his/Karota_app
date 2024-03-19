@@ -77,7 +77,6 @@ export default function TopUp() {
     getReg();
   }, [getReg]);
 
-  //console.log(vendorData);
   return (
     <div>
       <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
@@ -203,7 +202,7 @@ export default function TopUp() {
                                 goto(`/licens-pdf/${vehicle.plate_no}`)
                               }
                             >
-                              View Licens
+                              View License
                             </Button>
                           </ButtonGroup>
                         </td>
@@ -263,7 +262,7 @@ export default function TopUp() {
               </div>
               <Form>
                 <FormGroup>
-                  <Label for="topUpAmount">Top-up</Label>
+                  <Label for="topUpAmount">Amount</Label>
                   <Input
                     type="text"
                     name="topUpAmount"

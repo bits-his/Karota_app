@@ -56,7 +56,7 @@ export default function AppNavigation() {
           element: <Agent />,
         },
         {
-          path: "superagentable",
+          path: "superagenttable",
           element: <SuperAgentTable />,
         },
         {

@@ -34,7 +34,7 @@ export default function Agent() {
   //       if (res.success) {
   //         setLoading(true);
   //         toast.success("Agent created successfully");
-  //         navigate("/agentable");
+  //         navigate("/agenttable");
   //       }
   //     },
   //     () => {

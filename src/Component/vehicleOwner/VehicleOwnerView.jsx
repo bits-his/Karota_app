@@ -67,7 +67,7 @@ export default function VehicleOwnerView() {
                         <Table striped>
                             <tbody>
                                 <tr>
-                                    <th>Owner's Name</th>
+                                    <th width="20%">Owner's Name</th>
                                     <td>{data.name}</td>
                                 </tr>
                                 <tr>

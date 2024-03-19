@@ -10,7 +10,7 @@ export default function LicensViever() {
 
   const getVehicles = useCallback(() => {
     // setLoading(true);
-    _get(`vehicles?query_type=search&plate_no=${vehicle_id}`, (resp) => {
+    _get(`vehicles?query_type=get_vehicle_by_plate_no&plate_no=${vehicle_id}`, (resp) => {
       if (resp.data && resp.data.length) {
         setData(resp.data);
         // setLoading(false);

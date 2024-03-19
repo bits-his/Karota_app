@@ -53,25 +53,25 @@ export default function TopUp() {
     setFund(true);
     toggleModal();
   };
-  const agentDetails = {
-    name: "Ahmad Ibrahim",
-    id: 123,
-    bal: 2000,
-  };
+  // const agentDetails = {
+  //   name: "Ahmad Ibrahim",
+  //   id: 123,
+  //   bal: 2000,
+  // };
   const getReg = useCallback(() => {
-    _get(`vehicles?query_type=select-all=${filter}`, (resp) => {
-      if (resp.success) {
+    _get(`vehicles?query_type=select-all`, (resp) => {
+      if (resp.success && resp.data) {
         setData(resp.data);
         console.log(resp.data);
       }
     });
-    _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
-      setLoading(false); // Set loading to false after receiving response
-      if (resp.success && resp.results) {
-        setVendorData(resp.results);
-      }
-    });
-  }, [filter]);
+    // _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
+    //   setLoading(false); // Set loading to false after receiving response
+    //   if (resp.success && resp.results) {
+    //     setVendorData(resp.results);
+    //   }
+    // });
+  }, [/*filter*/]);
 
   useEffect(() => {
     getReg();
@@ -107,7 +107,6 @@ export default function TopUp() {
              )}   */}
             <hr />
           </Col>
-{JSON.stringify(data)}
           <Col md={12}>
             <div style={{ display: "flex", flexDirection: "row" }}>
               <Col md={12}>
@@ -148,7 +147,7 @@ export default function TopUp() {
 
           {/* <Card className="mt-5 shadow">
             <div className="table_overflow1">
-              {data.length === 0 ? (
+              {data?.length === 0 ? (
                 <Spinner
                   color="warning"
                   className="spinner"

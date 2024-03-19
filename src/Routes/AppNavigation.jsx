@@ -115,7 +115,7 @@ export default function AppNavigation() {
           element: <SuperAgentTopUp />,
         },
         {
-          path: "/licens-pdf",
+          path: "/licens-pdf/:vehicle_id",
           element: <LicensViever />,
         },
         {

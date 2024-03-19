@@ -1,0 +1,100 @@
+/* Navbar component styles */
+.sidebar {
+  background-color: #f5c005;
+  height: 100vh;
+  overflow-y: auto;
+  margin: 0;
+  width: 300px;
+  position: sticky;
+  top: 0;
+}
+/* .navbar-logo-container {
+  display: flex;
+  align-items: center;
+} */
+.navbar-logo-container {
+  width: 140px;
+  height: 140px;
+  border-radius: 100%;
+  margin-top: 60px;
+  background-color: #fff;
+  box-shadow: 0 14px 28px rgba(17, 16, 16, 0.25),
+    0 10px 10px rgba(49, 48, 48, 0.22);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-inline: auto;
+}
+.navbar-keke-logo {
+  position: absolute;
+  width: 100%;
+}
+
+/* .navbar-keke-logo {
+  width: 100px; 
+} */
+
+.navbar-app-title {
+  color: #020202;
+}
+
+.navbar-menu-container {
+  position: relative;
+}
+
+.navbar-menu-toggle {
+  display: none; /* Hidden by default */
+}
+
+.navbar-link-container {
+  margin-top: 60px;
+  width: 100%;
+}
+
+.navbar-link-item {
+  color: #f9f9f9;
+  padding-top: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 10px 30px;
+  list-style: none;
+  cursor: pointer;
+  border-radius: 10px;
+  text-align: left;
+  transition: transform 0.3s;
+}
+
+.navbar-active-side-menu {
+  background-color: #a88504;
+  width: 100%;
+  font-size: 1.65rem;
+}
+
+.navbar-active-side-menu:hover {
+  color: var(--primaryColor2);
+}
+
+.navbar-link-item:hover {
+  background-color: #a88504;
+  color: #fff;
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.navbar-container {
+  width: 100%;
+}
+
+.navbar-sidebar {
+  background-color: #f5c005;
+  height: 100vh;
+  overflow-y: auto;
+  margin: 0;
+  width: 250px;
+  position: sticky;
+  top: 0;
+}

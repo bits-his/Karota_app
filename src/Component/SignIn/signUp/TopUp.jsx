@@ -200,7 +200,9 @@ export default function TopUp() {
                             </Button>
                             <Button
                               color="info"
-                              onClick={() => goto("/licens-pdf")}
+                              onClick={() =>
+                                goto(`/licens-pdf/${vehicle.plate_no}`)
+                              }
                             >
                               View Licens
                             </Button>

@@ -13,22 +13,22 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const initUser = useCallback(() => {
-    dispatch(
-      init(navigate,
-        () => {
-          navigate(`${location.pathname}${location.search}`);
-        },
-        () => {
-          navigate('/login')
-        }
-      )
-    );
-  }, []);
+  // const initUser = useCallback(() => {
+  //   dispatch(
+  //     init(navigate,
+  //       () => {
+  //         navigate(`${location.pathname}${location.search}`);
+  //       },
+  //       () => {
+  //         navigate('/login')
+  //       }
+  //     )
+  //   );
+  // }, []);
 
-  useEffect(() => {
-    initUser()
-  }, [initUser])
+  // useEffect(() => {
+  //   initUser()
+  // }, [initUser])
 
   return (
     <>

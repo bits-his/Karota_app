@@ -263,7 +263,7 @@ export default function TopUp() {
               </div>
               <Form>
                 <FormGroup>
-                  <Label for="topUpAmount">Top-up</Label>
+                  <Label for="topUpAmount">Amount</Label>
                   <Input
                     type="text"
                     name="topUpAmount"

@@ -141,6 +141,19 @@ export default function SideBar() {
             }`}
           >
             {/* <GiArchiveRegister className="icon shadow" /> */}
+            Vehicles Owners
+          </div>
+        ) : (
+          ""
+        )}
+         {true ? (
+          <div
+            onClick={() => goto("/top-up")}
+            className={`link_item ${
+              location.pathname.includes("top-up") ? "active_side_menu" : ""
+            }`}
+          >
+            {/* <GiArchiveRegister className="icon shadow" /> */}
             Vehicles
           </div>
         ) : (
@@ -159,19 +172,7 @@ export default function SideBar() {
         ) : (
           ""
         )}
-        {true ? (
-          <div
-            onClick={() => goto("/top-up")}
-            className={`link_item ${
-              location.pathname.includes("top-up") ? "active_side_menu" : ""
-            }`}
-          >
-            {/* <GiArchiveRegister className="icon shadow" /> */}
-            Top Up
-          </div>
-        ) : (
-          ""
-        )}
+       
       </section>
     </div>
   );

@@ -53,31 +53,31 @@ export default function TopUp() {
     setFund(true);
     toggleModal();
   };
-  const agentDetails = {
-    name: "Ahmad Ibrahim",
-    id: 123,
-    bal: 2000,
-  };
+  // const agentDetails = {
+  //   name: "Ahmad Ibrahim",
+  //   id: 123,
+  //   bal: 2000,
+  // };
   const getReg = useCallback(() => {
-    _get(`vehicles?query_type=select-all=${filter}`, (resp) => {
-      if (resp.success) {
+    _get(`vehicles?query_type=select-all`, (resp) => {
+      if (resp.success && resp.data) {
         setData(resp.data);
         console.log(resp.data);
       }
     });
-    _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
-      setLoading(false); // Set loading to false after receiving response
-      if (resp.success && resp.results) {
-        setVendorData(resp.results);
-      }
-    });
-  }, [filter]);
+    // _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
+    //   setLoading(false); // Set loading to false after receiving response
+    //   if (resp.success && resp.results) {
+    //     setVendorData(resp.results);
+    //   }
+    // });
+  }, [/*filter*/]);
 
   useEffect(() => {
     getReg();
   }, [getReg]);
 
-  console.log(vendorData);
+ 
   return (
     <div>
       <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
@@ -107,7 +107,6 @@ export default function TopUp() {
              )}   */}
             <hr />
           </Col>
-
           <Col md={12}>
             <div style={{ display: "flex", flexDirection: "row" }}>
               <Col md={12}>
@@ -146,9 +145,9 @@ export default function TopUp() {
             </div>
           </Col>
 
-          <Card className="mt-5 shadow">
+          {/* <Card className="mt-5 shadow">
             <div className="table_overflow1">
-              {data.length === 0 ? (
+              {data?.length === 0 ? (
                 <Spinner
                   color="warning"
                   className="spinner"
@@ -200,7 +199,9 @@ export default function TopUp() {
                             </Button>
                             <Button
                               color="info"
-                              onClick={() => goto("/licens-pdf")}
+                              onClick={() =>
+                                goto(`/licens-pdf/${vehicle.plate_no}`)
+                              }
                             >
                               View Licens
                             </Button>
@@ -212,7 +213,7 @@ export default function TopUp() {
                 </Table>
               )}
             </div>
-          </Card>
+          </Card> */}
 
           <Modal
             isOpen={modal}

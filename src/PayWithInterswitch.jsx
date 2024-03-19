@@ -69,7 +69,7 @@ const PaymentButton = ({
     customerEmail: email,
     redirectURL: `https://kekeapp.netlify.app/`,
     text: label,
-    mode: "LIVE", //"TEST",
+    mode: "TEST", //"TEST",
     payRef: "WEB",
     customerName: name.replace("'", "&#x27;"),
     customerID: user_id?.toString(),

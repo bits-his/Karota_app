@@ -54,10 +54,23 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
   return (
     <>
       <div className="app_card dashboard_card m-0 p-0">
-        <h3 className="text-center fw-bold">Vehicle Top-Up</h3>
+      <h3 className="text-center fw-bold">Vehicle Top-Up</h3>
+        <div style={{
+          position: "relative",
+          // display: 'flex',
+          paddingLeft: '52px',
+          top: "30px",
+          margin: "0 auto",
+          width: "75%",
+          height: "45vh",
+          borderRadius: "8px",
+          border: "1px solid #f5c005",
+          boxShadow: '1px 2px #f5c005'
+        }}>
+        
 
           {/* {JSON.stringify(form)} */}
-          <div className="agent">
+          <div>
             <div
               style={{
                 display: "flex",
@@ -70,14 +83,30 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
                 handleChange={handleChange}
                 selectedAgentValue={form.agent_id}
               />
-              <>
+              </div>
+              <div>
                <p style={{fontSize: '15px', fontWeight: '600', marginBottom: '20px'}}>Name : <span style={{marginLeft: '57px', fontWeight: '400'}}>{form.agent_name}</span></p>
                <p style={{fontSize: '15px', fontWeight: '600', marginBottom: '20px'}}>ID : <span style={{marginLeft: '80px', fontWeight: '400'}}>{form.agent_id}</span></p>
-              </>
+              </div>
             </div>
-           
-          </div>
-          <div className="vehicle">
+
+            <div
+              style={{
+                position: 'absolute',
+                left: '42rem',
+                top: '1rem',
+                opacity: '0.3',
+                border: '1px solid gray',
+                height: '19rem',
+                width:'1px'
+              }}
+              ></div>
+
+          <div style={{
+            position: 'relative',
+            left: '42rem',
+            top: '-13rem'
+          }}>
             <div
               style={{
                 display: "flex",
@@ -90,15 +119,16 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
                 handleChange={handleChange}
                 selectedVehicleValue={form.vehicle_id}
               />
+              </div>
               <div>
                 <p style={{fontSize: '15px', fontWeight: '600', marginRight: '57px', marginBottom: '20px'}}>Name : <span  style={{marginLeft: '54px', fontWeight: '400'}}>{form.Plate_no}</span></p>
                <p style={{fontSize: '15px', fontWeight: '600', marginRight: '57px', marginBottom: '20px'}}>ID :  <span  style={{marginLeft: '80px', fontWeight: '400'}}>{form.vehicle_id}</span></p>
-
-              </div>
+              </div> 
             </div>
-          
-            <div style={{ display: "flex" }}>
-              <p style={{fontSize: '15px', fontWeight: '600', marginRight: '57px'}}>Amount:</p>
+
+
+            <div style={{ display: "flex", position: 'relative', top: '-14rem'}}>
+              <p style={{fontSize: '15px', fontWeight: '600', marginRight: '50px'}}>Amount:</p>
               <input
                 // className="app_input"
                 placeholder="Enter amount here..."
@@ -108,15 +138,17 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
                 type="number"
                 style={{
                   position: 'relative',
-                  width: '23.4rem',
+                  width: '19.4rem',
                   height: '3.8rem',
-                  left: '-7.7px',
+                  left: '.7px',
+                  borderRadius: '5px',
+                  border: '1px solid',
                   marginBottom: '20px',
                   paddingLeft: '10px'
                 }}
               />
             </div>
-          </div>
+          
 
           <div
             style={{
@@ -127,16 +159,16 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
             onClick={submitTopUp}
             style={{
                 position: 'relative',
-                top: '20px',
+                top: '-12rem',
                 height: '40px',
                 backgroundColor: '#f5c005',
-                left: '11rem',
-                width: '150px',
+                left: '23rem',
+                width: '28rem',
                 boxShadow: '1px 2px gray'
             }}
             >Submit</Button>
           </div>
-        {/* </div> */}
+        </div>
       </div>
     </>
   );

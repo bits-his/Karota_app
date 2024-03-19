@@ -77,14 +77,13 @@ export default function TopUp() {
     getReg();
   }, [getReg]);
 
- 
   return (
     <div>
       <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
         <Row>
           <Col md={12}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <h4 className="app_title">Top Up</h4>
+              <h4 className="app_title">Point of Collection</h4>
             </div>
             {/* {vendorData.map(item, id) => ( 
             <div
@@ -145,7 +144,7 @@ export default function TopUp() {
             </div>
           </Col>
 
-          {/* <Card className="mt-5 shadow">
+          <Card className="mt-5 shadow">
             <div className="table_overflow1">
               {data?.length === 0 ? (
                 <Spinner
@@ -170,7 +169,7 @@ export default function TopUp() {
                 >
                   <thead>
                     <tr>
-                      <th>Reg. No.</th>
+                      <th>Vehicle ID.</th>
                       <th>Plate No.</th>
                       <th>Chasis No.</th>
                       <th>Balance (₦)</th>
@@ -180,7 +179,7 @@ export default function TopUp() {
                   <tbody>
                     {data.map((vehicle, idx) => (
                       <tr key={idx}>
-                        <td>00{vehicle.vehicle_id}</td>
+                        <td>{vehicle.vehicle_id}</td>
                         <td>{vehicle.plate_no}</td>
                         <td>{vehicle.chasis_no}</td>
                         <td className="text-right">
@@ -203,7 +202,7 @@ export default function TopUp() {
                                 goto(`/licens-pdf/${vehicle.plate_no}`)
                               }
                             >
-                              View Licens
+                              View License
                             </Button>
                           </ButtonGroup>
                         </td>
@@ -213,7 +212,7 @@ export default function TopUp() {
                 </Table>
               )}
             </div>
-          </Card> */}
+          </Card>
 
           <Modal
             isOpen={modal}
@@ -263,7 +262,7 @@ export default function TopUp() {
               </div>
               <Form>
                 <FormGroup>
-                  <Label for="topUpAmount">Top-up</Label>
+                  <Label for="topUpAmount">Amount</Label>
                   <Input
                     type="text"
                     name="topUpAmount"

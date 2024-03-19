@@ -15,24 +15,23 @@ import { _post } from "../../Utils/Helper";
 import toast from "react-hot-toast";
 
 export default function RegistrationTable() {
-	const {owner_id} = useParams()
+  const { owner_id } = useParams();
   const _form = {
     owner_id: owner_id || 1,
     lg_reg_no: "",
     pin: "",
     engine_no: "",
     plate_no: "",
-    color:"",
+    color: "",
     vehicle_make: "",
     vehicle_model: "",
-    engine_capacity:"",
-	chasis_no: "",
+    engine_capacity: "",
+    chasis_no: "",
     date_issued: "",
     purchased_date: "",
     state_registered: "",
     registered_lg: "",
-    expiry_date:"",
-        password: "",
+    expiry_date: "",
   };
 
   const [form, setForm] = useState(_form);
@@ -47,6 +46,7 @@ export default function RegistrationTable() {
     e.preventDefault();
     setLoading(true);
     _post(
+      // "vehicles/registration",
       "vehicles/registration",
       form,
       (res) => {
@@ -190,7 +190,7 @@ export default function RegistrationTable() {
               <Row className="margin-bottom-input">
                 <Col md={4} className="first-col">
                   <FormGroup>
-                    <Label for="state_registered">State Registred</Label>
+                    <Label for="state_registered">State Registered</Label>
                     <Input
                       onChange={handleChange}
                       id="state_registered"

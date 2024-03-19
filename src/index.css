@@ -102,15 +102,28 @@
   padding: 8px;
 }
 .app_input-topUp {
-  position: relative;
-  top: 7rem;
-  left: 20rem;
   border-radius: none !important;
   border: 1px solid #9d9c97;
   margin-bottom: 15px;
-  width: 43%;
+  width: 37%;
   padding: 8px;
 }
+
+.middle-card-topup {
+  margin: 0 auto;
+  width: 60%;
+}
+
+@media screen and (max-width: 767px) {
+  .middle-card-topup {
+    width: 90%;
+  }
+}
+
+.capitalize-text {
+  text-transform: capitalize;
+}
+
 /* .app_input_table {
   border-radius: none !important;
   border: 1px solid #f5c005;
@@ -250,15 +263,7 @@ label {
   width: 100%;
 }
 
-.sidebar {
-  background-color: #f5c005;
-  height: 100vh;
-  overflow-y: auto;
-  margin: 0;
-  width: 250px;
-  position: sticky;
-  top: 0;
-}
+
 
 .user_image {
   width: 120px;
@@ -395,9 +400,9 @@ td, th{
   /* .sidebar_div {
     display: none;
   } */
-  .sidebar {
+  /* .sidebar {
     display: none;
-  }
+  } */
   .mobile_menu {
     position: fixed;
     bottom: 0;

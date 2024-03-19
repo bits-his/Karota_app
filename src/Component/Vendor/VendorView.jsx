@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { CiSearch } from 'react-icons/ci'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Card, Col, Input, Label } from 'reactstrap'
+import { Card, Col, Input, Label, Table } from 'reactstrap'
 import useQuery, { _get } from '../../Utils/Helper'
 
 export default function VehicleView() {
@@ -106,8 +106,34 @@ export default function VehicleView() {
       </Col>
       <Col md={12}>
         <Card className='container shadow app_card mt-5'
-          style={{ marginTop: '20px' }}>
-          <div>
+          style={{ marginTop: '20px',paddingTop:'20px' }}>
+          <Table 
+            striped
+          >
+            <tbody>
+              <tr>
+                <th width="20%">ID</th>
+                <td>{id}</td>
+              </tr>
+              <tr>
+                <th>Name</th>
+                <td>{query.get("vendor_name")}</td>
+              </tr>
+              <tr>
+                <th>Phone Number</th>
+                <td>{query.get("vendor_org_phone")}</td>
+              </tr>
+              <tr>
+                <th>Vendor email</th>
+                <td>{query.get("vendor_org_email")}</td>
+              </tr>
+              <tr>
+                <th>Office Address </th>
+                <td>{query.get("vendor_ofiice_address")}</td>
+              </tr>
+            </tbody>
+          </Table>
+          {/* <div>
             <div style={{ display: "flex", alignItems: 'center' }}>
               <h1 style={{ fontSize: '20px', fontWeight: '600' }}>ID : </h1>
               <span style={{ fontSize: '16px', fontWeight: '500' }}>{id}</span></div>
@@ -123,7 +149,7 @@ export default function VehicleView() {
             <div style={{ display: "flex", alignItems: 'center' }}>
               <h1 style={{ fontSize: '20px', fontWeight: '600' }}>Office Address :</h1>
               <span style={{ fontSize: '16px', fontWeight: '500' }}>{query.get("vendor_ofiice_address")}</span></div>
-          </div>
+          </div> */}
         </Card>
       </Col>
     </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardBody, CardTitle, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { SiAnalogue } from "react-icons/si";
-import { _post } from '../../Utils/Helper';
+import { _get, _post } from '../../Utils/Helper';
 import { SiApachekafka } from "react-icons/si";
 import { SiAqua } from "react-icons/si";
 import { FaMagento } from 'react-icons/fa';
@@ -59,47 +59,47 @@ const QuickActivityWrap = () => {
     alignItems: "start",
   };
 
-  const [superAgentMax, setSuperAgentMax] = useState([]);
+  const [superAgentMax, setSuperAgentMax] = useState({});
   const [vendorMax, setVendorMax] = useState(0);
   const [vehicleMax, setVehicleMax] = useState(0);
   const [agentMax, setAgentMax] = useState(0);
 
   useEffect(() => {
-    axios.get('http://localhost:34567/fetchallcards')
-      .then(response => {
-        const data = response.data.data;
-        console.log("Data from server : ", data.data)
-        setSuperAgentMax(data);
-      })
-      .catch(error => {
+    _get(`fetchallcards`, resp => {
+        // const data = resp.data;
+        // console.log("Data from server : ", resp)
+        if(resp && resp.data && resp.data.length) {
+          setSuperAgentMax(resp.data[0]);
+        }
+      }, error => {
         console.error('Error fetching cards counts:', error);
-      });
-  });
+      })
+  }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (superAgentMax ) {
-        setSuperAgentMax(prevCount => prevCount + Math.floor(Math.random() * 5) + 1);
-      }
-      if (vendorMax ) {
-        setVendorMax(prevCount => prevCount + Math.floor(Math.random() * 5) + 1);
-      }
-      if (vehicleMax ) {
-        setVehicleMax(prevCount => prevCount + Math.floor(Math.random() * 50) + 1);
-      }
-      if (agentMax < agentMax) {
-        setAgentMax(prevCount => prevCount + Math.floor(Math.random() * 2) + 1);
-      }
-    }, 100);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (superAgentMax ) {
+  //       setSuperAgentMax(prevCount => prevCount + Math.floor(Math.random() * 5) + 1);
+  //     }
+  //     if (vendorMax ) {
+  //       setVendorMax(prevCount => prevCount + Math.floor(Math.random() * 5) + 1);
+  //     }
+  //     if (vehicleMax ) {
+  //       setVehicleMax(prevCount => prevCount + Math.floor(Math.random() * 50) + 1);
+  //     }
+  //     if (agentMax < agentMax) {
+  //       setAgentMax(prevCount => prevCount + Math.floor(Math.random() * 2) + 1);
+  //     }
+  //   }, 100);
   
-    return () => clearInterval(interval);
-  }, [superAgentMax, vendorMax, vehicleMax, agentMax]);
+  //   return () => clearInterval(interval);
+  // }, [superAgentMax, vendorMax, vehicleMax, agentMax]);
   
 
-  const data = superAgentMax.length? superAgentMax[0] : {}
+  // const data = superAgentMax.length? superAgentMax[0] : {}
     return (
         <div className="quick_activity_wrap">
-            {/* {JSON.stringify(data)} */}
+             {/* {JSON.stringify(superAgentMax)} ddd */}
             <Row>
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
                 <Link to="/supergentable"style={{ textDecoration: 'none' }}>
@@ -107,7 +107,7 @@ const QuickActivityWrap = () => {
                     <Card className="single_quick_activity " style={totalIncomeStyle} >
                         <CardBody>
                             <CardTitle>Total No. of super agent</CardTitle>
-                            <h3><span>{data?.super_agent_count}</span></h3>
+                            <h3><span>{superAgentMax?.super_agents_count}</span></h3>
                             <div style={iconStyle}><FaMagento /></div>
                         </CardBody>
                     </Card>
@@ -118,7 +118,7 @@ const QuickActivityWrap = () => {
                     <Card className="single_quick_activity " style={totalExpensesStyle}>
                         <CardBody>
                             <CardTitle>Total No. of vendors</CardTitle>
-                            <h3><span>{data?.vendors_count}</span></h3>
+                            <h3><span>{superAgentMax?.vendors_count}</span></h3>
                             <div style={iconStyle}><SiAnalogue /></div>
                         </CardBody>
                         
@@ -130,7 +130,7 @@ const QuickActivityWrap = () => {
                     <Card className="single_quick_activity " style={cashOnHandStyle}>
                         <CardBody>
                             <CardTitle>Total No. of vehicles</CardTitle>
-                            <h3><span>{data?.vehicles_count}</span></h3>
+                            <h3><span>{superAgentMax?.vehicles_count}</span></h3>
                             <div style={iconStyle}><SiApachekafka /></div>
                         </CardBody>
                     </Card>
@@ -141,7 +141,7 @@ const QuickActivityWrap = () => {
                     <Card className="single_quick_activity " style={netProfitMarginStyle}>
                         <CardBody>
                             <CardTitle>Total No. of Agents</CardTitle>
-                            <h3><span>{data?.agent_count}</span></h3>
+                            <h3><span>{superAgentMax?.agents_count}</span></h3>
                             <div style={iconStyle}><SiAqua /></div>
                         </CardBody>
                     </Card>

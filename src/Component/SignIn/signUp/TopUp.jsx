@@ -77,7 +77,7 @@ export default function TopUp() {
     getReg();
   }, [getReg]);
 
-  console.log(vendorData);
+ 
   return (
     <div>
       <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
@@ -107,7 +107,7 @@ export default function TopUp() {
              )}   */}
             <hr />
           </Col>
-
+{JSON.stringify(data)}
           <Col md={12}>
             <div style={{ display: "flex", flexDirection: "row" }}>
               <Col md={12}>
@@ -146,7 +146,7 @@ export default function TopUp() {
             </div>
           </Col>
 
-          <Card className="mt-5 shadow">
+          {/* <Card className="mt-5 shadow">
             <div className="table_overflow1">
               {data.length === 0 ? (
                 <Spinner
@@ -214,7 +214,7 @@ export default function TopUp() {
                 </Table>
               )}
             </div>
-          </Card>
+          </Card> */}
 
           <Modal
             isOpen={modal}

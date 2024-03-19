@@ -5,7 +5,7 @@ import { stateLga } from "../../assets/state_and_lgas";
 import toast from "react-hot-toast";
 import { _post } from "../../Utils/Helper";
 import { useSelector } from "react-redux";
-import SuperAgentDropdown from "./SuperAgentdropdown";
+// import SuperAgentDropdown from "./SuperAgentdropdown";
 
 export default function Agent() {
   const { user } = useSelector((p) => p.auth);
@@ -228,7 +228,7 @@ export default function Agent() {
                   md={12}
                   style={{
                     display: "flex",
-                    justifyContent: "right",
+                    justifyContent: "center",
                   }}
                 >
                   {" "}
@@ -245,7 +245,6 @@ export default function Agent() {
                     disabled={loading}
                   >
                     {loading ? "Submitting..." : "Submit"}
-                           
                   </button>
                 </Col>
               </Row>

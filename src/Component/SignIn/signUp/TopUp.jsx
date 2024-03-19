@@ -77,7 +77,6 @@ export default function TopUp() {
     getReg();
   }, [getReg]);
 
-
   return (
     <div>
       <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">

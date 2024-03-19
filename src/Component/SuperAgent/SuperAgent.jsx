@@ -37,6 +37,7 @@ export default function SuperAgent() {
   };
   const navigate = useNavigate();
   const handleSubmit = (e) => {
+    if (loading) return;
     e.preventDefault();
     setLoading(true);
     _post(
@@ -46,7 +47,7 @@ export default function SuperAgent() {
         setLoading(true);
         toast.success("super agent created successfully");
         setSubmittedData([...submittedData, res]);
-        navigate("/supergentable");
+        navigate("/superagentable");
       },
       () => {
         setLoading(false);
@@ -79,7 +80,7 @@ export default function SuperAgent() {
                   color: "#000",
                   borderRadius: 10,
                 }}
-                onClick={() => navigate("/supergentable")}
+                onClick={() => navigate("/superagentable")}
               >
                 Back
               </button>
@@ -255,8 +256,9 @@ export default function SuperAgent() {
                       borderRadius: 7,
                     }}
                     onClick={handleSubmit}
+                    disabled={loading}
                   >
-                    Submit
+                    {loading ? "Submitting..." : "Submit"}
                   </button>
                 </Col>
               </Row>

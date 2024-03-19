@@ -64,7 +64,7 @@ export default function RegistrationTable() {
 
   return (
     <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
-      {JSON.stringify({ form })}
+      {/* {JSON.stringify({ form })} */}
       <Row>
         <Col md={12}>
           <div
@@ -74,13 +74,12 @@ export default function RegistrationTable() {
               alignItems: "center",
             }}
           >
-            <h4 className="app_title">Vehicle Registeration </h4>
+           
             <button
               className="app_button"
               style={{
                 width: 150,
                 padding: 10,
-                marginLeft: 15,
                 color: "#000",
                 borderRadius: 10,
               }}
@@ -88,6 +87,7 @@ export default function RegistrationTable() {
             >
               Back
             </button>
+             <h4 className="app_title">Vehicle Registeration </h4>
           </div>
 
           <hr />

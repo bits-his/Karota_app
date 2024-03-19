@@ -8,19 +8,6 @@ function VendorTopUpDropDown({ handleChange, selectedVendorValue }) {
   const [loading, setLoading] = useState(false);
 
   const getVendors = useCallback(() => {
-    // setLoading(true);
-    // _get(`vendors?query_type=select-all`, (resp) => {
-    //   if (resp.success) {
-    //     // setData(resp.data);
-    //     const formattedData = resp.data.map((vendor) => ({
-    //       value: vendor.vendor_name,
-    //       label: vendor.endor_id,
-    //       // chasis: vehicle.chasis_no,
-    //     }));
-    //     setData(formattedData);
-    //     setLoading(false);
-    //   }
-    // });
     setLoading(true); // Set loading to true before API call
     _get(`vendors?query_type=select-all`, (resp) => {
       setLoading(false);
@@ -37,20 +24,7 @@ function VendorTopUpDropDown({ handleChange, selectedVendorValue }) {
   useEffect(() => {
     getVendors();
   }, [getVendors]);
-  // const handleSelectChange = (selectedOption) => {
-  //   setSelectedVehicle(selectedOption);
-  //   handleChange({ target: { name: selectedOption.name, value: selectedOption.value ,chasis: selectedOption.chasis} });
-  // };
-  // const handleSelectChange = (selectedOption) => {
-  //   setSelectedVehicle(selectedOption);
-  //   handleChange({
-  //     target: {
-  //       name: selectedOption.label, // Assuming name here is label
-  //       value: selectedOption.value,
-  //       chasis: selectedOption.chasis,
-  //     },
-  //   });
-  // };
+ 
    const handleSelectChange = (selectedOption) => {
      setSelectedVendor(selectedOption);
      handleChange({
@@ -69,7 +43,6 @@ function VendorTopUpDropDown({ handleChange, selectedVendorValue }) {
 
   return (
     <>
-      {/* {JSON.stringify(data)} */}
       <Select
         value={selectedVendor}
         onChange={handleSelectChange}

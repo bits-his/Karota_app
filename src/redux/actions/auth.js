@@ -76,7 +76,7 @@ export function login({ username, password, history }, success, error) {
                         });
                 } else {
                     dispatch({ type: ERRORS, payload: data.msg });
-                    error(data.error);
+                    error(data);
                     // console.log(data);
                 }
             })

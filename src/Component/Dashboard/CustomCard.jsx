@@ -5,7 +5,10 @@ import { SiAnalogue } from "react-icons/si";
 import { _get } from '../../Utils/Helper';
 import { SiApachekafka } from "react-icons/si";
 import { SiAqua } from "react-icons/si";
-import { FaMagento } from 'react-icons/fa';
+import { MdOutlineSupportAgent } from "react-icons/md";
+import { LiaLayerGroupSolid } from "react-icons/lia";
+import { FaMagento, FaUser } from 'react-icons/fa';
+import { FaTruckFast } from "react-icons/fa6";
 
 const QuickActivityWrap = () => {
   const columnMarginBottom = {
@@ -60,10 +63,6 @@ const QuickActivityWrap = () => {
 
   const [superAgentMax, setSuperAgentMax] = useState([]);
 
-  const getdata =()=>{
-    
-  }
-
 
   useEffect(() => {
     _get('fetchallcards',(response) => {
@@ -91,7 +90,7 @@ const QuickActivityWrap = () => {
                         <CardBody>
                             <CardTitle>Total No. of super agent</CardTitle>
                             <h3><span>{data?.super_agents_count}</span></h3>
-                            <div style={iconStyle}><FaMagento /></div>
+                            <div style={iconStyle}><FaUser /></div>
                         </CardBody>
                     </Card>
                     </Link>
@@ -102,7 +101,7 @@ const QuickActivityWrap = () => {
                         <CardBody>
                             <CardTitle>Total No. of vendors</CardTitle>
                             <h3><span>{data?.vendors_count}</span></h3>
-                            <div style={iconStyle}><SiAnalogue /></div>
+                            <div style={iconStyle}><LiaLayerGroupSolid /></div>
                         </CardBody>
                         
                     </Card>
@@ -114,7 +113,7 @@ const QuickActivityWrap = () => {
                         <CardBody>
                             <CardTitle>Total No. of vehicles</CardTitle>
                             <h3><span>{data?.vehicles_count}</span></h3>
-                            <div style={iconStyle}><SiApachekafka /></div>
+                            <div style={iconStyle}><FaTruckFast /></div>
                         </CardBody>
                     </Card>
                     </Link>
@@ -125,7 +124,7 @@ const QuickActivityWrap = () => {
                         <CardBody>
                             <CardTitle>Total No. of Agents</CardTitle>
                             <h3><span>{data?.agents_count}</span></h3>
-                            <div style={iconStyle}><SiAqua /></div>
+                            <div style={iconStyle}><MdOutlineSupportAgent /></div>
                         </CardBody>
                     </Card>
                     </Link>

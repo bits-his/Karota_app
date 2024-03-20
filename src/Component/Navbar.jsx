@@ -47,19 +47,18 @@ export default function Navbar() {
         <section className="navbar-link-container">
           <div
             onClick={() => goto("/")}
-            className={`navbar-link-item ${
-              location.pathname === "/" && "navbar-active-side-menu"
-            }`}
+            className={`navbar-link-item ${location.pathname === "/" && "navbar-active-side-menu"
+              }`}
           >
             <MdDashboard className="icon shadow" />
-            {toParagraph(user.role)} Dashboard
+            {/* {toParagraph(user.role)}  */}
+            Dashboard
           </div>
           {true ? (
             <div
               onClick={() => goto("/vendorReg")}
-              className={`navbar-link-item ${
-                location.pathname === "/vendor" && "navbar-active-side-menu"
-              }`}
+              className={`navbar-link-item ${location.pathname === "/vendor" && "navbar-active-side-menu"
+                }`}
             >
               <LiaLayerGroupSolid className="icon shadow" />
               Vendors
@@ -70,10 +69,9 @@ export default function Navbar() {
           {true ? (
             <div
               onClick={() => goto("/vendortopup")}
-              className={`navbar-link-item ${
-                location.pathname === "/vendortopup" &&
+              className={`navbar-link-item ${location.pathname === "/vendortopup" &&
                 "navbar-active-side-menu"
-              }`}
+                }`}
             >
               {/* <GiArchiveRegister className="icon shadow" /> */}
               <LiaLayerGroupSolid className="icon shadow" />
@@ -92,11 +90,10 @@ export default function Navbar() {
         </div> */}
           {true ? (
             <div
-              onClick={() => goto("/superagentable")}
-              className={`navbar-link-item ${
-                location.pathname === "/superagentable" &&
+              onClick={() => goto("/superagenttable")}
+              className={`navbar-link-item ${location.pathname === "/superagenttable" &&
                 "navbar-active-side-menu"
-              }`}
+                }`}
             >
               {/* <GiArchiveRegister className="icon shadow" /> */}
               <FaUser className="icon shadow" />
@@ -108,10 +105,9 @@ export default function Navbar() {
           {true ? (
             <div
               onClick={() => goto("/superagenttopup")}
-              className={`navbar-link-item ${
-                location.pathname === "/superagenttopup" &&
+              className={`navbar-link-item ${location.pathname === "/superagenttopup" &&
                 "navbar-active-side-menu"
-              }`}
+                }`}
             >
               <FaUser className="icon shadow" />
               Super Agents Top Up
@@ -122,9 +118,8 @@ export default function Navbar() {
           {true ? (
             <div
               onClick={() => goto("/agenttable")}
-              className={`navbar-link-item ${
-                location.pathname === "/agenttable" && "navbar-active-side-menu"
-              }`}
+              className={`navbar-link-item ${location.pathname === "/agenttable" && "navbar-active-side-menu"
+                }`}
             >
               <MdOutlineSupportAgent className="icon shadow" />
               Agents
@@ -147,9 +142,8 @@ export default function Navbar() {
           {true ? (
             <div
               onClick={() => goto("/agenttopup")}
-              className={`navbar-link-item ${
-                location.pathname === "/agenttopup" && "navbar-active-side-menu"
-              }`}
+              className={`navbar-link-item ${location.pathname === "/agenttopup" && "navbar-active-side-menu"
+                }`}
             >
               {/* <GiArchiveRegister className="icon shadow" /> */}
               <MdOutlineSupportAgent className="icon shadow" />
@@ -161,10 +155,9 @@ export default function Navbar() {
           {true ? (
             <div
               onClick={() => goto("/vehicleownertable")}
-              className={`navbar-link-item ${
-                location.pathname === "/vehicleownertable" &&
+              className={`navbar-link-item ${location.pathname === "/vehicleownertable" &&
                 "navbar-active-side-menu"
-              }`}
+                }`}
             >
               <FaTruckFast className="icon shadow" />
               Vehicles
@@ -175,10 +168,9 @@ export default function Navbar() {
           {true ? (
             <div
               onClick={() => goto("/vehicletopup")}
-              className={`navbar-link-item ${
-                location.pathname === "/vehicletopup" &&
+              className={`navbar-link-item ${location.pathname === "/vehicletopup" &&
                 "navbar-active-side-menu"
-              }`}
+                }`}
             >
               {/* <GiArchiveRegister className="icon shadow" /> */}
               <FaTruckFast className="icon shadow" />
@@ -190,14 +182,13 @@ export default function Navbar() {
           {true ? (
             <div
               onClick={() => goto("/top-up")}
-              className={`navbar-link-item ${
-                location.pathname.includes("top-up")
-                  ? "navbar-active-side-menu"
-                  : ""
-              }`}
+              className={`navbar-link-item ${location.pathname.includes("top-up")
+                ? "navbar-active-side-menu"
+                : ""
+                }`}
             >
               <FaMagento className="icon shadow" />
-              Top Up
+              Collection Point
             </div>
           ) : (
             ""

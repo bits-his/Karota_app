@@ -26,7 +26,7 @@ export default function SuperAgent() {
     state: "",
     lga: "",
     address: "",
-    vendor: 1,
+    vendor: "",
   };
 
   const [form, setForm] = useState(_form);

@@ -15,19 +15,23 @@ import { _post } from "../../Utils/Helper";
 import toast from "react-hot-toast";
 
 export default function RegistrationTable() {
-	const {owner_id} = useParams()
+  const { owner_id } = useParams();
   const _form = {
     owner_id: owner_id || 1,
     lg_reg_no: "",
+    pin: "",
     engine_no: "",
     plate_no: "",
-    manufacturer: "",
-	chasis_no: "",
-    manufacturing_date: "",
+    color: "",
+    vehicle_make: "",
+    vehicle_model: "",
+    engine_capacity: "",
+    chasis_no: "",
+    date_issued: "",
     purchased_date: "",
     state_registered: "",
     registered_lg: "",
-    password: "",
+    expiry_date: "",
   };
 
   const [form, setForm] = useState(_form);
@@ -42,6 +46,7 @@ export default function RegistrationTable() {
     e.preventDefault();
     setLoading(true);
     _post(
+      // "vehicles/registration",
       "vehicles/registration",
       form,
       (res) => {
@@ -96,7 +101,7 @@ export default function RegistrationTable() {
           <Form onSubmit={handleSubmit} className="mx-auto">
             <>
               <Row className="margin-bottom-input">
-                <Col md={6} className="first-col">
+                <Col md={4} className="first-col">
                   <FormGroup>
                     <Label for="plate_no">Plate No</Label>
                     <Input
@@ -110,7 +115,21 @@ export default function RegistrationTable() {
                     />
                   </FormGroup>
                 </Col>
-                <Col md={6}>
+                <Col md={4} className="">
+                  <FormGroup>
+                    <Label for="pin">PIN</Label>
+                    <Input
+                      onChange={handleChange}
+                      id="pin"
+                      name="pin"
+                      value={form.pin}
+                      placeholder="PINXXXXXXXXXX28"
+                      type="numbert"
+                      className="app_input"
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={4}>
                   <FormGroup>
                     <Label for="engine_no">Engine No.</Label>
                     <Input
@@ -126,27 +145,42 @@ export default function RegistrationTable() {
                 </Col>
               </Row>
               <Row className="margin-bottom-input">
-                <Col md={6} className="first-col">
+                <Col md={4} className="first-col">
                   <FormGroup>
-                    <Label for="manufacturer">Manufactururer</Label>
+                    <Label for="vehicle_make">Vehicle make</Label>
                     <Input
                       onChange={handleChange}
-                      id="manufacturer"
-                      name="manufacturer"
-                      value={form.manufacturer}
+                      id="vehicle_make"
+                      name="vehicle_make"
+                      value={form.vehicle_make}
+                      placeholder="Toyota"
                       type="text"
                       className="app_input"
                     />
                   </FormGroup>
                 </Col>
-                <Col md={6} className="first-col">
+                <Col md={4} className="first-col">
                   <FormGroup>
-                    <Label for="manufacturing_date">Manufacturing Date</Label>
+                    <Label for="vehicle_model">Vehicle model</Label>
                     <Input
                       onChange={handleChange}
-                      id="manufacturing_date"
-                      name="manufacturing_date"
-                      value={form.manufacturing_date}
+                      id="vehicle_model"
+                      name="vehicle_model"
+                      value={form.vehicle_model}
+                      placeholder="Sienna"
+                      type="text"
+                      className="app_input"
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={4} className="first-col">
+                  <FormGroup>
+                    <Label for="date_issued">Date issued</Label>
+                    <Input
+                      onChange={handleChange}
+                      id="date_issued"
+                      name="date_issued"
+                      value={form.date_issued}
                       type="date"
                       className="app_input"
                     />
@@ -154,9 +188,9 @@ export default function RegistrationTable() {
                 </Col>
               </Row>
               <Row className="margin-bottom-input">
-                <Col md={6} className="first-col">
+                <Col md={4} className="first-col">
                   <FormGroup>
-                    <Label for="state_registered">State Registred</Label>
+                    <Label for="state_registered">State Registered</Label>
                     <Input
                       onChange={handleChange}
                       id="state_registered"
@@ -172,7 +206,7 @@ export default function RegistrationTable() {
                     </Input>
                   </FormGroup>
                 </Col>
-                <Col md={6}>
+                <Col md={4}>
                   <FormGroup>
                     <Label for="registered_lg">L.G.A. Registred</Label>
                     <Input
@@ -193,9 +227,7 @@ export default function RegistrationTable() {
                     </Input>
                   </FormGroup>
                 </Col>
-              </Row>
-              <Row>
-                <Col md={6}>
+                <Col md={4}>
                   <FormGroup>
                     <Label for="lg_reg_no">L.G.A. Reg. No.</Label>
                     <Input
@@ -209,21 +241,9 @@ export default function RegistrationTable() {
                     />
                   </FormGroup>
                 </Col>
-                <Col md={6}>
-                  <FormGroup>
-                    <Label for="purchased_date">Purchase Date</Label>
-                    <Input
-                      onChange={handleChange}
-                      name="purchased_date"
-                      id="purchased_date"
-                      value={form.purchased_date}
-                      placeholder="Purchased Date"
-                      type="date"
-                      className="app_input"
-                    />
-                  </FormGroup>
-                </Col>
-				<Col md={6} className="first-col">
+              </Row>
+              <Row>
+              <Col md={4} className="first-col">
                   <FormGroup>
                     <Label for="chasis_no">Chasis No</Label>
                     <Input
@@ -233,6 +253,64 @@ export default function RegistrationTable() {
                       value={form.chasis_no}
                       placeholder="Vehicle's chasis No"
                       type="text"
+                      className="app_input"
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={4}>
+                  <FormGroup>
+                    <Label for="purchased_date">Color</Label>
+                    <Input
+                      onChange={handleChange}
+                      name="color"
+                      id="color"
+                      value={form.color}
+                      placeholder="Color"
+                      type="text"
+                      className="app_input"
+                    />
+                  </FormGroup>
+                </Col>
+				<Col md={4} className="first-col">
+                  <FormGroup>
+                    <Label for="chasis_no">Engine Capacity</Label>
+                    <Input
+                      onChange={handleChange}
+                      id="engine_capacity"
+                      name="engine_capacity"
+                      value={form.engine_capacity}
+                      placeholder="engine_capacity"
+                      type="text"
+                      className="app_input"
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={4}>
+                  <FormGroup>
+                    <Label for="purchased_date">Transaction Date</Label>
+                    <Input
+                      onChange={handleChange}
+                      name="purchased_date"
+                      id="purchased_date"
+                      value={form.purchased_date}
+                      placeholder="purchased_date"
+                      type="date"
+                      className="app_input"
+                    />
+                  </FormGroup>
+                </Col>
+				<Col md={4} className="first-col">
+                  <FormGroup>
+                    <Label for="chasis_no">Expiry Date</Label>
+                    <Input
+                      onChange={handleChange}
+                      id="expiry_date"
+                      name="expiry_date"
+                      value={form.expiry_date}
+                      placeholder="expiry_date"
+                      type="date"
                       className="app_input"
                     />
                   </FormGroup>

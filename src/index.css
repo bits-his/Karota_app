@@ -268,15 +268,7 @@ label {
   width: 100%;
 }
 
-.sidebar {
-  background-color: #f5c005;
-  height: 100vh;
-  overflow-y: auto;
-  margin: 0;
-  width: 250px;
-  position: sticky;
-  top: 0;
-}
+
 
 .user_image {
   width: 120px;
@@ -321,8 +313,8 @@ label {
   color: #fff;
   padding-top: 0px;
   font-family: monospace;
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1rem;
+  /* font-weight: 600; */
   margin-bottom: 10px;
   width: 100%;
   padding: 10px 30px;
@@ -356,7 +348,7 @@ label {
   color: #fff;
 }
 .icon {
-  font-size: 25px;
+  font-size: 22px;
   margin-bottom: -6px;
   margin-right: 10px;
 }
@@ -413,9 +405,9 @@ td, th{
   /* .sidebar_div {
     display: none;
   } */
-  .sidebar {
+  /* .sidebar {
     display: none;
-  }
+  } */
   .mobile_menu {
     position: fixed;
     bottom: 0;

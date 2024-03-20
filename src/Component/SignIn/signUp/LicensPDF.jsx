@@ -66,10 +66,7 @@ export const LicensPDF = () => {
         <View style={{ padding: 120 }}>
           <View style={styles.body}>
             <View style={{ width: "100%", alignItems: "center" }}>
-              {/* <Image src={coat} style={styles.image1} /> */}
-              <View>
-                <Image src={coat} style={styles.image1} />
-              </View>
+              <View>{/* <Image src={coat} style={styles.image1} /> */}</View>
               <Text style={styles.header}>KANO STATE VEHICLE licens </Text>
             </View>
             <View

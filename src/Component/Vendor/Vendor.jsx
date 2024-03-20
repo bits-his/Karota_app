@@ -35,8 +35,39 @@ export default function RegistrationTable() {
   };
   const navigate = useNavigate();
 
+  // if (form.step === 0) {
+  //   if (!form.vendor_name || !form.vendor_ofiice_address || !form.vendor_state || !form.vendor_lga || !form.vendor_phone || !form.vendor_email) {
+  //     toast.error("Please fill in all required fields.");
+  //     return;
+  //   }
+  // } 
+  // else {
+  //   if (!form.contact_name || !form.contact_address || !form.contact_state || !form.contact_lga || !form.contact_phone || !form.contact_email || !form.contact_password) {
+  //     toast.error("Please fill in all required fields.");
+  //     return;
+  //   }
+  // }
+
+  const validate = (e) => {
+    e.preventDefault();
+
+    if (!form.vendor_name || !form.vendor_ofiice_address || !form.vendor_state || !form.vendor_lga || !form.vendor_phone || !form.vendor_email) 
+    { toast.error("Please fill in all required fields.") }
+    else {
+      toast.success("Good.")
+     setForm((p) => ({ ...p, step: 1 }))
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+      if (!form.contact_name || !form.contact_address || !form.contact_state || !form.contact_lga || !form.contact_phone || !form.contact_email || !form.contact_password) {
+        toast.error("Please fill in all required fields.");
+        return;
+      }
+
+
     setLoading(true);
     _post(
       "vendors/create",
@@ -145,6 +176,7 @@ export default function RegistrationTable() {
                         value={form.contact_address}
                         type="text"
                         className="app_input"
+                        required
                       />
                     </FormGroup>
                   </Col>
@@ -175,6 +207,7 @@ export default function RegistrationTable() {
                         type="select"
                         value={form.contact_state}
                         className="app_input"
+                        required
                       >
                         <option value={""}>Select State</option>
                         {stateLga.map((item) => (
@@ -220,6 +253,7 @@ export default function RegistrationTable() {
                         placeholder="Enter Password"
                         type="password"
                         className="app_input"
+                        required
                       />
                     </FormGroup>
                   </Col>
@@ -238,6 +272,7 @@ export default function RegistrationTable() {
                         placeholder="Vendor name"
                         type="text"
                         className="app_input"
+                        required
                       />
                     </FormGroup>
                   </Col>
@@ -252,6 +287,7 @@ export default function RegistrationTable() {
                         placeholder="+234-8100000000"
                         type="tel"
                         className="app_input"
+                        required
                       />
                     </FormGroup>
                   </Col>
@@ -267,6 +303,7 @@ export default function RegistrationTable() {
                         value={form.vendor_ofiice_address}
                         type="text"
                         className="app_input"
+                        required
                       />
                     </FormGroup>
                   </Col>
@@ -281,6 +318,7 @@ export default function RegistrationTable() {
                         placeholder="organization@fake.com"
                         type="email"
                         className="app_input"
+                        required
                       />
                     </FormGroup>
                   </Col>
@@ -429,8 +467,7 @@ export default function RegistrationTable() {
                     color: "",
                     cursor: "pointer",
                   }}
-                  disabled={loading}
-                  onClick={() => setForm((p) => ({ ...p, step: 1 }))}
+                  onClick={validate}
                 >
                   Next
                 </button>

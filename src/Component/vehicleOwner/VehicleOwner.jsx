@@ -47,11 +47,11 @@ export default function OwnerReg() {
             <Row>
                 <Col md={12}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                        <h4 className="app_title">Vehicle Owner Registration</h4>
+                       
                         {!showForm ? (
                             <Button
                                 className="app_button"
-                                style={{ width: 150, padding: 10, marginLeft: 15, color: '#000', borderRadius: 10 }}
+                                style={{ width: 150, padding: 10,  color: '#000', borderRadius: 10 }}
                                 onClick={handleBackToTable}
                             >
                                 Back
@@ -59,12 +59,13 @@ export default function OwnerReg() {
                         ) : (
                             <Button
                                 className="app_button"
-                                style={{ width: 150, padding: 10, marginLeft: 15, color: '#000', borderRadius: 10 }}
+                                style={{ width: 150, padding: 10,  color: '#000', borderRadius: 10 }}
                                 onClick={handleBackToTable}
                             >
                                 Back
                             </Button>
                         )}
+                         <h4 className="app_title">Vehicle Owner Registration</h4>
                     </div>
                     <hr />
                 </Col>

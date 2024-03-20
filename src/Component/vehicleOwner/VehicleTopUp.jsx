@@ -42,7 +42,7 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
     (res)=> {
       if(res.success){
         toast.success(`Sucessfully added ${form.amount}`)
-        navigate('/vehicleownertable')
+        navigate('/top-up')
       }
     },
     err =>{
@@ -89,13 +89,24 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
                
               />
             </div>
+            </div>
+          
+          </div>
+          <div className="transaction-details">
+              <h3>Transaction Details</h3>
+              <div className='details'>
+                <p >FROM : <span >{form.agent_name}</span></p>
+                <p >TO : <span  >{form.Plate_no}</span></p>
+               <p >ID : <span >{form.agent_id}</span></p>
+          
+               <p >ID :  <span  >{form.vehicle_id}</span></p>
+               <p >Amount:  <span  >{form.amount}</span></p>
+              </div>
+               
+            
           </div>
 
-          <div
-            style={{
-              marginTop: "auto",
-            }}
-          >
+          <div className='top-up-submit'>
             <Button 
             onClick={submitTopUp}
               disabled={loading}
@@ -111,7 +122,7 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
             >Submit</Button>
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </>
   );
 }

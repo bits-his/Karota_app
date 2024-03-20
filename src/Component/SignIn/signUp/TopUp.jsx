@@ -64,6 +64,7 @@ export default function TopUp() {
         setData(resp.data);
         console.log(resp.data);
       }
+      console.log('failed')
     });
     // _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
     //   setLoading(false); // Set loading to false after receiving response

@@ -22,6 +22,7 @@ import {
 } from "reactstrap";
 import { _get } from "../../../Utils/Helper";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 export default function TopUp() {
   // const navigate = useNavigate()
@@ -32,10 +33,11 @@ export default function TopUp() {
     Reg_no: "",
     Plate_no: "",
   });
+  const dispatch = useDispatch();
   const [data, setData] = useState([]);
   const [vendorData, setVendorData] = useState([]);
   const [filter, setFilter] = useState("");
-  const goto = useNavigate();
+  const navigate = useNavigate();
 
   const toggleModal = () => {
     setModal(!modal);
@@ -58,26 +60,30 @@ export default function TopUp() {
   //   id: 123,
   //   bal: 2000,
   // };
-  const getReg = useCallback(() => {
-    _get(`vehicles?query_type=select-all`, (resp) => {
-      if (resp.success && resp.data) {
-        setData(resp.data);
-        console.log(resp.data);
-      }
-    });
-    // _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
-    //   setLoading(false); // Set loading to false after receiving response
-    //   if (resp.success && resp.results) {
-    //     setVendorData(resp.results);
-    //   }
-    // });
-  }, [/*filter*/]);
+  const getReg = useCallback(
+    () => {
+      _get(`vehicles?query_type=select-all`, (resp) => {
+        if (resp.success && resp.data) {
+          setData(resp.data);
+          console.log(resp.data);
+        }
+      });
+      // _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
+      //   setLoading(false); // Set loading to false after receiving response
+      //   if (resp.success && resp.results) {
+      //     setVendorData(resp.results);
+      //   }
+      // });
+    },
+    [
+      /*filter*/
+    ]
+  );
 
   useEffect(() => {
     getReg();
   }, [getReg]);
 
- 
   return (
     <div>
       <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
@@ -144,8 +150,8 @@ export default function TopUp() {
               </Label>
             </div>
           </Col>
-
-          {/* <Card className="mt-5 shadow">
+          {/* {JSON.stringify(data)} */}
+          <Card className="mt-5 shadow">
             <div className="table_overflow1">
               {data?.length === 0 ? (
                 <Spinner
@@ -178,7 +184,7 @@ export default function TopUp() {
                     </tr>
                   </thead>
                   <tbody>
-                    {data.map((vehicle, idx) => (
+                    {data?.map((vehicle, idx) => (
                       <tr key={idx}>
                         <td>00{vehicle.vehicle_id}</td>
                         <td>{vehicle.plate_no}</td>
@@ -199,11 +205,15 @@ export default function TopUp() {
                             </Button>
                             <Button
                               color="info"
-                              onClick={() =>
-                                goto(`/licens-pdf/${vehicle.plate_no}`)
-                              }
+                              onClick={() => {
+                                dispatch({
+                                  type: "LICENSE_DATA",
+                                  payload: vehicle,
+                                });
+                                navigate(`/licens-pdf/${vehicle.plate_no}`);
+                              }}
                             >
-                              View Licens
+                              View License
                             </Button>
                           </ButtonGroup>
                         </td>
@@ -213,7 +223,7 @@ export default function TopUp() {
                 </Table>
               )}
             </div>
-          </Card> */}
+          </Card>
 
           <Modal
             isOpen={modal}

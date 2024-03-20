@@ -14,6 +14,7 @@ import DM_SANS_BOLD from "../../../assets/DM_Sans/DM_Sans/static/DMSans_24pt-Bol
 import DM_SANS_ITALIC from "../../../assets/DM_Sans/DM_Sans/static/DMSans-Italic.ttf";
 import ahmad from "../../../Images/download.png";
 import coat from "../../../Images/th.jpeg";
+import moment from "moment";
 
 Font.register({
   family: "DM_SANS",
@@ -60,6 +61,7 @@ const styles = StyleSheet.create({
 });
 
 export const LicensPDF = () => {
+  const data = useSelector((stat) => state.auth.licence_data);
   return (
     <Document>
       <Page size="A4" orientation="landscape">
@@ -67,7 +69,7 @@ export const LicensPDF = () => {
           <View style={styles.body}>
             <View style={{ width: "100%", alignItems: "center" }}>
               <View>{/* <Image src={coat} style={styles.image1} /> */}</View>
-              <Text style={styles.header}>KANO STATE VEHICLE licens </Text>
+              <Text style={styles.header}>KANO STATE VEHICLE LICENCE</Text>
             </View>
             <View
               style={{
@@ -91,7 +93,7 @@ export const LicensPDF = () => {
                     letterSpacing: 1,
                   }}
                 >
-                  FEB 2025
+                  {moment(data?.create_at).format("MMMM YYYY")}
                 </Text>
               </View>
               <View
@@ -107,7 +109,7 @@ export const LicensPDF = () => {
                       fontStyle: "bold",
                     }}
                   >
-                    23423423423242342432342
+                    {data?.pin || "N/A"}
                   </Text>
                 </Text>
                 <Text>
@@ -118,7 +120,7 @@ export const LicensPDF = () => {
                       fontStyle: "bold",
                     }}
                   >
-                    AKD34534GA
+                    {data?.lg_reg_no || "N/A"}
                   </Text>
                 </Text>
                 <Text>
@@ -129,7 +131,7 @@ export const LicensPDF = () => {
                       fontStyle: "bold",
                     }}
                   >
-                    2GRD9847389
+                    {data?.engine_no || "N/A"}
                   </Text>
                 </Text>
                 <Text>
@@ -140,7 +142,7 @@ export const LicensPDF = () => {
                       fontStyle: "bold",
                     }}
                   >
-                    5TDDK3DC9BS9872372987H
+                    {data?.chasis_no || "N/A"}
                   </Text>
                 </Text>
                 <Text>
@@ -151,7 +153,7 @@ export const LicensPDF = () => {
                       fontStyle: "bold",
                     }}
                   >
-                    Toyota
+                    {data?.vehicle_make || "N/A"}
                   </Text>
                 </Text>
                 <Text>
@@ -162,7 +164,7 @@ export const LicensPDF = () => {
                       fontStyle: "bold",
                     }}
                   >
-                    Sienna
+                    {data?.vehicle_model || "N/A"}
                   </Text>
                 </Text>
                 <Text>
@@ -173,18 +175,18 @@ export const LicensPDF = () => {
                       fontStyle: "bold",
                     }}
                   >
-                    Black
+                    {data?.color || "N/A"}
                   </Text>
                 </Text>
                 <Text>
-                  Engine Capcity:
+                  Engine Capacity:
                   <Text
                     style={{
                       fontFamily: "DM_SANS",
                       fontStyle: "bold",
                     }}
                   >
-                    3.1 - 12
+                    {data?.engine_capacity || "N/A"}
                   </Text>
                 </Text>
                 <Text>
@@ -195,7 +197,7 @@ export const LicensPDF = () => {
                       fontStyle: "bold",
                     }}
                   >
-                    22/Feb/2024
+                    {data?.create_at || "N/A"}
                   </Text>
                 </Text>
                 <Text>
@@ -206,7 +208,7 @@ export const LicensPDF = () => {
                       fontStyle: "bold",
                     }}
                   >
-                    22/02/2024
+                    {moment().format("YYYY/MM/DD")}
                   </Text>
                 </Text>
                 <Text>
@@ -217,7 +219,7 @@ export const LicensPDF = () => {
                       fontStyle: "bold",
                     }}
                   >
-                    21/02/2025
+                    {moment(data?.expiry_date).format("YYYY/MM/DD")}
                   </Text>
                 </Text>
               </View>

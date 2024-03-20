@@ -57,7 +57,7 @@ export default function Navbar() {
           {true ? (
             <div
               onClick={() => goto("/vendorReg")}
-              className={`navbar-link-item ${location.pathname === "/vendor" && "navbar-active-side-menu"
+              className={`navbar-link-item ${location.pathname === "/vendorReg" && "navbar-active-side-menu"
                 }`}
             >
               <LiaLayerGroupSolid className="icon shadow" />

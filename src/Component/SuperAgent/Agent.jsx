@@ -5,7 +5,7 @@ import { stateLga } from "../../assets/state_and_lgas";
 import toast from "react-hot-toast";
 import { _post } from "../../Utils/Helper";
 import { useSelector } from "react-redux";
-// import SuperAgentDropdown from "./SuperAgentdropdown";
+import SuperAgentDropdown from "./SuperAgentdropdown";
 
 export default function Agent() {
   const { user } = useSelector((p) => p.auth);
@@ -23,26 +23,6 @@ export default function Agent() {
   // console.log(form)
   const navigate = useNavigate();
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   setLoading(true);
-  //   _post(
-  //     "agents/create",
-  //     form,
-  //     (res) => {
-  //       if (res.success) {
-  //         setLoading(true);
-  //         toast.success("Agent created successfully");
-  //         navigate("/agenttable");
-  //       }
-  //     },
-  //     () => {
-  //       setLoading(false);
-  //       toast.error("An error occurred while creating Agent");
-  //     }
-  //   );
-  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();

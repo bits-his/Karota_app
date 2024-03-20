@@ -162,7 +162,9 @@ export default function SuperAgentTable() {
                       <td className="text-center">
                         <Button
                           color="info"
-                          onClick={() => handleViewUser(agent)}
+                          onClick={() =>
+                            navigate(`/superagenttable/view/${agent.id}`)
+                          }
                         >
                           View
                         </Button>

@@ -2,26 +2,20 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Card, Col, Row, Button, Table, Badge } from "reactstrap";
 import { useSelector } from "react-redux";
-import { _get, _post } from "../../Utils/Helper";
-import keke from "../../assets/keke_napep.png";
+import { _get, _post } from "../../../Utils/Helper";
+import keke from "../../../assets/keke_napep.png";
 
-export default function VehicleOwnerView() {
+export default function SuperAgentView() {
   const navigate = useNavigate();
   const { user } = useSelector((s) => s.auth);
   const [data, setData] = useState({});
-  const [vehicles, setVehicles] = useState([]);
+  const [superagent, setsuperagent] = useState([]);
   const params = useParams();
   const owner_id = params.id;
   const getReg = useCallback(() => {
-    _get(`vehicle-owners?query_type=select&user_id=${owner_id}`, (resp) => {
-      if (resp.success && resp.data) {
-        setData(resp.data[0]);
-      }
-    });
-
-    _get(`vehicles?query_type=select&owner_id=${owner_id}`, (resp) => {
-      if (resp.success && resp.data) {
-        setVehicles(resp.data);
+    _get(`superagent?query_type=select&id=${owner_id}`, (resp) => {
+      if (resp.success && resp.results) {
+        setData(resp.results[0]);
       }
     });
   }, [owner_id]);
@@ -31,7 +25,7 @@ export default function VehicleOwnerView() {
   }, [getReg]);
 
   const handleBackToTable = () => {
-    navigate("/Vehicleownertable");
+    navigate("/superagenttable");
   };
 
   return (
@@ -111,17 +105,15 @@ export default function VehicleOwnerView() {
                   <td>{data.lga}</td>
                 </tr>
                 <tr>
-                  <th>Registered Vehicles</th>
+                  <th>Registered Agents</th>
                   <td className="text-center">
-                    <Badge color="primary">{vehicles.length}</Badge>{" "}
+                    <Badge color="primary">{data.agents_count}</Badge>{" "}
                     <Button
                       className="btn btn-primary"
-                      onClick={() =>
-                        navigate(`/vehicleregistration/${owner_id}`)
-                      }
+                      onClick={() => navigate(`/agent`)}
                     >
                       {" "}
-                      Add +
+                      Add Agent
                     </Button>
                   </td>
                 </tr>

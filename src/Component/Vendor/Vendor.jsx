@@ -427,6 +427,7 @@ export default function RegistrationTable() {
                     {" "}
                     <button
                       className="app_button"
+                      disabled={loading}
                       style={{
                         width: 150,
                         marginLeft: 0,
@@ -453,7 +454,7 @@ export default function RegistrationTable() {
                       disabled={loading}
                       onClick={handleSubmit}
                     >
-                      Submit
+                      {loading ? (<Spinner color="warning">Loading...</Spinner>) : (<span>Submit</span>)}
                     </button>
                   </Col>
                 </Row>

@@ -10,6 +10,15 @@ export default function AgentTable() {
 
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState('');
+  
+  const [searchData, setSearchData] = useState()
+  const datas = searchData
+  ? searchData
+  : data
+ const search = () => {
+  setSearchData(data.filter(char => char.plate_no.toLowerCase().includes(filter.toLowerCase())))
+
+ }
   const getReg = useCallback(() => {
     _get(`agents?query_type=select-all`,
       (resp) => {
@@ -69,7 +78,9 @@ export default function AgentTable() {
                 />
               </div>
             </Col>
-            <label className="label_title" style={{ color: "#000" }}>
+            <label 
+            onClick={search}
+            className="label_title" style={{ color: "#000" }}>
               Search
             </label>
           </div>
@@ -77,7 +88,7 @@ export default function AgentTable() {
 
         <Row>
           <div className="table_overflow">
-          {data.length === 0 ? ( 
+          {datas?.length === 0 ? ( 
         <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
        ""
       </Spinner>
@@ -111,7 +122,7 @@ export default function AgentTable() {
                 </tr>
               </thead>
               <tbody>
-                {data.map((agent, idx) => <tr key={idx}>
+                {datas?.map((agent, idx) => <tr key={idx}>
                   <th>
                     {idx + 1}
                   </th>

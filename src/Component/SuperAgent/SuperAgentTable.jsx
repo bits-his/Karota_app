@@ -28,6 +28,15 @@ export default function SuperAgentTable() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
+  const [searchData, setSearchData] = useState()
+  const datas = searchData
+  ? searchData
+  : data
+ const search = () => {
+  setSearchData(data.filter(char => char.name.toLowerCase().includes(filter.toLowerCase())))
+
+ }
+
   const getReg = useCallback(() => {
     _get(`superagent?query_type=select-all`, (resp) => {
       if (resp.success && resp.results) {
@@ -109,7 +118,7 @@ export default function SuperAgentTable() {
               </div>
             </Col>
             <Label
-              onClick={getReg}
+              onClick={search}
               className="label_title"
               style={{ color: "#000", cursor: "pointer" }}
             >
@@ -120,7 +129,7 @@ export default function SuperAgentTable() {
 
         <Row>
           <div className="table_overflow">
-            {data.length === 0 ? (
+            {datas?.length === 0 ? (
               <Spinner
                 color="warning"
                 className="spinner"
@@ -152,7 +161,7 @@ export default function SuperAgentTable() {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.map((agent, idx) => (
+                  {datas?.map((agent, idx) => (
                     <tr key={idx}>
                       <th>{idx + 1}</th>
                       <td>{agent.name}</td>

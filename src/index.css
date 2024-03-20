@@ -690,7 +690,7 @@ Input.form-control {
   margin-top: 2px;
   width: 100%;
   height: 40px;
-  border: 1px solid #f5c005;
+  /* border: 1px solid #f5c005; */
   border-radius: 7px;
 }
 select.form-select {

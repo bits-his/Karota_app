@@ -10,6 +10,17 @@ export default function VehicleOwnerTable() {
 
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState('');
+
+  const [searchData, setSearchData] = useState()
+  const datas = searchData
+  ? searchData
+  : data
+ const search = () => {
+  setSearchData(data.filter(char => char.name.toLowerCase().includes(filter.toLowerCase())))
+  console.log('click' , searchData)
+ }
+
+
   const getReg = useCallback(() => {
     _get(`vehicle-owners?query_type=select-all`,
       (resp) => {
@@ -64,16 +75,22 @@ export default function VehicleOwnerTable() {
                   }}
                 />
                 <input
+                  name="filter"
+                  value={filter}
+                  type="text"
+                  className="app_input2"
+                  onChange={({ target: { value } }) => setFilter(value)}
                   style={{
                     width: "100%",
                     fontSize: 20,
                   }}
-                  className="app_input2"
-                  placeholder="Search Individual"
+                  placeholder="Search Vehicle Owner"
                 />
               </div>
             </Col>
-            <label className="label_title" style={{ color: "#000" }}>
+            <label 
+            onClick={search}
+            className="label_title" style={{ color: "#000" }}>
               Search
             </label>
           </div>
@@ -81,7 +98,7 @@ export default function VehicleOwnerTable() {
 
         <Row>
           <div className="table_overflow">
-            {data.length === 0 ? (
+            {datas?.length === 0 ? (
               <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
                 ""
               </Spinner>
@@ -118,7 +135,7 @@ export default function VehicleOwnerTable() {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.map((item, idx) => <tr key={idx}>
+                  {datas?.map((item, idx) => <tr key={idx}>
                     <td>
                       {idx + 1}
                     </td>

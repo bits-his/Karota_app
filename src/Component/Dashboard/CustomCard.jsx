@@ -72,7 +72,7 @@ const QuickActivityWrap = () => {
             if (response.success) {
                 const data = response.data;
                 console.log("Data from server : ")
-                setData(data[0]);
+                useData(data[0]);
             }
         },
             (error) => {

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import {
   Button,
   Card,
@@ -27,12 +27,21 @@ function VendorReg() {
   };
   const navigate = useNavigate();
   const [data, setData] = useState([]);
+
   const [filter, setFilter] = useState("");
   const [currentVendor, setCurrentVendor] = useState(_form);
   const [loading, setLoading] = useState(false); // Add loading state
   const [modal, setModal] = useState(false);
   const [vendor, setVendor] = useState({});
   const [form, setForm] = useState({});
+  const [searchData, setSearchData] = useState()
+  const datas = searchData
+  ? searchData
+  : data
+ const search = () => {
+  setSearchData(data.filter(char => char.vendor_name.toLowerCase().includes(filter.toLowerCase())))
+
+ }
   const reference_no = moment().format("YYYYMMDDhhmmssSSS");
   const onHandleChange = ({ target: { name, value } }) => {
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -50,11 +59,11 @@ function VendorReg() {
         setData(resp.results);
       }
     });
-  }, [filter]);
+  }, []);
 
   useEffect(() => {
     getReg();
-  }, [getReg]);
+  }, [getReg, data]);
   return (
     <>
       <Row>
@@ -113,7 +122,7 @@ function VendorReg() {
               </div>
             </Col>
             <Label
-              onClick={getReg}
+              onClick={search}
               className="label_title1"
               style={{ color: "#000", cursor: "pointer" }}
             >
@@ -123,7 +132,7 @@ function VendorReg() {
         </Col>
       </Row>
 
-      {data.length === 0 ? (
+      {datas?.length === 0 ? (
         <Spinner
           color="warning"
           className="spinner"
@@ -154,7 +163,7 @@ function VendorReg() {
             </tr>
           </thead>
           <tbody>
-            {data.map((vendor, idx) => (
+            {datas?.map((vendor, idx) => (
               <tr key={idx}>
                 <th scope="row">{idx + 1}</th>
                 <td>{vendor.vendor_name}</td>

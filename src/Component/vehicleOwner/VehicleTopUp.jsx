@@ -36,8 +36,8 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
 
   const submitTopUp = (e) => {
     e.preventDefault();
-    setLoading(true)
-    _post(`top-up/create`,
+      setLoading(true)
+ _post(`top-up/create`,
     form,
     (res)=> {
        if(res.success){
@@ -46,6 +46,8 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
     }
      
       })
+    
+  //alert('please complete the form')
     //setLoading(false)
     //console.log(form);
   };
@@ -107,15 +109,6 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
             <Button 
             onClick={submitTopUp}
               disabled={loading}
-              style={{
-                marginInline: 'auto',
-                display: 'block',
-                height: '40px',
-                backgroundColor: '#f5c005',
-                left: '23rem',
-                width: '28rem',
-                boxShadow: '1px 2px gray'
-              }}
             >Submit</Button>
           </div>
         </div>

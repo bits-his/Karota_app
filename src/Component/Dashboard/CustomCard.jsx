@@ -119,7 +119,7 @@ const QuickActivityWrap = () => {
                     </Link>
                 </Col>
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
-                <Link to="/agentable"style={{ textDecoration: 'none' }}>
+                <Link to="/agenttable"style={{ textDecoration: 'none' }}>
                     <Card className="single_quick_activity " style={netProfitMarginStyle}>
                         <CardBody>
                             <CardTitle>Total No. of Agents</CardTitle>

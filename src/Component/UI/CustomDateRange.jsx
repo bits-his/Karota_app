@@ -116,11 +116,10 @@ export default function CustomDateRange({
                                             name="quarter"
                                             onChange={handleChangeDate}
                                         >
-                                            <option value={quarter} >Select Quarter</option>
-                                            <option value="Q1">Q1</option>
-                                            <option value="Q2">Q2</option>
-                                            <option value="Q3">Q3</option>
-                                            <option value="Q4">Q4</option>
+                                            <option selected={quarter === 'Q1'} value="Q1">Q1</option>
+                                            <option selected={quarter === 'Q2'} value="Q2">Q2</option>
+                                            <option selected={quarter === 'Q3'} value="Q3">Q3</option>
+                                            <option selected={quarter === 'Q4'} value="Q4">Q4</option>
                                         </Input>
                                     </FormGroup>
                                 </div>

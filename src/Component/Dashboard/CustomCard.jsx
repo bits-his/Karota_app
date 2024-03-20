@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardBody, CardTitle, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { SiAnalogue } from "react-icons/si";
@@ -16,35 +16,35 @@ const QuickActivityWrap = () => {
         marginBottom: "2rem",
     };
 
-    const totalIncomeStyle = {
-        backgroundColor: "#f5c005 ",
-        borderRadius: "15px",
-        padding: "20px",
-        height: "100%",
-        color: "#fff",
-        transition: "background-color 0.3s ease !important",
-        cusor: "pointer",
-    };
+  const totalIncomeStyle = {
+    backgroundColor: "#f5c005 ",
+    borderRadius: "15px",
+    padding: "20px",
+    height: "100%",
+    color: "#fff",
+    transition: "background-color 0.3s ease !important",
+    cusor: "pointer",
+  };
 
-    const totalExpensesStyle = {
-        backgroundColor: "#f5c005 ",
-        borderRadius: "15px",
-        padding: "20px",
-        height: "100%",
-        color: "#fff",
-        transition: "background-color 0.3s ease !important",
-        cusor: "pointer",
-    };
+  const totalExpensesStyle = {
+    backgroundColor: "#f5c005 ",
+    borderRadius: "15px",
+    padding: "20px",
+    height: "100%",
+    color: "#fff",
+    transition: "background-color 0.3s ease !important",
+    cusor: "pointer",
+  };
 
-    const cashOnHandStyle = {
-        backgroundColor: "#f5c005 ",
-        borderRadius: "15px",
-        padding: "20px",
-        height: "100%",
-        color: "#fff",
-        transition: "background-color 0.3s ease !important",
-        cusor: "pointer",
-    };
+  const cashOnHandStyle = {
+    backgroundColor: "#f5c005 ",
+    borderRadius: "15px",
+    padding: "20px",
+    height: "100%",
+    color: "#fff",
+    transition: "background-color 0.3s ease !important",
+    cusor: "pointer",
+  };
 
     const netProfitMarginStyle = {
         backgroundColor: "#f5c005 ",

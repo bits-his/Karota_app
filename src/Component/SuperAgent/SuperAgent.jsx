@@ -38,21 +38,27 @@ export default function SuperAgent() {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     if (loading) return;
-    e.preventDefault();
-    setLoading(true);
-    _post(
-      "superagent/create",
-      form,
-      (res) => {
-        setLoading(true);
-        toast.success("super agent created successfully");
-        setSubmittedData([...submittedData, res]);
-        navigate("/superagenttable");
-      },
-      () => {
-        setLoading(false);
-        toast.error("An error occurred while creating super agent");
+      e.preventDefault();
+
+      if (!form.name || !form.phone || !form.nin || !form.state || !form.lga || !form.address || !form.vendor) {
+        toast.error("Please fill in all fields.");
+        return;
       }
+
+      setLoading(true);
+      _post(
+        "superagent/create",
+        form,
+        (res) => {
+          setLoading(true);
+          toast.success("super agent created successfully");
+          setSubmittedData([...submittedData, res]);
+          navigate("/superagenttable");
+        },
+        () => {
+          setLoading(false);
+          toast.error("An error occurred while creating super agent");
+        }
     );
   };
   return (

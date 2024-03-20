@@ -22,7 +22,7 @@ function SuperAgentTopUp() {
   return (
     <>
       <div className="app_card dashboard_card m-0 p-0">
-        <h3 className="text-center fw-bold">Super Agent Top-Up</h3>
+        <h3 className="text-center font-bold text-3xl">Super Agent Top-Up</h3>
 
 
       <div
@@ -41,7 +41,7 @@ function SuperAgentTopUp() {
       >
       <div>
           {/* {JSON.stringify(form)} */}
-          <div className="agent">
+          <div className="md:mt-[30px] md:space-y-[20px]">
             <div
               style={{
                 display: "flex",

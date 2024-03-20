@@ -50,7 +50,7 @@ function VendorTopUp({selectedVendorValue, selectedAgent, handleSelectSuperAgent
 
   return (
     <>
-      <div className="app_card dashboard_card m-0 p-0">
+      <div className="app_card dashboard_card m-0 p-0 md:h-[90vh]">
         <div className='middle-card-topup' style={{margin: "auto"}}>
           <h3
             style={{
@@ -58,25 +58,32 @@ function VendorTopUp({selectedVendorValue, selectedAgent, handleSelectSuperAgent
               justifyContent: 'center',
               fontWeight: '600',
               fontSize: '18px',
+              marginBottom: '5px'
             }}
           >Vendor Top-Up</h3>
           
-          <div style={{
+          <div 
+          className='md:h-[35vh] h-[50vh]'
+          style={{
             margin: "0 auto",
-            width: "110%",
-            height: "35vh",
+            maxWidth: "100%",
+            // height: "35vh",
             borderRadius: "5px",
             border: "1px solid #f5c005",
             padding: "20px",
-           }} >
+           }} 
+
+           >
             {/* {JSON.stringify(form)} */}
-            <div className="agent">
-              <div style={{display: "flex", marginTop: "15px", alignItems: "center"}}>
+            <div className="md:w-[50%] md:m-0">
+              <div 
+              className=''
+              style={{display: "flex", marginTop: "15px", alignItems: "center", marginBottom: '20px'}}>
                 <h4
+                className=''
                 style={{
-                  fontSize: '15px',
-                  fontWeight: '600',
-                  marginRight: '20px'
+                fontWeight: '600',
+                // marginRight: '10px'
                 }}> Select Vendor:</h4>
                 <VendorTopUpDropDown
                   handleChange={handleChange}
@@ -99,31 +106,31 @@ function VendorTopUp({selectedVendorValue, selectedAgent, handleSelectSuperAgent
 
             
           <div
+          className='md:left-[61rem] md:top-[8.6rem] md:h-[16rem] md:w-[1px]'
               style={{
                 position: 'absolute',
-                left: '63rem',
-                top: '12rem',
                 opacity: '0.3',
                 border: '1px solid gray',
-                height: '16rem',
-                width:'1px'
               }}
               ></div>
 
-            <div style={{
-              position: 'relative',
-              top: '-92px',
-              left: '37rem'
+            <div 
+            className='relative md:top-[-85px] md:left-[37rem] top-[80px] left-[0rem]'
+            style={{
+              // position: 'relative',
+              // top: '-85px',
+              // left: '37rem'
             }}>
-            <h4 style={{
+            <h4
+            className='md:top-[-10px] top-[-15px]' 
+            style={{
                   position: 'relative',
-                  top: '-10px',
                   fontSize: '15px',
                   fontWeight: '600',
                   marginBottom: '20px',
                   marginRight: '20px'
                 }}>
-              Balance: #0
+              Balance: <span className='font-light'>0</span>
             </h4>
             <div style={{ display: "flex" }}>
               <h4 style={{
@@ -133,10 +140,10 @@ function VendorTopUp({selectedVendorValue, selectedAgent, handleSelectSuperAgent
                 }}>
                 Amount:
               </h4>
-              <input placeholder='Enter amount here...' style={{width: '33%', padding: '10px', borderRadius: '5px', border: '1px solid'}} />
+              <input placeholder='Enter amount here...' className='md:w-[28%] w-[100%]' style={{width: '', padding: '10px', borderRadius: '5px', border: '1px solid'}} />
             </div>
             </div>
-            <Button onClick={submitTopUp} style={{position: 'relative', width: '30%', backgroundColor: '#f5c005', left: '24.5rem', top: '-30px'}}>Submit</Button>
+            <Button onClick={submitTopUp} className='relative w-[100%] top-[110px] md:top-[-40px] md:w-[30%] bg-[#f5c005] md:left-[24.5rem]' style={{position: 'relative',borderRadius: '5px'}}>Submit</Button>
           </div> 
         </div>  
       </div>

@@ -36,12 +36,10 @@ export default function TopUp() {
  // const [vendorData, setVendorData] = useState([]);
   const [filter, setFilter] = useState("");
   
-  const [searchData, setSearchData] = useState()
-  const datas = searchData
-  ? searchData
-  : data
+  const [query, setQuery] = useState('select-all')
+ 
  const search = () => {
-  setSearchData(data.filter(char => char.plate_no.toLowerCase().includes(filter.toLowerCase())))
+  setQuery('search')
 
  }
 
@@ -72,7 +70,7 @@ export default function TopUp() {
   // };
   const getReg = useCallback(() => {
     
-    _get(`vehicles?query_type=select-all`, (resp) => {
+    _get(`vehicles?query_type=${query}&engine_no=${filter}`, (resp) => {
       if (resp.success && resp.data) {
         setData(resp.data);
         //console.log(resp);
@@ -84,8 +82,12 @@ export default function TopUp() {
     //     setVendorData(resp.results);
     //   }
     // });
-  }, [/*filter*/]);
-
+  },[query,filter]);
+  useEffect(() =>{
+    if(!filter){
+      setQuery('select-all')
+    }
+  }, [filter])
   useEffect(() => {
     getReg();
   }, [getReg]);
@@ -190,7 +192,7 @@ export default function TopUp() {
                     </tr>
                   </thead>
                   <tbody>
-                    {datas?.map((vehicle, idx) => (
+                    {data?.map((vehicle, idx) => (
                       <tr key={idx}>
                         <td>{vehicle.vehicle_id}</td>
                         <td>{vehicle.plate_no}</td>

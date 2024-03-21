@@ -11,25 +11,27 @@ export default function VehicleOwnerTable() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState('');
 
-  const [searchData, setSearchData] = useState()
-  const datas = searchData
-  ? searchData
-  : data
+  const [query, setQuery] = useState('select-all')
+
  const search = () => {
-  setSearchData(data.filter(char => char.name.toLowerCase().includes(filter.toLowerCase())))
-  console.log('click' , searchData)
+  setQuery('search')
+
  }
 
 
   const getReg = useCallback(() => {
-    _get(`vehicle-owners?query_type=select-all`,
+    _get(`vehicle-owners?query_type=${query}&name=${filter}`,
       (resp) => {
         if (resp.success && resp.data) {
           setData(resp.data);
         }
       });
-  }, [filter]);
-
+  }, [query,filter]);
+  useEffect(() => {
+    if(!filter){
+      setQuery('select-all')
+    }
+  })
   useEffect(() => {
     getReg();
   }, [getReg]);
@@ -98,7 +100,7 @@ export default function VehicleOwnerTable() {
 
         <Row>
           <div className="table_overflow">
-            {datas?.length === 0 ? (
+            {data?.length === 0 ? (
               <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
                 ""
               </Spinner>
@@ -135,7 +137,7 @@ export default function VehicleOwnerTable() {
                   </tr>
                 </thead>
                 <tbody>
-                  {datas?.map((item, idx) => <tr key={idx}>
+                  {data?.map((item, idx) => <tr key={idx}>
                     <td>
                       {idx + 1}
                     </td>

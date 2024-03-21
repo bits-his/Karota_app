@@ -11,23 +11,25 @@ export default function AgentTable() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState('');
   
-  const [searchData, setSearchData] = useState()
-  const datas = searchData
-  ? searchData
-  : data
+  const [query, setQuery] = useState('select-all')
+ 
  const search = () => {
-  setSearchData(data.filter(char => char.plate_no.toLowerCase().includes(filter.toLowerCase())))
+  setQuery('search')
 
  }
   const getReg = useCallback(() => {
-    _get(`agents?query_type=select-all`,
+    _get(`agents?query_type=${query}&name=${filter}`,
       (resp) => {
         if (resp.success && resp.results) {
           setData(resp.results);
         }
       });
-  }, []);
-
+  }, [query, filter]);
+  useEffect(() =>{
+    if(!filter){
+      setQuery('select-all')
+    }
+  })
   useEffect(() => {
     getReg();
   }, [getReg]);
@@ -69,17 +71,18 @@ export default function AgentTable() {
                   }}
                 />
                 <input
-                  style={{
-                    width: "100%",
-                    fontSize: 20,
-                  }}
+                  name="filter"
+                  value={filter}
+                  type="text"
                   className="app_input2"
+                  onChange={({ target: { value } }) => setFilter(value)}
                   placeholder="Search Individual"
                 />
               </div>
             </Col>
             <label 
             onClick={search}
+
             className="label_title" style={{ color: "#000" }}>
               Search
             </label>
@@ -88,7 +91,7 @@ export default function AgentTable() {
 
         <Row>
           <div className="table_overflow">
-          {datas?.length === 0 ? ( 
+          {data?.length === 0 ? ( 
         <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
        ""
       </Spinner>
@@ -122,7 +125,7 @@ export default function AgentTable() {
                 </tr>
               </thead>
               <tbody>
-                {datas?.map((agent, idx) => <tr key={idx}>
+                {data?.map((agent, idx) => <tr key={idx}>
                   <th>
                     {idx + 1}
                   </th>

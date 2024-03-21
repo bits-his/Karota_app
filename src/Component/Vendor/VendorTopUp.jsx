@@ -81,7 +81,6 @@ function VendorTopUp({
                   onChange={handleChange}
                   style={{
                     width: "100%",
-                    border: "1px solid ",
                     borderColor: "#dedede",
                     padding: "10px",
                     borderRadius: "5px",

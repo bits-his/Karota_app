@@ -1,27 +1,22 @@
+import React from "react";
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Card, Col, Row, Button, Table, Badge } from "reactstrap";
 import { useSelector } from "react-redux";
-import { _get, _post } from "../../Utils/Helper";
-import keke from "../../assets/keke_napep.png";
+import { _get, _post } from "../../../Utils/Helper";
+import keke from "../../../assets/keke_napep.png";
 
-export default function VehicleOwnerView() {
+export default function VendorView() {
   const navigate = useNavigate();
   const { user } = useSelector((s) => s.auth);
   const [data, setData] = useState({});
-  const [vehicles, setVehicles] = useState([]);
+  const [superagent, setsuperagent] = useState([]);
   const params = useParams();
   const owner_id = params.id;
   const getReg = useCallback(() => {
-    _get(`vehicle-owners?query_type=select&user_id=${owner_id}`, (resp) => {
-      if (resp.success && resp.data) {
-        setData(resp.data[0]);
-      }
-    });
-
-    _get(`vehicles?query_type=select&owner_id=${owner_id}`, (resp) => {
-      if (resp.success && resp.data) {
-        setVehicles(resp.data);
+    _get(`vendors?query_type=select&id=${owner_id}`, (resp) => {
+      if (resp.success && resp.results) {
+        setData(resp.results[0]);
       }
     });
   }, [owner_id]);
@@ -31,7 +26,7 @@ export default function VehicleOwnerView() {
   }, [getReg]);
 
   const handleBackToTable = () => {
-    navigate("/Vehicleownertable");
+    navigate("/vendorReg");
   };
 
   return (
@@ -62,7 +57,7 @@ export default function VehicleOwnerView() {
             </Button>
 
             {/* Title */}
-            <h4 className="app_title">{data.name}</h4>
+            <h4 className="app_title">{data.vendor_name}</h4>
 
             {/* User DP */}
             <img
@@ -84,44 +79,42 @@ export default function VehicleOwnerView() {
               <tbody>
                 <tr>
                   <th width="20%">Owner's Name</th>
-                  <td>{data.name}</td>
+                  <td>{data.vendor_name}</td>
                 </tr>
                 <tr>
                   <th>Phone</th>
-                  <td>{data.phone}</td>
+                  <td>{data.vendor_org_phone}</td>
                 </tr>
                 <tr>
                   <th>Address</th>
-                  <td>{data.address}</td>
+                  <td>{data.vendor_ofiice_address}</td>
                 </tr>
                 <tr>
-                  <th>Owner's Email</th>
-                  <td>{data.email}</td>
+                  <th>Vendor's Email</th>
+                  <td>{data.vendor_org_email}</td>
                 </tr>
                 <tr>
                   <th>State</th>
-                  <td>{data.state}</td>
+                  <td>{data.vendor_state}</td>
                 </tr>
                 <tr>
-                  <th>NIN</th>
-                  <td>{data.nin}</td>
+                  <th>TIN</th>
+                  <td>{data.vendor_tin}</td>
                 </tr>
                 <tr>
                   <th>Local Government Area</th>
-                  <td>{data.lga}</td>
+                  <td>{data.vendor_lga}</td>
                 </tr>
                 <tr>
-                  <th>Registered Vehicles</th>
+                  <th>Registered SuperAgent</th>
                   <td className="text-center">
-                    <Badge color="primary">{vehicles.length}</Badge>{" "}
+                    <Badge color="primary">{data.super_agents_count}</Badge>{" "}
                     <Button
                       className="btn btn-primary"
-                      onClick={() =>
-                        navigate(`/vehicleregistration/${owner_id}`)
-                      }
+                      onClick={() => navigate(`/superagent`)}
                     >
                       {" "}
-                      Add +
+                      Add SuperAgent
                     </Button>
                   </td>
                 </tr>

@@ -32,7 +32,6 @@ Font.register({
 
 const styles = StyleSheet.create({
   body: {
-    fontSize: 10,
     width: "100%",
     pageBreakInside: "avoid",
     padding: 20,

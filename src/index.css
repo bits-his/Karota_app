@@ -265,7 +265,7 @@ label {
 
 
 
-.user_image {
+/* .user_image {
   width: 120px;
   height: 120px;
   border-radius: 100%;
@@ -281,7 +281,7 @@ label {
 .keke-logo {
   position: absolute;
   width: 100%;
-}
+} */
 
 .dashboard_card {
   margin-top: 20px;

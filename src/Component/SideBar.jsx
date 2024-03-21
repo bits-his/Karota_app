@@ -9,7 +9,7 @@ export default function SideBar() {
   const { user } = useSelector((p) => p.auth);
 
   return (
-    <div style={{ marginTop: -40 }}>
+    <div>
       <div>
         <center>
           <div className="user_image">
@@ -25,7 +25,7 @@ export default function SideBar() {
             marginBottom: 40,
           }}
         >
-          Keke App
+          Keke dpp
         </h4>
       </div>
       <section className="link">

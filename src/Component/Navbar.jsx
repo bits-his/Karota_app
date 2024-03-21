@@ -23,19 +23,19 @@ export default function Navbar() {
   return (
     <div className="navbar-container">
       <div className="navbar-logo-container">
-        <img src={kekeLogo} alt="Keke logo" className="keke-logo" />
+        <img src={kekeLogo} alt="Keke logo" className="navbar-keke-logo" />
+        </div>
         <h4
           className="navbar-app-title"
           style={{
             fontSize: "26px",
+            marginTop: 20,
             textAlign: "center",
             color: "black",
-            marginTop: 200,
           }}
         >
           Keke App
         </h4>
-      </div>
       <div
         className={`navbar-menu-container ${isMobileMenuOpen ? "open" : ""}`}
       >

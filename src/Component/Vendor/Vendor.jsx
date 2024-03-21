@@ -35,8 +35,39 @@ export default function RegistrationTable() {
   };
   const navigate = useNavigate();
 
+  // if (form.step === 0) {
+  //   if (!form.vendor_name || !form.vendor_ofiice_address || !form.vendor_state || !form.vendor_lga || !form.vendor_phone || !form.vendor_email) {
+  //     toast.error("Please fill in all required fields.");
+  //     return;
+  //   }
+  // } 
+  // else {
+  //   if (!form.contact_name || !form.contact_address || !form.contact_state || !form.contact_lga || !form.contact_phone || !form.contact_email || !form.contact_password) {
+  //     toast.error("Please fill in all required fields.");
+  //     return;
+  //   }
+  // }
+
+  const validate = (e) => {
+    e.preventDefault();
+
+    if (!form.vendor_name || !form.vendor_ofiice_address || !form.vendor_state || !form.vendor_lga || !form.vendor_phone || !form.vendor_email) 
+    { toast.error("Please fill in all required fields.") }
+    else {
+      toast.success("Good.")
+     setForm((p) => ({ ...p, step: 1 }))
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+      if (!form.contact_name || !form.contact_address || !form.contact_state || !form.contact_lga || !form.contact_phone || !form.contact_email || !form.contact_password) {
+        toast.error("Please fill in all required fields.");
+        return;
+      }
+
+
     setLoading(true);
     _post(
       "vendors/create",
@@ -105,7 +136,7 @@ export default function RegistrationTable() {
                 <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
-                      <Label for="contact_name">Contact Name</Label>
+                      <Label for="contact_name">Contact Name <span style={{color: "red"}}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="contact_name"
@@ -120,7 +151,7 @@ export default function RegistrationTable() {
                   </Col>
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="contact_phone">Contact Phone</Label>
+                      <Label for="contact_phone">Contact Phone <span style={{color: "red"}}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="contact_phone"
@@ -137,7 +168,7 @@ export default function RegistrationTable() {
                 <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
-                      <Label for="contact_address">Contact Address</Label>
+                      <Label for="contact_address">Contact Address <span style={{color: "red"}}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="contact_address"
@@ -145,12 +176,13 @@ export default function RegistrationTable() {
                         value={form.contact_address}
                         type="text"
                         className="app_input"
+                        required
                       />
                     </FormGroup>
                   </Col>
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="contact_email">Contact E-mail</Label>
+                      <Label for="contact_email">Contact E-mail <span style={{color: "red"}}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="contact_emailexample"
@@ -167,7 +199,7 @@ export default function RegistrationTable() {
                 <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
-                      <Label for="contact_state">State of Residence</Label>
+                      <Label for="contact_state">State of Residence <span style={{color: "red"}}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="contact_state"
@@ -175,6 +207,7 @@ export default function RegistrationTable() {
                         type="select"
                         value={form.contact_state}
                         className="app_input"
+                        required
                       >
                         <option value={""}>Select State</option>
                         {stateLga.map((item) => (
@@ -185,7 +218,7 @@ export default function RegistrationTable() {
                   </Col>
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="contact_lga">L.G.A. of Residence</Label>
+                      <Label for="contact_lga">L.G.A. of Residence <span style={{color: "red"}}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="contact_lga"
@@ -211,7 +244,7 @@ export default function RegistrationTable() {
                 <Row>
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="exampleDOB">Password</Label>
+                      <Label for="exampleDOB">Password <span style={{color: "red"}}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="examplePassword"
@@ -220,6 +253,7 @@ export default function RegistrationTable() {
                         placeholder="Enter Password"
                         type="password"
                         className="app_input"
+                        required
                       />
                     </FormGroup>
                   </Col>
@@ -230,7 +264,7 @@ export default function RegistrationTable() {
                 <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
-                      <Label for="vendor_name">Vendor's name</Label>
+                      <Label for="vendor_name">Vendor's name <span style={{color: "red"}}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="vendor_name"
@@ -238,12 +272,13 @@ export default function RegistrationTable() {
                         placeholder="Vendor name"
                         type="text"
                         className="app_input"
+                        required
                       />
                     </FormGroup>
                   </Col>
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="vendor_phone">Organization's phone</Label>
+                      <Label for="vendor_phone">Organization's phone <span style={{color: "red"}}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="vendor_phone"
@@ -252,6 +287,7 @@ export default function RegistrationTable() {
                         placeholder="+234-8100000000"
                         type="tel"
                         className="app_input"
+                        required
                       />
                     </FormGroup>
                   </Col>
@@ -259,7 +295,7 @@ export default function RegistrationTable() {
                 <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
-                      <Label for="vendor_ofiice_address">Office Address</Label>
+                      <Label for="vendor_ofiice_address">Office Address <span style={{color: "red"}}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="vendor_ofiice_address"
@@ -267,12 +303,13 @@ export default function RegistrationTable() {
                         value={form.vendor_ofiice_address}
                         type="text"
                         className="app_input"
+                        required
                       />
                     </FormGroup>
                   </Col>
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="vendor_email">Organization's email</Label>
+                      <Label for="vendor_email">Organization's email <span style={{color: "red"}}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="vendor_emailexample"
@@ -281,6 +318,7 @@ export default function RegistrationTable() {
                         placeholder="organization@fake.com"
                         type="email"
                         className="app_input"
+                        required
                       />
                     </FormGroup>
                   </Col>
@@ -288,7 +326,7 @@ export default function RegistrationTable() {
                 <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
-                      <Label for="vendor_state">State</Label>
+                      <Label for="vendor_state">State <span style={{color: "red"}}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="vendor_state"
@@ -322,7 +360,7 @@ export default function RegistrationTable() {
                 <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
-                      <Label for="vendor_lga">LGA</Label>
+                      <Label for="vendor_lga">LGA <span style={{color: "red"}}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="vendor_lga"
@@ -389,6 +427,7 @@ export default function RegistrationTable() {
                     {" "}
                     <button
                       className="app_button"
+                      disabled={loading}
                       style={{
                         width: 150,
                         marginLeft: 0,
@@ -415,7 +454,7 @@ export default function RegistrationTable() {
                       disabled={loading}
                       onClick={handleSubmit}
                     >
-                      Submit
+                      {loading ? (<Spinner color="warning">Loading...</Spinner>) : (<span>Submit</span>)}
                     </button>
                   </Col>
                 </Row>
@@ -429,8 +468,7 @@ export default function RegistrationTable() {
                     color: "",
                     cursor: "pointer",
                   }}
-                  disabled={loading}
-                  onClick={() => setForm((p) => ({ ...p, step: 1 }))}
+                  onClick={validate}
                 >
                   Next
                 </button>

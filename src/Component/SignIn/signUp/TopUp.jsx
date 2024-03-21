@@ -187,7 +187,7 @@ export default function TopUp() {
                         </td>
                         <td className="text-center p-2">
                           <ButtonGroup>
-                            <Button
+                            {/* <Button
                               onClick={(id) => {
                                 setCurrentItem(vehicle);
                                 handlePay(id);
@@ -195,7 +195,7 @@ export default function TopUp() {
                               color="success"
                             >
                               Pay
-                            </Button>
+                            </Button> */}
                             <Button
                               color="info"
                               onClick={() =>
@@ -214,7 +214,7 @@ export default function TopUp() {
             </div>
           </Card>
 
-          <Modal
+          {/* <Modal
             isOpen={modal}
             toggle={toggleModal}
             style={{
@@ -282,8 +282,10 @@ export default function TopUp() {
                 </div>
               </Form>
             </ModalBody>
-          </Modal>
-          {fund ? (
+          </Modal> */}
+
+          
+          {/* {fund ? (
             <div>
               <Form
                 style={{
@@ -445,7 +447,7 @@ export default function TopUp() {
             </div>
           ) : (
             <></>
-          )}
+          )} */}
         </Row>
       </Card>
     </div>

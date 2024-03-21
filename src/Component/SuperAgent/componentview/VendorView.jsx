@@ -26,7 +26,7 @@ export default function VendorView() {
   }, [getReg]);
 
   const handleBackToTable = () => {
-    navigate("/superagenttable");
+    navigate("/vendorReg");
   };
 
   return (

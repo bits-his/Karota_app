@@ -21,7 +21,7 @@ import {
   NavLink,
 } from "reactstrap";
 import { _get } from "../../../Utils/Helper";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export default function TopUp() {
   // const navigate = useNavigate()
@@ -33,8 +33,18 @@ export default function TopUp() {
     Plate_no: "",
   });
   const [data, setData] = useState([]);
-  const [vendorData, setVendorData] = useState([]);
+ // const [vendorData, setVendorData] = useState([]);
   const [filter, setFilter] = useState("");
+  
+  const [query, setQuery] = useState('select-all')
+ 
+ const search = () => {
+  setQuery('search')
+
+ }
+
+
+
   const goto = useNavigate();
 
   const toggleModal = () => {
@@ -59,10 +69,11 @@ export default function TopUp() {
   //   bal: 2000,
   // };
   const getReg = useCallback(() => {
-    _get(`vehicles?query_type=select-all`, (resp) => {
+    
+    _get(`vehicles?query_type=${query}&engine_no=${filter}`, (resp) => {
       if (resp.success && resp.data) {
         setData(resp.data);
-        console.log(resp.data);
+        //console.log(resp);
       }
     });
     // _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
@@ -71,8 +82,12 @@ export default function TopUp() {
     //     setVendorData(resp.results);
     //   }
     // });
-  }, [/*filter*/]);
-
+  },[query,filter]);
+  useEffect(() =>{
+    if(!filter){
+      setQuery('select-all')
+    }
+  }, [filter])
   useEffect(() => {
     getReg();
   }, [getReg]);
@@ -135,7 +150,7 @@ export default function TopUp() {
                 </div>
               </Col>
               <Label
-                onClick={getReg}
+                onClick={search}
                 className="label_title1"
                 style={{ color: "#000", cursor: "pointer" }}
               >
@@ -177,7 +192,7 @@ export default function TopUp() {
                     </tr>
                   </thead>
                   <tbody>
-                    {data.map((vehicle, idx) => (
+                    {data?.map((vehicle, idx) => (
                       <tr key={idx}>
                         <td>{vehicle.vehicle_id}</td>
                         <td>{vehicle.plate_no}</td>

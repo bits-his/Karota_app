@@ -8,15 +8,29 @@ export default function VehicleOwnerTable() {
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState('');
+
+  const [query, setQuery] = useState('select-all')
+
+  const search = () => {
+    setQuery('search')
+
+  }
+
+
   const getReg = useCallback(() => {
-    _get(`vehicle-owners?query_type=select-all`, (resp) => {
-      if (resp.success && resp.data) {
-        setData(resp.data);
-      }
-    });
-  }, [filter]);
-    
+    _get(`vehicle-owners?query_type=${query}&name=${filter}`,
+      (resp) => {
+        if (resp.success && resp.data) {
+          setData(resp.data);
+        }
+      });
+  }, [query, filter]);
+  useEffect(() => {
+    if (!filter) {
+      setQuery('select-all')
+    }
+  })
   useEffect(() => {
     getReg();
   }, [getReg]);
@@ -59,16 +73,22 @@ export default function VehicleOwnerTable() {
                   }}
                 />
                 <input
+                  name="filter"
+                  value={filter}
+                  type="text"
+                  className="app_input2"
+                  onChange={({ target: { value } }) => setFilter(value)}
                   style={{
                     width: "100%",
                     fontSize: 20,
                   }}
-                  className="app_input2"
-                  placeholder="Search Individual"
+                  placeholder="Search Vehicle Owner"
                 />
               </div>
             </Col>
-            <label className="label_title" style={{ color: "#000" }}>
+            <label
+              onClick={search}
+              className="label_title" style={{ color: "#000" }}>
               Search
             </label>
           </div>
@@ -76,13 +96,8 @@ export default function VehicleOwnerTable() {
 
         <Row>
           <div className="table_overflow">
-            {data.length === 0 ? (
-              <Spinner
-                color="warning"
-                className="spinner"
-                type="grow"
-                style={{ margin: "20px auto" }}
-              >
+            {data?.length === 0 ? (
+              <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
                 ""
               </Spinner>
             ) : (
@@ -104,43 +119,43 @@ export default function VehicleOwnerTable() {
                     <th>Email</th>
                     <th>phone Num</th>
                     <th>Plate No</th>
-
                     <th>Balance</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {data.map((item, idx) => (
-                    <tr key={idx}>
-                      <td>{idx + 1}</td>
-                      <td>{item.name}</td>
-                      <td>{item.email}</td>
-                      <td>{item.phone}</td>
-                      <td>{item.phone}</td>
+                  {data?.map((item, idx) => <tr key={idx}>
+                    <td>
+                      {idx + 1}
+                    </td>
+                    <td>
+                      {item.name}
+                    </td>
+                    <td>
+                      {item.email}
+                    </td>
+                    <td>
+                      {item.phone}
 
-                      <td>NGN 0.00</td>
-                      <td className="text-center btn-table">
-                        <Button
-                          color="info"
-                          className=""
-                          onClick={() =>
-                            navigate(`/vehicleownertable/view/${item.id}`)
-                          }
-                        >
-                          View
-                        </Button>
-                        <Button
-                          className="btn btn-primary"
-                          onClick={() =>
-                            navigate(`/vehicleregistration/${item.id}`)
-                          }
-                        >
-                          {" "}
-                          vehicle +
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
+                    </td>
+                    <td>
+                      {item.phone_no}
+                    </td>
+
+                    <td>
+                      NGN  {item.balance}
+                    </td>
+                    <td className="text-center btn-table">
+                      <Button color="info"
+                        className=""
+                        onClick={() => navigate(`/vehicleownertable/view/${item.id}`)}
+                      >View</Button>
+                      <Button
+                        className="btn btn-primary"
+                        onClick={() => navigate(`/vehicleregistration/${item.id}`)}
+                      > vehicle +</Button>
+                    </td>
+                  </tr>)}
                 </tbody>
               </Table>
             )}

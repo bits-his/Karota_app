@@ -11,9 +11,10 @@ import { FaMagento, FaUser } from 'react-icons/fa';
 import { FaTruckFast } from "react-icons/fa6";
 
 const QuickActivityWrap = () => {
-  const columnMarginBottom = {
-    marginBottom: "2rem",
-  };
+    const [data, setData] = useState([])
+    const columnMarginBottom = {
+        marginBottom: "2rem",
+    };
 
     const totalIncomeStyle = {
         backgroundColor: "#f5c005 ",
@@ -45,41 +46,34 @@ const QuickActivityWrap = () => {
         cusor: "pointer",
     };
 
-  const netProfitMarginStyle = {
-    backgroundColor: "#f5c005 ",
-    borderRadius: "15px",
-    padding: "20px",
-    height: "100%",
-    color: "#fff",
-    transition: "background-color 0.3s ease !important",
-    cusor: "pointer",
-  };
-  const iconStyle = {
-    fontSize: "50px",
-    display: "flex",
-    justifyContent: "end",
-    alignItems: "start",
-  };
+    const netProfitMarginStyle = {
+        backgroundColor: "#f5c005 ",
+        borderRadius: "15px",
+        padding: "20px",
+        height: "100%",
+        color: "#fff",
+        transition: "background-color 0.3s ease !important",
+        cusor: "pointer",
+    };
+    const iconStyle = {
+        fontSize: "50px",
+        display: "flex",
+        justifyContent: "end",
+        alignItems: "start",
+    };
 
-  const [superAgentMax, setSuperAgentMax] = useState([]);
+    useEffect(() => {
+        _get('fetchallcards', (response) => {
+            if (response.success)
+                setData(response.data[0]);
+        },
+            (error) => {
+                console.error('Error fetching cards counts:', error);
+            })
 
+    }, []);
 
-  useEffect(() => {
-    _get('fetchallcards',(response) => {
-      console.log("Data from server : ", response)
-        const data = response.data;
-        console.log("Data from server : ")
-        setSuperAgentMax(data);
-      },
-      (error) => {
-        console.error('Error fetching cards counts:', error);
-      })
-    
-  });
-
-  
-
-  const data = superAgentMax.length? superAgentMax[0] : {}
+    // const data = data.length ? data[0] : {}
     return (
         <div className="quick_activity_wrap">
             {/* {JSON.stringify(data)} */}

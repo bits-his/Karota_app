@@ -36,31 +36,30 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
 
   const submitTopUp = (e) => {
     e.preventDefault();
-    setLoading(true)
-    _post(`top-up/create`,
-      form,
-      (res) => {
-        if (res.success) {
-          toast.success(`Sucessfully added ${form.amount}`)
-          navigate('/vehicleownertable')
-        }
-      },
-      err => {
-        console.log(err)
-        setLoading(false)
-      }
-    )
+      setLoading(true)
+ _post(`top-up/create`,
+    form,
+    (res)=> {
+       if(res.success){
+        toast.success(`Sucessfully added ${form.amount}`)
+        navigate('/top-up')
+    }
+     
+      })
+    
+  //alert('please complete the form')
     //setLoading(false)
     //console.log(form);
   };
 
-  return (<>
+  return (
+  <>
     <div className="app_card dashboard_card m-0 p-0">
-      <div className='middle-card-topup' style={{ margin: "auto" }}>
+      <div  style={{ margin: "auto" }}>
         <h3 className="text-center fw-bold ve-t-u" >Vehicle Top-Up</h3>
 
         {/* {JSON.stringify(form)} */}
-        <div className="agent app_card " style={{ padding: "50px" }}>
+        {/* <div className="agent app_card " style={{ padding: "50px" }}> */}
           <div className='account-info row'>
             <div className='info-input col-md-6'>
               <h4 style={{ marginRight: '20px' }}> Select Agent:</h4>
@@ -89,31 +88,32 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
 
               />
             </div>
+            {/* </div> */}
+          
+          </div>
+          <div className="transaction-details">
+              <h3>Transaction Details</h3>
+              <div className='details'>
+                <p >FROM : <span >{form.agent_name}</span></p>
+                <p >TO : <span  >{form.Plate_no}</span></p>
+               <p >ID : <span >{form.agent_id}</span></p>
+          
+               <p >ID :  <span  >{form.vehicle_id}</span></p>
+               <p >Amount:  <span  >{form.amount}</span></p>
+              </div>
+               
+            
           </div>
 
-          <div
-            style={{
-              marginTop: "50px",
-            }}
-          >
-            <Button
-              onClick={submitTopUp}
+          <div className='top-up-submit'>
+            <Button 
+            onClick={submitTopUp}
               disabled={loading}
-              style={{
-                marginInline: 'auto',
-                display: 'block',
-                height: '40px',
-                backgroundColor: '#f5c005',
-                left: '23rem',
-                width: '28rem',
-                boxShadow: '1px 2px gray'
-              }}
             >Submit</Button>
           </div>
         </div>
       </div>
-    </div>
-  </>
+    </>
   );
 }
 

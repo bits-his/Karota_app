@@ -162,7 +162,8 @@ function VendorReg() {
                 <td>{vendor.vendor_org_email}</td>
                 <td>{vendor.vendor_ofiice_address}</td>
                 <td className="text-center">
-                  <Button color="info" className="marginResponsive">
+                  <Button color="info" className="marginResponsive"
+                    onClick={() => navigate(`/vendorReg/${vendor.id}?vendor_name=${vendor.vendor_name}&vendor_org_phone=${vendor.vendor_org_phone}&vendor_org_email=${vendor.vendor_org_email}&vendor_ofiice_address=${vendor.vendor_ofiice_address}`)}>
                     View
                   </Button>
                   <Button

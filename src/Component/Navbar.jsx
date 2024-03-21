@@ -91,8 +91,7 @@ export default function Navbar() {
           {true ? (
             <div
               onClick={() => goto("/superagenttable")}
-              className={`navbar-link-item ${
-                location.pathname === "/superagenttable" &&
+              className={`navbar-link-item ${location.pathname === "/superagenttable" &&
                 "navbar-active-side-menu"
                 }`}
             >

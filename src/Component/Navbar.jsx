@@ -159,8 +159,8 @@ export default function Navbar() {
                 "navbar-active-side-menu"
                 }`}
             >
-              <FaTruckFast className="icon shadow" />
-              Vehicles
+              <FaMagento className="icon shadow" />
+              Vehicle owners
             </div>
           ) : (
             ""
@@ -187,8 +187,8 @@ export default function Navbar() {
                 : ""
                 }`}
             >
-              <FaMagento className="icon shadow" />
-              Collection Point
+              <FaTruckFast className="icon shadow" />
+              Vehicles
             </div>
           ) : (
             ""

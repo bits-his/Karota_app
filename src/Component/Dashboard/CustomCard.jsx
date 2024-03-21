@@ -11,6 +11,7 @@ import { FaMagento, FaUser } from 'react-icons/fa';
 import { FaTruckFast } from "react-icons/fa6";
 
 const QuickActivityWrap = () => {
+    const [data, useData] = useState([])
     const columnMarginBottom = {
         marginBottom: "2rem",
     };
@@ -79,7 +80,7 @@ const QuickActivityWrap = () => {
 
 
 
-    const data = superAgentMax.length ? superAgentMax[0] : {}
+    // const data = superAgentMax.length ? superAgentMax[0] : {}
     return (
         <div className="quick_activity_wrap">
             {/* {JSON.stringify(data)} */}
@@ -129,8 +130,8 @@ const QuickActivityWrap = () => {
                         </Card>
                     </Link>
                 </Col>
-            </Row>
-        </div>
+            </Row >
+        </div >
     );
 };
 

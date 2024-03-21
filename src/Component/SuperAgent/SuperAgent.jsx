@@ -38,21 +38,27 @@ export default function SuperAgent() {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     if (loading) return;
-    e.preventDefault();
-    setLoading(true);
-    _post(
-      "superagent/create",
-      form,
-      (res) => {
-        setLoading(true);
-        toast.success("super agent created successfully");
-        setSubmittedData([...submittedData, res]);
-        navigate("/superagenttable");
-      },
-      () => {
-        setLoading(false);
-        toast.error("An error occurred while creating super agent");
+      e.preventDefault();
+
+      if (!form.name || !form.phone || !form.nin || !form.state || !form.lga || !form.address || !form.vendor) {
+        toast.error("Please fill in all required fields.");
+        return;
       }
+
+      setLoading(true);
+      _post(
+        "superagent/create",
+        form,
+        (res) => {
+          setLoading(true);
+          toast.success("super agent created successfully");
+          setSubmittedData([...submittedData, res]);
+          navigate("/superagenttable");
+        },
+        () => {
+          setLoading(false);
+          toast.error("An error occurred while creating super agent");
+        }
     );
   };
   return (
@@ -97,7 +103,7 @@ export default function SuperAgent() {
                 <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
-                      <Label for="vendor">Vendor</Label>
+                      <Label for="vendor">Vendor <span style={{color: "red"}}>*</span></Label>
                       <VendorDropdown
                         handleChange={handleChange}
                         selectedVendorValue={form.vendor}
@@ -106,7 +112,7 @@ export default function SuperAgent() {
                   </Col>
                   <Col md={6} className="first-col">
                     <FormGroup>
-                      <Label for="name">Name</Label>
+                      <Label for="name">Name <span style={{color: "red"}}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="name"
@@ -123,7 +129,7 @@ export default function SuperAgent() {
                 <Row className="margin-bottom-input">
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="phone">Phone</Label>
+                      <Label for="phone">Phone <span style={{color: "red"}}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="phone"
@@ -154,7 +160,7 @@ export default function SuperAgent() {
                 <Row className="margin-bottom-input">
                   <Col md={12} className="first-col">
                     <FormGroup>
-                      <Label for="address">Contact address</Label>
+                      <Label for="address">Contact address <span style={{color: "red"}}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="address"
@@ -169,7 +175,7 @@ export default function SuperAgent() {
                 <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
-                      <Label for="state">State</Label>
+                      <Label for="state">State <span style={{color: "red"}}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="state"
@@ -188,7 +194,7 @@ export default function SuperAgent() {
 
                   <Col md={6} className="first-col">
                     <FormGroup>
-                      <Label for="lga">LGA</Label>
+                      <Label for="lga">LGA <span style={{color: "red"}}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="lga"
@@ -209,7 +215,7 @@ export default function SuperAgent() {
                 <Row className="margin-bottom-input">
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="nin">NIN</Label>
+                      <Label for="nin">NIN <span style={{color: "red"}}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="nin"

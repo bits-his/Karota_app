@@ -99,43 +99,22 @@ function VendorTopUp({
 
             </div>
 
-
-            <div
-              className='md:left-[61rem] md:top-[8.6rem] md:h-[16rem] md:w-[1px]'
-              style={{
-                position: 'absolute',
-                opacity: '0.3',
-                border: '1px solid gray',
-              }}
-            ></div>
-
-            <div
-              className='relative md:top-[-85px] md:left-[37rem] top-[80px] left-[0rem]'
-              style={{
-                // position: 'relative',
-                // top: '-85px',
-                // left: '37rem'
-              }}>
-              <h4
-                className='md:top-[-10px] top-[-15px]'
-                style={{
-                  position: 'relative',
-                  fontSize: '15px',
-                  fontWeight: '600',
-                  marginBottom: '20px',
-                  marginRight: '20px'
-                }}>
-                Balance: <span className='font-light'>0</span>
-              </h4>
-              <div style={{ display: "flex" }}>
-                <h4 style={{
-                  fontSize: '15px',
-                  fontWeight: '600',
-                  marginRight: '20px'
-                }}>
-                  Amount:
-                </h4>
-                <input placeholder='Enter amount here...' className='md:w-[28%] w-[100%]' style={{ width: '', padding: '10px', borderRadius: '5px', border: '1px solid' }} />
+            <div>
+              <div className="info-input col-md-6">
+                <h4>Amount:</h4>
+                <input
+                  placeholder="Enter amount here..."
+                  name='amount'
+                  value={form.amount}
+                  onChange={handleChange}
+                  style={{
+                    width: "100%",
+                    borderColor: "#dedede",
+                    padding: "10px",
+                    borderRadius: "5px",
+                    border: "1px solid",
+                  }}
+                />
               </div>
               <div className="transaction-details">
                 <h3>Transaction Details</h3>

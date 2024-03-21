@@ -28,27 +28,31 @@ export default function SuperAgentTable() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
-  const [searchData, setSearchData] = useState()
-  const datas = searchData
-  ? searchData
-  : data
+  const [query, setQuery] = useState('select-all')
+ 
+  
+
  const search = () => {
-  setSearchData(data.filter(char => char.name.toLowerCase().includes(filter.toLowerCase())))
+  setQuery('search')
 
  }
 
   const getReg = useCallback(() => {
-    _get(`superagent?query_type=select-all`, (resp) => {
+    _get(`superagent?query_type=${query}&name=${filter}`, (resp) => {
       if (resp.success && resp.results) {
         setData(resp.results);
       }
     });
-  }, []);
+  }, [query, filter]);
 
   useEffect(() => {
     getReg();
   }, [getReg]);
-
+ useEffect(() => {
+  if(!filter){
+    setQuery('select-all')
+  }
+ },[filter])
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
@@ -129,7 +133,7 @@ export default function SuperAgentTable() {
 
         <Row>
           <div className="table_overflow">
-            {datas?.length === 0 ? (
+            {data?.length === 0 ? (
               <Spinner
                 color="warning"
                 className="spinner"
@@ -161,7 +165,7 @@ export default function SuperAgentTable() {
                   </tr>
                 </thead>
                 <tbody>
-                  {datas?.map((agent, idx) => (
+                  {data?.map((agent, idx) => (
                     <tr key={idx}>
                       <th>{idx + 1}</th>
                       <td>{agent.name}</td>

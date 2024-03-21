@@ -32,15 +32,12 @@ function VendorReg() {
   const [currentVendor, setCurrentVendor] = useState(_form);
   const [loading, setLoading] = useState(false); // Add loading state
   const [modal, setModal] = useState(false);
+  const [query, setQuery] = useState('select-all')
   const [vendor, setVendor] = useState({});
   const [form, setForm] = useState({});
   const [searchData, setSearchData] = useState()
-  const datas = searchData
-    ? searchData
-    : data
   const search = () => {
-    setSearchData(data.filter(char => char.vendor_name.toLowerCase().includes(filter.toLowerCase())))
-
+    setQuery('search')
   }
   const reference_no = moment().format("YYYYMMDDhhmmssSSS");
   const onHandleChange = ({ target: { name, value } }) => {
@@ -53,17 +50,25 @@ function VendorReg() {
   };
   const getReg = useCallback(() => {
     setLoading(true); // Set loading to true before API call
-    _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
+    _get(`vendors?query_type=${query}&vendor_name=${filter}`, (resp) => {
       setLoading(false); // Set loading to false after receiving response
       if (resp.success && resp.results) {
         setData(resp.results);
       }
+
     });
-  }, []);
+  }, [query, filter]);
+  useEffect(() => {
+    getReg()
+  }, [getReg])
 
   useEffect(() => {
-    getReg();
-  }, [getReg, data]);
+    // getReg();
+    if (!filter) {
+      setQuery('select-all')
+    }
+  }, [filter]);
+
   return (
     <>
       <Row>
@@ -132,7 +137,7 @@ function VendorReg() {
         </Col>
       </Row>
 
-      {datas?.length === 0 ? (
+      {data?.length === 0 ? (
         <Spinner
           color="warning"
           className="spinner"
@@ -163,7 +168,7 @@ function VendorReg() {
             </tr>
           </thead>
           <tbody>
-            {datas?.map((vendor, idx) => (
+            {data?.map((vendor, idx) => (
               <tr key={idx}>
                 <th scope="row">{idx + 1}</th>
                 <td>{vendor.vendor_name}</td>

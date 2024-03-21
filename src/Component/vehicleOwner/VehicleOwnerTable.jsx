@@ -8,22 +8,18 @@ export default function VehicleOwnerTable() {
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
-<<<<<<< HEAD
-  const [filter, setFilter] = useState("");
-=======
   const [filter, setFilter] = useState('');
 
   const [searchData, setSearchData] = useState()
   const datas = searchData
-  ? searchData
-  : data
- const search = () => {
-  setSearchData(data.filter(char => char.name.toLowerCase().includes(filter.toLowerCase())))
-  console.log('click' , searchData)
- }
+    ? searchData
+    : data
+  const search = () => {
+    setSearchData(data.filter(char => char.name.toLowerCase().includes(filter.toLowerCase())))
+    console.log('click', searchData)
+  }
 
 
->>>>>>> 4afadfec5dcef3752f952030777c6c8793ff703d
   const getReg = useCallback(() => {
     _get(`vehicle-owners?query_type=select-all`, (resp) => {
       if (resp.success && resp.data) {
@@ -31,7 +27,7 @@ export default function VehicleOwnerTable() {
       }
     });
   }, [filter]);
-    
+
   useEffect(() => {
     getReg();
   }, [getReg]);
@@ -87,9 +83,9 @@ export default function VehicleOwnerTable() {
                 />
               </div>
             </Col>
-            <label 
-            onClick={search}
-            className="label_title" style={{ color: "#000" }}>
+            <label
+              onClick={search}
+              className="label_title" style={{ color: "#000" }}>
               Search
             </label>
           </div>
@@ -97,18 +93,8 @@ export default function VehicleOwnerTable() {
 
         <Row>
           <div className="table_overflow">
-<<<<<<< HEAD
-            {data.length === 0 ? (
-              <Spinner
-                color="warning"
-                className="spinner"
-                type="grow"
-                style={{ margin: "20px auto" }}
-              >
-=======
             {datas?.length === 0 ? (
               <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
->>>>>>> 4afadfec5dcef3752f952030777c6c8793ff703d
                 ""
               </Spinner>
             ) : (
@@ -130,35 +116,25 @@ export default function VehicleOwnerTable() {
                     <th>Email</th>
                     <th>phone Num</th>
                     <th>Plate No</th>
-
                     <th>Balance</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-<<<<<<< HEAD
-                  {data.map((item, idx) => (
+                  {datas?.map((item, idx) => (
                     <tr key={idx}>
-                      <td>{idx + 1}</td>
-                      <td>{item.name}</td>
-                      <td>{item.email}</td>
-                      <td>{item.phone}</td>
-                      <td>{item.phone}</td>
-=======
-                  {datas?.map((item, idx) => <tr key={idx}>
-                    <td>
-                      {idx + 1}
-                    </td>
-                    <td>
-                      {item.name}
-                    </td>
-                    <td>
-                      {item.email}
-                    </td>
-                    <td>
-                      {item.phone}
->>>>>>> 4afadfec5dcef3752f952030777c6c8793ff703d
-
+                      <td>
+                        {idx + 1}
+                      </td>
+                      <td>
+                        {item.name}
+                      </td>
+                      <td>
+                        {item.email}
+                      </td>
+                      <td>
+                        {item.phone}
+                      </td>
                       <td>NGN 0.00</td>
                       <td className="text-center btn-table">
                         <Button
@@ -180,8 +156,8 @@ export default function VehicleOwnerTable() {
                           vehicle +
                         </Button>
                       </td>
-                    </tr>
-                  ))}
+                    </tr>)
+                  )}
                 </tbody>
               </Table>
             )}

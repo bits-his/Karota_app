@@ -64,10 +64,9 @@ const QuickActivityWrap = () => {
 
     const [superAgentMax, setSuperAgentMax] = useState([]);
 
-
     useEffect(() => {
         _get('fetchallcards', (response) => {
-           // console.log("Data from server : ", response)
+            // console.log("Data from server : ", response)
             const data = response.data;
             //console.log("Data from server : ")
             setSuperAgentMax(data);
@@ -76,9 +75,7 @@ const QuickActivityWrap = () => {
                 console.error('Error fetching cards counts:', error);
             })
 
-    });
-
-
+    }, []);
 
     // const data = superAgentMax.length ? superAgentMax[0] : {}
     return (

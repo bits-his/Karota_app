@@ -8,7 +8,16 @@ export default function AgentTable() {
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState('');
+  
+  const [searchData, setSearchData] = useState()
+  const datas = searchData
+  ? searchData
+  : data
+ const search = () => {
+  setSearchData(data.filter(char => char.plate_no.toLowerCase().includes(filter.toLowerCase())))
+
+ }
   const getReg = useCallback(() => {
     _get(`agents?query_type=select-all`, (resp) => {
       if (resp.success && resp.results) {
@@ -66,7 +75,9 @@ export default function AgentTable() {
                 />
               </div>
             </Col>
-            <label className="label_title" style={{ color: "#000" }}>
+            <label 
+            onClick={search}
+            className="label_title" style={{ color: "#000" }}>
               Search
             </label>
           </div>
@@ -74,60 +85,63 @@ export default function AgentTable() {
 
         <Row>
           <div className="table_overflow">
-            {data.length === 0 ? (
-              <Spinner
-                color="warning"
-                className="spinner"
-                type="grow"
-                style={{ margin: "20px auto" }}
-              >
-                ""
-              </Spinner>
-            ) : (
-              <Table
-                bordered
-                responsive
-                style={{
-                  position: "relative",
-                  top: "10px",
-                  width: "95.3%",
-                  left: "32px",
-                  marginTop: "4px",
-                }}
-              >
-                <thead>
-                  <tr>
-                    <th>S/N</th>
-                    <th>Name</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Contact Address</th>
-                    <th className="text-center">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {data.map((agent, idx) => (
-                    <tr key={idx}>
-                      <th>{idx + 1}</th>
-                      <td>{agent.name}</td>
-                      <td>{agent.phone_no}</td>
-                      <td>{agent.email}</td>
-                      <td>{agent.address}</td>
-                      <td className="text-center">
-                        <Button
-                          color="info"
-                          onClick={() =>
-                            navigate(`/agenttable/view/${agent.id}`)
-                          }
-                        >
-                          View
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            )}
+          {datas?.length === 0 ? ( 
+        <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
+       ""
+      </Spinner>
+      
+      ) : (
+            <Table
+              bordered
+              responsive
+              style={{ position: 'relative', top: '10px', width: '95.3%', left: "32px", marginTop: '4px' }}
+            >
+              <thead>
+                <tr>
+                  <th>
+                    S/N
+                  </th>
+                  <th>
+                    Name
+                  </th>
+                  <th>
+                    Phone
+                  </th>
+                  <th>
+                    Email
+                  </th>
+                  <th>
+                    Contact Address
+                  </th>
+                  <th className="text-center">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {datas?.map((agent, idx) => <tr key={idx}>
+                  <th>
+                    {idx + 1}
+                  </th>
+                  <td>
+                    {agent.name}
+                  </td>
+                  <td>
+                    {agent.phone_no}
+                  </td>
+                  <td>
+                    {agent.email}
+                  </td>
+                  <td>
+                    {agent.address}
+                  </td>
+                  <td className="text-center">
+                    <Button color="info">View</Button>
+                    
+                  </td>
+                </tr>)}
+              </tbody>
+            </Table>)}
           </div>
         </Row>
       </Row>

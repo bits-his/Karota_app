@@ -66,9 +66,9 @@ const QuickActivityWrap = () => {
 
     useEffect(() => {
         _get('fetchallcards', (response) => {
-            console.log("Data from server : ", response)
+           // console.log("Data from server : ", response)
             const data = response.data;
-            console.log("Data from server : ")
+            //console.log("Data from server : ")
             setSuperAgentMax(data);
         },
             (error) => {

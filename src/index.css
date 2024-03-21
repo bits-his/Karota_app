@@ -1,5 +1,4 @@
 
-
 * {
   padding: 0;
   margin: 0;
@@ -387,14 +386,22 @@ td, th{
   text-align: left;
   padding: 8px;
 }
-/* .login{
- position: relative;
-   top: '80rem'; 
-  left: 20px;
-   height: '10px';
-  background:  url('./assets/keke_napep.png') no-repeat; 
-  
-} */
+.login{
+  padding-top: '80rem';
+  width: 100%;
+  align-items: center;
+  margin: auto;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(
+      rgba(225,225,225,0.7),
+      rgba(225,225,225, 0.3)
+  ),
+  url('Images/road.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
 @media only screen and (max-width: 768px) {
   .customer-page {
     display: none;

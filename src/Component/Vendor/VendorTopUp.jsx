@@ -51,7 +51,7 @@ function VendorTopUp({selectedVendorValue, selectedAgent, handleSelectSuperAgent
   return (
     <>
       <div className="app_card dashboard_card m-0 p-0 md:h-[90vh]">
-        <div className='middle-card-topup' style={{margin: "auto"}}>
+        <div className='middle-card-topup top-10' style={{margin: "auto"}}>
           <h3
             style={{
               display: 'flex',
@@ -63,11 +63,12 @@ function VendorTopUp({selectedVendorValue, selectedAgent, handleSelectSuperAgent
           >Vendor Top-Up</h3>
           
           <div 
-          className='md:h-[35vh] h-[50vh]'
+          className='md:h-[35vh] h-[50vh] relative top-5'
           style={{
             margin: "0 auto",
             maxWidth: "100%",
             // height: "35vh",
+            // marginRight: '20px',
             borderRadius: "5px",
             border: "1px solid #f5c005",
             padding: "20px",
@@ -77,8 +78,8 @@ function VendorTopUp({selectedVendorValue, selectedAgent, handleSelectSuperAgent
             {/* {JSON.stringify(form)} */}
             <div className="md:w-[50%] md:m-0">
               <div 
-              className=''
-              style={{display: "flex", marginTop: "15px", alignItems: "center", marginBottom: '20px'}}>
+              className='md:flex block'
+              style={{marginTop: "15px", alignItems: "center", marginBottom: '20px'}}>
                 <h4
                 className=''
                 style={{
@@ -106,7 +107,7 @@ function VendorTopUp({selectedVendorValue, selectedAgent, handleSelectSuperAgent
 
             
           <div
-          className='md:left-[61rem] md:top-[8.6rem] md:h-[16rem] md:w-[1px]'
+              className='md:left-[34rem] md:top-[1.4rem] md:h-[16rem] md:w-[1px]'
               style={{
                 position: 'absolute',
                 opacity: '0.3',
@@ -115,7 +116,7 @@ function VendorTopUp({selectedVendorValue, selectedAgent, handleSelectSuperAgent
               ></div>
 
             <div 
-            className='relative md:top-[-85px] md:left-[37rem] top-[80px] left-[0rem]'
+            className='relative md:top-[-85px] md:left-[35rem] top-[80px] left-[0rem]'
             style={{
               // position: 'relative',
               // top: '-85px',

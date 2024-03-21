@@ -9,6 +9,8 @@ import {
   Row,
   Spinner,
 } from "reactstrap";
+// import {keke} from '../../../assets/keke_napep.png'
+import { motion } from "framer-motion"
 import keke from "../../../assets/keke_napep.png";
 import { useDispatch } from "react-redux";
 import { login } from "../../../redux/actions/auth";
@@ -51,36 +53,35 @@ export default function Login() {
     <div
       className="login"
       style={{
-        marginTop: 130,
-        // backgroundColor: "#f5c005",
+        height: '100vh'
       }}
     >
       <Row>
         <div
           style={{
-            position: "absolute",
-            left: "63.4rem",
+            display: 'flex',
+            justifyContent: 'center',
             borderRadius: "50%",
-            top: "1px",
-            height: "10rem",
-            width: "10rem",
-            background: "#fff",
+            height: "10.5rem",
+            width: '100%',
           }}
         >
           <img
             src={keke}
             alt="kek Image"
-            style={{ position: "absolute", left: "6px", width: "15rem" }}
           />
         </div>
         <Col md={4}></Col>
         <Col md={4}>
           <CardBody
             style={{
-              border: "1px solid black",
+              // border: "1px solid black",
+              boxShadow: '1px 2px grey',
               borderRadius: "15px",
               padding: "90px",
-              background: "#f5c005",
+              maxWidth: '90%',
+              margin: 'auto',
+              background: 'rgba(245, 192, 5, 0.4)',
             }}
           >
             <Card>
@@ -118,7 +119,7 @@ export default function Login() {
                   </p>
                   <Col mt={12} className=" mt-3 text-center" mb={1}>
                     <Button
-                      // style={{ position: 'relative', marginTop: 15, background: '#fff', color: '#000', fontWeight: '700', left: '100px', border: '1px solid black' }}
+                      style={{ position: 'relative', marginTop: 15, background: '#fff', color: '#000', fontWeight: '700', boxShadow: '1px 2px grey' }}
                       variant="gradient"
                       color="light"
                       fullWidth

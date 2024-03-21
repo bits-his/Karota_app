@@ -160,7 +160,7 @@ export default function Navbar() {
                 }`}
             >
               <FaMagento className="icon shadow" />
-              Vehicles owners
+              Vehicle owners
             </div>
           ) : (
             ""

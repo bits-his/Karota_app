@@ -22,33 +22,30 @@ function SuperAgentTopUp() {
   return (
     <>
       <div className="app_card dashboard_card m-0 p-0">
-        <h3 className="text-center font-bold text-3xl">Super Agent Top-Up</h3>
-        <div className="account-info row"
-        >
+        <h3 className="text-center fw-bold">Super Agent Top-Up</h3>
+
+
+      <div className="account-info row"
+      >
           {/* {JSON.stringify(form)} */}
-          <div className="md:mt-[30px] md:space-y-[20px]">
-            <div
-              style={{
-                display: "flex",
-                marginTop: "15px",
-              }}
-            >
-              <h4 style={{ position: 'relative', left: '-30px', fontSize: '15px', fontWeight: '600', marginRight: '5px' }}> Select Vendor:</h4>
+  
+            <div className="info-input col-md-6" >
+              <h4 > Select Vendor:</h4>
               <VendorTopUpDropDown
                 handleChange={handleChange}
                 selectedVendorValue={form.vendor_id}
               />
             </div>
-            <div
-              className="info-input col-md-6"
+           <div
+            className="info-input col-md-6"
             >
-
+              
               <h4> SuperAgent :</h4>
               <SuperDropdown
                 handleChange={handleChange}
                 selectedSuperValue={form.superagent_id}
               />
-            </div>
+          </div>
             <div className="info-input col-md-6" >
               <h4>Amount :</h4>
               <input
@@ -60,26 +57,28 @@ function SuperAgentTopUp() {
                 type="number"
               />
             </div>
+            
+        
+      </div>
+
+      <div className="transaction-details">
+              <h3>Transaction Details</h3>
+              <div className='details'>
+                <p >FROM : <span >{form.vendor_name}</span></p>
+                <p >TO : <span  >{form.superagent_name}</span></p>
+               <p >ID : <span >{form.vendor_id}</span></p>
+          
+               <p >ID :  <span  >{form.superagent_id}</span></p>
+               <p >Amount:  <span  >{form.amount ? form.amount : 0}</span></p>
+              </div>
+               
+            
           </div>
-
-          <div className="transaction-details">
-            <h3>Transaction Details</h3>
-            <div className='details'>
-              <p >FROM : <span >{form.vendor_name}</span></p>
-              <p >TO : <span  >{form.superagent_name}</span></p>
-              <p >ID : <span >{form.vendor_id}</span></p>
-
-              <p >ID :  <span  >{form.superagent_id}</span></p>
-              <p >Amount:  <span  >{form.amount ? form.amount : 0}</span></p>
-            </div>
-
-
-          </div>
-          <div className="top-up-submit" >
+        <div className="top-up-submit" >
             <Button onClick={submitTopUp} >Submit</Button>
           </div>
-        </div>
       </div>
+
     </>
   );
 }

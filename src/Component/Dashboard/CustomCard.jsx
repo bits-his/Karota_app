@@ -11,7 +11,6 @@ import { FaMagento, FaUser } from 'react-icons/fa';
 import { FaTruckFast } from "react-icons/fa6";
 
 const QuickActivityWrap = () => {
-    const [data, useData] = useState([])
     const columnMarginBottom = {
         marginBottom: "2rem",
     };
@@ -64,9 +63,10 @@ const QuickActivityWrap = () => {
 
     const [superAgentMax, setSuperAgentMax] = useState([]);
 
+
     useEffect(() => {
         _get('fetchallcards', (response) => {
-            // console.log("Data from server : ", response)
+           // console.log("Data from server : ", response)
             const data = response.data;
             //console.log("Data from server : ")
             setSuperAgentMax(data);
@@ -75,9 +75,11 @@ const QuickActivityWrap = () => {
                 console.error('Error fetching cards counts:', error);
             })
 
-    }, []);
+    });
 
-    // const data = superAgentMax.length ? superAgentMax[0] : {}
+
+
+    const data = superAgentMax.length ? superAgentMax[0] : {}
     return (
         <div className="quick_activity_wrap">
             {/* {JSON.stringify(data)} */}
@@ -127,8 +129,8 @@ const QuickActivityWrap = () => {
                         </Card>
                     </Link>
                 </Col>
-            </Row >
-        </div >
+            </Row>
+        </div>
     );
 };
 

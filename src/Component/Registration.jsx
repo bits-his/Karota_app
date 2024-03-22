@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Card, Col, Row } from "reactstrap";
 import InputForm from "./Component/InputForm";
 import { _post } from "../Utils/Helper";
-import QRCode from "qrcode.react";
+// import QRCode from "qrcode.react";
 import { useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
 
@@ -433,7 +433,7 @@ export default function Registration() {
               />
             </Col>
             <Col md={4} style={{ display: "none" }}>
-              <QRCode value={qrCodeGenerator} renderAs="canvas" />
+              {/* <QRCode value={qrCodeGenerator} renderAs="canvas" /> */}
             </Col>
           </Col>
         </Row>

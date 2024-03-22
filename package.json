@@ -23,8 +23,12 @@
     "esbuild": "^0.20.2",
     "framer-motion": "^11.0.17",
     "moment": "^2.30.1",
+<<<<<<< HEAD
     "postcss-nested": "^6.0.1",
     "qrcode.react": "^3.1.0",
+=======
+    "qrcode": "^1.5.3",
+>>>>>>> 1a54274c77c0fd7766bd4bfd8908f7f7d981ec24
     "react": "^18.2.0",
     "react-bootstrap": "^1.6.8",
     "react-chartist": "^0.14.4",

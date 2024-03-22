@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, CardBody, CardTitle, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
-=======
-import React, { useState, useEffect } from 'react';
-import { Card, CardBody, CardTitle, Row, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
->>>>>>> cda349330bfabeb8e4ea31789e8688e11168395d
 import { SiAnalogue } from "react-icons/si";
 import { _get } from "../../Utils/Helper";
 import { SiApachekafka } from "react-icons/si";
@@ -17,16 +11,10 @@ import { FaMagento, FaUser } from "react-icons/fa";
 import { FaTruckFast } from "react-icons/fa6";
 
 const QuickActivityWrap = () => {
-<<<<<<< HEAD
+  const [data, setData] = useState([]);
   const columnMarginBottom = {
     marginBottom: "2rem",
   };
-=======
-    const [data, setData] = useState([])
-    const columnMarginBottom = {
-        marginBottom: "2rem",
-    };
->>>>>>> cda349330bfabeb8e4ea31789e8688e11168395d
 
   const totalIncomeStyle = {
     backgroundColor: "#f5c005 ",
@@ -58,7 +46,6 @@ const QuickActivityWrap = () => {
     cusor: "pointer",
   };
 
-<<<<<<< HEAD
   const netProfitMarginStyle = {
     backgroundColor: "#f5c005 ",
     borderRadius: "15px",
@@ -81,116 +68,26 @@ const QuickActivityWrap = () => {
     _get(
       "fetchallcards",
       (response) => {
-        console.log("Data from server : ", response);
-        const data = response.data;
-        console.log("Data from server : ");
-        setSuperAgentMax(data);
+        if (response.success) setData(response.data[0]);
       },
       (error) => {
         console.error("Error fetching cards counts:", error);
       }
-=======
-    const netProfitMarginStyle = {
-        backgroundColor: "#f5c005 ",
-        borderRadius: "15px",
-        padding: "20px",
-        height: "100%",
-        color: "#fff",
-        transition: "background-color 0.3s ease !important",
-        cusor: "pointer",
-    };
-    const iconStyle = {
-        fontSize: "50px",
-        display: "flex",
-        justifyContent: "end",
-        alignItems: "start",
-    };
-
-  const [superAgentMax, setSuperAgentMax] = useState([]);
-
-
-    useEffect(() => {
-        _get('fetchallcards', (response) => {
-            if (response.success)
-                setData(response.data[0]);
-        },
-            (error) => {
-                console.error('Error fetching cards counts:', error);
-            })
-
-    }, []);
-
-    // const data = data.length ? data[0] : {}
-    return (
-        <div className="quick_activity_wrap">
-            {/* {JSON.stringify(data)} */}
-            <Row>
-                <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
-                    <Link to="/superagenttable" style={{ textDecoration: 'none' }}>
-                        <Card className="single_quick_activity " style={totalIncomeStyle} >
-                            <CardBody>
-                                <CardTitle>Total No. of super agent</CardTitle>
-                                <h3><span>{data?.super_agents_count}</span></h3>
-                                <div style={iconStyle}><FaUser /></div>
-                            </CardBody>
-                        </Card>
-                    </Link>
-                </Col>
-                <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
-                    <Link to="/vendorReg" style={{ textDecoration: 'none' }}>
-                        <Card className="single_quick_activity " style={totalExpensesStyle}>
-                            <CardBody>
-                                <CardTitle>Total No. of vendors</CardTitle>
-                                <h3><span>{data?.vendors_count}</span></h3>
-                                <div style={iconStyle}><LiaLayerGroupSolid /></div>
-                            </CardBody>
-
-                        </Card>
-                    </Link>
-                </Col>
-                <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
-                    <Link to="/Vehicleownertable" style={{ textDecoration: 'none' }}>
-                        <Card className="single_quick_activity " style={cashOnHandStyle}>
-                            <CardBody>
-                                <CardTitle>Total No. of vehicles</CardTitle>
-                                <h3><span>{data?.vehicles_count}</span></h3>
-                                <div style={iconStyle}><FaTruckFast /></div>
-                            </CardBody>
-                        </Card>
-                    </Link>
-                </Col>
-                <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
-                    <Link to="/agenttable" style={{ textDecoration: 'none' }}>
-                        <Card className="single_quick_activity " style={netProfitMarginStyle}>
-                            <CardBody>
-                                <CardTitle>Total No. of Agents</CardTitle>
-                                <h3><span>{data?.agents_count}</span></h3>
-                                <div style={iconStyle}><MdOutlineSupportAgent /></div>
-                            </CardBody>
-                        </Card>
-                    </Link>
-                </Col>
-            </Row >
-        </div >
->>>>>>> cda349330bfabeb8e4ea31789e8688e11168395d
     );
-  });
+  }, []);
 
-  //   return () => clearInterval(interval);
-  // }, [superAgentMax, vendorMax, vehicleMax, agentMax]);
-
-//   const data = superAgentMax.length? superAgentMax[0] : {}
+  // const data = data.length ? data[0] : {}
   return (
     <div className="quick_activity_wrap">
-      {/* {JSON.stringify(superAgentMax)} ddd */}
+      {/* {JSON.stringify(data)} */}
       <Row>
         <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
-          <Link to="/superagentable" style={{ textDecoration: "none" }}>
+          <Link to="/superagenttable" style={{ textDecoration: "none" }}>
             <Card className="single_quick_activity " style={totalIncomeStyle}>
               <CardBody>
                 <CardTitle>Total No. of super agent</CardTitle>
                 <h3>
-                  <span>{superAgentMax?.super_agents_count}</span>
+                  <span>{data?.super_agents_count}</span>
                 </h3>
                 <div style={iconStyle}>
                   <FaUser />
@@ -205,7 +102,7 @@ const QuickActivityWrap = () => {
               <CardBody>
                 <CardTitle>Total No. of vendors</CardTitle>
                 <h3>
-                  <span>{superAgentMax?.vendors_count}</span>
+                  <span>{data?.vendors_count}</span>
                 </h3>
                 <div style={iconStyle}>
                   <LiaLayerGroupSolid />
@@ -220,7 +117,7 @@ const QuickActivityWrap = () => {
               <CardBody>
                 <CardTitle>Total No. of vehicles</CardTitle>
                 <h3>
-                  <span>{superAgentMax?.vehicles_count}</span>
+                  <span>{data?.vehicles_count}</span>
                 </h3>
                 <div style={iconStyle}>
                   <FaTruckFast />
@@ -230,7 +127,7 @@ const QuickActivityWrap = () => {
           </Link>
         </Col>
         <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
-          <Link to="/agentable" style={{ textDecoration: "none" }}>
+          <Link to="/agenttable" style={{ textDecoration: "none" }}>
             <Card
               className="single_quick_activity "
               style={netProfitMarginStyle}
@@ -238,7 +135,7 @@ const QuickActivityWrap = () => {
               <CardBody>
                 <CardTitle>Total No. of Agents</CardTitle>
                 <h3>
-                  <span>{superAgentMax?.agents_count}</span>
+                  <span>{data?.agents_count}</span>
                 </h3>
                 <div style={iconStyle}>
                   <MdOutlineSupportAgent />

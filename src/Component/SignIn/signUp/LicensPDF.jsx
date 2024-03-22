@@ -43,15 +43,15 @@ const styles = StyleSheet.create({
     border: 3,
     borderRadius: 10,
   },
+  qrCodeContainer:{
+    height:100,
+    width:100
+  },
   image1: {
     width: 70,
     height: 50,
   },
-  image2: {
-    width: 200,
-    height: 100,
-    marginBottom: 10,
-  },
+
   header: {
     fontFamily: "DM_SANS",
     fontStyle: "bold",
@@ -237,7 +237,9 @@ export const LicensPDF = ({ data = {} }) => {
                   alignItems: "center",
                 }}
               >
-                <Image source={qr} style={styles.image2} />
+                <View style={styles.qrCodeContainer}>
+                  <Image source={qr} />
+                </View>
                 <View
                   style={{
                     width: "100%",
@@ -257,7 +259,8 @@ export const LicensPDF = ({ data = {} }) => {
                       width: "100%",
                     }}
                   >
-                      https://kekeapp.netlify.app/view-info?plate_no={data?.plate_no}
+                    https://kekeapp.netlify.app/view-info?plate_no=
+                    {data?.plate_no}
                   </Text>
                 </View>
               </View>

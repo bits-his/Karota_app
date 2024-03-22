@@ -21,12 +21,9 @@ import {
   NavLink,
 } from "reactstrap";
 import { _get } from "../../../Utils/Helper";
-<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-=======
-import { useNavigate, useSearchParams } from "react-router-dom";
->>>>>>> cda349330bfabeb8e4ea31789e8688e11168395d
+import {  useSearchParams } from "react-router-dom";
 
 export default function TopUp() {
   // const navigate = useNavigate()
@@ -41,9 +38,7 @@ export default function TopUp() {
   const [data, setData] = useState([]);
  // const [vendorData, setVendorData] = useState([]);
   const [filter, setFilter] = useState("");
-<<<<<<< HEAD
   const navigate = useNavigate();
-=======
   
   const [query, setQuery] = useState('select-all')
  
@@ -55,7 +50,6 @@ export default function TopUp() {
 
 
   const goto = useNavigate();
->>>>>>> cda349330bfabeb8e4ea31789e8688e11168395d
 
   const toggleModal = () => {
     setModal(!modal);
@@ -78,28 +72,6 @@ export default function TopUp() {
   //   id: 123,
   //   bal: 2000,
   // };
-<<<<<<< HEAD
-  const getReg = useCallback(
-    () => {
-      _get(`vehicles?query_type=select-all`, (resp) => {
-        if (resp.success && resp.data) {
-          setData(resp.data);
-          console.log(resp.data);
-        }
-      });
-      // _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
-      //   setLoading(false); // Set loading to false after receiving response
-      //   if (resp.success && resp.results) {
-      //     setVendorData(resp.results);
-      //   }
-      // });
-    },
-    [
-      /*filter*/
-    ]
-  );
-
-=======
   const getReg = useCallback(() => {
     
     _get(`vehicles?query_type=${query}&engine_no=${filter}`, (resp) => {
@@ -120,7 +92,6 @@ export default function TopUp() {
       setQuery('select-all')
     }
   }, [filter])
->>>>>>> cda349330bfabeb8e4ea31789e8688e11168395d
   useEffect(() => {
     getReg();
   }, [getReg]);

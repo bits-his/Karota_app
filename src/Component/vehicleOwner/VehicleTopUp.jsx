@@ -43,6 +43,9 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
        if(res.success){
         toast.success(`Sucessfully added ${form.amount}`)
         navigate('/top-up')
+    }else{
+      setLoading(false)
+      toast.error(`failed to top up vehicle`)
     }
      
       })

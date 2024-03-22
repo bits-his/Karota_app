@@ -57,7 +57,7 @@ function VendorReg() {
       }
 
     });
-  }, [query, filter]);
+  }, [query]);
   useEffect(() => {
     getReg()
   }, [getReg])

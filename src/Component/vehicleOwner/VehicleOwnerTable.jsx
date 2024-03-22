@@ -25,7 +25,7 @@ export default function VehicleOwnerTable() {
           setData(resp.data);
         }
       });
-  }, [query, filter]);
+  }, [query]);
   useEffect(() => {
     if (!filter) {
       setQuery('select-all')

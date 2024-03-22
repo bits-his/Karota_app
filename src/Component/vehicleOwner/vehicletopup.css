@@ -1,4 +1,4 @@
-.btn-table{
+ .btn-table{
     & button{
         margin-left: 2px;
     }
@@ -7,8 +7,11 @@
     margin-top: 55px;
 }
 .account-info{
+    margin-left: -1px;
+    margin-right: -1px;
     width: 100%;
     & .info-input{
+        margin-bottom: 10px;
         & h4{
             font-weight: 600;
             font-size: 16px;
@@ -23,6 +26,8 @@
     }
 }
 .transaction-details{
+    width: 98%;
+    margin-inline: auto;
     & h3{
         text-align: center;
     }
@@ -45,6 +50,17 @@
 }
 .top-up-submit{
     margin-top: 10px;
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+   & button {
+    
+    margin-inline: auto;
+    background-color: #f5c005;
+    width: 28rem;
+    box-shadow: 1px 2px grey;
+    height: 40px;
+   }
 } 
 
 @media (width < 768px){
@@ -56,6 +72,11 @@
     }
     .ve-t-u{
         margin-top: 20px;
+    }
+    .account-info{
+        & .col-md-6{
+            padding: 0;
+        }
     }
     }
         

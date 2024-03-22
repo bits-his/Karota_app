@@ -4,18 +4,20 @@ import {
   Card,
   CardBody,
   Col,
+  Form,
   Input,
   Label,
   Row,
   Spinner,
 } from "reactstrap";
 // import {keke} from '../../../assets/keke_napep.png'
-import { motion } from "framer-motion"
+//import { motion } from "framer-motion"
 import keke from "../../../assets/keke_napep.png";
 import { useDispatch } from "react-redux";
 import { login } from "../../../redux/actions/auth";
 import { useNavigate } from "react-router-dom";
 import { toParagraph } from "../../../Utils/Helper";
+import './login.css'
 
 export default function Login() {
   const [form, setForm] = useState({
@@ -56,38 +58,28 @@ export default function Login() {
         height: '100vh'
       }}
     >
-      <Row>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            borderRadius: "50%",
-            height: "10.5rem",
-            width: '100%',
-          }}
-        >
-          <img
-            src={keke}
-            alt="kek Image"
-          />
-        </div>
-        <Col md={4}></Col>
-        <Col md={4}>
+      <div
+       className="idc"
+      >
+
           <CardBody
+          className="login-form"
             style={{
               // border: "1px solid black",
               boxShadow: '1px 2px grey',
               borderRadius: "15px",
-              // padding: "90px",
-              // maxWidth: '90%',
-              margin: 'auto',
-              background: 'rgba(245, 192, 5, 0.4)',
+              
             }}
-          >
+              <div className="logo">
+              <img
+                src={keke}
+                alt="kek Image"
+              />
+            </div>
             <Card>
-              <Col>
+          
                 <Col component="form" role="form">
-                  <Col mb={12} className="mt-4">
+                  <Col mb={12} className="mar-b">
                     <Label>Email</Label>
                     <Input
                       type="email"
@@ -99,12 +91,12 @@ export default function Login() {
                       onChange={handleChange}
                     />
                   </Col>
-                  <Col mb={12} className="mt-4">
+                  <Col mb={12} className="mar-b">
                     <Label style={{}}>Password</Label>
                     <Input
                       type="password"
                       label="Password"
-                      variant="standard"
+                      //Variant="standard"
                       fullWidth
                       name="password"
                       value={form.password}
@@ -117,24 +109,25 @@ export default function Login() {
                     <b>{toParagraph(Object.keys(error)[0])}</b>{" "}
                     <i>{Object.values(error)[0]}</i>
                   </p>
-                  <Col mt={12} className=" mt-3 text-center" mb={1}>
+                  <Col mt={12} className="top-up-submit" mb={1}>
                     <Button
-                      style={{ position: 'relative', marginTop: 15, background: '#fff', color: '#000', fontWeight: '700', boxShadow: '1px 2px grey' }}
+                      style={{ outline:'none',width:'150px', backgroundColor: 'white',borderRadius:'20px', color: '#000', fontWeight: '700', boxShadow: '1px 2px grey' }}
                       variant="gradient"
                       color="light"
                       fullWidth
                       onClick={handleSubmit}
                     >
-                      {loading && <Spinner size={10} />} sign In
+                      {loading ? <Spinner size={10} /> : 'sign In'} 
                     </Button>
+                 
                   </Col>
                 </Col>
-              </Col>
+  
             </Card>
           </CardBody>
-        </Col>
-        <Col md={4}></Col>
-      </Row>
+
+       
+      </div>
     </div>
   );
 }

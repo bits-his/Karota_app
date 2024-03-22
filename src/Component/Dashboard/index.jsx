@@ -6,6 +6,7 @@ import CustomDateRange from '../UI/CustomDateRange';
 import moment from 'moment'
 import { toParagraph } from '../../Utils/Helper';
 import DashboardCard from "./CustomCard"
+import Navlogout from '../Navlogout';
 
 const App = () => {
 
@@ -163,7 +164,6 @@ const App = () => {
 
     return (
         <div>
-
             <div className="app_card dashboard_card shadow p-4 m-2 mt-2">
                 <Row className='mx-0 pt-5' style={{ marginBottom: '30px' }}>
                     <Col md={12}>

@@ -22,6 +22,8 @@ import {
 } from "reactstrap";
 import { _get } from "../../../Utils/Helper";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {  useSearchParams } from "react-router-dom";
 
 export default function TopUp() {
   // const navigate = useNavigate()
@@ -32,9 +34,21 @@ export default function TopUp() {
     Reg_no: "",
     Plate_no: "",
   });
+  const dispatch = useDispatch();
   const [data, setData] = useState([]);
-  const [vendorData, setVendorData] = useState([]);
+ // const [vendorData, setVendorData] = useState([]);
   const [filter, setFilter] = useState("");
+  const navigate = useNavigate();
+  
+  const [query, setQuery] = useState('select-all')
+ 
+ const search = () => {
+  setQuery('search')
+
+ }
+
+
+
   const goto = useNavigate();
 
   const toggleModal = () => {
@@ -59,10 +73,11 @@ export default function TopUp() {
   //   bal: 2000,
   // };
   const getReg = useCallback(() => {
-    _get(`vehicles?query_type=select-all`, (resp) => {
+    
+    _get(`vehicles?query_type=${query}&engine_no=${filter}`, (resp) => {
       if (resp.success && resp.data) {
         setData(resp.data);
-        console.log(resp.data);
+        //console.log(resp);
       }
     });
     // _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
@@ -71,14 +86,19 @@ export default function TopUp() {
     //     setVendorData(resp.results);
     //   }
     // });
-  }, [/*filter*/]);
-
+  },[query]);
+  useEffect(() =>{
+    if(!filter){
+      setQuery('select-all')
+    }
+  }, [filter])
   useEffect(() => {
     getReg();
   }, [getReg]);
 
   return (
     <div>
+      {/* {JSON.stringify(data)} */}
       <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
         <Row>
           <Col md={12}>
@@ -135,7 +155,7 @@ export default function TopUp() {
                 </div>
               </Col>
               <Label
-                onClick={getReg}
+                onClick={search}
                 className="label_title1"
                 style={{ color: "#000", cursor: "pointer" }}
               >
@@ -143,7 +163,6 @@ export default function TopUp() {
               </Label>
             </div>
           </Col>
-
           <Card className="mt-5 shadow">
             <div className="table_overflow1">
               {data?.length === 0 ? (
@@ -177,7 +196,7 @@ export default function TopUp() {
                     </tr>
                   </thead>
                   <tbody>
-                    {data.map((vehicle, idx) => (
+                    {data?.map((vehicle, idx) => (
                       <tr key={idx}>
                         <td>{vehicle.vehicle_id}</td>
                         <td>{vehicle.plate_no}</td>
@@ -187,7 +206,7 @@ export default function TopUp() {
                         </td>
                         <td className="text-center p-2">
                           <ButtonGroup>
-                            <Button
+                            {/* <Button
                               onClick={(id) => {
                                 setCurrentItem(vehicle);
                                 handlePay(id);
@@ -195,12 +214,12 @@ export default function TopUp() {
                               color="success"
                             >
                               Pay
-                            </Button>
+                            </Button> */}
                             <Button
                               color="info"
-                              onClick={() =>
-                                goto(`/licens-pdf/${vehicle.plate_no}`)
-                              }
+                              onClick={() => {
+                                navigate(`/licens-pdf/${vehicle.plate_no}`);
+                              }}
                             >
                               View License
                             </Button>
@@ -214,7 +233,7 @@ export default function TopUp() {
             </div>
           </Card>
 
-          <Modal
+          {/* <Modal
             isOpen={modal}
             toggle={toggleModal}
             style={{
@@ -282,8 +301,10 @@ export default function TopUp() {
                 </div>
               </Form>
             </ModalBody>
-          </Modal>
-          {fund ? (
+          </Modal> */}
+
+          
+          {/* {fund ? (
             <div>
               <Form
                 style={{
@@ -445,7 +466,7 @@ export default function TopUp() {
             </div>
           ) : (
             <></>
-          )}
+          )} */}
         </Row>
       </Card>
     </div>

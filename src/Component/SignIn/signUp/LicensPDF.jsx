@@ -14,6 +14,8 @@ import DM_SANS_BOLD from "../../../assets/DM_Sans/DM_Sans/static/DMSans_24pt-Bol
 import DM_SANS_ITALIC from "../../../assets/DM_Sans/DM_Sans/static/DMSans-Italic.ttf";
 import ahmad from "../../../Images/download.png";
 import coat from "../../../Images/th.jpeg";
+import moment from "moment";
+import QRCode from "qrcode";
 
 Font.register({
   family: "DM_SANS",
@@ -32,7 +34,6 @@ Font.register({
 
 const styles = StyleSheet.create({
   body: {
-    fontSize: 10,
     width: "100%",
     pageBreakInside: "avoid",
     padding: 20,
@@ -42,15 +43,15 @@ const styles = StyleSheet.create({
     border: 3,
     borderRadius: 10,
   },
+  qrCodeContainer:{
+    height:100,
+    width:100
+  },
   image1: {
     width: 70,
     height: 50,
   },
-  image2: {
-    width: 130,
-    height: 130,
-    marginBottom: 10,
-  },
+
   header: {
     fontFamily: "DM_SANS",
     fontStyle: "bold",
@@ -59,15 +60,22 @@ const styles = StyleSheet.create({
   },
 });
 
-export const LicensPDF = () => {
+export const LicensPDF = ({ data = {} }) => {
+  let canvas;
+  canvas = document.createElement("canvas");
+  QRCode.toCanvas(
+    canvas,
+    `https://kekeapp.netlify.app/view-info?plate_no=${data?.plate_no}`
+  );
+  const qr = canvas.toDataURL();
   return (
     <Document>
       <Page size="A4" orientation="landscape">
         <View style={{ padding: 120 }}>
           <View style={styles.body}>
             <View style={{ width: "100%", alignItems: "center" }}>
-              <View>{/* <Image src={coat} style={styles.image1} /> */}</View>
-              <Text style={styles.header}>KANO STATE VEHICLE licens </Text>
+              <View></View>
+              <Text style={styles.header}>KANO STATE VEHICLE LICENSE</Text>
             </View>
             <View
               style={{
@@ -91,7 +99,7 @@ export const LicensPDF = () => {
                     letterSpacing: 1,
                   }}
                 >
-                  FEB 2025
+                  {moment(data?.create_at).format("MMMM YYYY")}
                 </Text>
               </View>
               <View
@@ -107,7 +115,7 @@ export const LicensPDF = () => {
                       fontStyle: "bold",
                     }}
                   >
-                    23423423423242342432342
+                    {data?.pin || "N/A"}
                   </Text>
                 </Text>
                 <Text>
@@ -118,7 +126,7 @@ export const LicensPDF = () => {
                       fontStyle: "bold",
                     }}
                   >
-                    AKD34534GA
+                    {data?.lg_reg_no || "N/A"}
                   </Text>
                 </Text>
                 <Text>
@@ -129,7 +137,7 @@ export const LicensPDF = () => {
                       fontStyle: "bold",
                     }}
                   >
-                    2GRD9847389
+                    {data?.engine_no || "N/A"}
                   </Text>
                 </Text>
                 <Text>
@@ -140,7 +148,7 @@ export const LicensPDF = () => {
                       fontStyle: "bold",
                     }}
                   >
-                    5TDDK3DC9BS9872372987H
+                    {data?.chasis_no || "N/A"}
                   </Text>
                 </Text>
                 <Text>
@@ -151,7 +159,7 @@ export const LicensPDF = () => {
                       fontStyle: "bold",
                     }}
                   >
-                    Toyota
+                    {data?.vehicle_make || "N/A"}
                   </Text>
                 </Text>
                 <Text>
@@ -162,7 +170,7 @@ export const LicensPDF = () => {
                       fontStyle: "bold",
                     }}
                   >
-                    Sienna
+                    {data?.vehicle_model || "N/A"}
                   </Text>
                 </Text>
                 <Text>
@@ -173,18 +181,18 @@ export const LicensPDF = () => {
                       fontStyle: "bold",
                     }}
                   >
-                    Black
+                    {data?.color || "N/A"}
                   </Text>
                 </Text>
                 <Text>
-                  Engine Capcity:
+                  Engine Capacity:
                   <Text
                     style={{
                       fontFamily: "DM_SANS",
                       fontStyle: "bold",
                     }}
                   >
-                    3.1 - 12
+                    {data?.engine_capacity || "N/A"}
                   </Text>
                 </Text>
                 <Text>
@@ -195,7 +203,7 @@ export const LicensPDF = () => {
                       fontStyle: "bold",
                     }}
                   >
-                    22/Feb/2024
+                    {moment(data?.create_at).format("D  MMMM, YYYY") || "N/A"}
                   </Text>
                 </Text>
                 <Text>
@@ -206,7 +214,7 @@ export const LicensPDF = () => {
                       fontStyle: "bold",
                     }}
                   >
-                    22/02/2024
+                    {moment().format("YYYY/MM/DD")}
                   </Text>
                 </Text>
                 <Text>
@@ -217,7 +225,7 @@ export const LicensPDF = () => {
                       fontStyle: "bold",
                     }}
                   >
-                    21/02/2025
+                    {moment(data?.expiry_date).format("YYYY/MM/DD")}
                   </Text>
                 </Text>
               </View>
@@ -229,7 +237,9 @@ export const LicensPDF = () => {
                   alignItems: "center",
                 }}
               >
-                <Image src={ahmad} style={styles.image2} />
+                <View style={styles.qrCodeContainer}>
+                  <Image source={qr} />
+                </View>
                 <View
                   style={{
                     width: "100%",
@@ -249,7 +259,8 @@ export const LicensPDF = () => {
                       width: "100%",
                     }}
                   >
-                    https://developer.android.com
+                    https://kekeapp.netlify.app/view-info?plate_no=
+                    {data?.plate_no}
                   </Text>
                 </View>
               </View>

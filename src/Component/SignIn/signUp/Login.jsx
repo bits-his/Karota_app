@@ -78,8 +78,8 @@ export default function Login() {
               // border: "1px solid black",
               boxShadow: '1px 2px grey',
               borderRadius: "15px",
-              padding: "90px",
-              maxWidth: '90%',
+              // padding: "90px",
+              // maxWidth: '90%',
               margin: 'auto',
               background: 'rgba(245, 192, 5, 0.4)',
             }}

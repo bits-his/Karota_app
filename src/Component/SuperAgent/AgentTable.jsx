@@ -1,8 +1,7 @@
-
 import React, { useCallback, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import { Button, Card, Col, Row, Table,Spinner } from "reactstrap";
+import { Button, Card, Col, Row, Table, Spinner } from "reactstrap";
 import { _get } from "../../Utils/Helper";
 
 export default function AgentTable() {
@@ -10,15 +9,26 @@ export default function AgentTable() {
 
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState('');
+  
+  const [query, setQuery] = useState('select-all')
+ 
+ const search = () => {
+  setQuery('search')
+
+ }
   const getReg = useCallback(() => {
-    _get(`agents?query_type=select-all`,
+    _get(`agents?query_type=${query}&name=${filter}`,
       (resp) => {
         if (resp.success && resp.results) {
           setData(resp.results);
         }
       });
-  }, []);
-
+  }, [query, filter]);
+  useEffect(() =>{
+    if(!filter){
+      setQuery('select-all')
+    }
+  })
   useEffect(() => {
     getReg();
   }, [getReg]);
@@ -48,7 +58,6 @@ export default function AgentTable() {
 
         <Col md={12}>
           <div style={{ display: "flex", flexDirection: "row", marginTop: 30 }}>
-
             <Col md={12}>
               <div className="search">
                 <CiSearch
@@ -60,16 +69,19 @@ export default function AgentTable() {
                   }}
                 />
                 <input
-                  style={{
-                    width: "100%",
-                    fontSize: 20,
-                  }}
+                  name="filter"
+                  value={filter}
+                  type="text"
                   className="app_input2"
+                  onChange={({ target: { value } }) => setFilter(value)}
                   placeholder="Search Individual"
                 />
               </div>
             </Col>
-            <label className="label_title" style={{ color: "#000" }}>
+            <label 
+            onClick={search}
+
+            className="label_title" style={{ color: "#000" }}>
               Search
             </label>
           </div>
@@ -77,7 +89,7 @@ export default function AgentTable() {
 
         <Row>
           <div className="table_overflow">
-          {data.length === 0 ? ( 
+          {data?.length === 0 ? ( 
         <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
        ""
       </Spinner>
@@ -111,7 +123,7 @@ export default function AgentTable() {
                 </tr>
               </thead>
               <tbody>
-                {data.map((agent, idx) => <tr key={idx}>
+                {data?.map((agent, idx) => <tr key={idx}>
                   <th>
                     {idx + 1}
                   </th>
@@ -140,4 +152,3 @@ export default function AgentTable() {
     </Card>
   );
 }
-

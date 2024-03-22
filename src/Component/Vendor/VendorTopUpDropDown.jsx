@@ -52,7 +52,8 @@ function VendorTopUpDropDown({ handleChange, selectedVendorValue }) {
           borderRadius: "none !important",
           border: "1px solid #f5c005 !important",
           marginBottom: "15px",
-          width: "100%",
+          maxWidth: "100%",
+          height: "30px",
           padding: "8px",
         }}
         isLoading={loading}

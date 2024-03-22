@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 * {
   padding: 0;
   margin: 0;
@@ -265,7 +270,7 @@ label {
 
 
 
-.user_image {
+/* .user_image {
   width: 120px;
   height: 120px;
   border-radius: 100%;
@@ -281,12 +286,12 @@ label {
 .keke-logo {
   position: absolute;
   width: 100%;
-}
+} */
 
 .dashboard_card {
   margin-top: 20px;
   padding: 30px;
-  min-height: 90vh !important;
+  /* min-height: 90vh !important; */
 }
 .card_div {
   border: 1px solid #f5c005;
@@ -690,7 +695,7 @@ Input.form-control {
   margin-top: 2px;
   width: 100%;
   height: 40px;
-  border: 1px solid #f5c005;
+  /* border: 1px solid #f5c005; */
   border-radius: 7px;
 }
 select.form-select {

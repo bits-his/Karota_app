@@ -23,26 +23,6 @@ export default function Agent() {
   // console.log(form)
   const navigate = useNavigate();
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   setLoading(true);
-  //   _post(
-  //     "agents/create",
-  //     form,
-  //     (res) => {
-  //       if (res.success) {
-  //         setLoading(true);
-  //         toast.success("Agent created successfully");
-  //         navigate("/agenttable");
-  //       }
-  //     },
-  //     () => {
-  //       setLoading(false);
-  //       toast.error("An error occurred while creating Agent");
-  //     }
-  //   );
-  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();

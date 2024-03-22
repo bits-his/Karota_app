@@ -58,13 +58,12 @@ export default function CustomDateRange({
                                         <Input
                                             type="select"
                                             name="month"
-                                            value={month}
+                                            value={parseInt(month)}
                                             onChange={handleChangeDate}
                                         >
-                                            <option value="">Select Month</option>
-                                            {moment.months().map((month, index) => (
-                                                <option key={index} value={index + 1}>
-                                                    {month}
+                                            {moment.months().map((mon, index) => (
+                                                <option selected={month === index + 1} key={index} value={index + 1}>
+                                                    {mon}
                                                 </option>
                                             ))}
                                         </Input>

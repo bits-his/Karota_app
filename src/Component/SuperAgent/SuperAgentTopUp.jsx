@@ -64,7 +64,7 @@ function SuperAgentTopUp() {
               <h4> SuperAgent :</h4>
               <SuperDropdown
                 handleChange={handleChange}
-                selectedSuperValue={form.superagent_id}
+                selectedSuperValue={form.super_agent_id}
               />
           </div>
             <div className="info-input col-md-6" >
@@ -86,10 +86,10 @@ function SuperAgentTopUp() {
               <h3>Transaction Details</h3>
               <div className='details'>
                 <p >FROM : <span >{form.vendor_name}</span></p>
-                <p >TO : <span  >{form.superagent_name}</span></p>
+                <p >TO : <span  >{form.super_agent_name}</span></p>
                <p >ID : <span >{form.vendor_id}</span></p>
           
-               <p >ID :  <span  >{form.superagent_id}</span></p>
+               <p >ID :  <span  >{form.super_agent_id}</span></p>
                <p >Amount:  <span  >{form.amount ? form.amount : 0}</span></p>
               </div>
                

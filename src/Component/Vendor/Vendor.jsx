@@ -51,21 +51,20 @@ export default function RegistrationTable() {
   const validate = (e) => {
     e.preventDefault();
 
-    if (!form.vendor_name || !form.vendor_ofiice_address || !form.vendor_state || !form.vendor_lga || !form.vendor_phone || !form.vendor_email) 
-    { toast.error("Please fill in all required fields.") }
+    if (!form.vendor_name || !form.vendor_ofiice_address || !form.vendor_state || !form.vendor_lga || !form.vendor_phone || !form.vendor_email) { toast.error("Please fill in all required fields.") }
     else {
       toast.success("Good.")
-     setForm((p) => ({ ...p, step: 1 }))
+      setForm((p) => ({ ...p, step: 1 }))
     }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-      if (!form.contact_name || !form.contact_address || !form.contact_state || !form.contact_lga || !form.contact_phone || !form.contact_email || !form.contact_password) {
-        toast.error("Please fill in all required fields.");
-        return;
-      }
+
+    if (!form.contact_name || !form.contact_address || !form.contact_state || !form.contact_lga || !form.contact_phone || !form.contact_email || !form.contact_password) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
 
 
     setLoading(true);
@@ -77,7 +76,7 @@ export default function RegistrationTable() {
           setLoading(true);
           toast.success("Vendor created successfully");
           setSubmittedData([...submittedData, res]);
-          navigate("/vendorReg/");
+          navigate("/vendorReg");
         }
       },
       () => {
@@ -136,7 +135,7 @@ export default function RegistrationTable() {
                 <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
-                      <Label for="contact_name">Contact Name <span style={{color: "red"}}>*</span></Label>
+                      <Label for="contact_name">Contact Name <span style={{ color: "red" }}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="contact_name"
@@ -151,7 +150,7 @@ export default function RegistrationTable() {
                   </Col>
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="contact_phone">Contact Phone <span style={{color: "red"}}>*</span></Label>
+                      <Label for="contact_phone">Contact Phone <span style={{ color: "red" }}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="contact_phone"
@@ -168,7 +167,7 @@ export default function RegistrationTable() {
                 <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
-                      <Label for="contact_address">Contact Address <span style={{color: "red"}}>*</span></Label>
+                      <Label for="contact_address">Contact Address <span style={{ color: "red" }}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="contact_address"
@@ -182,7 +181,7 @@ export default function RegistrationTable() {
                   </Col>
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="contact_email">Contact E-mail <span style={{color: "red"}}>*</span></Label>
+                      <Label for="contact_email">Contact E-mail <span style={{ color: "red" }}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="contact_emailexample"
@@ -199,7 +198,7 @@ export default function RegistrationTable() {
                 <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
-                      <Label for="contact_state">State of Residence <span style={{color: "red"}}>*</span></Label>
+                      <Label for="contact_state">State of Residence <span style={{ color: "red" }}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="contact_state"
@@ -218,7 +217,7 @@ export default function RegistrationTable() {
                   </Col>
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="contact_lga">L.G.A. of Residence <span style={{color: "red"}}>*</span></Label>
+                      <Label for="contact_lga">L.G.A. of Residence <span style={{ color: "red" }}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="contact_lga"
@@ -244,7 +243,7 @@ export default function RegistrationTable() {
                 <Row>
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="exampleDOB">Password <span style={{color: "red"}}>*</span></Label>
+                      <Label for="exampleDOB">Password <span style={{ color: "red" }}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="examplePassword"
@@ -264,7 +263,7 @@ export default function RegistrationTable() {
                 <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
-                      <Label for="vendor_name">Vendor's name <span style={{color: "red"}}>*</span></Label>
+                      <Label for="vendor_name">Vendor's name <span style={{ color: "red" }}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="vendor_name"
@@ -278,7 +277,7 @@ export default function RegistrationTable() {
                   </Col>
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="vendor_phone">Organization's phone <span style={{color: "red"}}>*</span></Label>
+                      <Label for="vendor_phone">Organization's phone <span style={{ color: "red" }}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="vendor_phone"
@@ -295,7 +294,7 @@ export default function RegistrationTable() {
                 <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
-                      <Label for="vendor_ofiice_address">Office Address <span style={{color: "red"}}>*</span></Label>
+                      <Label for="vendor_ofiice_address">Office Address <span style={{ color: "red" }}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="vendor_ofiice_address"
@@ -309,7 +308,7 @@ export default function RegistrationTable() {
                   </Col>
                   <Col md={6}>
                     <FormGroup>
-                      <Label for="vendor_email">Organization's email <span style={{color: "red"}}>*</span></Label>
+                      <Label for="vendor_email">Organization's email <span style={{ color: "red" }}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="vendor_emailexample"
@@ -326,7 +325,7 @@ export default function RegistrationTable() {
                 <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
-                      <Label for="vendor_state">State <span style={{color: "red"}}>*</span></Label>
+                      <Label for="vendor_state">State <span style={{ color: "red" }}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="vendor_state"
@@ -360,7 +359,7 @@ export default function RegistrationTable() {
                 <Row className="margin-bottom-input">
                   <Col md={6} className="first-col">
                     <FormGroup>
-                      <Label for="vendor_lga">LGA <span style={{color: "red"}}>*</span></Label>
+                      <Label for="vendor_lga">LGA <span style={{ color: "red" }}>*</span></Label>
                       <Input
                         onChange={handleChange}
                         id="vendor_lga"

@@ -3,6 +3,7 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import { IoMdArrowDropdown } from "react-icons/io";
 import "./Navlogout.css";
 import { useDispatch, useSelector } from "react-redux";
+import { Logout } from "@mui/icons-material";
 import { logout } from "../redux/actions/auth";
 import { useNavigate } from "react-router-dom";
 import { toParagraph } from "../Utils/Helper";
@@ -12,10 +13,12 @@ const Navlogout = () => {
   const dropdownRef = useRef(null);
   const { user } = useSelector((s) => s.auth);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const logOut = () => {
-    dispatch(logout(navigate));
-  };
+    dispatch(
+      logout(navigate)
+    )
+  }
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -66,8 +69,8 @@ const Navlogout = () => {
                   <a className="dropdown-item" href="#">
                     My {toParagraph(user.role || "User")} Profile
                   </a>
-                  <a className="dropdown-item" href="#" onClick={logOut}>
-                    Log out
+                  <a className="dropdown-item p-2" href="#" onClick={logOut}>
+                    <Logout /> Log out
                   </a>
                 </div>
               )}

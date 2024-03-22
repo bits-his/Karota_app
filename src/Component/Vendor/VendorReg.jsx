@@ -32,13 +32,13 @@ function VendorReg() {
   const [currentVendor, setCurrentVendor] = useState(_form);
   const [loading, setLoading] = useState(false); // Add loading state
   const [modal, setModal] = useState(false);
-  const [query, setQuery] = useState('select-all')
+  const [query, setQuery] = useState("select-all");
   const [vendor, setVendor] = useState({});
   const [form, setForm] = useState({});
-  const [searchData, setSearchData] = useState()
+  const [searchData, setSearchData] = useState();
   const search = () => {
-    setQuery('search')
-  }
+    setQuery("search");
+  };
   const reference_no = moment().format("YYYYMMDDhhmmssSSS");
   const onHandleChange = ({ target: { name, value } }) => {
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -55,17 +55,16 @@ function VendorReg() {
       if (resp.success && resp.results) {
         setData(resp.results);
       }
-
     });
   }, [query]);
   useEffect(() => {
-    getReg()
-  }, [getReg])
+    getReg();
+  }, [getReg]);
 
   useEffect(() => {
     // getReg();
     if (!filter) {
-      setQuery('select-all')
+      setQuery("select-all");
     }
   }, [filter]);
 
@@ -176,8 +175,10 @@ function VendorReg() {
                 <td>{vendor.vendor_org_email}</td>
                 <td>{vendor.vendor_ofiice_address}</td>
                 <td className="text-center">
-                  <Button color="info" className="marginResponsive"
-                    onClick={() => navigate(`/vendorReg/view/${vendor.id}`)}>
+                  <Button
+                    color="info"
+                    onClick={() => navigate(`/vendorReg/view/${vendor.id}`)}
+                  >
                     View
                   </Button>
                   <Button

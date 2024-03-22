@@ -69,9 +69,7 @@ export default function SuperAgent() {
 
   const validateForm = (formData) => {
     let newErrors = {};
-    if (!formData.vendor.trim()) {
-      newErrors.vendor = "Vendor must be filled";
-    }
+    
     if (!formData.name.trim()) {
       newErrors.name = "Name must be filled";
     }

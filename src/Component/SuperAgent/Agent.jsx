@@ -74,15 +74,12 @@ export default function Agent() {
 
   const validateForm = (formData) => {
     let newErrors = {};
-    if (!formData.super_agent.trim()) {
-      newErrors.super_agent = "SuperAgent must be filled";
-    }
     if (!formData.name.trim()) {
       newErrors.name = "Name must be filled";
     }
-    if (!formData.phone_no.trim()) {
-      newErrors.phone_no = "Phone Number must be filled";
-    }
+    // if (!formData.phone_no.trim()) {
+    //   newErrors.phone_no = "Phone Number must be filled";
+    // }
     if (!formData.email.trim()) {
       newErrors.email = "Email must be filled";
     }
@@ -286,7 +283,9 @@ export default function Agent() {
                         invalid={!!errors.service_location}
                       />
                       <FormFeedback>
-                        <span style={{ color: "red" }}>{errors.service_location}</span>
+                        <span style={{ color: "red" }}>
+                          {errors.service_location}
+                        </span>
                       </FormFeedback>
                     </FormGroup>
                   </Col>

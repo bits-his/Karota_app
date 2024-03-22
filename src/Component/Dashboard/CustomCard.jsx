@@ -45,23 +45,23 @@ const QuickActivityWrap = () => {
         cusor: "pointer",
     };
 
-    const netProfitMarginStyle = {
-        backgroundColor: "#f5c005 ",
-        borderRadius: "15px",
-        padding: "20px",
-        height: "100%",
-        color: "#fff",
-        transition: "background-color 0.3s ease !important",
-        cusor: "pointer",
-    };
-    const iconStyle = {
-        fontSize: "50px",
-        display: "flex",
-        justifyContent: "end",
-        alignItems: "start",
-    };
+  const netProfitMarginStyle = {
+    backgroundColor: "#f5c005 ",
+    borderRadius: "15px",
+    padding: "20px",
+    height: "100%",
+    color: "#fff",
+    transition: "background-color 0.3s ease !important",
+    cusor: "pointer",
+  };
+  const iconStyle = {
+    fontSize: "50px",
+    display: "flex",
+    justifyContent: "end",
+    alignItems: "start",
+  };
 
-    const [superAgentMax, setSuperAgentMax] = useState([]);
+  const [superAgentMax, setSuperAgentMax] = useState([]);
 
 
     useEffect(() => {
@@ -75,8 +75,8 @@ const QuickActivityWrap = () => {
                 console.error('Error fetching cards counts:', error);
             })
 
-    });
-
+  
+        }, [])
 
 
     const data = superAgentMax.length ? superAgentMax[0] : {}
@@ -96,37 +96,37 @@ const QuickActivityWrap = () => {
                     </Link>
                 </Col>
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
-                    <Link to="/vendorReg" style={{ textDecoration: 'none' }}>
-                        <Card className="single_quick_activity " style={totalExpensesStyle}>
-                            <CardBody>
-                                <CardTitle>Total No. of vendors</CardTitle>
-                                <h3><span>{data?.vendors_count}</span></h3>
-                                <div style={iconStyle}><LiaLayerGroupSolid /></div>
-                            </CardBody>
-
-                        </Card>
+                <Link to="/vendorReg"style={{ textDecoration: 'none' }}>
+                    <Card className="single_quick_activity " style={totalExpensesStyle}>
+                        <CardBody>
+                            <CardTitle>Total No. of vendors</CardTitle>
+                            <h3><span>{data?.vendors_count}</span></h3>
+                            <div style={iconStyle}><LiaLayerGroupSolid /></div>
+                        </CardBody>
+                        
+                    </Card>
                     </Link>
                 </Col>
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
-                    <Link to="/Vehicleownertable" style={{ textDecoration: 'none' }}>
-                        <Card className="single_quick_activity " style={cashOnHandStyle}>
-                            <CardBody>
-                                <CardTitle>Total No. of vehicles</CardTitle>
-                                <h3><span>{data?.vehicles_count}</span></h3>
-                                <div style={iconStyle}><FaTruckFast /></div>
-                            </CardBody>
-                        </Card>
+                <Link to="/Vehicleownertable"style={{ textDecoration: 'none' }}>
+                    <Card className="single_quick_activity " style={cashOnHandStyle}>
+                        <CardBody>
+                            <CardTitle>Total No. of vehicles</CardTitle>
+                            <h3><span>{data?.vehicles_count}</span></h3>
+                            <div style={iconStyle}><FaTruckFast /></div>
+                        </CardBody>
+                    </Card>
                     </Link>
                 </Col>
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
-                    <Link to="/agenttable" style={{ textDecoration: 'none' }}>
-                        <Card className="single_quick_activity " style={netProfitMarginStyle}>
-                            <CardBody>
-                                <CardTitle>Total No. of Agents</CardTitle>
-                                <h3><span>{data?.agents_count}</span></h3>
-                                <div style={iconStyle}><MdOutlineSupportAgent /></div>
-                            </CardBody>
-                        </Card>
+                <Link to="/agenttable"style={{ textDecoration: 'none' }}>
+                    <Card className="single_quick_activity " style={netProfitMarginStyle}>
+                        <CardBody>
+                            <CardTitle>Total No. of Agents</CardTitle>
+                            <h3><span>{data?.agents_count}</span></h3>
+                            <div style={iconStyle}><MdOutlineSupportAgent /></div>
+                        </CardBody>
+                    </Card>
                     </Link>
                 </Col>
             </Row>

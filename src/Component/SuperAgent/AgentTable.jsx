@@ -23,7 +23,7 @@ export default function AgentTable() {
           setData(resp.results);
         }
       });
-  }, [query, filter]);
+  }, [query]);
   useEffect(() =>{
     if(!filter){
       setQuery('select-all')

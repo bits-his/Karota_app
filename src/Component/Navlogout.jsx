@@ -3,11 +3,32 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import { IoMdArrowDropdown } from "react-icons/io";
 import "./Navlogout.css";
 import { NavLink } from "reactstrap";
+<<<<<<< HEAD
+import { useDispatch, useSelector } from "react-redux";
+import { Logout } from "@mui/icons-material";
+import { logout } from "../redux/actions/auth";
+import { useNavigate } from "react-router-dom";
+import { toParagraph } from "../Utils/Helper";
+=======
+import { useDispatch } from "react-redux";
+import { logout } from "../redux/actions/auth";
+import { useNavigate } from "react-router-dom";
 
+>>>>>>> da196e00fbeb5b051a70812dc47e3e6cbac52ec0
 const Navlogout = () => {
   const [openmenu, setOpenmenu] = useState(false);
   const dropdownRef = useRef(null);
+  const { user } = useSelector(s => s.auth)
+  const history = useNavigate()
+  const dispatch = useDispatch()
 
+   const dispatch = useDispatch()
+   const navigate = useNavigate()
+   const logOut = () =>{
+    dispatch(
+      logout(navigate)
+    )
+   }
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -26,7 +47,7 @@ const Navlogout = () => {
     <div className="nav-container" style={{ height: 50, backgroundColor: "#f5c005" }}>
       <div className="nav-content">
         <div className="row-flex">
-          <div></div> 
+          <div></div>
           <div className="row-flex2">
             <div className="dropdown" ref={dropdownRef}>
               <button type="button" className="dropdown-btn" onClick={() => setOpenmenu(!openmenu)}>
@@ -36,7 +57,7 @@ const Navlogout = () => {
                   </div>
                   <div className="ol">
                     <div>
-                      <h4 className="nav-h4">User</h4>
+                      <h4 className="nav-h4">{user.name || 'User'}</h4>
                     </div>
                     <div className="opw">
                       <span><IoMdArrowDropdown /></span>
@@ -47,10 +68,15 @@ const Navlogout = () => {
               {openmenu && (
                 <div className="dropdown-menu">
                   <a className="dropdown-item" href="#">
-                    Profile
+                    My {toParagraph(user.role || 'User')} Profile
                   </a>
-                  <a className="dropdown-item" href="#">
+<<<<<<< HEAD
+                  <a onClick={() => dispatch(logout(history))} className="dropdown-item" href="#">
+                    <p> <Logout />  Log out</p>
+=======
+                  <a className="dropdown-item" href="#" onClick={logOut}>
                     Log out
+>>>>>>> da196e00fbeb5b051a70812dc47e3e6cbac52ec0
                   </a>
                 </div>
               )}

@@ -77,9 +77,9 @@ export default function Agent() {
     if (!formData.name.trim()) {
       newErrors.name = "Name must be filled";
     }
-    if (!formData.phone_no.trim()) {
-      newErrors.phone_no = "Phone Number must be filled";
-    }
+    // if (!formData.phone_no.trim()) {
+    //   newErrors.phone_no = "Phone Number must be filled";
+    // }
     if (!formData.email.trim()) {
       newErrors.email = "Email must be filled";
     }

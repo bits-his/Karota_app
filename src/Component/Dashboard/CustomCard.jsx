@@ -85,7 +85,7 @@ const QuickActivityWrap = () => {
             {/* {JSON.stringify(data)} */}
             <Row>
                 <Col xs={12} sm={6} lg={3} style={columnMarginBottom}>
-                    <Link to="/superagentable" style={{ textDecoration: 'none' }}>
+                    <Link to="/superagenttable" style={{ textDecoration: 'none' }}>
                         <Card className="single_quick_activity " style={totalIncomeStyle} >
                             <CardBody>
                                 <CardTitle>Total No. of super agent</CardTitle>

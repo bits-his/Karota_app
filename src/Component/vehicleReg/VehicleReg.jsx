@@ -41,7 +41,7 @@ export default function RegistrationTable() {
 
   const handleChange = ({ target: { name, value } }) => {
     setForm((p) => ({ ...p, [name]: value }));
-    setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
+      
   };
 
 

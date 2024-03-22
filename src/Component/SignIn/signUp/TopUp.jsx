@@ -21,8 +21,12 @@ import {
   NavLink,
 } from "reactstrap";
 import { _get } from "../../../Utils/Helper";
+<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+=======
+import { useNavigate, useSearchParams } from "react-router-dom";
+>>>>>>> cda349330bfabeb8e4ea31789e8688e11168395d
 
 export default function TopUp() {
   // const navigate = useNavigate()
@@ -35,9 +39,23 @@ export default function TopUp() {
   });
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
-  const [vendorData, setVendorData] = useState([]);
+ // const [vendorData, setVendorData] = useState([]);
   const [filter, setFilter] = useState("");
+<<<<<<< HEAD
   const navigate = useNavigate();
+=======
+  
+  const [query, setQuery] = useState('select-all')
+ 
+ const search = () => {
+  setQuery('search')
+
+ }
+
+
+
+  const goto = useNavigate();
+>>>>>>> cda349330bfabeb8e4ea31789e8688e11168395d
 
   const toggleModal = () => {
     setModal(!modal);
@@ -60,6 +78,7 @@ export default function TopUp() {
   //   id: 123,
   //   bal: 2000,
   // };
+<<<<<<< HEAD
   const getReg = useCallback(
     () => {
       _get(`vehicles?query_type=select-all`, (resp) => {
@@ -80,6 +99,28 @@ export default function TopUp() {
     ]
   );
 
+=======
+  const getReg = useCallback(() => {
+    
+    _get(`vehicles?query_type=${query}&engine_no=${filter}`, (resp) => {
+      if (resp.success && resp.data) {
+        setData(resp.data);
+        //console.log(resp);
+      }
+    });
+    // _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
+    //   setLoading(false); // Set loading to false after receiving response
+    //   if (resp.success && resp.results) {
+    //     setVendorData(resp.results);
+    //   }
+    // });
+  },[query]);
+  useEffect(() =>{
+    if(!filter){
+      setQuery('select-all')
+    }
+  }, [filter])
+>>>>>>> cda349330bfabeb8e4ea31789e8688e11168395d
   useEffect(() => {
     getReg();
   }, [getReg]);
@@ -143,7 +184,7 @@ export default function TopUp() {
                 </div>
               </Col>
               <Label
-                onClick={getReg}
+                onClick={search}
                 className="label_title1"
                 style={{ color: "#000", cursor: "pointer" }}
               >
@@ -194,7 +235,7 @@ export default function TopUp() {
                         </td>
                         <td className="text-center p-2">
                           <ButtonGroup>
-                            <Button
+                            {/* <Button
                               onClick={(id) => {
                                 setCurrentItem(vehicle);
                                 handlePay(id);
@@ -202,7 +243,7 @@ export default function TopUp() {
                               color="success"
                             >
                               Pay
-                            </Button>
+                            </Button> */}
                             <Button
                               color="info"
                               onClick={() => {
@@ -221,7 +262,7 @@ export default function TopUp() {
             </div>
           </Card>
 
-          <Modal
+          {/* <Modal
             isOpen={modal}
             toggle={toggleModal}
             style={{
@@ -289,8 +330,10 @@ export default function TopUp() {
                 </div>
               </Form>
             </ModalBody>
-          </Modal>
-          {fund ? (
+          </Modal> */}
+
+          
+          {/* {fund ? (
             <div>
               <Form
                 style={{
@@ -452,7 +495,7 @@ export default function TopUp() {
             </div>
           ) : (
             <></>
-          )}
+          )} */}
         </Row>
       </Card>
     </div>

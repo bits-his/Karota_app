@@ -8,15 +8,15 @@
   position: sticky;
   top: 0;
 }
-/* .navbar-logo-container {
+ .navbar-logo-container {
   display: flex;
   align-items: center;
-} */
-.navbar-logo-container {
+}
+ .navbar-logo-container {
   width: 140px;
   height: 140px;
   border-radius: 100%;
-  margin-top: 60px;
+  margin-top: 40px;
   background-color: #fff;
   box-shadow: 0 14px 28px rgba(17, 16, 16, 0.25),
     0 10px 10px rgba(49, 48, 48, 0.22);
@@ -26,14 +26,10 @@
   align-items: center;
   margin-inline: auto;
 }
-.navbar-keke-logo {
+ .navbar-keke-logo {
   position: absolute;
-  width: 100%;
+  width: 120px;
 }
-
-/* .navbar-keke-logo {
-  width: 100px; 
-} */
 
 .navbar-app-title {
   color: #020202;
@@ -48,7 +44,7 @@
 }
 
 .navbar-link-container {
-  margin-top: 60px;
+  margin-top: 20px;
   width: 100%;
 }
 
@@ -87,6 +83,9 @@
 
 .navbar-container {
   width: 100%;
+  margin-top: -30px;
+  position: sticky;
+  top: 0;
 }
 
 .navbar-sidebar {

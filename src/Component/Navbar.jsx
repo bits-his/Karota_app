@@ -23,19 +23,19 @@ export default function Navbar() {
   return (
     <div className="navbar-container">
       <div className="navbar-logo-container">
-        <img src={kekeLogo} alt="Keke logo" className="keke-logo" />
+        <img src={kekeLogo} alt="Keke logo" className="navbar-keke-logo" />
+        </div>
         <h4
           className="navbar-app-title"
           style={{
             fontSize: "26px",
+            marginTop: 20,
             textAlign: "center",
             color: "black",
-            marginTop: 200,
           }}
         >
           Keke App
         </h4>
-      </div>
       <div
         className={`navbar-menu-container ${isMobileMenuOpen ? "open" : ""}`}
       >
@@ -57,7 +57,7 @@ export default function Navbar() {
           {true ? (
             <div
               onClick={() => goto("/vendorReg")}
-              className={`navbar-link-item ${location.pathname === "/vendor" && "navbar-active-side-menu"
+              className={`navbar-link-item ${location.pathname === "/vendorReg" && "navbar-active-side-menu"
                 }`}
             >
               <LiaLayerGroupSolid className="icon shadow" />
@@ -159,8 +159,8 @@ export default function Navbar() {
                 "navbar-active-side-menu"
                 }`}
             >
-              <FaTruckFast className="icon shadow" />
-              Vehicles
+              <FaMagento className="icon shadow" />
+              Vehicle owners
             </div>
           ) : (
             ""
@@ -187,8 +187,8 @@ export default function Navbar() {
                 : ""
                 }`}
             >
-              <FaMagento className="icon shadow" />
-              Collection Point
+              <FaTruckFast className="icon shadow" />
+              Vehicles
             </div>
           ) : (
             ""

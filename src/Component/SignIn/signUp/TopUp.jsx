@@ -21,7 +21,9 @@ import {
   NavLink,
 } from "reactstrap";
 import { _get } from "../../../Utils/Helper";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {  useSearchParams } from "react-router-dom";
 
 export default function TopUp() {
   // const navigate = useNavigate()
@@ -32,9 +34,11 @@ export default function TopUp() {
     Reg_no: "",
     Plate_no: "",
   });
+  const dispatch = useDispatch();
   const [data, setData] = useState([]);
  // const [vendorData, setVendorData] = useState([]);
   const [filter, setFilter] = useState("");
+  const navigate = useNavigate();
   
   const [query, setQuery] = useState('select-all')
  
@@ -94,6 +98,7 @@ export default function TopUp() {
 
   return (
     <div>
+      {/* {JSON.stringify(data)} */}
       <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
         <Row>
           <Col md={12}>
@@ -158,7 +163,6 @@ export default function TopUp() {
               </Label>
             </div>
           </Col>
-
           <Card className="mt-5 shadow">
             <div className="table_overflow1">
               {data?.length === 0 ? (
@@ -213,9 +217,9 @@ export default function TopUp() {
                             </Button> */}
                             <Button
                               color="info"
-                              onClick={() =>
-                                goto(`/licens-pdf/${vehicle.plate_no}`)
-                              }
+                              onClick={() => {
+                                navigate(`/licens-pdf/${vehicle.plate_no}`);
+                              }}
                             >
                               View License
                             </Button>

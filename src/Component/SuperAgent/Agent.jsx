@@ -5,13 +5,19 @@ import { stateLga } from "../../assets/state_and_lgas";
 import toast from "react-hot-toast";
 import { _post } from "../../Utils/Helper";
 import { useSelector } from "react-redux";
-import SuperAgentDropdown from "./SuperAgentdropdown";
+import SuperAgentDropdown from "./SuperAgentDropdown";
 
 export default function Agent() {
   const { user } = useSelector((p) => p.auth);
   const _form = {
     query_type: "create",
     // super_agent: user.id,
+    name: "",
+    phone: "",
+    nin: "",
+    state: "",
+    lga: "",
+    address: "",
   };
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState(_form);
@@ -26,6 +32,19 @@ export default function Agent() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (
+      !form.name ||
+      !form.phone ||
+      !form.nin ||
+      !form.state ||
+      !form.lga ||
+      !form.address
+    ) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
+
     setLoading(true);
 
     _post(
@@ -94,7 +113,7 @@ export default function Agent() {
                         onChange={handleChange}
                         id="name"
                         name="name"
-                        // value={tform.name}
+                        value={form.name}
                         placeholder="John Doe"
                         type="text"
                         className="app_input"
@@ -110,7 +129,7 @@ export default function Agent() {
                         onChange={handleChange}
                         id="phone"
                         name="phone"
-                        // value={tform.phone}
+                        value={form.phone}
                         type="tel"
                         className="app_input"
                       />
@@ -123,7 +142,7 @@ export default function Agent() {
                         onChange={handleChange}
                         id="email"
                         name="email"
-                        // value={tform.email}
+                        value={form.email}
                         placeholder="organization@fake.com"
                         type="email"
                         className="app_input"
@@ -139,7 +158,7 @@ export default function Agent() {
                         onChange={handleChange}
                         id="state"
                         name="state"
-                        // value={tform.state}
+                        // value={form.state}
                         type="select"
                         className="app_input"
                         required
@@ -158,7 +177,7 @@ export default function Agent() {
                         onChange={handleChange}
                         id="lga"
                         name="lga"
-                        // value={tform.lga}
+                        value={form.lga}
                         type="select"
                         className="app_input"
                       >
@@ -180,7 +199,7 @@ export default function Agent() {
                         onChange={handleChange}
                         id="address"
                         name="address"
-                        // value={tform.contactAddress}
+                        value={form.contactAddress}
                         type="textarea"
                         className="app_input"
                         rows="1.5"
@@ -194,7 +213,7 @@ export default function Agent() {
                         onChange={handleChange}
                         id="service_location"
                         name="service_location"
-                        // value={tform.service_location}
+                        value={form.service_location}
                         placeholder="Bata"
                         type="text"
                         className="app_input"

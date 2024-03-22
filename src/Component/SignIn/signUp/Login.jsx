@@ -70,7 +70,8 @@ export default function Login() {
               borderRadius: "15px",
               
             }}
-              <div className="logo">
+              >
+                <div className="logo">
               <img
                 src={keke}
                 alt="kek Image"

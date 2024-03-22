@@ -19,7 +19,6 @@ export default function SuperAgent() {
   // const user = "nazif";
   const _form = {
     query_type: "insert",
-    // vendor_name: { user },
     name: "",
     phone: "",
     nin: "",

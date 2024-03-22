@@ -1,12 +1,16 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { _get } from "../../Utils/Helper";
+import { _get, _post } from "../../Utils/Helper";
 import VendorDropdown from "./VendorDropdown";
+import { useNavigate } from "react-router-dom";
 import { Button } from "reactstrap";
 import SuperDropdown from "./SuperDropdown";
 import VendorTopUpDropDown from "../Vendor/VendorTopUpDropDown";
+import toast from "react-hot-toast"
 
 function SuperAgentTopUp() {
   const [form, setForm] = useState({});
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
   const handleChange = ({ target: { name, value } }) => {
     setForm((prevForm) => ({
       ...prevForm,
@@ -14,8 +18,25 @@ function SuperAgentTopUp() {
     }));
   };
 
+
+
   const submitTopUp = (e) => {
     e.preventDefault();
+    _post(
+      "super_agent/top-up/create",
+      form,
+      (res) => {
+        setLoading(false); // Set loading to false when submission is successful
+        toast.success("super agent top up created successfully");
+        // setSubmittedData([...submittedData, res]);
+        navigate("/superagenttable");
+      },
+      (err) => {
+        console.log(err);
+        toast.error("An error occurred while creating uper agent top up");
+        setLoading(false); 
+      }
+    );
     console.log(form);
   };
 
@@ -75,7 +96,8 @@ function SuperAgentTopUp() {
             
           </div>
         <div className="top-up-submit" >
-            <Button onClick={submitTopUp} >Submit</Button>
+            <Button onClick={submitTopUp} >
+              Submit</Button>
           </div>
       </div>
 

@@ -1,20 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, } from "react";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { IoMdArrowDropdown } from "react-icons/io";
 import "./Navlogout.css";
 import { NavLink } from "reactstrap";
-<<<<<<< HEAD
 import { useDispatch, useSelector } from "react-redux";
-import { Logout } from "@mui/icons-material";
-import { logout } from "../redux/actions/auth";
-import { useNavigate } from "react-router-dom";
-import { toParagraph } from "../Utils/Helper";
-=======
-import { useDispatch } from "react-redux";
 import { logout } from "../redux/actions/auth";
 import { useNavigate } from "react-router-dom";
 
->>>>>>> da196e00fbeb5b051a70812dc47e3e6cbac52ec0
 const Navlogout = () => {
   const [openmenu, setOpenmenu] = useState(false);
   const dropdownRef = useRef(null);
@@ -22,7 +14,7 @@ const Navlogout = () => {
   const history = useNavigate()
   const dispatch = useDispatch()
 
-   const dispatch = useDispatch()
+  //  const dispatch = useDispatch()
    const navigate = useNavigate()
    const logOut = () =>{
     dispatch(
@@ -70,13 +62,8 @@ const Navlogout = () => {
                   <a className="dropdown-item" href="#">
                     My {toParagraph(user.role || 'User')} Profile
                   </a>
-<<<<<<< HEAD
-                  <a onClick={() => dispatch(logout(history))} className="dropdown-item" href="#">
-                    <p> <Logout />  Log out</p>
-=======
                   <a className="dropdown-item" href="#" onClick={logOut}>
                     Log out
->>>>>>> da196e00fbeb5b051a70812dc47e3e6cbac52ec0
                   </a>
                 </div>
               )}

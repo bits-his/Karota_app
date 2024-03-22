@@ -8,24 +8,16 @@ import { Logout } from "@mui/icons-material";
 import { logout } from "../redux/actions/auth";
 import { useNavigate } from "react-router-dom";
 import { toParagraph } from "../Utils/Helper";
-<<<<<<< HEAD
-=======
 
->>>>>>> cd55a0e7fbfa75294f42ce10011a892f2de97dbf
 const Navlogout = () => {
   const [openmenu, setOpenmenu] = useState(false);
   const dropdownRef = useRef(null);
   const { user } = useSelector(s => s.auth)
   const dispatch = useDispatch()
-<<<<<<< HEAD
+
   const navigate = useNavigate()
+
   const logOut = () => {
-=======
-
-   const navigate = useNavigate()
-
-   const logOut = () =>{
->>>>>>> cd55a0e7fbfa75294f42ce10011a892f2de97dbf
     dispatch(
       logout(navigate)
     )
@@ -71,14 +63,9 @@ const Navlogout = () => {
                   <a className="dropdown-item" href="#">
                     My {toParagraph(user.role || 'User')} Profile
                   </a>
-<<<<<<< HEAD
-                  <a className="dropdown-item" href="#" onClick={logOut}>
-                    Log out
-=======
-                  
-                  <a onClick={() => dispatch(logout(history))} className="dropdown-item" href="#">
+
+                  <a onClick={logOut} className="dropdown-item" href="#">
                     <p> <Logout />  Log out</p>
->>>>>>> cd55a0e7fbfa75294f42ce10011a892f2de97dbf
                   </a>
                 </div>
               )}

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import {
   Button,
   Card,
@@ -27,12 +27,18 @@ function VendorReg() {
   };
   const navigate = useNavigate();
   const [data, setData] = useState([]);
+
   const [filter, setFilter] = useState("");
   const [currentVendor, setCurrentVendor] = useState(_form);
   const [loading, setLoading] = useState(false); // Add loading state
   const [modal, setModal] = useState(false);
+  const [query, setQuery] = useState("select-all");
   const [vendor, setVendor] = useState({});
   const [form, setForm] = useState({});
+  const [searchData, setSearchData] = useState();
+  const search = () => {
+    setQuery("search");
+  };
   const reference_no = moment().format("YYYYMMDDhhmmssSSS");
   const onHandleChange = ({ target: { name, value } }) => {
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -44,17 +50,24 @@ function VendorReg() {
   };
   const getReg = useCallback(() => {
     setLoading(true); // Set loading to true before API call
-    _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
+    _get(`vendors?query_type=${query}&vendor_name=${filter}`, (resp) => {
       setLoading(false); // Set loading to false after receiving response
       if (resp.success && resp.results) {
         setData(resp.results);
       }
     });
-  }, [filter]);
-
+  }, [query]);
   useEffect(() => {
     getReg();
   }, [getReg]);
+
+  useEffect(() => {
+    // getReg();
+    if (!filter) {
+      setQuery("select-all");
+    }
+  }, [filter]);
+
   return (
     <>
       <Row>
@@ -113,7 +126,7 @@ function VendorReg() {
               </div>
             </Col>
             <Label
-              onClick={getReg}
+              onClick={search}
               className="label_title1"
               style={{ color: "#000", cursor: "pointer" }}
             >
@@ -123,7 +136,7 @@ function VendorReg() {
         </Col>
       </Row>
 
-      {data.length === 0 ? (
+      {data?.length === 0 ? (
         <Spinner
           color="warning"
           className="spinner"
@@ -154,7 +167,7 @@ function VendorReg() {
             </tr>
           </thead>
           <tbody>
-            {data.map((vendor, idx) => (
+            {data?.map((vendor, idx) => (
               <tr key={idx}>
                 <th scope="row">{idx + 1}</th>
                 <td>{vendor.vendor_name}</td>
@@ -162,7 +175,10 @@ function VendorReg() {
                 <td>{vendor.vendor_org_email}</td>
                 <td>{vendor.vendor_ofiice_address}</td>
                 <td className="text-center">
-                  <Button color="info" className="marginResponsive">
+                  <Button
+                    color="info"
+                    onClick={() => navigate(`/vendorReg/view/${vendor.id}`)}
+                  >
                     View
                   </Button>
                   <Button
@@ -263,7 +279,7 @@ function VendorReg() {
             </Col>
           </Row>
         </ModalFooter>
-      </Modal> 
+      </Modal>
     </>
   );
 }

@@ -15,7 +15,6 @@ import AgentTable from "../Component/SuperAgent/AgentTable";
 import AgentTopUp from "../Component/SuperAgent/AgentTopUp"
 import VendorTable from "../Component/Vendor/VendorTable";
 import VendorReg from "../Component/Vendor/VendorReg";
-import VendorView from "../Component/Vendor/VendorView";
 import VehicleOwnerTable from "../Component/vehicleOwner/VehicleOwnerTable";
 import TopUp from "../Component/SignIn/signUp/TopUp";
 import Dashboard from "../Component/Dashboard/index";
@@ -25,6 +24,9 @@ import Vehicle from "../Component/vehicleOwner/Vehicle";
 import VehicleTopUp from "../Component/vehicleOwner/VehicleTopUp";
 import LicensViever from "../Component/SignIn/signUp/LicensViever";
 import VehicleOwnerView from "../Component/vehicleOwner/VehicleOwnerView";
+import AgentView from "../Component/SuperAgent/componentview/AgentView";
+import SuperAgentView from "../Component/SuperAgent/componentview/SuperAgentView";
+import VendorView from "../Component/SuperAgent/componentview/VendorView";
 
 export default function AppNavigation() {
   let Pages = useRoutes([
@@ -60,8 +62,16 @@ export default function AppNavigation() {
           element: <SuperAgentTable />,
         },
         {
+          path: "superagenttable/view/:id",
+          element: <SuperAgentView />,
+        },
+        {
           path: "agenttable",
           element: <AgentTable />,
+        },
+        {
+          path: "agenttable/view/:id",
+          element: <AgentView />,
         },
         {
           path: "/agenttopup",
@@ -72,18 +82,19 @@ export default function AppNavigation() {
           element: <Vendor />,
         },
         {
-          path: "vendorReg",
+          path: "vendorReg/",
           element: <VendorTable />,
           children: [
             {
               path: "",
               element: <VendorReg />,
             },
-            {
-              path: ":id",
-              element: <VendorView />,
-            },
+
           ],
+        },
+        {
+          path: "vendorReg/view/:id",
+          element: <VendorView />,
         },
         {
           path: "/vehicleOwner",

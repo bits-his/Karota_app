@@ -9,6 +9,7 @@ import {
   Label,
   Input,
   Button,
+  FormFeedback,
 } from "reactstrap";
 import { stateLga } from "../../assets/state_and_lgas";
 import { _post } from "../../Utils/Helper";
@@ -36,36 +37,100 @@ export default function RegistrationTable() {
 
   const [form, setForm] = useState(_form);
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const handleChange = ({ target: { name, value } }) => {
     setForm((p) => ({ ...p, [name]: value }));
+      
   };
+
+
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-    _post(
-      // "vehicles/registration",
-      "vehicles/registration",
-      form,
-      (res) => {
-        setLoading(false);
-        if (res.success) {
-          toast.success("Vehicle added sucessfully");
-		  navigate('/vehicleownertable')
-          //console.log(form);
-          setForm(_form);
+    const newErrors = validateForm(form);
+    setErrors(newErrors);
+
+
+    if (Object.keys(newErrors).length === 0) {
+      setLoading(true);
+      // Submit the form data
+      _post(
+        "vehicles/registration",
+        form,
+        (res) => {
+          setLoading(false);
+          if (res.success) {
+            toast.success("Vehicle added successfully");
+            navigate('/vehicleownertable');
+            setForm(_form);
+          }
+        },
+        (err) => {
+          setLoading(false);
+          console.log(err);
+          toast.error("An error occurred while submitting the form");
         }
-      },
-      (err) => {
-        setLoading(false);
-        console.log(err);
-      }
-    );
+      );
+    } else {
+      Object.values(newErrors).forEach((error) => {
+        // toast.error(error);
+      });
+    }
   };
 
-  const handleCopyOwner = () => {};
+  // Function to perform form validation
+  const validateForm = (formData) => {
+    let newErrors = {};
+    if (!formData.plate_no.trim()) {
+      newErrors.plate_no = "Plate No must be filled";
+    }
+    if (!formData.pin.trim()) {
+      newErrors.pin = "PIN must be filled";
+    }
+    if (!formData.engine_no.trim()) {
+      newErrors.engine_no = "Engine No must be filled";
+    }
+    if (!formData.vehicle_make.trim()) {
+      newErrors.vehicle_make = "Vehicle make must be filled";
+    }
+    if (!formData.vehicle_model.trim()) {
+      newErrors.vehicle_model = "Vehicle model must be filled";
+    }
+    if (!formData.engine_capacity.trim()) {
+      newErrors.engine_capacity = "Engine Capacity must be filled";
+    }
+    if (!formData.color.trim()) {
+      newErrors.color = "Color must be filled";
+    }
+    if (!formData.date_issued.trim()) {
+      newErrors.date_issued = "Date Issued must be filled";
+    }
+    if (!formData.state_registered.trim()) {
+      newErrors.state_registered = "State Registered must be filled";
+    }
+    if (!formData.registered_lg.trim()) {
+      newErrors.registered_lg = "L.G.A. Registered must be filled";
+    }
+    if (!formData.lg_reg_no.trim()) {
+      newErrors.lg_reg_no = "L.G.A. Reg. No must be filled";
+    }
+    if (!formData.chasis_no.trim()) {
+      newErrors.chasis_no = "Chasis No must be filled";
+    }
+    if (!formData.purchased_date.trim()) {
+      newErrors.purchased_date = "Purchased Date must be filled";
+    }
+    if (!formData.expiry_date.trim()) {
+      newErrors.expiry_date = "Expiry Date must be filled";
+    }
+
+    return newErrors;
+  };
+
+
+  const handleCopyOwner = () => { };
 
   return (
     <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
@@ -79,7 +144,7 @@ export default function RegistrationTable() {
               alignItems: "center",
             }}
           >
-           
+
             <button
               className="app_button"
               style={{
@@ -92,7 +157,7 @@ export default function RegistrationTable() {
             >
               Back
             </button>
-             <h4 className="app_title">Vehicle Registeration </h4>
+            <h4 className="app_title">Vehicle Registeration </h4>
           </div>
 
           <hr />
@@ -110,9 +175,13 @@ export default function RegistrationTable() {
                       name="plate_no"
                       value={form.plate_no}
                       placeholder="Vehicle's Plate No"
-                      type="numbert"
+                      type="text"
                       className="app_input"
+                      invalid={!!errors.plate_no}
                     />
+                    <span style={{ color: 'red' }}></span>
+                    <FormFeedback><span style={{ color: 'red' }}>{errors.plate_no}</span></FormFeedback>
+                    {/* {errors.expiry_date && <span style={{ color: 'red' }}>{errors.expiry_date}</span>} */}
                   </FormGroup>
                 </Col>
                 <Col md={4} className="">
@@ -124,9 +193,11 @@ export default function RegistrationTable() {
                       name="pin"
                       value={form.pin}
                       placeholder="PINXXXXXXXXXX28"
-                      type="numbert"
+                      type="text"
                       className="app_input"
+                      invalid={!!errors.pin}
                     />
+                    <FormFeedback><span style={{ color: 'red' }}>{errors.pin}</span></FormFeedback>
                   </FormGroup>
                 </Col>
                 <Col md={4}>
@@ -140,7 +211,9 @@ export default function RegistrationTable() {
                       placeholder="Engine No."
                       type="text"
                       className="app_input"
+                      invalid={!!errors.engine_no}
                     />
+                    <FormFeedback><span style={{ color: 'red' }}>{errors.engine_no}</span></FormFeedback>
                   </FormGroup>
                 </Col>
               </Row>
@@ -156,7 +229,9 @@ export default function RegistrationTable() {
                       placeholder="Toyota"
                       type="text"
                       className="app_input"
+                      invalid={!!errors.vehicle_make}
                     />
+                    <FormFeedback><span style={{ color: 'red' }}>{errors.vehicle_make}</span></FormFeedback>
                   </FormGroup>
                 </Col>
                 <Col md={4} className="first-col">
@@ -170,7 +245,9 @@ export default function RegistrationTable() {
                       placeholder="Sienna"
                       type="text"
                       className="app_input"
+                      invalid={!!errors.vehicle_model}
                     />
+                    <FormFeedback><span style={{ color: 'red' }}>{errors.vehicle_model}</span></FormFeedback>
                   </FormGroup>
                 </Col>
                 <Col md={4} className="first-col">
@@ -183,7 +260,9 @@ export default function RegistrationTable() {
                       value={form.date_issued}
                       type="date"
                       className="app_input"
+                      invalid={!!errors.date_issued}
                     />
+                    <FormFeedback><span style={{ color: 'red' }}>{errors.date_issued}</span></FormFeedback>
                   </FormGroup>
                 </Col>
               </Row>
@@ -197,13 +276,14 @@ export default function RegistrationTable() {
                       name="state_registered"
                       type="select"
                       className="app_input"
-                      required
+                      invalid={!!errors.state_registered}
                     >
-                      <option value={""}>Select State</option>
+                      <option value="">Select State</option>
                       {stateLga.map((item, idx) => (
                         <option key={idx}>{item.state}</option>
                       ))}
                     </Input>
+                    <FormFeedback><span style={{ color: 'red' }}>{errors.state_registered}</span></FormFeedback>
                   </FormGroup>
                 </Col>
                 <Col md={4}>
@@ -215,16 +295,16 @@ export default function RegistrationTable() {
                       name="registered_lg"
                       type="select"
                       className="app_input"
+                      invalid={!!errors.registered_lg}
                     >
-                      <option value={""}>--Select LGA--</option>
+                      <option value="">--Select LGA--</option>
                       {stateLga
-                        .filter(
-                          (item) => item.state === form.state_registered
-                        )[0]
+                        .filter((item) => item.state === form.state_registered)[0]
                         ?.lgas?.map((lga, idx) => (
                           <option key={idx}>{lga}</option>
                         ))}
                     </Input>
+                    <FormFeedback><spann style={{ color: 'red' }}>{errors.registered_lg}</spann></FormFeedback>
                   </FormGroup>
                 </Col>
                 <Col md={4}>
@@ -235,15 +315,16 @@ export default function RegistrationTable() {
                       id="lg_reg_no"
                       name="lg_reg_no"
                       type="text"
-                      required
                       value={form.lg_reg_no}
                       className="app_input"
+                      invalid={!!errors.lg_reg_no}
                     />
+                    <FormFeedback><span style={{ color: 'red' }}></span></FormFeedback>
                   </FormGroup>
                 </Col>
               </Row>
-              <Row>
-              <Col md={4} className="first-col">
+              <Row className="margin-bottom-input">
+                <Col md={4} className="first-col">
                   <FormGroup>
                     <Label for="chasis_no">Chasis No</Label>
                     <Input
@@ -254,12 +335,14 @@ export default function RegistrationTable() {
                       placeholder="Vehicle's chasis No"
                       type="text"
                       className="app_input"
+                      invalid={!!errors.chasis_no}
                     />
+                    <FormFeedback><spann style={{ color: 'red' }}>{errors.chasis_no}</spann></FormFeedback>
                   </FormGroup>
                 </Col>
                 <Col md={4}>
                   <FormGroup>
-                    <Label for="purchased_date">Color</Label>
+                    <Label for="color">Color</Label>
                     <Input
                       onChange={handleChange}
                       name="color"
@@ -268,25 +351,27 @@ export default function RegistrationTable() {
                       placeholder="Color"
                       type="text"
                       className="app_input"
+                      invalid={!!errors.color}
                     />
+                    <FormFeedback><span style={{ color: 'red' }}>{errors.color}</span></FormFeedback>
                   </FormGroup>
                 </Col>
-				<Col md={4} className="first-col">
+                <Col md={4} className="first-col">
                   <FormGroup>
-                    <Label for="chasis_no">Engine Capacity</Label>
+                    <Label for="engine_capacity">Engine Capacity</Label>
                     <Input
                       onChange={handleChange}
                       id="engine_capacity"
                       name="engine_capacity"
                       value={form.engine_capacity}
-                      placeholder="engine_capacity"
+                      placeholder="Engine Capacity"
                       type="text"
                       className="app_input"
+                      invalid={!!errors.engine_capacity}
                     />
+                    <FormFeedback><span style={{ color: 'red' }}>{errors.engine_capacity}</span></FormFeedback>
                   </FormGroup>
                 </Col>
-              </Row>
-              <Row>
                 <Col md={4}>
                   <FormGroup>
                     <Label for="purchased_date">Transaction Date</Label>
@@ -295,24 +380,28 @@ export default function RegistrationTable() {
                       name="purchased_date"
                       id="purchased_date"
                       value={form.purchased_date}
-                      placeholder="purchased_date"
+                      placeholder="Transaction Date"
                       type="date"
                       className="app_input"
+                      invalid={!!errors.purchased_date}
                     />
+                    <FormFeedback><span style={{ color: 'red' }}>{errors.purchased_date}</span></FormFeedback>
                   </FormGroup>
                 </Col>
-				<Col md={4} className="first-col">
+                <Col md={4} className="first-col">
                   <FormGroup>
-                    <Label for="chasis_no">Expiry Date</Label>
+                    <Label for="expiry_date">Expiry Date</Label>
                     <Input
                       onChange={handleChange}
                       id="expiry_date"
                       name="expiry_date"
                       value={form.expiry_date}
-                      placeholder="expiry_date"
+                      placeholder="Expiry Date"
                       type="date"
                       className="app_input"
+                      invalid={!!errors.expiry_date}
                     />
+                    <FormFeedback><span style={{ color: 'red' }}>{errors.expiry_date}</span></FormFeedback>
                   </FormGroup>
                 </Col>
               </Row>
@@ -326,23 +415,23 @@ export default function RegistrationTable() {
                 marginTop: 30,
               }}
             >
-             
-                <Col className="text-right">
-                  <button
-                    className="app_button"
-                    style={{
-                      width: 150,
-                      marginLeft: 30,
-                      padding: 10,
-                      color: "",
-                      cursor: "pointer",
-                    }}
-                    onClick={handleSubmit}
-                  >
-                    Submit
-                  </button>
-                </Col>
-              
+
+              <Col className="text-right">
+                <button
+                  className="app_button"
+                  style={{
+                    width: 150,
+                    marginLeft: 30,
+                    padding: 10,
+                    color: "",
+                    cursor: "pointer",
+                  }}
+                  type="submit"
+                >
+                  Submit
+                </button>
+              </Col>
+
             </Row>
           </Form>
         </Col>

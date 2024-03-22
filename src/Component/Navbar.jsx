@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import kekeLogo from "../assets/keke_napep.png";
 import { GiArchiveRegister } from "react-icons/gi";
+import { GrLogout } from "react-icons/gr";
+import { logout } from "../redux/actions/auth";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { useDispatch } from "react-redux";
 import { LiaLayerGroupSolid } from "react-icons/lia";
 import { MdDashboard, MdOutlineSupportAgent } from "react-icons/md";
 import { FaUser, FaMagento } from "react-icons/fa";
@@ -20,6 +23,11 @@ export default function Navbar() {
   const { user } = useSelector((p) => p.auth);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [vehicleDropdown, setVehicleDropdown] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const logOut = () => {
+    dispatch(logout(navigate));
+  };
 
   const toggleVendorDropdown = () => {
     setVendorDropdown(!vendorDropdown);
@@ -37,9 +45,7 @@ export default function Navbar() {
     setVehicleDropdown(!vehicleDropdown);
   };
 
-  const closeDropdown = () => {
-    
-  };
+  const closeDropdown = () => {};
 
   return (
     <div className="navbar-container">
@@ -159,8 +165,9 @@ export default function Navbar() {
               >
                 <div className="flex-link">
                   <div>
-                  <MdOutlineSupportAgent className="icon shadow" />
-                    Agents</div>
+                    <MdOutlineSupportAgent className="icon shadow" />
+                    Agents
+                  </div>
                   <div className="opwo">
                     <span>
                       <IoMdArrowDropdown />
@@ -197,8 +204,9 @@ export default function Navbar() {
               >
                 <div className="flex-link">
                   <div>
-                  <FaTruckFast className="icon shadow" />
-                    Vehicles</div>
+                    <FaTruckFast className="icon shadow" />
+                    Vehicles
+                  </div>
                   <div className="opwo">
                     <span>
                       <IoMdArrowDropdown />
@@ -236,6 +244,15 @@ export default function Navbar() {
               Collection Point
             </div>
           )}
+          <div
+            onClick={logOut}
+            className={`navbar-link-item ${
+              location.pathname.includes("top-up") && "navbar-active-side-menu"
+            }`}
+          >
+            <GrLogout className="icon shadow" />
+            Log out
+          </div>
         </section>
       </div>
     </div>

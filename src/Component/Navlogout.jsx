@@ -13,16 +13,15 @@ const Navlogout = () => {
   const [openmenu, setOpenmenu] = useState(false);
   const dropdownRef = useRef(null);
   const { user } = useSelector(s => s.auth)
-  const history = useNavigate()
   const dispatch = useDispatch()
 
-   const navigate = useNavigate()
+  const navigate = useNavigate()
 
-   const logOut = () =>{
+  const logOut = () => {
     dispatch(
       logout(navigate)
     )
-   }
+  }
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -64,8 +63,8 @@ const Navlogout = () => {
                   <a className="dropdown-item" href="#">
                     My {toParagraph(user.role || 'User')} Profile
                   </a>
-                  
-                  <a onClick={() => dispatch(logout(history))} className="dropdown-item" href="#">
+
+                  <a onClick={logOut} className="dropdown-item" href="#">
                     <p> <Logout />  Log out</p>
                   </a>
                 </div>

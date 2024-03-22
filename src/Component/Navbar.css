@@ -84,6 +84,8 @@
 .navbar-container {
   width: 100%;
   margin-top: -30px;
+  position: sticky;
+  top: 0;
 }
 
 .navbar-sidebar {

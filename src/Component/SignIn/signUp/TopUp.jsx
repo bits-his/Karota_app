@@ -82,7 +82,7 @@ export default function TopUp() {
     //     setVendorData(resp.results);
     //   }
     // });
-  },[query,filter]);
+  },[query]);
   useEffect(() =>{
     if(!filter){
       setQuery('select-all')

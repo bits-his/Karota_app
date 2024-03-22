@@ -56,47 +56,19 @@ function VendorTopUp({
 
   return (
     <>
-      <div className="app_card dashboard_card m-0 p-0 md:h-[90vh]">
-        <div className='middle-card-topup' style={{ margin: "auto" }}>
-          <h3
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              fontWeight: '600',
-              fontSize: '18px',
-              marginBottom: '5px'
-            }}
-          >Vendor Top-Up</h3>
-
-          <div
-            className='md:h-[35vh] h-[50vh]'
-            style={{
-              margin: "0 auto",
-              maxWidth: "100%",
-              // height: "35vh",
-              borderRadius: "5px",
-              border: "1px solid #f5c005",
-              padding: "20px",
-            }}
-
-          >
-            {/* {JSON.stringify(form)} */}
-            <div className="md:w-[50%] md:m-0">
-              <div
-                className=''
-                style={{ display: "flex", marginTop: "15px", alignItems: "center", marginBottom: '20px' }}>
-                <h4
-                  className=''
-                  style={{
-                    fontWeight: '600',
-                    // marginRight: '10px'
-                  }}> Select Vendor:</h4>
+      <div className="app_card dashboard_card m-0 p-0">
+        <div style={{ margin: "auto" }}>
+          <h3 className="text-center fw-bold ve-t-u">Vendor Top-Up</h3>
+          <div className="account-info row">
+            <div className="info-input col-md-6">
+              <div style={{ marginTop: "15px" }}>
+                <h4> Select Vendor:</h4>
                 <VendorTopUpDropDown
                   handleChange={handleChange}
                   selectedVendorValue={form.vendor_id}
                 />
               </div>
-
+              
             </div>
 
             <div>
@@ -104,7 +76,7 @@ function VendorTopUp({
                 <h4>Amount:</h4>
                 <input
                   placeholder="Enter amount here..."
-                  name='amount'
+                  name = 'amount'
                   value={form.amount}
                   onChange={handleChange}
                   style={{
@@ -116,7 +88,10 @@ function VendorTopUp({
                   }}
                 />
               </div>
-              <div className="transaction-details">
+              </div>
+             
+            </div>
+             <div className="transaction-details">
                 <h3>Transaction Details</h3>
                 <div className="details">
                   <p>
@@ -130,13 +105,10 @@ function VendorTopUp({
                   </p>
                 </div>
               </div>
-              <div className="top-up-submit">
-                <Button onClick={submitTopUp}>Submit</Button>
-              </div>
-              <Button onClick={submitTopUp} className='relative w-[100%] top-[110px] md:top-[-40px] md:w-[30%] bg-[#f5c005] md:left-[24.5rem]' style={{ position: 'relative', borderRadius: '5px' }}>Submit</Button>
+            <div className="top-up-submit">
+              <Button onClick={submitTopUp}>Submit</Button>
             </div>
           </div>
-        </div>
       </div>
     </>
   );

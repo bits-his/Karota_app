@@ -8,6 +8,7 @@ import { Logout } from "@mui/icons-material";
 import { logout } from "../redux/actions/auth";
 import { useNavigate } from "react-router-dom";
 import { toParagraph } from "../Utils/Helper";
+
 const Navlogout = () => {
   const [openmenu, setOpenmenu] = useState(false);
   const dropdownRef = useRef(null);
@@ -15,6 +16,13 @@ const Navlogout = () => {
   const history = useNavigate()
   const dispatch = useDispatch()
 
+   const dispatch = useDispatch()
+   const navigate = useNavigate()
+   const logOut = () =>{
+    dispatch(
+      logout(navigate)
+    )
+   }
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {

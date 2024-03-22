@@ -10,12 +10,15 @@ export default function LicensViever() {
 
   const getVehicles = useCallback(() => {
     // setLoading(true);
-    _get(`vehicles?query_type=get_vehicle_by_plate_no&plate_no=${vehicle_id}`, (resp) => {
-      if (resp.data && resp.data.length) {
-        setData(resp.data);
-        // setLoading(false);
+    _get(
+      `vehicles?query_type=select&vehicle_id=${vehicle_id}`,
+      (resp) => {
+        if (resp.data && resp.data.length) {
+          setData(resp.data);
+          // setLoading(false);
+        }
       }
-    });
+    );
   }, [vehicle_id]);
 
   useEffect(() => {
@@ -24,9 +27,8 @@ export default function LicensViever() {
 
   return (
     <div>
-     
       <PDFViewer style={{ width: "100%", height: "100vh" }}>
-        <LicensPDF />
+        <LicensPDF data={data[0]} />
       </PDFViewer>
     </div>
   );

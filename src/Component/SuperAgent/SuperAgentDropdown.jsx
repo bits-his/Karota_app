@@ -27,7 +27,6 @@ function SuperAgentDropdown({ handleChange, selectedSuperAgentValue }) {
   useEffect(() => {
     getsuperAgents();
   }, [getsuperAgents]);
-  // console.log(selectedSuperAgent);
   const handleSelectChange = (selectedOption) => {
     setselectedSuperAgent(selectedOption);
     handleChange({

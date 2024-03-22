@@ -15,6 +15,7 @@ import DM_SANS_ITALIC from "../../../assets/DM_Sans/DM_Sans/static/DMSans-Italic
 import ahmad from "../../../Images/download.png";
 import coat from "../../../Images/th.jpeg";
 import moment from "moment";
+import QRCode from "qrcode";
 
 Font.register({
   family: "DM_SANS",
@@ -48,8 +49,8 @@ const styles = StyleSheet.create({
     height: 50,
   },
   image2: {
-    width: 130,
-    height: 130,
+    width: 200,
+    height: 100,
     marginBottom: 10,
   },
   header: {
@@ -60,16 +61,22 @@ const styles = StyleSheet.create({
   },
 });
 
-export const LicensPDF = () => {
-  const data = useSelector((stat) => state.auth.licence_data);
+export const LicensPDF = ({ data = {} }) => {
+  let canvas;
+  canvas = document.createElement("canvas");
+  QRCode.toCanvas(
+    canvas,
+    `https://kekeapp.netlify.app/view-info?plate_no=${data?.plate_no}`
+  );
+  const qr = canvas.toDataURL();
   return (
     <Document>
       <Page size="A4" orientation="landscape">
         <View style={{ padding: 120 }}>
           <View style={styles.body}>
             <View style={{ width: "100%", alignItems: "center" }}>
-              <View>{/* <Image src={coat} style={styles.image1} /> */}</View>
-              <Text style={styles.header}>KANO STATE VEHICLE LICENCE</Text>
+              <View></View>
+              <Text style={styles.header}>KANO STATE VEHICLE LICENSE</Text>
             </View>
             <View
               style={{
@@ -197,7 +204,7 @@ export const LicensPDF = () => {
                       fontStyle: "bold",
                     }}
                   >
-                    {data?.create_at || "N/A"}
+                    {moment(data?.create_at).format("D  MMMM, YYYY") || "N/A"}
                   </Text>
                 </Text>
                 <Text>
@@ -231,7 +238,7 @@ export const LicensPDF = () => {
                   alignItems: "center",
                 }}
               >
-                <Image src={ahmad} style={styles.image2} />
+                <Image source={qr} style={styles.image2} />
                 <View
                   style={{
                     width: "100%",
@@ -251,7 +258,7 @@ export const LicensPDF = () => {
                       width: "100%",
                     }}
                   >
-                    https://developer.android.com
+                      https://kekeapp.netlify.app/view-info?plate_no={data?.plate_no}
                   </Text>
                 </View>
               </View>

@@ -4,8 +4,10 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import "./Navlogout.css";
 import { NavLink } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { Logout } from "@mui/icons-material";
 import { logout } from "../redux/actions/auth";
 import { useNavigate } from "react-router-dom";
+import { toParagraph } from "../Utils/Helper";
 
 const Navlogout = () => {
   const [openmenu, setOpenmenu] = useState(false);
@@ -14,10 +16,13 @@ const Navlogout = () => {
   const history = useNavigate();
   const dispatch = useDispatch();
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+
   const logOut = () => {
-    dispatch(logout(navigate));
-  };
+    dispatch(
+      logout(navigate)
+    )
+  }
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -68,8 +73,9 @@ const Navlogout = () => {
                   <a className="dropdown-item" href="#">
                     My {toParagraph(user.role || "User")} Profile
                   </a>
-                  <a className="dropdown-item" href="#" onClick={logOut}>
-                    Log out
+
+                  <a onClick={logOut} className="dropdown-item" href="#">
+                    <p> <Logout />  Log out</p>
                   </a>
                 </div>
               )}

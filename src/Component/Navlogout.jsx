@@ -4,15 +4,10 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import "./Navlogout.css";
 import { NavLink } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-<<<<<<< HEAD
-import { logout } from "../redux/actions/auth";
-import { useNavigate } from "react-router-dom";
-=======
 import { Logout } from "@mui/icons-material";
 import { logout } from "../redux/actions/auth";
 import { useNavigate } from "react-router-dom";
 import { toParagraph } from "../Utils/Helper";
->>>>>>> 1a54274c77c0fd7766bd4bfd8908f7f7d981ec24
 
 const Navlogout = () => {
   const [openmenu, setOpenmenu] = useState(false);
@@ -20,15 +15,9 @@ const Navlogout = () => {
   const { user } = useSelector(s => s.auth)
   const dispatch = useDispatch()
 
-<<<<<<< HEAD
-  //  const dispatch = useDispatch()
-   const navigate = useNavigate()
-   const logOut = () =>{
-=======
   const navigate = useNavigate()
 
   const logOut = () => {
->>>>>>> 1a54274c77c0fd7766bd4bfd8908f7f7d981ec24
     dispatch(
       logout(navigate)
     )
@@ -74,14 +63,9 @@ const Navlogout = () => {
                   <a className="dropdown-item" href="#">
                     My {toParagraph(user.role || 'User')} Profile
                   </a>
-<<<<<<< HEAD
-                  <a className="dropdown-item" href="#" onClick={logOut}>
-                    Log out
-=======
 
                   <a onClick={logOut} className="dropdown-item" href="#">
                     <p> <Logout />  Log out</p>
->>>>>>> 1a54274c77c0fd7766bd4bfd8908f7f7d981ec24
                   </a>
                 </div>
               )}

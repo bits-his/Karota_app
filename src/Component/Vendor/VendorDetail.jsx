@@ -55,7 +55,7 @@ function VendorDetail() {
             }}
             onClick={() => navigate(`/vendorReg/view/${vendor.id}`)}
           >
-            Veiw Vendor Detail
+            View Vendor Detail
           </button>
           <Table 
             striped

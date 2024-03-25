@@ -27,6 +27,7 @@ import VehicleOwnerView from "../Component/vehicleOwner/VehicleOwnerView";
 import AgentView from "../Component/SuperAgent/componentview/AgentView";
 import SuperAgentView from "../Component/SuperAgent/componentview/SuperAgentView";
 import VendorView from "../Component/SuperAgent/componentview/VendorView";
+import VendorDetail from "../Component/Vendor/VendorDetail";
 import SuperAgentHistory from "../Component/SuperAgent/componentview/SuperAgentHistory";
 import AgentHistory from "../Component/SuperAgent/componentview/AgentHistory";
 
@@ -106,6 +107,10 @@ export default function AppNavigation() {
           path: "vendorReg/view/:id",
           element: <VendorView />,
         },
+        {
+            path: "vendorReg/detail/:id",
+            element: <VendorDetail />,
+          },
         {
           path: "/vehicleOwner",
           element: <VehicleOwner />,

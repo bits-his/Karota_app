@@ -44,8 +44,8 @@ function VendorReg() {
   };
   const getReg = useCallback(() => {
     setLoading(true); // Set loading to true before API call
-    _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
-      setLoading(false); // Set loading to false after receiving response
+    _get(`vendors?query_type=${query}&vendor_name=${filter}`, (resp) => {
+     setLoading(false); // Set loading to false after receiving response
       if (resp.success && resp.results) {
         setData(resp.results);
       }
@@ -123,7 +123,13 @@ function VendorReg() {
         </Col>
       </Row>
 
-      {data.length === 0 ? (
+      { loading ? (
+        data?.length === 0 ? (
+        <div>
+          <h3>
+            Not Data found
+          </h3>
+        </div> ):(
         <Spinner
           color="warning"
           className="spinner"
@@ -132,6 +138,7 @@ function VendorReg() {
         >
           ""
         </Spinner>
+        )
       ) : (
         <Table
           bordered
@@ -149,7 +156,7 @@ function VendorReg() {
               <th>Vendor Name</th>
               <th>Phone Number</th>
               <th>Vendor email</th>
-              <th>Office Address</th>
+              <th>Balance</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -160,7 +167,7 @@ function VendorReg() {
                 <td>{vendor.vendor_name}</td>
                 <td>{vendor.vendor_org_phone}</td>
                 <td>{vendor.vendor_org_email}</td>
-                <td>{vendor.vendor_ofiice_address}</td>
+                <td>{vendor.balance}</td>
                 <td className="text-center">
                   <Button color="info" className="marginResponsive"
                     onClick={() => navigate(`/vendorReg/view/${vendor.id}?vendor_name=${vendor.vendor_name}&vendor_org_phone=${vendor.vendor_org_phone}&vendor_org_email=${vendor.vendor_org_email}&vendor_ofiice_address=${vendor.vendor_ofiice_address}`)}>

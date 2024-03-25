@@ -117,7 +117,7 @@ export default function AgentTable() {
                     <th>Name</th>
                     <th>Phone</th>
                     <th>Email</th>
-                    <th>Contact Address</th>
+                    <th>Balance</th>
                     <th className="text-center">Action</th>
                   </tr>
                 </thead>
@@ -128,7 +128,7 @@ export default function AgentTable() {
                       <td>{agent.name}</td>
                       <td>{agent.phone_no}</td>
                       <td>{agent.email}</td>
-                      <td>{agent.address}</td>
+                      <td>{agent.balance}</td>
                       <td className="text-center">
                         <Button
                         style={{margin:"5px"}}

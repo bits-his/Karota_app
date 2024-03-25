@@ -118,7 +118,6 @@ export default function VehicleOwnerTable() {
                     <th>Owners Name</th>
                     <th>Email</th>
                     <th>phone Num</th>
-                    <th>Plate No</th>
                     <th>Balance</th>
                     <th>Action</th>
                   </tr>
@@ -137,9 +136,6 @@ export default function VehicleOwnerTable() {
                     <td>
                       {item.phone}
 
-                    </td>
-                    <td>
-                      {item.phone_no}
                     </td>
 
                     <td>

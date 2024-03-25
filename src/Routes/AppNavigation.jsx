@@ -28,6 +28,8 @@ import AgentView from "../Component/SuperAgent/componentview/AgentView";
 import SuperAgentView from "../Component/SuperAgent/componentview/SuperAgentView";
 import VendorView from "../Component/SuperAgent/componentview/VendorView";
 import VendorDetail from "../Component/Vendor/VendorDetail";
+import SuperAgentHistory from "../Component/SuperAgent/componentview/SuperAgentHistory";
+import AgentHistory from "../Component/SuperAgent/componentview/AgentHistory";
 
 export default function AppNavigation() {
   let Pages = useRoutes([
@@ -67,12 +69,20 @@ export default function AppNavigation() {
           element: <SuperAgentView />,
         },
         {
+          path: "superagenthistory/history/:id",
+          element: <SuperAgentHistory />,
+        },
+        {
           path: "agenttable",
           element: <AgentTable />,
         },
         {
           path: "agenttable/view/:id",
           element: <AgentView />,
+        },
+        {
+          path: "agenthistory/history/:id",
+          element: <AgentHistory />,
         },
         {
           path: "/agenttopup",

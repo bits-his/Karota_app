@@ -101,9 +101,11 @@ export default function VehicleOwnerTable() {
           <div className="table_overflow">
             {loading ? (
               <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
-                ""
+                
               </Spinner>
-            ) : (
+            ) : 
+            data.length === 0 ? <h1>There is not data at the Database</h1>:
+            (
               <Table
                 bordered
                 responsive

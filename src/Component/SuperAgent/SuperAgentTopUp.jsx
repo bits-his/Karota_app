@@ -1,16 +1,15 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { _get, _post } from "../../Utils/Helper";
+import { _get } from "../../Utils/Helper";
 import VendorDropdown from "./VendorDropdown";
-import { useNavigate } from "react-router-dom";
 import { Button } from "reactstrap";
 import SuperDropdown from "./SuperDropdown";
 import VendorTopUpDropDown from "../Vendor/VendorTopUpDropDown";
-import toast from "react-hot-toast"
+import toast from "react-hot-toast";
+import { _post } from "../../Utils/Helper";
 
 function SuperAgentTopUp() {
   const [form, setForm] = useState({});
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate()
   const handleChange = ({ target: { name, value } }) => {
     setForm((prevForm) => ({
       ...prevForm,
@@ -18,27 +17,43 @@ function SuperAgentTopUp() {
     }));
   };
 
-
-
   const submitTopUp = (e) => {
     e.preventDefault();
+    if (loading) return;
+    setLoading(true);
     _post(
       "super_agent/top-up/create",
       form,
-      (res) => {
-        setLoading(false); // Set loading to false when submission is successful
+      () => {
+        setLoading(false);
         toast.success("super agent top up created successfully");
-        // setSubmittedData([...submittedData, res]);
         navigate("/superagenttable");
       },
-      (err) => {
-        console.log(err);
-        toast.error("An error occurred while creating uper agent top up");
-        setLoading(false); 
+      () => {
+        setLoading(false);
+        toast.error("An error occurred while creating super agent top up");
       }
     );
-    console.log(form);
   };
+  // const submitTopUp = (e) => {
+  //   e.preventDefault();
+  //   if (loading) return;
+  //   _post(
+  //     "super_agent/top-up/create",
+  //     form,
+  //     (res) => {
+  //       setLoading(false); // Set loading to false when submission is successful
+  //       toast.success("super agent top up created successfully");
+  //       navigate("/superagenttable");
+  //     },
+  //     (err) => {
+  //       console.log(err);
+  //       toast.error("An error occurred while creating super agent top up");
+  //       setLoading(false);
+  //     }
+  //   );
+  //   console.log(form);
+  // };
 
   return (
     <>
@@ -89,7 +104,7 @@ function SuperAgentTopUp() {
             </p>
 
             <p>
-              ID : <span>{form.super_agent_id}</span>
+              ID : <span>{form.superagent_id}</span>
             </p>
             <p>
               Amount: <span>{form.amount ? form.amount : 0}</span>

@@ -123,13 +123,7 @@ function VendorReg() {
         </Col>
       </Row>
 
-      { loading ? (
-        data?.length === 0 ? (
-        <div>
-          <h3>
-            Not Data found
-          </h3>
-        </div> ):(
+      {loading ? ( // Display spinner if loading is true
         <Spinner
           color="warning"
           className="spinner"
@@ -138,7 +132,35 @@ function VendorReg() {
         >
           ""
         </Spinner>
-        )
+      ) : data.length === 0 ? ( // Display empty table if data is empty
+        <Table
+          bordered
+          responsive
+          style={{
+            position: "relative",
+            top: "20px",
+            width: "100%",
+            marginTop: "4px",
+          }}
+        >
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Vendor Name</th>
+              <th>Phone Number</th>
+              <th>Vendor email</th>
+              <th>Office Address</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colSpan="6" className="text-center">
+                No vendors found
+              </td>
+            </tr>
+          </tbody>
+        </Table>
       ) : (
         <Table
           bordered

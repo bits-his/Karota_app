@@ -114,9 +114,10 @@ export default function SuperAgentView() {
                     <Badge color="primary">{data.agents_count}</Badge>{" "}
                     <Button
                       className="btn btn-primary"
-                      onClick={() => navigate(`/agent`)}
+                      onClick={() =>
+                        navigate(`/agent?name=${data.name}&id=${data.id}`)
+                      }
                     >
-                     
                       Add Agent
                     </Button>
                   </td>

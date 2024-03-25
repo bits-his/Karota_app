@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { _get } from "../../Utils/Helper";
-import VendorDropdown from "./VendorDropdown";
+import { useNavigate } from "react-router-dom";
 import { Button } from "reactstrap";
 import SuperDropdown from "./SuperDropdown";
 import VendorTopUpDropDown from "../Vendor/VendorTopUpDropDown";
@@ -8,6 +8,9 @@ import toast from "react-hot-toast";
 import { _post } from "../../Utils/Helper";
 
 function SuperAgentTopUp() {
+const navigate = useNavigate();
+
+
   const [form, setForm] = useState({});
   const [loading, setLoading] = useState(false);
   const handleChange = ({ target: { name, value } }) => {
@@ -29,9 +32,12 @@ function SuperAgentTopUp() {
         toast.success("super agent top up created successfully");
         navigate("/superagenttable");
       },
-      () => {
+      (error) => {
         setLoading(false);
-        toast.error("An error occurred while creating super agent top up");
+        toast.error(
+          "An error occurred while creating super agent top up: " +
+            error.message
+        );
       }
     );
   };

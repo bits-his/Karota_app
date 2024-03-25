@@ -51,7 +51,7 @@ function VendorReg() {
   const getReg = useCallback(() => {
     setLoading(true); // Set loading to true before API call
     _get(`vendors?query_type=${query}&vendor_name=${filter}`, (resp) => {
-      setLoading(false); // Set loading to false after receiving response
+     setLoading(false); // Set loading to false after receiving response
       if (resp.success && resp.results) {
         setData(resp.results);
       }
@@ -136,7 +136,13 @@ function VendorReg() {
         </Col>
       </Row>
 
-      {data?.length === 0 ? (
+      { loading ? (
+        data?.length === 0 ? (
+        <div>
+          <h3>
+            Not Data found
+          </h3>
+        </div> ):(
         <Spinner
           color="warning"
           className="spinner"
@@ -145,6 +151,7 @@ function VendorReg() {
         >
           ""
         </Spinner>
+        )
       ) : (
         <Table
           bordered

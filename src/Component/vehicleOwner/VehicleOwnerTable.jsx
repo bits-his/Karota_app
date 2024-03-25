@@ -106,7 +106,6 @@ export default function VehicleOwnerTable() {
             ) : null}</>
           <div className="table_overflow">
             {data.length === 0 ? <h4>There is not data at the Database</h4>:
-            
             (
               <Table
                 bordered

@@ -1,43 +1,59 @@
-/* sidebar.css */
-
 .sidebar {
-    width: 250px;
-    height: 100%;
-    background-color: #fff;
-    position: fixed;
-    top: 0;
-    left: -250px; /* Initially hide the sidebar */
-    transition: left 0.3s ease; /* Add smooth transition */
-  }
+  width: 250px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: -250px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+  z-index: 1000;
   
-  .sidebar.open {
-    left: 0; /* Show the sidebar when 'open' class is applied */
+}
+
+.link {
+  padding: 20px;
+}
+
+.link_item {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.active_side_menu {
+  font-weight: bold;
+}
+
+.hamburger {
+  display: none; /* Hide hamburger on larger screens */
+}
+
+.line {
+  width: 25px;
+  height: 3px;
+  background-color: black;
+  margin: 5px 0;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+  .sidebar {
+    left: 0;
   }
-  
+
   .hamburger {
+    display: block;
+    cursor: pointer;
     position: fixed;
     top: 20px;
     left: 20px;
-    cursor: pointer;
-    z-index: 999;
+    z-index: 1001;
   }
-  
-  .line {
-    width: 30px;
-    height: 3px;
-    background-color: #333;
-    margin: 5px 0;
+
+  .link {
+    display: none;
   }
-  
-  /* Media query for smaller screens (e.g., mobile devices) */
-  @media screen and (max-width: 768px) {
-    .sidebar {
-      width: 100%; /* Make the sidebar full width */
-      left: -100%; /* Initially hide the sidebar */
-    }
-  
-    .sidebar.open {
-      left: 0; /* Show the sidebar when 'open' class is applied */
-    }
+
+  .link.open {
+    display: block;
   }
-  
+}

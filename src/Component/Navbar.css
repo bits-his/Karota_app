@@ -97,3 +97,39 @@
   position: sticky;
   top: 0;
 }
+.flex-link {
+  display: flex;
+  justify-content: space-between;
+}
+.opwo {
+  margin-top: 5px;
+}
+.navbar-link-item-sub {
+  color: #f9f9f9;
+  padding-top: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  width: 80%;
+  margin-left: 30px;
+  padding: 10px 30px;
+  list-style: none;
+  background-color: #a88504;
+  cursor: pointer;
+  border-radius: 0px;
+  text-align: left;
+  transition: transform 0.3s;
+  position: relative; /* Ensure positioning context */
+}
+
+.navbar-link-item-sub::before {
+  content: '';
+  height: 100% ; /* Adjusted height to match padding */
+  width: 3px;
+  background-color: white; /* Border color */
+  position: absolute;
+  left: 0;
+  top: 0px; /* Adjusted top position to match padding */
+  border-radius: 0px;
+}

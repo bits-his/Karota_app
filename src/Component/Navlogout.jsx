@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, } from "react";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { IoMdArrowDropdown } from "react-icons/io";
 import "./Navlogout.css";

@@ -136,6 +136,14 @@ export default function AgentTable() {
                         >
                           View
                         </Button>
+                        <Button
+                          color="success"
+                          onClick={() =>
+                            navigate(`/agenthistory/history/${agent.id}`)
+                          }
+                        >
+                          View history
+                        </Button>
                       </td>
                     </tr>
                   ))}

@@ -22,7 +22,7 @@ export default function AppIndex() {
             style={{ marginRight: "auto", width: "100%" }}
           >
             <div>
-                <Navlogout />
+                {/* <Navlogout /> */}
                 </div>
             <Outlet />
           </div>

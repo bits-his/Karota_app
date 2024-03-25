@@ -43,7 +43,7 @@ function SuperDropdown({ handleChange, selectedSuperValue }) {
 
     handleChange({
       target: {
-        name: "superagent_id",
+        name: "super_agent_id",
         value: selectedOption ? selectedOption.value : "", // handle if no option is selected
       },
     });

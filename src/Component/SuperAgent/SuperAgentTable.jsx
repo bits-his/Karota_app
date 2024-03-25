@@ -160,7 +160,7 @@ export default function SuperAgentTable() {
                     <th>Name</th>
                     <th>Phone</th>
                     <th>Email</th>
-                    <th>Contact Address</th>
+                    <th>Balance</th>
                     <th className="text-center">Action</th>
                   </tr>
                 </thead>
@@ -171,15 +171,24 @@ export default function SuperAgentTable() {
                       <td>{agent.name}</td>
                       <td>{agent.phone}</td>
                       <td>{agent.email}</td>
-                      <td>{agent.address}</td>
+                      <td>{agent.balance}</td>
                       <td className="text-center">
                         <Button
                           color="info"
                           onClick={() =>
                             navigate(`/superagenttable/view/${agent.id}`)
                           }
+                          mr={2}
                         >
                           View
+                        </Button>
+                        <Button
+                          color="success"
+                          onClick={() =>
+                            navigate(`/superagenthistory/history/${agent.id}`)
+                          }
+                        >
+                          View history
                         </Button>
                       </td>
                     </tr>

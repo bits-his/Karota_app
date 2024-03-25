@@ -27,6 +27,7 @@ import VehicleOwnerView from "../Component/vehicleOwner/VehicleOwnerView";
 import AgentView from "../Component/SuperAgent/componentview/AgentView";
 import SuperAgentView from "../Component/SuperAgent/componentview/SuperAgentView";
 import VendorView from "../Component/SuperAgent/componentview/VendorView";
+import VendorDetail from "../Component/Vendor/VendorDetail";
 
 export default function AppNavigation() {
   let Pages = useRoutes([
@@ -96,6 +97,10 @@ export default function AppNavigation() {
           path: "vendorReg/view/:id",
           element: <VendorView />,
         },
+        {
+            path: "vendorReg/detail/:id",
+            element: <VendorDetail />,
+          },
         {
           path: "/vehicleOwner",
           element: <VehicleOwner />,

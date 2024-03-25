@@ -61,7 +61,7 @@ export default function VehicleView() {
             color: "#000",
             textAlign: "center"
           }}
-          onClick={() => navigate("/vendorReg")}
+          onClick={() => navigate(`/vendorReg/detail/${vendor.id}`)}
         >
           Back
         </button>

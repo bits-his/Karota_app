@@ -9,6 +9,7 @@ import {
   Label,
   Button,
   Input,
+  FormFeedback,
 } from "reactstrap";
 import VendorDropdown from "./VendorDropdown";
 import { stateLga } from "../../assets/state_and_lgas";
@@ -19,49 +20,88 @@ export default function SuperAgent() {
   // const user = "nazif";
   const _form = {
     query_type: "insert",
-    // vendor_name: { user },
     name: "",
     phone: "",
     nin: "",
     state: "",
     lga: "",
     address: "",
-    dob: "",
-    vendor: 1,
+    vendor: "",
+    email: "",
   };
 
   const [form, setForm] = useState(_form);
   const [submittedData, setSubmittedData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
   const handleChange = ({ target: { name, value } }) => {
     setForm((p) => ({ ...p, [name]: value }));
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
   };
   const navigate = useNavigate();
   const handleSubmit = (e) => {
+    if (loading) return;
     e.preventDefault();
-    setLoading(true);
-    _post(
-      "superagent/create",
-      form,
-      (res) => {
-        setLoading(true);
-        toast.success("super agent created successfully");
-        setSubmittedData([...submittedData, res]);
-        navigate("/superagentable");
-      },
-      () => {
-        setLoading(false);
-        toast.error("An error occurred while creating super agent");
-      }
-    );
+
+    const newErrors = validateForm(form);
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
+      setLoading(true);
+      _post(
+        "superagent/create",
+        form,
+        (res) => {
+          setLoading(true);
+          toast.success("super agent created successfully");
+          setSubmittedData([...submittedData, res]);
+          navigate("/superagenttable");
+        },
+        () => {
+          setLoading(false);
+          toast.error("An error occurred while creating super agent");
+        }
+      );
+    } else {
+      Object.values(newErrors).forEach((error) => {});
+    }
   };
+
+  const validateForm = (formData) => {
+    let newErrors = {};
+    
+    if (!formData.name.trim()) {
+      newErrors.name = "Name must be filled";
+    }
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone Number must be filled";
+    }
+    if (!formData.email.trim()) {
+      newErrors.email = "Email must be filled";
+    }
+    if (!formData.state.trim()) {
+      newErrors.state = "State must be filled";
+    }
+    if (!formData.lga.trim()) {
+      newErrors.lga = "L.G.A.  must be filled";
+    }
+    if (!formData.address.trim()) {
+      newErrors.address = "Address must be filled";
+    }
+    if (!formData.nin.trim()) {
+      newErrors.nin = "NIN must be filled";
+    }
+
+    return newErrors;
+  };
+
   return (
     <div>
       {/* <button className="app_button" onClick={() => navigate("/agent")}>
         Create agent
       </button> */}
       <Card className="app_card dashboard_card m-0 p-0">
-        {JSON.stringify({ form })}
+        {/* {JSON.stringify({ form })} */}
         <Row>
           <Col md={12}>
             <div
@@ -80,7 +120,7 @@ export default function SuperAgent() {
                   color: "#000",
                   borderRadius: 10,
                 }}
-                onClick={() => navigate("/superagentable")}
+                onClick={() => navigate("/superagenttable")}
               >
                 Back
               </button>
@@ -101,7 +141,11 @@ export default function SuperAgent() {
                       <VendorDropdown
                         handleChange={handleChange}
                         selectedVendorValue={form.vendor}
+                        invalid={!!errors.vendor}
                       />
+                      <FormFeedback>
+                        <span style={{ color: "red" }}>{errors.vendor}</span>
+                      </FormFeedback>
                     </FormGroup>
                   </Col>
                   <Col md={6} className="first-col">
@@ -115,7 +159,11 @@ export default function SuperAgent() {
                         placeholder="John Doe"
                         type="text"
                         className="app_input"
+                        invalid={!!errors.name}
                       />
+                      <FormFeedback>
+                        <span style={{ color: "red" }}>{errors.name}</span>
+                      </FormFeedback>
                     </FormGroup>
                   </Col>
                 </Row>
@@ -133,7 +181,11 @@ export default function SuperAgent() {
                         pattern="[0-9]{11}"
                         placeholder="081XXXXXXXX"
                         className="app_input"
+                        invalid={!!errors.phone}
                       />
+                      <FormFeedback>
+                        <span style={{ color: "red" }}>{errors.phone}</span>
+                      </FormFeedback>
                     </FormGroup>
                   </Col>
                   <Col md={6}>
@@ -147,7 +199,11 @@ export default function SuperAgent() {
                         placeholder="organization@fake.com"
                         type="email"
                         className="app_input"
+                        invalid={!!errors.email}
                       />
+                      <FormFeedback>
+                        <span style={{ color: "red" }}>{errors.email}</span>
+                      </FormFeedback>
                     </FormGroup>
                   </Col>
                 </Row>
@@ -162,7 +218,11 @@ export default function SuperAgent() {
                         vlaue={form.address}
                         type="text"
                         className="app_input"
+                        invalid={!!errors.address}
                       />
+                      <FormFeedback>
+                        <span style={{ color: "red" }}>{errors.address}</span>
+                      </FormFeedback>
                     </FormGroup>
                   </Col>
                 </Row>
@@ -176,13 +236,16 @@ export default function SuperAgent() {
                         name="state"
                         type="select"
                         className="app_input"
-                        required
+                        invalid={!!errors.state}
                       >
                         <option value={""}>Select State</option>
                         {stateLga.map((item) => (
                           <option>{item.state}</option>
                         ))}
                       </Input>
+                      <FormFeedback>
+                        <span style={{ color: "red" }}>{errors.state}</span>
+                      </FormFeedback>
                     </FormGroup>
                   </Col>
 
@@ -195,6 +258,7 @@ export default function SuperAgent() {
                         name="lga"
                         type="select"
                         className="app_input"
+                        invalid={!!errors.lga}
                       >
                         <option value={""}>--Select LGA--</option>
                         {stateLga
@@ -203,6 +267,9 @@ export default function SuperAgent() {
                             <option key={idx}>{lga}</option>
                           ))}
                       </Input>
+                      <FormFeedback>
+                        <span style={{ color: "red" }}>{errors.lga}</span>
+                      </FormFeedback>
                     </FormGroup>
                   </Col>
                 </Row>
@@ -218,10 +285,14 @@ export default function SuperAgent() {
                         placeholder="NIN"
                         type="text"
                         className="app_input"
+                        invalid={!!errors.nin}
                       />
+                      <FormFeedback>
+                        <span style={{ color: "red" }}>{errors.nin}</span>
+                      </FormFeedback>
                     </FormGroup>
                   </Col>
-                  <Col md={6}>
+                  {/* <Col md={6}>
                     <FormGroup>
                       <Label for="password">Password</Label>
                       <Input
@@ -234,7 +305,7 @@ export default function SuperAgent() {
                         className="app_input"
                       />
                     </FormGroup>
-                  </Col>
+                  </Col> */}
                 </Row>
               </>
               <Row>
@@ -256,8 +327,9 @@ export default function SuperAgent() {
                       borderRadius: 7,
                     }}
                     onClick={handleSubmit}
+                    disabled={loading}
                   >
-                    Submit
+                    {loading ? "Submitting..." : "Submit"}
                   </button>
                 </Col>
               </Row>

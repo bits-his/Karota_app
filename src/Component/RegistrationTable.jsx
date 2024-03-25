@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import { Card, Col, Row } from "reactstrap";
-import QRCode from "qrcode.react";
+// import QRCode from "qrcode.react";
 import { _get } from "../Utils/Helper";
 
 export default function RegistrationTable() {
@@ -16,6 +16,7 @@ export default function RegistrationTable() {
       `api/getCreate_user?query_type=select-all`,
       (res) => {
         setData(res.results);
+        console.log(res)
       },
       (err) => {
         setLoading(false);

@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
+import { toParagraph } from '../../Utils/Helper';
 
-const MonthlyTransactionLineChart = ({ data }) => {
+const MonthlyTransactionLineChart = ({ data = [], type = 'Daily' }) => {
     const chartContainer = useRef(null);
 
     useEffect(() => {
@@ -23,12 +24,12 @@ const MonthlyTransactionLineChart = ({ data }) => {
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Monthly Transactions',
+                        label: `${toParagraph(type)} Transaction count`,
                         data: transactionCounts,
                         backgroundColor: '#f5c005',
                         borderColor: '#f5c005',
                         borderWidth: 2,
-                        tension: 0.4 // Adjust the tension for curved lines (0 for straight lines, 1 for maximum curve)
+                        tension: 0.4
                     }]
                 },
                 options: {

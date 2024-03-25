@@ -1,3 +1,4 @@
+
 * {
   padding: 0;
   margin: 0;
@@ -101,6 +102,29 @@
   width: 100%;
   padding: 8px;
 }
+.app_input-topUp {
+  border-radius: none !important;
+  border: 1px solid #9d9c97;
+  margin-bottom: 15px;
+  width: 37%;
+  padding: 8px;
+}
+
+.middle-card-topup {
+  margin: 0 auto;
+  width: 60%;
+}
+
+@media screen and (max-width: 767px) {
+  .middle-card-topup {
+    width: 90%;
+  }
+}
+
+.capitalize-text {
+  text-transform: capitalize;
+}
+
 /* .app_input_table {
   border-radius: none !important;
   border: 1px solid #f5c005;
@@ -210,7 +234,7 @@
 }
 .app_title {
   color: #020202;
-  text-shadow: 3px 4px 5px #4b4b4b;
+  /* text-shadow: 3px 4px 5px #4b4b4b; */
 }
 .vendor_title {
   margin: 0 auto;
@@ -240,17 +264,9 @@ label {
   width: 100%;
 }
 
-.sidebar {
-  background-color: #f5c005;
-  height: 100vh;
-  overflow-y: auto;
-  margin: 0;
-  width: 250px;
-  position: sticky;
-  top: 0;
-}
 
-.user_image {
+
+/* .user_image {
   width: 120px;
   height: 120px;
   border-radius: 100%;
@@ -265,13 +281,13 @@ label {
 }
 .keke-logo {
   position: absolute;
-  width: 100px;
-}
+  width: 100%;
+} */
 
 .dashboard_card {
   margin-top: 20px;
   padding: 30px;
-  min-height: 90vh !important;
+  min-height: 87vh !important;
 }
 .card_div {
   border: 1px solid #f5c005;
@@ -293,8 +309,8 @@ label {
   color: #fff;
   padding-top: 0px;
   font-family: monospace;
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1rem;
+  /* font-weight: 600; */
   margin-bottom: 10px;
   width: 100%;
   padding: 10px 30px;
@@ -328,7 +344,7 @@ label {
   color: #fff;
 }
 .icon {
-  font-size: 25px;
+  font-size: 22px;
   margin-bottom: -6px;
   margin-right: 10px;
 }
@@ -371,13 +387,21 @@ td, th{
   padding: 8px;
 }
 .login{
-  /* position: relative;
-  top: '80rem'; 
-  left: 20px;
-   height: '10px';
-  background:  url('./assets/keke_napep.png') no-repeat; */
-  
+  padding-top: '80rem';
+  width: 100%;
+  align-items: center;
+  margin: auto;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(
+      rgba(225,225,225,0.7),
+      rgba(225,225,225, 0.3)
+  ),
+  url('Images/road.jpg');
+  background-size: cover;
+  background-position: center;
 }
+
 @media only screen and (max-width: 768px) {
   .customer-page {
     display: none;
@@ -385,9 +409,9 @@ td, th{
   /* .sidebar_div {
     display: none;
   } */
-  .sidebar {
+  /* .sidebar {
     display: none;
-  }
+  } */
   .mobile_menu {
     position: fixed;
     bottom: 0;
@@ -675,7 +699,7 @@ Input.form-control {
   margin-top: 2px;
   width: 100%;
   height: 40px;
-  border: 1px solid #f5c005;
+  /* border: 1px solid #f5c005; */
   border-radius: 7px;
 }
 select.form-select {
@@ -728,17 +752,6 @@ select.form-select {
   text-align: center;
   font-size: 18px;
 }
-
-
-
-
-
-
-
-
-
-
-
 .spinner {
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-top: 4px solid #f5c005 ; /* Adjust the color as needed */

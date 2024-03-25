@@ -1,8 +1,8 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AppNavigation from "./Routes/AppNavigation";
-import toast, { Toaster } from 'react-hot-toast';
-import { Provider, useDispatch } from 'react-redux';
+import { Toaster } from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCallback, useEffect } from 'react';
@@ -15,7 +15,7 @@ function App() {
 
   const initUser = useCallback(() => {
     dispatch(
-      init(
+      init(navigate,
         () => {
           navigate(`${location.pathname}${location.search}`);
         },

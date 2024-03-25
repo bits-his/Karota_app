@@ -3,17 +3,18 @@ import { useNavigate } from 'react-router-dom';
 import { Card, Col, Row, Form, FormGroup, Label, Input, Button, Table } from 'reactstrap';
 import { stateLga } from '../../assets/state_and_lgas';
 import { useSelector } from 'react-redux';
+import { _post } from '../../Utils/Helper';
+import toast from 'react-hot-toast';
 
 export default function OwnerReg() {
     const navigate = useNavigate();
     const { user } = useSelector(s => s.auth)
     const [showForm, setShowForm] = useState(false);
     const _form = {
-        query_type: "create",
-        agent_id: user.id
+        query_type: "insert",
+        agent_id: null
     };
     const [form, setForm] = useState(_form);
-
     const handleChange = ({ target: { name, value } }) => {
         setForm((p) => ({ ...p, [name]: value }));
     };
@@ -25,10 +26,20 @@ export default function OwnerReg() {
         navigate('/Vehicleownertable')
     };
     const handleSubmit = (e) => {
-
         e.preventDefault();
-        console.log('Form submitted');
+        _post(`vehicle-owners/create` , form, 
+        res =>{
+            console.log(res)
+            if(res.success){
+                toast.success(`A new Vehicle owner ${form.name} Created Successfully`)
+            navigate("/Vehicleownertable")
+            }
+            else{
 
+            }
+            
+        })
+        
     };
 
     return (
@@ -36,11 +47,11 @@ export default function OwnerReg() {
             <Row>
                 <Col md={12}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                        <h4 className="app_title">Vehicle Owner Registration</h4>
+                       
                         {!showForm ? (
                             <Button
                                 className="app_button"
-                                style={{ width: 150, padding: 10, marginLeft: 15, color: '#000', borderRadius: 10 }}
+                                style={{ width: 150, padding: 10,  color: '#000', borderRadius: 10 }}
                                 onClick={handleBackToTable}
                             >
                                 Back
@@ -48,42 +59,61 @@ export default function OwnerReg() {
                         ) : (
                             <Button
                                 className="app_button"
-                                style={{ width: 150, padding: 10, marginLeft: 15, color: '#000', borderRadius: 10 }}
+                                style={{ width: 150, padding: 10,  color: '#000', borderRadius: 10 }}
                                 onClick={handleBackToTable}
                             >
                                 Back
                             </Button>
                         )}
+                         <h4 className="app_title">Vehicle Owner Registration</h4>
                     </div>
                     <hr />
                 </Col>
                 <Col md={12}>
-                    <Form onSubmit={handleSubmit}>
+                    <Form >
                         <Row className='margin-bottom-input'>
                             <Col md={6} className='first-col'>
                                 <FormGroup>
                                     <Label for="OwnerName">Owner's name</Label>
-                                    <Input id="OwnerName" name="OwnerName" placeholder="Owner's name" type="text" />
+                                    <Input id="OwnerName" 
+                                    name="name" 
+                                    onChange={handleChange}
+                                    value={form.name}
+                                    placeholder="Owner's name" type="text" />
                                 </FormGroup>
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
-                                    <Label for="orgPhone">Phone</Label>
-                                    <Input id="Phone" name="Phone" placeholder="+234-8100000000" type="tel" />
+                                    <Label for="phone">Phone</Label>
+                                    <Input id="phone" 
+                                    name="phone" 
+                                    onChange={handleChange}
+                                    value={form.phone}
+                                    placeholder="+234-8100000000" type="tel" />
                                 </FormGroup>
                             </Col>
                         </Row>
                         <Row className='margin-bottom-input'>
                             <Col md={6} className='first-col'>
                                 <FormGroup>
-                                    <Label for="officeAddress">Address</Label>
-                                    <Input id="Address" name="Address" type="text" />
+                                    <Label for="address">Address</Label>
+                                    <Input id="address" 
+                                    name="address"
+                                    onChange={handleChange}
+                                    value={form.address}
+                                    type="text" />
                                 </FormGroup>
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
                                     <Label for="orgEmail">Owner's email</Label>
-                                    <Input id="Emailexample" name="Email" placeholder="owner@fake.com" type="email" />
+                                    <Input 
+                                    id="orgEmail" 
+                                    name="email" 
+                                    onChange={handleChange}
+                                    value={form.email}
+                                    placeholder="owner@fake.com" 
+                                    type="email" />
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -109,8 +139,13 @@ export default function OwnerReg() {
                             </Col>
                             <Col md={6}>
                                 <FormGroup>
-                                    <Label for="NIN">NIN</Label>
-                                    <Input id="NIN" name="NIN" type="number" />
+                                    <Label for="nin">NIN</Label>
+                                    <Input 
+                                    id="nin" 
+                                    onChange={handleChange}
+                                    name="nin" 
+                                    value={form.nin}
+                                    type="number" />
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -134,20 +169,16 @@ export default function OwnerReg() {
                                     </Input>
                                 </FormGroup>
                             </Col>
-                            <Col md={6}>
-                                <FormGroup>
-                                    <Label for="d.o.b">D.o.B</Label>
-                                    <Input id="d.o.b" name="d.o.b" type="date" />
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row className='margin-bottom-input'>
-                            <Col md={6}>
+                            {/* <Col md={6}>
                                 <FormGroup>
                                     <Label for="examplePassword">Password</Label>
-                                    <Input id="examplePassword" name="password" placeholder="password" type="password" />
+                                    <Input 
+                                    
+                                    id="examplePassword" 
+                                    name="password" 
+                                    placeholder="password" type="password" />
                                 </FormGroup>
-                            </Col>
+                            </Col> */}
                         </Row>
                         <Row>
                             <Col md={12}
@@ -166,7 +197,7 @@ export default function OwnerReg() {
                                     cursor: "pointer",
                                     borderRadius: 7,
                                 }}
-                                onClick={() => navigate("/ehicleownertable")}
+                                onClick={handleSubmit}
                             >
                                     Submit
                                 </button>

@@ -1,11 +1,15 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { _get } from "../../Utils/Helper";
+import { _get, _post } from "../../Utils/Helper";
+import { useNavigate } from "react-router-dom";
 import { Button } from "reactstrap";
 import SuperDropdown from "./SuperDropdown";
 import AgentDropDown from "../vehicleOwner/AgentDropDown";
+import toast from "react-hot-toast"
 
 function AgentTopUp() {
   const [form, setForm] = useState({});
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
   const handleChange = ({ target: { name, value } }) => {
     setForm((prevForm) => ({
       ...prevForm,
@@ -15,6 +19,21 @@ function AgentTopUp() {
 
   const submitTopUp = (e) => {
     e.preventDefault();
+    _post(
+      "agent/top-up/create",
+      form,
+      (res) => {
+        setLoading(false); // Set loading to false when submission is successful
+        toast.success("agent top up created successfully");
+        // setSubmittedData([...submittedData, res]);
+        navigate("/agenttable");
+      },
+      (err) => {
+        console.log(err);
+        toast.error("An error occurred while creating agent top up");
+        setLoading(false); 
+      }
+    );
     console.log(form);
   };
 
@@ -31,7 +50,7 @@ function AgentTopUp() {
             >
               <h4 >SuperAgent :</h4>
               <SuperDropdown handleChange={handleChange}
-                selectedSuperValue={form.superagent_id}
+                selectedSuperValue={form.super_agent_id}
               />
             </div>
             <div

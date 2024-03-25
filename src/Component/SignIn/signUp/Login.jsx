@@ -70,13 +70,13 @@ export default function Login() {
               borderRadius: "15px",
               
             }}
-          >
-              <div className="logo">
-          <img
-            src={keke}
-            alt="kek Image"
-          />
-        </div>
+              >
+                <div className="logo">
+              <img
+                src={keke}
+                alt="kek Image"
+              />
+            </div>
             <Card>
           
                 <Col component="form" role="form">

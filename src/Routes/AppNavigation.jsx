@@ -30,6 +30,7 @@ import VendorView from "../Component/SuperAgent/componentview/VendorView";
 import VendorDetail from "../Component/Vendor/VendorDetail";
 import SuperAgentHistory from "../Component/SuperAgent/componentview/SuperAgentHistory";
 import AgentHistory from "../Component/SuperAgent/componentview/AgentHistory";
+import VehicleHistory from "../Component/vehicleOwner/VehicleHistory";
 
 export default function AppNavigation() {
   let Pages = useRoutes([

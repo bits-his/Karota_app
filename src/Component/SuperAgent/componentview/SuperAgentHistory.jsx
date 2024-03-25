@@ -12,11 +12,14 @@ export default function SuperAgentHistory() {
   const params = useParams();
   const owner_id = params.id;
   const getReg = useCallback(() => {
-    _get(`fetch/trans_history?super_agent_id=${owner_id}`, (resp) => {
-      if (resp.success && resp.results) {
-        console.log(resp.results[0]);
+    _get(
+      `fetch/trans_history?query_type=super_agent&super_agent_id=${owner_id}`,
+      (resp) => {
+        if (resp.success && resp.results) {
+          console.log(resp.results[0]);
+        }
       }
-    });
+    );
   }, [owner_id]);
 
   useEffect(() => {

@@ -13,11 +13,14 @@ export default function AgentHistory() {
   const owner_id = params.id;
   const getReg = useCallback(() => {
     
-    _get(`fetch/trans_history?agent_id=${owner_id}`, (resp) => {
-      if (resp.success && resp.results) {
-        setData(resp.results[0]);
+    _get(
+      `fetch/trans_history?query_type=agent&agent_id=${owner_id}`,
+      (resp) => {
+        if (resp.success && resp.results) {
+          setData(resp.results[0]);
+        }
       }
-    });
+    );
   }, [owner_id]);
 
   useEffect(() => {

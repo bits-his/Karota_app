@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { IoMdArrowDropdown } from "react-icons/io";
 import "./Navlogout.css";
-import { NavLink } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Logout } from "@mui/icons-material";
 import { logout } from "../redux/actions/auth";
@@ -13,11 +12,8 @@ const Navlogout = () => {
   const [openmenu, setOpenmenu] = useState(false);
   const dropdownRef = useRef(null);
   const { user } = useSelector((s) => s.auth);
-  const history = useNavigate();
   const dispatch = useDispatch();
-
   const navigate = useNavigate()
-
   const logOut = () => {
     dispatch(
       logout(navigate)
@@ -73,9 +69,8 @@ const Navlogout = () => {
                   <a className="dropdown-item" href="#">
                     My {toParagraph(user.role || "User")} Profile
                   </a>
-
-                  <a onClick={logOut} className="dropdown-item" href="#">
-                    <p> <Logout />  Log out</p>
+                  <a className="dropdown-item p-2" href="#" onClick={logOut}>
+                    <Logout /> Log out
                   </a>
                 </div>
               )}

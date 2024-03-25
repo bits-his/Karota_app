@@ -92,13 +92,14 @@ export default function AppNavigation() {
           element: <Vendor />,
         },
         {
-          path: "vendorReg",
+          path: "vendorReg/",
           element: <VendorTable />,
           children: [
             {
               path: "",
               element: <VendorReg />,
             },
+
           ],
         },
         {

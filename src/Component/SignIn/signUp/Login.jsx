@@ -118,7 +118,7 @@ export default function Login() {
                       fullWidth
                       onClick={handleSubmit}
                     >
-                      {loading ? <Spinner size={10} /> : 'sign In'} 
+                      {loading ? <Spinner size={10} /> : 'Sign In'} 
                     </Button>
                  
                   </Col>

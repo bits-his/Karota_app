@@ -1,4 +1,5 @@
  .btn-table{
+    display: flex;
     & button{
         margin-left: 2px;
     }

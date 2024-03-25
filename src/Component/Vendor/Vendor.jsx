@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Card, Col, Row, Form, FormGroup, Label, Input } from "reactstrap";
+import { Card, Col, Row, Form, FormGroup, Label, Input, Spinner } from "reactstrap";
 import { stateLga } from "../../assets/state_and_lgas";
 import { _post } from "../../Utils/Helper";
 import toast from "react-hot-toast";
@@ -20,7 +20,6 @@ export default function RegistrationTable() {
     contact_name: "",
     contact_address: "",
     contact_state: "",
-    // contact_password: "",
     contact_phone: "",
     contact_email: "",
     contact_lga: "",
@@ -51,7 +50,8 @@ export default function RegistrationTable() {
   const validate = (e) => {
     e.preventDefault();
 
-    if (!form.vendor_name || !form.vendor_ofiice_address || !form.vendor_state || !form.vendor_lga || !form.vendor_phone || !form.vendor_email) { toast.error("Please fill in all required fields.") }
+    if (!form.vendor_name || !form.vendor_ofiice_address || !form.vendor_state || !form.vendor_lga || !form.vendor_phone || !form.vendor_email) {
+     toast.error("Please fill in all required fields.") }
     else {
       toast.success("Good.")
       setForm((p) => ({ ...p, step: 1 }))
@@ -61,7 +61,7 @@ export default function RegistrationTable() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!form.contact_name || !form.contact_address || !form.contact_state || !form.contact_lga || !form.contact_phone || !form.contact_email || !form.contact_password) {
+    if (!form.contact_name || !form.contact_address || !form.contact_state || !form.contact_lga || !form.contact_phone || !form.contact_email) {
       toast.error("Please fill in all required fields.");
       return;
     }

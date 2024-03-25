@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import {
   Button,
   Card,
@@ -177,9 +177,9 @@ function VendorReg() {
                 <td className="text-center">
                   <Button
                     color="info"
-                    onClick={() => navigate(`/vendorReg/view/${vendor.id}`)}
+                    // onClick={() => navigate(`/vendorReg/detail/${vendor.id}`)}
                   >
-                    View
+                   <Link to={`/vendorReg/detail/${vendor.id}`} state={vendor}>View</Link> 
                   </Button>
                   <Button
                     color="success"

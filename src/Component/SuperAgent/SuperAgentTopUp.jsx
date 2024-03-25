@@ -23,7 +23,7 @@ function SuperAgentTopUp() {
   const submitTopUp = (e) => {
     e.preventDefault();
     _post(
-      "super_agent/top-up/create",
+      "top-up/create",
       form,
       (res) => {
         setLoading(false); // Set loading to false when submission is successful

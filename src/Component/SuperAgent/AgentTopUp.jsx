@@ -20,13 +20,15 @@ function AgentTopUp() {
   const submitTopUp = (e) => {
     e.preventDefault();
     _post(
-      "agent/top-up/create",
+      "top-up/create",
       form,
       (res) => {
         setLoading(false); // Set loading to false when submission is successful
+        if(res.success){
         toast.success("agent top up created successfully");
         // setSubmittedData([...submittedData, res]);
         navigate("/agenttable");
+        }
       },
       (err) => {
         console.log(err);

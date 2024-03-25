@@ -34,7 +34,7 @@
     & .details{
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: flex-start;
         border-radius: 8px ;
         border: 1px solid #dedede;
         padding: 10px;
@@ -43,7 +43,8 @@
    
     & p {
         width: 45%;
-        justify-content: space-between;
+        justify-content: space-around;
+        align-items: flex-start;
         display: inline-flex;
         font-weight: bold;
     }

@@ -10,6 +10,10 @@ function VendorTopUp({
   selectedAgent,
   handleSelectSuperAgentChange,
 }) {
+  const _form = {
+    query_type: "top_up",
+    vendor_name: "",
+  }
   const [data, setData] = useState([]);
   const [selectedVendor, setSelectedVendor] = useState(selectedVendorValue);
   const [loading, setLoading] = useState(false);
@@ -56,7 +60,18 @@ function VendorTopUp({
       toast.error("Amount should be above 100.");
       return;
     }
-    _post()
+    _post(
+      "top-up/create",
+      form,
+      res => {
+        if (res.success){
+          toast.success(`Successfully credited ${form.amount} to ${form.vendor_name}`)
+        }
+      }
+
+
+
+    )
 
     console.log(form);
   };
@@ -101,15 +116,19 @@ function VendorTopUp({
              <div className="transaction-details">
                 <h3>Transaction Details</h3>
                 <div className="details">
-                  <p>
-                    VENDOR NAME: <span>{form.vendor_name}</span>
-                  </p>
-                  <p>
-                    VENDOR ID: <span>{form.vendor_id}</span>
-                  </p>
-                  <p>
-                    AMOUNT: <span>{form.amount ? form.amount : 0}</span>
-                  </p>
+                  <div className="full-width">
+                    <p>
+                      VENDOR NAME: <span>{form.vendor_name}</span>
+                    </p>
+                  </div>
+                  <div className="full-width">
+                    <p>
+                      VENDOR ID: <span>{form.vendor_id}</span>
+                    </p>
+                    <p>
+                      AMOUNT: <span>{form.amount ? form.amount : 0}</span>
+                    </p>
+                  </div>
                 </div>
               </div>
             <div className="top-up-submit">

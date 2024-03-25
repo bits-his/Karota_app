@@ -178,8 +178,17 @@ export default function SuperAgentTable() {
                           onClick={() =>
                             navigate(`/superagenttable/view/${agent.id}`)
                           }
+                          mr={2}
                         >
                           View
+                        </Button>
+                        <Button
+                          color="success"
+                          onClick={() =>
+                            navigate(`/superagenthistory/history/${agent.id}`)
+                          }
+                        >
+                          View history
                         </Button>
                       </td>
                     </tr>

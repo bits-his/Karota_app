@@ -1,19 +1,19 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Card, Col, Row, Button, Table, Badge } from "reactstrap";
 import { useSelector } from "react-redux";
-import { _get, _post } from "../../../Utils/Helper";
+import { Table, Card, Row, Col, Button } from "reactstrap";
 import keke from "../../../assets/keke_napep.png";
+import { _get, _post } from "../../../Utils/Helper";
 
-export default function SuperAgentView() {
+export default function AgentHistory() {
   const navigate = useNavigate();
   const { user } = useSelector((s) => s.auth);
   const [data, setData] = useState({});
-  const [superagent, setsuperagent] = useState([]);
   const params = useParams();
   const owner_id = params.id;
   const getReg = useCallback(() => {
-    _get(`superagent?query_type=select&id=${owner_id}`, (resp) => {
+    
+    _get(`fetch/trans_history?agent_id=${owner_id}`, (resp) => {
       if (resp.success && resp.results) {
         setData(resp.results[0]);
       }
@@ -23,11 +23,9 @@ export default function SuperAgentView() {
   useEffect(() => {
     getReg();
   }, [getReg]);
-
   const handleBackToTable = () => {
-    navigate("/superagenttable");
+    navigate("/agenttable");
   };
-
   return (
     <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
       <Row>
@@ -39,8 +37,6 @@ export default function SuperAgentView() {
               alignItems: "center",
             }}
           >
-            {/* Back Button */}
-
             <Button
               className="app_button"
               style={{
@@ -55,10 +51,8 @@ export default function SuperAgentView() {
               Back
             </Button>
 
-            {/* Title */}
-            <h4 className="app_title">{data.name}</h4>
+            <h4 className="app_title">Account History</h4>
 
-            {/* User DP */}
             <img
               src={keke}
               alt="User DP"
@@ -74,48 +68,23 @@ export default function SuperAgentView() {
         </Col>
         <Col md={12}>
           <Col md={12}>
-            <Table striped>
+            <Table striped bordered>
+              <thead>
+                <tr className="table-dark">
+                  <th scope="row">Date</th>
+                  <th scope="row">Type</th>
+                  <th scope="row">Description</th>
+                  <th scope="row">Amount</th>
+                  <th scope="row">Balance</th>
+                </tr>
+              </thead>
               <tbody>
                 <tr>
-                  <th width="20%">Owner's Name</th>
-                  <td>{data.name}</td>
-                </tr>
-                <tr>
-                  <th>Phone</th>
-                  <td>{data.phone}</td>
-                </tr>
-                <tr>
-                  <th>Address</th>
-                  <td>{data.address}</td>
-                </tr>
-                <tr>
-                  <th>Owner's Email</th>
-                  <td>{data.email}</td>
-                </tr>
-                <tr>
-                  <th>State</th>
-                  <td>{data.state}</td>
-                </tr>
-                <tr>
-                  <th>NIN</th>
-                  <td>{data.nin}</td>
-                </tr>
-                <tr>
-                  <th>Local Government Area</th>
-                  <td>{data.lga}</td>
-                </tr>
-                <tr>
-                  <th>Registered Agents</th>
-                  <td className="text-center">
-                    <Badge color="primary">{data.agents_count}</Badge>{" "}
-                    <Button
-                      className="btn btn-primary" 
-                      onClick={() => navigate(`/agent`)}
-                    >
-                      {" "}
-                      Add Agent
-                    </Button>
-                  </td>
+                  <td>1/2/2000</td>
+                  <td>debit</td>
+                  <td>payment</td>
+                  <td>2000</td>
+                  <td>10000</td>
                 </tr>
               </tbody>
             </Table>

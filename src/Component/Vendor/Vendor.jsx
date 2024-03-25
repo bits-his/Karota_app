@@ -240,7 +240,7 @@ export default function RegistrationTable() {
                   </Col>
                 </Row>
 
-                <Row>
+                {/* <Row>
                   <Col md={6}>
                     <FormGroup>
                       <Label for="exampleDOB">Password <span style={{ color: "red" }}>*</span></Label>
@@ -256,7 +256,7 @@ export default function RegistrationTable() {
                       />
                     </FormGroup>
                   </Col>
-                </Row>
+                </Row> */}
               </>
             ) : (
               <>
@@ -391,7 +391,7 @@ export default function RegistrationTable() {
                     </FormGroup>
                   </Col>
                 </Row>
-                <Row className="margin-bottom-input">
+                {/* <Row className="margin-bottom-input">
                   <Col md={12}>
                     <FormGroup>
                       <Label for="companyProfile">Company's Profile</Label>
@@ -404,7 +404,7 @@ export default function RegistrationTable() {
                       />
                     </FormGroup>
                   </Col>
-                </Row>
+                </Row> */}
               </>
             )}
             <Row
@@ -453,7 +453,9 @@ export default function RegistrationTable() {
                       disabled={loading}
                       onClick={handleSubmit}
                     >
-                      {loading ? (<Spinner color="warning">Loading...</Spinner>) : (<span>Submit</span>)}
+                      <span>
+                        {loading ? (<Spinner color="primary"></Spinner>) : ("Submit")}
+                      </span>
                     </button>
                   </Col>
                 </Row>

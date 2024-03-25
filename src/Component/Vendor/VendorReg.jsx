@@ -162,7 +162,7 @@ function VendorReg() {
               <th>Vendor Name</th>
               <th>Phone Number</th>
               <th>Vendor email</th>
-              <th>Office Address</th>
+              <th>Balance</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -173,7 +173,7 @@ function VendorReg() {
                 <td>{vendor.vendor_name}</td>
                 <td>{vendor.vendor_org_phone}</td>
                 <td>{vendor.vendor_org_email}</td>
-                <td>{vendor.vendor_ofiice_address}</td>
+                <td>{vendor.balance}</td>
                 <td className="text-center">
                   <Button
                     color="info"

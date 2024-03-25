@@ -181,8 +181,8 @@ export default function Navbar() {
           )}
           {true ? (
             <div
-              onClick={() => goto("/top-up")}
-              className={`navbar-link-item ${location.pathname.includes("top-up")
+              onClick={() => goto("/vehicles")}
+              className={`navbar-link-item ${location.pathname.includes("vehicles")
                 ? "navbar-active-side-menu"
                 : ""
                 }`}

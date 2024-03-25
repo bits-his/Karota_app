@@ -56,12 +56,7 @@ export default function TopUp() {
     console.log(modal);
   };
 
-  const handlePay = (id) => {
-    // Implement payment logic here
-    // For now, just close the modal
-    toggleModal();
-    console.log(id);
-  };
+
 
   const fund_us = () => {
     setFund(true);
@@ -206,15 +201,16 @@ export default function TopUp() {
                         </td>
                         <td className="text-center p-2">
                           <ButtonGroup>
-                            {/* <Button
-                              onClick={(id) => {
+                            <Button
+                              onClick={() => {
+                                navigate(`${vehicle.vehicle_id}`)
                                 setCurrentItem(vehicle);
-                                handlePay(id);
+                                //handlePay(id);
                               }}
                               color="success"
                             >
-                              Pay
-                            </Button> */}
+                              Transactions
+                            </Button>
                             <Button
                               color="info"
                               onClick={() => {

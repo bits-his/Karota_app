@@ -27,6 +27,8 @@ import VehicleOwnerView from "../Component/vehicleOwner/VehicleOwnerView";
 import AgentView from "../Component/SuperAgent/componentview/AgentView";
 import SuperAgentView from "../Component/SuperAgent/componentview/SuperAgentView";
 import VendorView from "../Component/SuperAgent/componentview/VendorView";
+import VehicleHistory from "../Component/vehicleOwner/VehicleHistory";
+import { element } from "prop-types";
 
 export default function AppNavigation() {
   let Pages = useRoutes([
@@ -123,8 +125,18 @@ export default function AppNavigation() {
           element: <VehicleReg />,
         },
         {
-          path: "top-up",
-          element: <TopUp />,
+          path: "vehicles",
+          children:[
+            {
+              path:'',
+              element: <TopUp />,
+            },
+            {
+              path:':id',
+              element: <VehicleHistory />
+             }
+          ]
+          
         },
         {
           path: "/superagenttopup",

@@ -3,6 +3,7 @@ import Select from "react-select";
 import VendorTopUpDropDown from "../Vendor/VendorTopUpDropDown";
 import { _get, _post } from "../../Utils/Helper";
 import { Button } from "reactstrap";
+import toast from "react-hot-toast";
 
 function VendorTopUp({
   selectedVendorValue,
@@ -51,6 +52,12 @@ function VendorTopUp({
   const submitTopUp = (e) => {
     e.preventDefault();
 
+    if (form.amount <= 0) {
+      toast.error("Amount should be above 100.");
+      return;
+    }
+    _post()
+
     console.log(form);
   };
 
@@ -95,13 +102,13 @@ function VendorTopUp({
                 <h3>Transaction Details</h3>
                 <div className="details">
                   <p>
-                    FROM : <span>{form.vendor_name}</span>
+                    VENDOR NAME: <span>{form.vendor_name}</span>
                   </p>
                   <p>
-                    ID : <span>{form.vendor_id}</span>
+                    VENDOR ID: <span>{form.vendor_id}</span>
                   </p>
                   <p>
-                    Amount: <span>{form.amount ? form.amount : 0}</span>
+                    AMOUNT: <span>{form.amount ? form.amount : 0}</span>
                   </p>
                 </div>
               </div>

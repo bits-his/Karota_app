@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import { Button, Card, Col, Row, Table, Spinner } from "reactstrap";
+import { Button, Card, Col, Row, Table, Spinner,ListGroupItem } from "reactstrap";
 import { _get } from "../../Utils/Helper";
 
 export default function AgentTable() {
@@ -74,6 +74,7 @@ export default function AgentTable() {
                   onChange={({ target: { value } }) => setFilter(value)}
                   placeholder="Search Individual"
                 />
+                
               </div>
             </Col>
             <label
@@ -88,6 +89,7 @@ export default function AgentTable() {
 
         <Row>
           <div className="table_overflow">
+            
             {data?.length === 0 ? (
               <Spinner
                 color="warning"
@@ -129,12 +131,22 @@ export default function AgentTable() {
                       <td>{agent.address}</td>
                       <td className="text-center">
                         <Button
+                        style={{margin:"5px"}}
                           color="info"
                           onClick={() =>
                             navigate(`/agenttable/view/${agent.id}`)
+                            
                           }
                         >
                           View
+                        </Button>
+                        <Button
+                          color="success"
+                          onClick={() =>
+                            navigate(`/agenthistory/history/${agent.id}`)
+                          }
+                        >
+                          View history
                         </Button>
                       </td>
                     </tr>

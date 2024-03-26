@@ -12,8 +12,12 @@ export default function SuperAgentHistory() {
   const params = useParams();
   const owner_id = params.id;
   const getReg = useCallback(() => {
-    _get(
-      `fetch/trans_history?query_type=super_agent&super_agent_id=${owner_id}`,
+    _post(
+      `top-up/create`, {
+        destination_id: owner_id,
+        type_of_top_up: "super_agent_top_up",
+        query_type: "select_destination"
+      },
       (resp) => {
         if (resp.success && resp.results) {
           setData(resp.results[0]);

@@ -41,6 +41,7 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
       destination_id: form.vehicle_id,
       query_type: 'top_up',
       type_of_top_up: 'vehicle_top_up',
+      out_type:'agent_top_up',
       ...form
       // amount: parseFloat(form.amount),
     }

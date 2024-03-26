@@ -9,6 +9,7 @@ export default function VehicleOwnerTable() {
 
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState('');
+  const [loading,setLoading] = useState(false);
 
   const [query, setQuery] = useState('select-all')
 

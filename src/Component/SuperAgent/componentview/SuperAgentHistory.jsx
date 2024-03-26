@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Card, Col, Row, Button, Table} from "reactstrap";
+import { Card, Col, Row, Button, Table } from "reactstrap";
 import { useSelector } from "react-redux";
 import { _get, _post } from "../../../Utils/Helper";
 import keke from "../../../assets/keke_napep.png";
@@ -16,7 +16,7 @@ export default function SuperAgentHistory() {
       `fetch/trans_history?query_type=super_agent&super_agent_id=${owner_id}`,
       (resp) => {
         if (resp.success && resp.results) {
-          console.log(resp.results[0]);
+          setData(resp.results[0]);
         }
       }
     );
@@ -82,11 +82,11 @@ export default function SuperAgentHistory() {
               </thead>
               <tbody>
                 <tr>
-                  <td>1/2/2000</td>
-                  <td>debit</td>
-                  <td>payment</td>
-                  <td>2000</td>
-                  <td>10000</td>
+                  <td>{data.date}</td>
+                  <td>{data.type}</td>
+                  <td>{data.description}</td>
+                  <td>{data.amount}</td>
+                  <td>{data.balance}</td>
                 </tr>
               </tbody>
             </Table>

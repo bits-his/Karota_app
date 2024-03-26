@@ -181,7 +181,7 @@ export default function SuperAgentTable() {
                           mr={2}
                         >
                           View
-                        </Button>
+                        </Button>{" "}
                         <Button
                           color="success"
                           onClick={() =>

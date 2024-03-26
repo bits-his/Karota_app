@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
-import { useNavigate, useSearchParams, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   Card,
@@ -45,7 +45,7 @@ function VendorReg() {
   const getReg = useCallback(() => {
     setLoading(true); // Set loading to true before API call
     _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
-      setLoading(false); // Set loading to false after receiving response
+     setLoading(false); // Set loading to false after receiving response
       if (resp.success && resp.results) {
         setData(resp.results);
       }
@@ -123,7 +123,7 @@ function VendorReg() {
         </Col>
       </Row>
 
-      {loading ? ( // Display spinner if loading is true
+      {data.length === 0 ? (
         <Spinner
           color="warning"
           className="spinner"
@@ -132,35 +132,6 @@ function VendorReg() {
         >
           ""
         </Spinner>
-      ) : data.length === 0 ? ( // Display empty table if data is empty
-        <Table
-          bordered
-          responsive
-          style={{
-            position: "relative",
-            top: "20px",
-            width: "100%",
-            marginTop: "4px",
-          }}
-        >
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Vendor Name</th>
-              <th>Phone Number</th>
-              <th>Vendor email</th>
-              <th>Office Address</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td colSpan="6" className="text-center">
-                No vendors found
-              </td>
-            </tr>
-          </tbody>
-        </Table>
       ) : (
         <Table
           bordered
@@ -178,7 +149,7 @@ function VendorReg() {
               <th>Vendor Name</th>
               <th>Phone Number</th>
               <th>Vendor email</th>
-              <th>Office Address</th>
+              <th>Balance</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -189,7 +160,7 @@ function VendorReg() {
                 <td>{vendor.vendor_name}</td>
                 <td>{vendor.vendor_org_phone}</td>
                 <td>{vendor.vendor_org_email}</td>
-                <td>{vendor.vendor_ofiice_address}</td>
+                <td>{vendor.balance}</td>
                 <td className="text-center">
                   <Button color="info" className="marginResponsive"
                     onClick={() => navigate(`/vendorReg/view/${vendor.id}?vendor_name=${vendor.vendor_name}&vendor_org_phone=${vendor.vendor_org_phone}&vendor_org_email=${vendor.vendor_org_email}&vendor_ofiice_address=${vendor.vendor_ofiice_address}`)}>

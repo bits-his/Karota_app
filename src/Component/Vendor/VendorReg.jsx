@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
-import { useNavigate, useSearchParams, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   Card,
@@ -44,7 +44,7 @@ function VendorReg() {
   };
   const getReg = useCallback(() => {
     setLoading(true); // Set loading to true before API call
-    _get(`vendors?query_type=${query}&vendor_name=${filter}`, (resp) => {
+    _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
      setLoading(false); // Set loading to false after receiving response
       if (resp.success && resp.results) {
         setData(resp.results);

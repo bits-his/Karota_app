@@ -23,6 +23,7 @@ export default function VehicleOwnerTable() {
       (resp) => {
         if (resp.success && resp.data) {
           setData(resp.data);
+          setLoading(false)
         }
       });
   }, [query]);
@@ -98,6 +99,7 @@ export default function VehicleOwnerTable() {
           <div className="table_overflow">
             {data?.length === 0 ? (
               <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
+                ""
                 ""
               </Spinner>
             ) : (

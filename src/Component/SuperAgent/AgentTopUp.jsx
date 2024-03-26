@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { _get, _post } from "../../Utils/Helper";
+import { _get, _post,separator } from "../../Utils/Helper";
 import { useNavigate } from "react-router-dom";
 import { Button } from "reactstrap";
 import SuperDropdown from "./SuperDropdown";
@@ -31,9 +31,11 @@ function AgentTopUp() {
       obj,
       (res) => {
         setLoading(false); // Set loading to false when submission is successful
+        if(res.success){
         toast.success("agent top up created successfully");
         // setSubmittedData([...submittedData, res]);
         navigate("/agenttable");
+        }
       },
       (err) => {
         console.log(err);
@@ -100,7 +102,7 @@ function AgentTopUp() {
                       AGENT ID: <span>{form.super_agent_id}</span>
                     </p>
                     <p>
-                      AMOUNT: <span>{form.amount ? form.amount : 0}</span>
+                      AMOUNT: <span>{form.amount ? separator(form.amount) : 0}</span>
                     </p>
                     </div>
             </div>

@@ -74,29 +74,27 @@ export default function VendorDetail() {
           <hr />
         </Col>
         <Col md={12}>
-          <Col md={12}>
-            <Table striped bordered>
-              {/* {JSON.stringify(data)} */}
-              <thead>
-                <tr className="table-dark">
-                  <th scope="row">Date</th>
-                  <th scope="row">Type</th>
-                  <th scope="row">Description</th>
-                  <th scope="row">Amount</th>
-                  <th scope="row">Balance</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  {/* <td>{data[0].t_date}</td> */}
-                  {/* <td>{data[0].type_of_top_up}</td>
-                  <td>{data[0].description}</td>
-                  <td>{data[0].credit}</td>
-                  <td>{data[0].balance}</td> */}
-                </tr>
-              </tbody>
-            </Table>
-          </Col>
+          <Table striped bordered>
+            {/* {JSON.stringify(data)} */}
+            <thead>
+              <tr className="table-dark">
+                <th scope="row">Date</th>
+                <th scope="row">Type</th>
+                <th scope="row">Description</th>
+                <th scope="row">Amount</th>
+                <th scope="row">Balance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{data[0].t_date}</td>
+                <td>{data[0].type_of_top_up}</td>
+                <td>{data[0].description}</td>
+                <td>{data[0].credit}</td>
+                <td>{data[0].balance}</td>
+              </tr>
+            </tbody>
+          </Table>
         </Col>
       </Row>
     </Card>

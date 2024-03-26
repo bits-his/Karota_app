@@ -95,44 +95,38 @@ function VendorReg() {
       </Row>
       <hr style={{ width: "100%" }} />
       <Row>
-        <Col md={12}>
-          <div className="full-width" style={{ display: "flex", flexDirection: "row", width: "100%" }}>
-            <Col md={12} style={{ display: "flex", flexDirection: "row", width: "100%" }}>
-              <div className="search1">
-                <CiSearch
-                  style={{
-                    fontSize: 30,
-                    width: 25,
-                    marginTop: 3,
-                    color: "#000",
-                  }}
-                />
-                <Input
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    fontSize: 20,
-                    top: -5,
-                  }}
-                  name="filter"
-                  value={filter}
-                  type="text"
-                  className="app_input2"
-                  onChange={({ target: { value } }) => setFilter(value)}
-                  placeholder="Search: eg. Vendor Name | Vendor ID"
-                />
-              </div>
-            </Col>
-            <Label
-              onClick={search}
-              className="label_title1"
-              style={{ cursor: "pointer", fontWeight: "bold" }}
-              >
-                Search
-              </Label>
-          
-            
+        <Col md={12} style={{ display: "flex", flexDirection: "row", width: "100%" }}>
+          <div className="search1">
+            <CiSearch
+              style={{
+                fontSize: 30,
+                width: 25,
+                marginTop: 3,
+                color: "#000",
+              }}
+            />
+            <Input
+              style={{
+                position: "relative",
+                width: "100%",
+                fontSize: 20,
+                top: -5,
+              }}
+              name="filter"
+              value={filter}
+              type="text"
+              className="app_input2"
+              onChange={({ target: { value } }) => setFilter(value)}
+              placeholder="Search: eg. Vendor Name | Vendor ID"
+            />
           </div>
+          <Button
+          onClick={search}
+          className="label_title1"
+          style={{ cursor: "pointer", fontWeight: "bold" }}
+          >
+            Search
+          </Button>
         </Col>
       </Row>
 
@@ -143,6 +137,7 @@ function VendorReg() {
           type="grow"
           style={{ margin: "20px auto" }}
         >
+          ""
         </Spinner>
       ) : data.length === 0 ? ( // Display empty table if data is empty
         <Table

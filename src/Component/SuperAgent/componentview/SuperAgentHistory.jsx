@@ -82,10 +82,9 @@ export default function SuperAgentHistory() {
                 <tr className="table-dark">
                   <th scope="row">Date</th>
                   <th scope="row">Type</th>
-                  <th scope="row">Description</th>
-                  <th scope="row">Amount</th>
-                  <th scope="row">Balance</th>
-                </tr>
+                  <th scope="row">Topup</th>
+                  <th scope="row">Withdraw</th>
+z                </tr>
               </thead>
               <tbody>
                 <tr>
@@ -93,7 +92,7 @@ export default function SuperAgentHistory() {
                   <td>{data.type_of_top_up}</td>
                   <td>{data.description}</td>
                   <td>{data.credit}</td>
-                  <td>{data.balance}</td>
+                  <td>{data.debit}</td>
                 </tr>
               </tbody>
             </Table>

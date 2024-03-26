@@ -5,15 +5,8 @@ import { _get, _post } from "../../Utils/Helper";
 import { Button } from "reactstrap";
 import toast from "react-hot-toast";
 
-function VendorTopUp({
-  selectedVendorValue,
-  selectedAgent,
-  handleSelectSuperAgentChange,
-}) {
-  const _form = {
-    query_type: "top_up",
-    vendor_name: "",
-  }
+function VendorTopUp({ selectedVendorValue }) {
+
   const [data, setData] = useState([]);
   const [selectedVendor, setSelectedVendor] = useState(selectedVendorValue);
   const [loading, setLoading] = useState(false);
@@ -60,18 +53,6 @@ function VendorTopUp({
       toast.error("Amount should be above 100.");
       return;
     }
-    _post(
-      "top-up/create",
-      form,
-      res => {
-        if (res.success){
-          toast.success(`Successfully credited ${form.amount} to ${form.vendor_name}`)
-        }
-      }
-
-
-
-    )
 
     console.log(form);
   };

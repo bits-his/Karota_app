@@ -4,12 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { Button, Card, Col, Row, Table, Spinner } from "reactstrap";
 import { _get } from "../../Utils/Helper";
 
-
 export default function VehicleOwnerTable() {
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false)
   const [filter, setFilter] = useState('');
 
   const [query, setQuery] = useState('select-all')
@@ -23,7 +21,6 @@ export default function VehicleOwnerTable() {
   const getReg = useCallback(() => {
     _get(`vehicle-owners?query_type=${query}&name=${filter}`,
       (resp) => {
-        setLoading(true)
         if (resp.success && resp.data) {
           setData(resp.data);
         }
@@ -99,13 +96,11 @@ export default function VehicleOwnerTable() {
 
         <Row>
           <div className="table_overflow">
-            {loading ? (
+            {data?.length === 0 ? (
               <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
-                
+                ""
               </Spinner>
-            ) : 
-            data.length === 0 ? <h1>There is not data at the Database</h1>:
-            (
+            ) : (
               <Table
                 bordered
                 responsive
@@ -123,6 +118,7 @@ export default function VehicleOwnerTable() {
                     <th>Owners Name</th>
                     <th>Email</th>
                     <th>phone Num</th>
+                    <th>Plate No</th>
                     <th>Balance</th>
                     <th>Action</th>
                   </tr>
@@ -141,6 +137,9 @@ export default function VehicleOwnerTable() {
                     <td>
                       {item.phone}
 
+                    </td>
+                    <td>
+                      {item.phone_no}
                     </td>
 
                     <td>

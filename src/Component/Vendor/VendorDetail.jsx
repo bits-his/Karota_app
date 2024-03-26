@@ -128,7 +128,7 @@ export default function VendorDetail() {
                   <td>{item.type_of_top_up}</td>
                   <td>{item.description}</td>
                   <td className="text-right">{separator(item.credit)}</td>
-                  <td className="text-right">{separator(item.balance)}</td>
+                  <td className="text-right">{item.balance ? (separator(item.balance)):(0)}</td>
                 </tr>
               ))}
             </tbody>

@@ -163,7 +163,7 @@ function VendorReg() {
                 <td>{vendor.balance}</td>
                 <td className="text-center">
                   <Button color="info" className="marginResponsive"
-                    onClick={() => navigate(`/vendorReg/view/${vendor.id}?vendor_name=${vendor.vendor_name}&vendor_org_phone=${vendor.vendor_org_phone}&vendor_org_email=${vendor.vendor_org_email}&vendor_ofiice_address=${vendor.vendor_ofiice_address}`)}>
+                    onClick={() => navigate(`/vendorReg/view/${vendor.id}?vendor_name=${vendor.vendor_name}&vendor_org_phone=${vendor.vendor_org_phone}&vendor_org_email=${vendor.vendor_org_email}&vendor_ofiice_address=${vendor.balance}`)}>
                     View
                   </Button>
                   <Button

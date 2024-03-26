@@ -47,7 +47,7 @@ export default function VendorDetail() {
             <Button
               className="app_button"
               style={{
-                width: 150,
+                width: 100,
                 padding: 10,
                 color: "#fff",
                 borderRadius: 10,
@@ -57,7 +57,7 @@ export default function VendorDetail() {
               Back
             </Button>
 
-            <h4 className="app_title">Account History</h4>
+            <h4 className="app_title">Account Detail</h4>
 
             <img
               src={keke}

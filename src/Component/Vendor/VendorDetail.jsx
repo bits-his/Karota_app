@@ -49,8 +49,7 @@ export default function VendorDetail() {
               style={{
                 width: 150,
                 padding: 10,
-                marginLeft: 15,
-                color: "#000",
+                color: "#fff",
                 borderRadius: 10,
               }}
               onClick={handleBackToTable}
@@ -87,11 +86,11 @@ export default function VendorDetail() {
             </thead>
             <tbody>
               <tr>
-                <td>{data[0].t_date}</td>
-                <td>{data[0].type_of_top_up}</td>
-                <td>{data[0].description}</td>
-                <td>{data[0].credit}</td>
-                <td>{data[0].balance}</td>
+                <td>{data.t_date}</td>
+                <td>{data.type_of_top_up}</td>
+                <td>{data.description}</td>
+                <td>{data.credit}</td>
+                <td>{data.balance}</td>
               </tr>
             </tbody>
           </Table>

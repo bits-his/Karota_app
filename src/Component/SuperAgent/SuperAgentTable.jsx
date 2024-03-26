@@ -22,7 +22,7 @@ export default function SuperAgentTable() {
   const navigate = useNavigate();
   const location = useLocation();
   const formData = location.state && location.state.formData;
-
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,7 +38,9 @@ export default function SuperAgentTable() {
  }
 
   const getReg = useCallback(() => {
+    setLoading(true);
     _get(`superagent?query_type=${query}&name=${filter}`, (resp) => {
+      setLoading(false);
       if (resp.success && resp.results) {
         setData(resp.results);
       }
@@ -133,7 +135,7 @@ export default function SuperAgentTable() {
 
         <Row>
           <div className="table_overflow">
-            {data?.length === 0 ? (
+            {loading ? ( // Display spinner if loading is true
               <Spinner
                 color="warning"
                 className="spinner"
@@ -142,6 +144,36 @@ export default function SuperAgentTable() {
               >
                 ""
               </Spinner>
+            ) : data.length === 0 ? (
+              <Table
+                bordered
+                responsive
+                style={{
+                  position: "relative",
+                  top: "10px",
+                  width: "95.3%",
+                  left: "32px",
+                  marginTop: "4px",
+                }}
+              >
+                <thead>
+                  <tr>
+                    <th>S/N</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Balance</th>
+                    <th className="text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colSpan="6" className="text-center">
+                      No vendors {filter} found
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
             ) : (
               <Table
                 bordered

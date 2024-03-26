@@ -35,7 +35,7 @@ export default function OwnerReg() {
             navigate("/Vehicleownertable")
             }
             else{
-
+                toast.error('error creating owner')
             }
             
         })

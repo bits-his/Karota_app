@@ -64,7 +64,7 @@ const navigate = useNavigate();
             <h4> Select Vendor:</h4>
             <VendorTopUpDropDown
               handleChange={handleChange}
-              selectedVendorValue={form.source_id}
+              selectedVendorValue={form.vendor_id}
             />
           </div>
           <div className="info-input col-md-6">

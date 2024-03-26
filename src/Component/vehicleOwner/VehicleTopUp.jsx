@@ -35,10 +35,18 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
 
 
   const submitTopUp = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
+    const obj = {
+      source_id: form.agent_id,
+      destination_id: form.vehicle_id,
+      query_type: 'top_up',
+      type_of_top_up: 'vehicle_top_up',
+      ...form
+      // amount: parseFloat(form.amount),
+    }
       setLoading(true)
  _post(`top-up/create`,
-    form,
+    obj,
     (res)=> {
        if(res.success){
         toast.success(`Sucessfully added ${form.amount}`)
@@ -57,6 +65,7 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
 
   return (
   <>
+    {JSON.stringify(form)}
     <div className="app_card dashboard_card m-0 p-0">
       <div  style={{ margin: "auto" }}>
         <h3 className="text-center fw-bold ve-t-u" >Vehicle Top-Up</h3>

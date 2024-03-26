@@ -4,11 +4,13 @@ import VendorTopUpDropDown from "../Vendor/VendorTopUpDropDown";
 import { _get, _post } from "../../Utils/Helper";
 import { Button } from "reactstrap";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 function VendorTopUp({ selectedVendorValue }) {
 
   const [data, setData] = useState([]);
   const [selectedVendor, setSelectedVendor] = useState(selectedVendorValue);
+  const navigate = useNavigate()
   const [loading, setLoading] = useState(false);
 
   const [form, setForm] = useState({});
@@ -19,7 +21,7 @@ function VendorTopUp({ selectedVendorValue }) {
       [name]: value,
     }));
   };
-  //
+
 
   const getVendors = useCallback(() => {
     setLoading(true);
@@ -46,8 +48,31 @@ function VendorTopUp({ selectedVendorValue }) {
     });
   };
 
-  const submitTopUp = (e) => {
-    e.preventDefault();
+  const submitTopUp = () => {
+    // e.preventDefault();
+    const obj = {
+      source_id: 0,
+      destination_id: form.vendor_id,
+      query_type: 'top_up',
+      type_of_top_up:"vendor_top_up",
+      ...form
+    }
+    _post(
+      "top-up/create",
+      obj,
+      (res) => {
+        if(res.success){
+          setLoading(false);
+          toast.success("vendor top_up successfully");
+          navigate("/vendorReg");
+        }
+      },
+      (err) => {
+        console.log(err)
+        toast.error('Error occoured while creating top up ');
+        setLoading(false)
+      }
+    );
 
     if (form.amount <= 0) {
       toast.error("Amount should be above 100.");
@@ -59,6 +84,7 @@ function VendorTopUp({ selectedVendorValue }) {
 
   return (
     <>
+    {JSON.stringify(form)}
       <div className="app_card dashboard_card m-0 p-0">
         <div style={{ margin: "auto" }}>
           <h3 className="text-center fw-bold ve-t-u">Vendor Top-Up</h3>
@@ -113,7 +139,10 @@ function VendorTopUp({ selectedVendorValue }) {
                 </div>
               </div>
             <div className="top-up-submit">
-              <Button onClick={submitTopUp}>Submit</Button>
+              {/* <Button onClick={submitTopUp}>Submit</Button> */}
+              <Button onClick={submitTopUp}>
+            {loading ? "Submitting..." : "Submit"}
+          </Button>
             </div>
           </div>
       </div>

@@ -13,12 +13,14 @@ export default function SuperAgentHistory() {
   const owner_id = params.id;
   const getReg = useCallback(() => {
     _post(
-      `top-up/create`, {
+      `top-up/create`,
+      {
         destination_id: owner_id,
         type_of_top_up: "super_agent_top_up",
-        query_type: "select_destination"
+        query_type: "select_destination",
       },
       (resp) => {
+        console.log(resp, "gsgsggsg");
         if (resp.success && resp.results) {
           setData(resp.results[0]);
         }
@@ -75,7 +77,7 @@ export default function SuperAgentHistory() {
         <Col md={12}>
           <Col md={12}>
             <Table striped bordered>
-              {JSON.stringify(data)}
+              {/* {JSON.stringify(data)} */}
               <thead>
                 <tr className="table-dark">
                   <th scope="row">Date</th>
@@ -87,10 +89,10 @@ export default function SuperAgentHistory() {
               </thead>
               <tbody>
                 <tr>
-                  <td>{data.date}</td>
-                  <td>{data.type}</td>
+                  <td>{data.t_date}</td>
+                  <td>{data.type_of_top_up}</td>
                   <td>{data.description}</td>
-                  <td>{data.amount}</td>
+                  <td>{data.credit}</td>
                   <td>{data.balance}</td>
                 </tr>
               </tbody>

@@ -114,7 +114,7 @@ function VendorReg() {
               <Button
               onClick={getReg}
               className="label_title1"
-              style={{ color: "#000", cursor: "pointer" }}
+              style={{ cursor: "pointer", fontWeight: "bold" }}
               >
                 Search
               </Button>

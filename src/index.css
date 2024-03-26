@@ -198,7 +198,7 @@
   border-bottom-left-radius: 5px;
   /* border-top-left-radius: 10px;
   border-bottom-left-radius: 10px; */
-  margin-left: -13px;
+  margin-left: -5px;
   margin-right: 5px;
   width: 80.8%;
   border: 1px solid #f5c005;
@@ -222,7 +222,7 @@
 .label_title1 {
   font-size: 1.8rem;
   background-color: #f5c005;
-  width: 25%;
+  width: 20%;
   color: #fff;
   padding: 6px;
   border: 1px solid #f5c005;
@@ -453,7 +453,7 @@ td, th{
   }
 }
 
-@media only screen and (max-width: 991px) and (min-width: 768px) {
+@media only screen and (max-width: 984px) and (min-width: 768px) {
   .imaginary {
     display: none;
   }
@@ -463,14 +463,14 @@ td, th{
   }
 }
 
-@media only screen and (min-width: 992px)and (max-width: 1161px) {
+@media only screen and (min-width: 986px)and (max-width: 1161px) {
   .imaginary {
     opacity: 0;
     display: inline-block;
   }
   .marginResponsive {
-    margin-bottom: 5px;
-    margin-right: 0;
+    margin-bottom: 0;
+    margin-right: 5px;
   }
 }
 @media only screen and (min-width: 1162px) {

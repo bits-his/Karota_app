@@ -75,6 +75,7 @@ export default function SuperAgentHistory() {
         <Col md={12}>
           <Col md={12}>
             <Table striped bordered>
+              {JSON.stringify(data)}
               <thead>
                 <tr className="table-dark">
                   <th scope="row">Date</th>

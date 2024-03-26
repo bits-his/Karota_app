@@ -8,7 +8,7 @@ import { _get, _post } from "../../../Utils/Helper";
 export default function AgentHistory() {
   const navigate = useNavigate();
   const { user } = useSelector((s) => s.auth);
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const params = useParams();
   const owner_id = params.id;
   const getReg = useCallback(() => {
@@ -87,13 +87,15 @@ export default function AgentHistory() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>{data[0].t_date}</td>
-                  <td>{data[0].type_of_top_up}</td>
-                  <td>{data[0].description}</td>
-                  <td>{data[0].credit}</td>
-                  <td>{data[0].balance}</td>
-                </tr>
+                {data.map((item, index) => (
+                  <tr key={index}>
+                    <td>{item.t_date}</td>
+                    <td>{item.type_of_top_up}</td>
+                    <td>{item.description}</td>
+                    <td>{item.credit}</td>
+                    <td>{item.balance}</td>
+                  </tr>
+                ))}
               </tbody>
             </Table>
           </Col>

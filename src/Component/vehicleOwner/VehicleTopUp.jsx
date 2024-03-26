@@ -98,15 +98,12 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
               <h3>Transaction Details</h3>
               <div className='details'>
                 <p >FROM : <span >{form.agent_name}</span></p>
-                <p >TO : <span  >{form.Plate_no}</span></p>
                <p >ID : <span >{form.agent_id}</span></p>
-          
+                <p >TO : <span  >{form.Plate_no}</span></p>
                <p >ID :  <span  >{form.vehicle_id}</span></p>
                <p >Amount:  <span  >{form.amount}</span></p>
               </div>
-               
-            
-          </div>
+           </div>
 
           <div className='top-up-submit'>
             <Button 

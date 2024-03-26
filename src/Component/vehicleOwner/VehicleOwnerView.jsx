@@ -25,7 +25,7 @@ export default function VehicleOwnerView() {
       }
     });
 
-    _get(`vehicles?query_type=select-all&owner_id=${owner_id}`, (resp) => {
+    _get(`vehicles?query_type=select&owner_id=${owner_id}`, (resp) => {
       console.log(resp)
       if (resp.success && resp.data) {
         setVehicles(resp.data);

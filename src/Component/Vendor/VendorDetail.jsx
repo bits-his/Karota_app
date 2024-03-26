@@ -73,8 +73,10 @@ export default function VendorDetail() {
           <hr />
         </Col>
         <Col md={12}>
+          <div>
+            
+          </div>
           <Table striped bordered>
-            {/* {JSON.stringify(data)} */}
             <thead>
               <tr className="table-dark">
                 <th scope="row">Date</th>
@@ -86,11 +88,11 @@ export default function VendorDetail() {
             </thead>
             <tbody>
               <tr>
-                <td>{data.t_date}</td>
-                <td>{data.type_of_top_up}</td>
-                <td>{data.description}</td>
-                <td>{data.credit}</td>
-                <td>{data.balance}</td>
+                <td>{data[0].t_date}</td>
+                <td>{data[0].type_of_top_up}</td>
+                <td>{data[0].description}</td>
+                <td>{data[0].credit}</td>
+                <td>{data[0].balance}</td>
               </tr>
             </tbody>
           </Table>

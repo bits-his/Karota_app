@@ -15,7 +15,7 @@ import {
   Input,
   Label,
 } from "reactstrap";
-import { _get } from "../../Utils/Helper";
+import { _get, separator } from "../../Utils/Helper";
 import { useLocation } from "react-router-dom";
 
 export default function SuperAgentTable() {
@@ -188,12 +188,12 @@ export default function SuperAgentTable() {
               >
                 <thead>
                   <tr>
-                    <th>S/N</th>
-                    <th>Name</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Balance</th>
-                    <th className="text-center">Action</th>
+                    <th style={{textAlign: "center"}}>S/N</th>
+                    <th style={{textAlign: "center"}}>Name</th>
+                    <th style={{textAlign: "center"}}>Phone</th>
+                    <th style={{textAlign: "center"}}>Email</th>
+                    <th style={{textAlign: "center"}}>Balance</th>
+                    <th style={{textAlign: "center"}}>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -203,7 +203,7 @@ export default function SuperAgentTable() {
                       <td>{agent.name}</td>
                       <td>{agent.phone}</td>
                       <td>{agent.email}</td>
-                      <td>{agent.balance}</td>
+                      <td className="text-right">{separator(agent.balance)}</td>
                       <td className="text-center">
                         <Button
                           color="info"

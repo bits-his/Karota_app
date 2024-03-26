@@ -12,12 +12,16 @@ export default function AgentHistory() {
   const params = useParams();
   const owner_id = params.id;
   const getReg = useCallback(() => {
-    
-    _get(
-      `fetch/trans_history?query_type=agent&agent_id=${owner_id}`,
+    _post(
+      `top-up/create`,
+      {
+        destination_id: owner_id,
+        type_of_top_up: "agent_top_up",
+        query_type: "select_destination",
+      },
       (resp) => {
         if (resp.success && resp.results) {
-          setData(resp.results[0]);
+          setData(resp.results);
         }
       }
     );
@@ -72,6 +76,7 @@ export default function AgentHistory() {
         <Col md={12}>
           <Col md={12}>
             <Table striped bordered>
+              {/* {JSON.stringify(data)} */}
               <thead>
                 <tr className="table-dark">
                   <th scope="row">Date</th>
@@ -82,15 +87,13 @@ export default function AgentHistory() {
                 </tr>
               </thead>
               <tbody>
-              {data?.transactions?.map((transaction, idx) => ( // Assuming transactions is an array within the data object
-                  <tr key={idx}>
-                    <td>{transaction.date}</td>
-                    <td>{transaction.type}</td>
-                    <td>{transaction.description}</td>
-                    <td>{transaction.amount}</td>
-                    <td>{transaction.balance}</td>
-                  </tr>
-                ))}
+                <tr>
+                  <td>{data[0].t_date}</td>
+                  <td>{data[0].type_of_top_up}</td>
+                  <td>{data[0].description}</td>
+                  <td>{data[0].credit}</td>
+                  <td>{data[0].balance}</td>
+                </tr>
               </tbody>
             </Table>
           </Col>

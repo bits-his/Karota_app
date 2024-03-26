@@ -231,11 +231,11 @@ export default function Navbar() {
           {/* Collection Point */}
           {true && (
             <div
-              onClick={() => goto("/top-up")}
-              className={`navbar-link-item ${
-                location.pathname.includes("top-up") &&
-                "navbar-active-side-menu"
-              }`}
+              onClick={() => goto("/vehicles")}
+              className={`navbar-link-item ${location.pathname.includes("vehicles")
+                ? "navbar-active-side-menu"
+                : ""
+                }`}
             >
               <FaMagento
                 className="icon

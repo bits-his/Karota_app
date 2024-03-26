@@ -86,6 +86,9 @@
   border-radius: 7px;
   transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
+.btn:focus {
+  outline: 0 !important;
+}
 .app_button:hover {
   background-color: #c7a52c;
   transform: scale(1.01);
@@ -394,10 +397,10 @@ td, th{
   justify-content: center;
   height: 100vh;
   background: linear-gradient(
-      rgba(225,225,225,0.7),
-      rgba(225,225,225, 0.3)
+      rgba(225,225,225,0.1),
+      rgba(225,225,225, 0.8)
   ),
-  url('Images/road.jpg');
+  url('Images/kano.jpeg');
   background-size: cover;
   background-position: center;
 }
@@ -441,7 +444,15 @@ td, th{
     margin-bottom: 2rem;
   }
 }
-@media only screen and (max-width: 991px) {
+
+@media only screen and (max-width: 767px){
+  .marginResponsive {
+    margin-bottom: 0;
+    margin-right: 5px;
+  }
+}
+
+@media only screen and (max-width: 991px) and (min-width: 768px) {
   .imaginary {
     display: none;
   }
@@ -451,7 +462,17 @@ td, th{
   }
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 992px)and (max-width: 1161px) {
+  .imaginary {
+    opacity: 0;
+    display: inline-block;
+  }
+  .marginResponsive {
+    margin-bottom: 5px;
+    margin-right: 0;
+  }
+}
+@media only screen and (min-width: 1162px) {
   .imaginary {
     opacity: 0;
     display: inline-block;
@@ -767,4 +788,16 @@ select.form-select {
   100% { transform: rotate(360deg); }
 }
 
+.transaction-details {
+  justify-content: flex-start;
+}
 
+@media (width < 768px){
+  .full-width{
+    flex-direction: column;
+  }
+}
+
+.full-width {
+  width: 100%;
+}

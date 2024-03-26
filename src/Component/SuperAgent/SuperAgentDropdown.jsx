@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Select from "react-select";
-import { _get } from "../../Utils/Helper";
+import useQuery, { _get } from "../../Utils/Helper";
 
 function SuperAgentDropdown({ handleChange, selectedSuperAgentValue }) {
   const [data, setData] = useState([]);
@@ -33,22 +33,28 @@ function SuperAgentDropdown({ handleChange, selectedSuperAgentValue }) {
       target: { name: "super_agent", value: selectedOption.value },
     });
   };
-
+  const query = useQuery();
+  const super_name = query.get("name");
+  const id = query.get("id");
+  let defaultVlaue = { value: id, label: super_name };
   return (
-    <Select
-      value={selectedSuperAgent}
-      onChange={handleSelectChange}
-      options={data}
-      placeholder="Search for a super agent..."
-      styles={{
-        borderRadius: "none !important",
-        border: "1px solid #f5c005 !important",
-        marginBottom: "15px",
-        width: "100%",
-        padding: "8px",
-      }}
-      isLoading={loading}
-    />
+    <>
+      {/* {JSON.stringify(defaultVlaue)} */}
+      <Select
+        value={super_name === "" ? selectedSuperAgent : defaultVlaue}
+        onChange={handleSelectChange}
+        options={data}
+        placeholder="Search for a super agent..."
+        styles={{
+          borderRadius: "none !important",
+          border: "1px solid #f5c005 !important",
+          marginBottom: "15px",
+          width: "100%",
+          padding: "8px",
+        }}
+        isLoading={loading}
+      />
+    </>
   );
 }
 

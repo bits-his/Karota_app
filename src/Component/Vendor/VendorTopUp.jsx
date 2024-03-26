@@ -3,15 +3,11 @@ import Select from "react-select";
 import VendorTopUpDropDown from "../Vendor/VendorTopUpDropDown";
 import { _get, _post } from "../../Utils/Helper";
 import { Button } from "reactstrap";
-import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast"
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
+function VendorTopUp({ selectedVendorValue }) {
 
-function VendorTopUp({
-  selectedVendorValue,
-  selectedAgent,
-  handleSelectSuperAgentChange,
-}) {
   const [data, setData] = useState([]);
   const [selectedVendor, setSelectedVendor] = useState(selectedVendorValue);
   const navigate = useNavigate()
@@ -78,6 +74,11 @@ function VendorTopUp({
       }
     );
 
+    if (form.amount <= 0) {
+      toast.error("Amount should be above 100.");
+      return;
+    }
+
     console.log(form);
   };
 
@@ -122,15 +123,19 @@ function VendorTopUp({
              <div className="transaction-details">
                 <h3>Transaction Details</h3>
                 <div className="details">
-                  <p>
-                    FROM : <span>{form.vendor_name}</span>
-                  </p>
-                  <p>
-                    ID : <span>{form.vendor_id}</span>
-                  </p>
-                  <p>
-                    Amount: <span>{form.amount ? form.amount : 0}</span>
-                  </p>
+                  <div className="full-width">
+                    <p>
+                      VENDOR NAME: <span>{form.vendor_name}</span>
+                    </p>
+                  </div>
+                  <div className="full-width">
+                    <p>
+                      VENDOR ID: <span>{form.vendor_id}</span>
+                    </p>
+                    <p>
+                      AMOUNT: <span>{form.amount ? form.amount : 0}</span>
+                    </p>
+                  </div>
                 </div>
               </div>
             <div className="top-up-submit">

@@ -105,14 +105,19 @@ export default function SuperAgentView() {
                   <td>{data.lga}</td>
                 </tr>
                 <tr>
+                  <th>Balance</th>
+                  <td>{data.balance}</td>
+                </tr>
+                <tr>
                   <th>Registered Agents</th>
                   <td className="text-center">
                     <Badge color="primary">{data.agents_count}</Badge>{" "}
                     <Button
-                      className="btn btn-primary" 
-                      onClick={() => navigate(`/agent`)}
+                      className="btn btn-primary"
+                      onClick={() =>
+                        navigate(`/agent?name=${data.name}&id=${data.id}`)
+                      }
                     >
-                      {" "}
                       Add Agent
                     </Button>
                   </td>

@@ -163,8 +163,8 @@ export default function SideBar() {
         )}
         {true ? (
           <div
-            onClick={() => goto("/top-up")}
-            className={`link_item ${location.pathname.includes("top-up") ? "active_side_menu" : ""
+            onClick={() => goto("/vehicles")}
+            className={`link_item ${location.pathname.includes("vehicles") ? "active_side_menu" : ""
               }`}
           >
             {/* <GiArchiveRegister className="icon shadow" /> */}

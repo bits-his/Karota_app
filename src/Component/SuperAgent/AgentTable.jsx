@@ -11,22 +11,35 @@ export default function AgentTable() {
   const [filter, setFilter] = useState("");
 
   const [query, setQuery] = useState("select-all");
-
+ const [loading,setLoading] = useState(false);
+ const [searchResultNotFound, setSearchResultNotFound] = useState(false);
   const search = () => {
     setQuery("search");
   };
   const getReg = useCallback(() => {
+    setLoading(true); 
     _get(`agents?query_type=${query}&name=${filter}`, (resp) => {
       if (resp.success && resp.results) {
         setData(resp.results);
+        setSearchResultNotFound(resp.results.length === 0);
+        setLoading(false);
+      
       }
+    }, ()=>{
+      setLoading(false);
     });
   }, [query]);
+
   useEffect(() => {
     if (!filter) {
       setQuery("select-all");
     }
   });
+
+  useEffect(() => {
+    
+    setSearchResultNotFound(false);
+  }, [filter]);
   useEffect(() => {
     getReg();
   }, [getReg]);
@@ -89,8 +102,7 @@ export default function AgentTable() {
 
         <Row>
           <div className="table_overflow">
-            
-            {data?.length === 0 ? (
+          {loading ? (
               <Spinner
                 color="warning"
                 className="spinner"
@@ -99,6 +111,10 @@ export default function AgentTable() {
               >
                 ""
               </Spinner>
+            ) : searchResultNotFound ? ( // Check if search result is not found
+              <div style={{ textAlign: "center", marginTop: "20px", color: "red" }}>
+                Not found
+              </div>
             ) : (
               <Table
                 bordered
@@ -117,7 +133,7 @@ export default function AgentTable() {
                     <th>Name</th>
                     <th>Phone</th>
                     <th>Email</th>
-                    <th>Contact Address</th>
+                    <th>Balance</th>
                     <th className="text-center">Action</th>
                   </tr>
                 </thead>
@@ -128,7 +144,7 @@ export default function AgentTable() {
                       <td>{agent.name}</td>
                       <td>{agent.phone_no}</td>
                       <td>{agent.email}</td>
-                      <td>{agent.address}</td>
+                      <td>{agent.balance}</td>
                       <td className="text-center">
                         <Button
                         style={{margin:"5px"}}

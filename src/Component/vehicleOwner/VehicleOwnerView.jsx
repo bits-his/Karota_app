@@ -4,6 +4,7 @@ import { Card, Col, Row, Button, Table, Badge } from "reactstrap";
 import { useSelector } from "react-redux";
 import { _get, _post } from "../../Utils/Helper";
 import keke from "../../assets/keke_napep.png";
+import { Filter } from "@mui/icons-material";
 
 export default function VehicleOwnerView() {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ export default function VehicleOwnerView() {
   const [vehicles, setVehicles] = useState([]);
   const params = useParams();
   const owner_id = params.id;
+  // console.log(owner_id)
   const getReg = useCallback(() => {
     _get(`vehicle-owners?query_type=select-all&user_id=${owner_id}`, (resp) => {
       if (resp.success && resp.data) {
@@ -19,7 +21,8 @@ export default function VehicleOwnerView() {
       }
     });
 
-    _get(`vehicles?query_type=select&owner_id=${owner_id}`, (resp) => {
+    _get(`vehicles?query_type=select-all&owner_id=${owner_id}`, (resp) => {
+      console.log(resp)
       if (resp.success && resp.data) {
         setVehicles(resp.data);
       }
@@ -33,6 +36,16 @@ export default function VehicleOwnerView() {
   const handleBackToTable = () => {
     navigate("/Vehicleownertable");
   };
+ 
+  console.log(data)
+  // const vehicledata = data.map((item) => {
+  //   item.filter((itemId) => itemId === item.id)
+  // })
+
+
+// console.log(vehicledata)
+
+
 
   return (
     <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">

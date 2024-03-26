@@ -12,11 +12,13 @@ import {
 } from "reactstrap";
 import { stateLga } from "../../assets/state_and_lgas";
 import toast from "react-hot-toast";
-import { _post } from "../../Utils/Helper";
+import useQuery, { _post } from "../../Utils/Helper";
 import { useSelector } from "react-redux";
 import SuperAgentDropdown from "./SuperAgentDropdown";
 
 export default function Agent() {
+  const query = useQuery();
+  const super_name = query.get("name");
   const { user } = useSelector((p) => p.auth);
   const _form = {
     query_type: "create",
@@ -27,7 +29,7 @@ export default function Agent() {
     lga: "",
     address: "",
     email: "",
-    super_agent: "",
+    super_agent: super_name,
     service_location: "",
   };
   const [loading, setLoading] = useState(false);
@@ -128,6 +130,7 @@ export default function Agent() {
           </Col>
           <Col md={12}>
             <Form className="mx-auto">
+              {/* {JSON.stringify(  )} */}
               <>
                 <Row className="margin-bottom-input">
                   <Col md={6}>

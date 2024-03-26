@@ -8,7 +8,7 @@ import keke from "../../../assets/keke_napep.png";
 export default function SuperAgentHistory() {
   const navigate = useNavigate();
   const { user } = useSelector((s) => s.auth);
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const params = useParams();
   const owner_id = params.id;
   const getReg = useCallback(() => {
@@ -22,7 +22,7 @@ export default function SuperAgentHistory() {
       (resp) => {
         console.log(resp, "gsgsggsg");
         if (resp.success && resp.results) {
-          setData(resp.results[0]);
+          setData(resp.results);
         }
       }
     );
@@ -35,65 +35,31 @@ export default function SuperAgentHistory() {
     navigate("/superagenttable");
   };
   return (
-    <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
+    <Card>
       <Row>
-        <Col md={12}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <Button
-              className="app_button"
-              style={{
-                width: 150,
-                padding: 10,
-                marginLeft: 15,
-                color: "#000",
-                borderRadius: 10,
-              }}
-              onClick={handleBackToTable}
-            >
-              Back
-            </Button>
-
-            <h4 className="app_title">Account History</h4>
-
-            <img
-              src={keke}
-              alt="User DP"
-              style={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                marginRight: 10,
-              }}
-            />
-          </div>
-          <hr />
-        </Col>
         <Col md={12}>
           <Col md={12}>
             <Table striped bordered>
               {/* {JSON.stringify(data)} */}
               <thead>
                 <tr className="table-dark">
-                  <th scope="row">Date</th>
-                  <th scope="row">Type</th>
-                  <th scope="row">Topup</th>
-                  <th scope="row">Withdraw</th>
-z                </tr>
+                  <th>Date</th>
+                  <th>Type</th>
+                  <th>Description</th>
+                  <th>Topup</th>
+                  <th>Withdraw</th>
+                </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>{data.t_date}</td>
-                  <td>{data.type_of_top_up}</td>
-                  <td>{data.description}</td>
-                  <td>{data.credit}</td>
-                  <td>{data.debit}</td>
-                </tr>
+                  {data.map((item, index) => (
+                    <tr key={index}>
+                      <td>{item && item.t_date}</td>
+                      <td>{item && item.type_of_top_up}</td>
+                      <td>{item && item.description}</td>
+                      <td>{item && item.credit}</td>
+                      <td>{item && item.debit}</td>
+                    </tr>
+                  ))}
               </tbody>
             </Table>
           </Col>

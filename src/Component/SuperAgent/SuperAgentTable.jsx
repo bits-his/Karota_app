@@ -28,14 +28,11 @@ export default function SuperAgentTable() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
-  const [query, setQuery] = useState('select-all')
- 
-  
+  const [query, setQuery] = useState("select-all");
 
- const search = () => {
-  setQuery('search')
-
- }
+  const search = () => {
+    setQuery("search");
+  };
 
   const getReg = useCallback(() => {
     _get(`superagent?query_type=${query}&name=${filter}`, (resp) => {
@@ -48,11 +45,11 @@ export default function SuperAgentTable() {
   useEffect(() => {
     getReg();
   }, [getReg]);
- useEffect(() => {
-  if(!filter){
-    setQuery('select-all')
-  }
- },[filter])
+  useEffect(() => {
+    if (!filter) {
+      setQuery("select-all");
+    }
+  }, [filter]);
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
@@ -178,18 +175,9 @@ export default function SuperAgentTable() {
                           onClick={() =>
                             navigate(`/superagenttable/view/${agent.id}`)
                           }
-                          mr={2}
                         >
-                          View
+                          View History
                         </Button>{" "}
-                        <Button
-                          color="success"
-                          onClick={() =>
-                            navigate(`/superagenthistory/history/${agent.id}`)
-                          }
-                        >
-                          View history
-                        </Button>
                       </td>
                     </tr>
                   ))}

@@ -26,6 +26,7 @@ export default function VehicleOwnerTable() {
         setLoading(true)
         if (resp.success && resp.data) {
           setData(resp.data);
+          setLoading(false)
         }
       });
   }, [query]);
@@ -98,13 +99,13 @@ export default function VehicleOwnerTable() {
         </Col>
 
         <Row>
-          <div className="table_overflow">
-            {loading ? (
+          <>{loading ? (
               <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
-                
+                ""
               </Spinner>
-            ) : 
-            data.length === 0 ? <h1>There is not data at the Database</h1>:
+            ) : null}</>
+          <div className="table_overflow">
+            {data.length === 0 ? <h4>There is not data at the Database</h4>:
             (
               <Table
                 bordered

@@ -397,10 +397,10 @@ td, th{
   justify-content: center;
   height: 100vh;
   background: linear-gradient(
-      rgba(225,225,225,0.7),
-      rgba(225,225,225, 0.3)
+      rgba(225,225,225,0.1),
+      rgba(225,225,225, 0.8)
   ),
-  url('Images/road.jpg');
+  url('Images/kano.jpeg');
   background-size: cover;
   background-position: center;
 }

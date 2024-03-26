@@ -104,3 +104,8 @@ export function formatNumber(n = 0) {
 
   return formattedNumber;
 }
+
+export const separator = (num) => {
+  const x = Number(num)
+  return x.toLocaleString('en-US')
+}

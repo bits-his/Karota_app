@@ -11,17 +11,23 @@ export default function AgentTable() {
   const [filter, setFilter] = useState("");
 
   const [query, setQuery] = useState("select-all");
-
+ const [loading,setLoading] = useState(false);
   const search = () => {
     setQuery("search");
   };
   const getReg = useCallback(() => {
+    setLoading(true); 
     _get(`agents?query_type=${query}&name=${filter}`, (resp) => {
       if (resp.success && resp.results) {
         setData(resp.results);
+        setLoading(false);
+      
       }
+    }, ()=>{
+      setLoading(false);
     });
   }, [query]);
+
   useEffect(() => {
     if (!filter) {
       setQuery("select-all");
@@ -89,16 +95,15 @@ export default function AgentTable() {
 
         <Row>
           <div className="table_overflow">
-            
-            {data?.length === 0 ? (
+          
+            {loading? (
               <Spinner
                 color="warning"
                 className="spinner"
                 type="grow"
                 style={{ margin: "20px auto" }}
-              >
-                ""
-              </Spinner>
+              />
+               
             ) : (
               <Table
                 bordered

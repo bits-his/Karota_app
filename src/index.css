@@ -199,7 +199,8 @@
   /* border-top-left-radius: 10px;
   border-bottom-left-radius: 10px; */
   margin-left: -13px;
-  width: 102.8%;
+  margin-right: 5px;
+  width: 80.8%;
   border: 1px solid #f5c005;
 }
 
@@ -219,9 +220,9 @@
   /* height: 70px; */ 
 }
 .label_title1 {
-  font-size: 20px;
+  font-size: 1.8rem;
   background-color: #f5c005;
-  width: 14%;
+  width: 25%;
   color: #fff;
   padding: 6px;
   border: 1px solid #f5c005;
@@ -799,5 +800,5 @@ select.form-select {
 }
 
 .full-width {
-  width: 100%;
+  width: 100% !important;
 }

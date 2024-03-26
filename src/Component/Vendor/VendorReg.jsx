@@ -85,8 +85,8 @@ function VendorReg() {
       <hr style={{ width: "100%" }} />
       <Row>
         <Col md={12}>
-          <div style={{ display: "flex", flexDirection: "row" }}>
-            <Col md={12}>
+          <div className="full-width" style={{ display: "flex", flexDirection: "row", width: "100%" }}>
+            <Col md={12} style={{ display: "flex", flexDirection: "row", width: "100%" }}>
               <div className="search1">
                 <CiSearch
                   style={{
@@ -111,14 +111,15 @@ function VendorReg() {
                   placeholder="Search: eg. Vendor Name | Vendor ID"
                 />
               </div>
-            </Col>
-            <Label
+              <Button
               onClick={getReg}
               className="label_title1"
               style={{ color: "#000", cursor: "pointer" }}
-            >
-              Search
-            </Label>
+              >
+                Search
+              </Button>
+            </Col>
+            
           </div>
         </Col>
       </Row>

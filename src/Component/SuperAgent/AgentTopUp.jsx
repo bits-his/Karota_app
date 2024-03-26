@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { _get, _post } from "../../Utils/Helper";
+import { _get, _post,separator } from "../../Utils/Helper";
 import { useNavigate } from "react-router-dom";
 import { Button } from "reactstrap";
 import SuperDropdown from "./SuperDropdown";
@@ -49,7 +49,7 @@ function AgentTopUp() {
 
   return (
     <>
-    {JSON.stringify(form)}
+    {/* {JSON.stringify(form)} */}
       <div className="app_card dashboard_card m-0 p-0">
         <h3 className="text-center fw-bold">Agent Top-Up</h3>
 
@@ -95,15 +95,15 @@ function AgentTopUp() {
                 <div className="details">
                   <div className="full-width">
                     <p>
-                      AGENT NAME: <span>{form.vendor_name}</span>
+                      AGENT NAME: <span>{form.agent_name}</span>
                     </p>
                   </div>
                   <div className="full-width">
                     <p>
-                      AGENT ID: <span>{form.vendor_id}</span>
+                      AGENT ID: <span>{form.super_agent_id}</span>
                     </p>
                     <p>
-                      AMOUNT: <span>{form.amount ? form.amount : 0}</span>
+                      AMOUNT: <span>{form.amount ? separator(form.amount) : 0}</span>
                     </p>
                     </div>
             </div>

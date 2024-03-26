@@ -15,7 +15,7 @@ import {
   ModalBody,
   ModalFooter,
 } from "reactstrap";
-import { _get, formatNumber } from "../../Utils/Helper";
+import { _get, formatNumber, separator } from "../../Utils/Helper";
 import PaymentButton from "../../PayWithInterswitch";
 import moment from "moment";
 
@@ -96,8 +96,8 @@ function VendorReg() {
       <hr style={{ width: "100%" }} />
       <Row>
         <Col md={12}>
-          <div style={{ display: "flex", flexDirection: "row" }}>
-            <Col md={12}>
+          <div className="full-width" style={{ display: "flex", flexDirection: "row", width: "100%" }}>
+            <Col md={12} style={{ display: "flex", flexDirection: "row", width: "100%" }}>
               <div className="search1">
                 <CiSearch
                   style={{
@@ -126,10 +126,12 @@ function VendorReg() {
             <Label
               onClick={search}
               className="label_title1"
-              style={{ color: "#000", cursor: "pointer" }}
-            >
-              Search
-            </Label>
+              style={{ cursor: "pointer", fontWeight: "bold" }}
+              >
+                Search
+              </Label>
+          
+            
           </div>
         </Col>
       </Row>
@@ -159,7 +161,7 @@ function VendorReg() {
               <th>Vendor Name</th>
               <th>Phone Number</th>
               <th>Vendor email</th>
-              <th>Office Address</th>
+              <th>Balance</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -202,7 +204,8 @@ function VendorReg() {
                 <td>{vendor.balance}</td>
                 <td className="text-center">
                   <Button color="info" className="marginResponsive"
-                    onClick={() => navigate(`/vendorReg/view/${vendor.id}?vendor_name=${vendor.vendor_name}&vendor_org_phone=${vendor.vendor_org_phone}&vendor_org_email=${vendor.vendor_org_email}&vendor_ofiice_address=${vendor.vendor_ofiice_address}`)}>
+                    onClick={() => navigate(`/vendorReg/detail/${vendor.id}?vendor_name=${vendor.vendor_name}&vendor_org_phone=${vendor.vendor_org_phone}&vendor_org_email=${vendor.vendor_org_email}&vendor_ofiice_address=${vendor.vendor_ofiice_address}`)}
+                    >
                     View
                   </Button>
                   <Button
@@ -293,7 +296,7 @@ function VendorReg() {
             <Col md={2}>
               <PaymentButton
                 color="success"
-                amount={form.amount}
+                amount={separator(form.amount)}
                 label="Pay"
                 email={vendor?.vendor_org_email}
                 user_id={vendor?.id}

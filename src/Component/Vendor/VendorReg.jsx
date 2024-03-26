@@ -95,44 +95,38 @@ function VendorReg() {
       </Row>
       <hr style={{ width: "100%" }} />
       <Row>
-        <Col md={12}>
-          <div className="full-width" style={{ display: "flex", flexDirection: "row", width: "100%" }}>
-            <Col md={12} style={{ display: "flex", flexDirection: "row", width: "100%" }}>
-              <div className="search1">
-                <CiSearch
-                  style={{
-                    fontSize: 30,
-                    width: 25,
-                    marginTop: 3,
-                    color: "#000",
-                  }}
-                />
-                <Input
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    fontSize: 20,
-                    top: -5,
-                  }}
-                  name="filter"
-                  value={filter}
-                  type="text"
-                  className="app_input2"
-                  onChange={({ target: { value } }) => setFilter(value)}
-                  placeholder="Search: eg. Vendor Name | Vendor ID"
-                />
-              </div>
-            </Col>
-            <Label
-              onClick={search}
-              className="label_title1"
-              style={{ cursor: "pointer", fontWeight: "bold" }}
-              >
-                Search
-              </Label>
-          
-            
+        <Col md={12} style={{ display: "flex", flexDirection: "row", width: "100%" }}>
+          <div className="search1">
+            <CiSearch
+              style={{
+                fontSize: 30,
+                width: 25,
+                marginTop: 3,
+                color: "#000",
+              }}
+            />
+            <Input
+              style={{
+                position: "relative",
+                width: "100%",
+                fontSize: 20,
+                top: -5,
+              }}
+              name="filter"
+              value={filter}
+              type="text"
+              className="app_input2"
+              onChange={({ target: { value } }) => setFilter(value)}
+              placeholder="Search: eg. Vendor Name | Vendor ID"
+            />
           </div>
+          <Button
+          onClick={search}
+          className="label_title1"
+          style={{ cursor: "pointer", fontWeight: "bold" }}
+          >
+            Search
+          </Button>
         </Col>
       </Row>
 
@@ -143,6 +137,7 @@ function VendorReg() {
           type="grow"
           style={{ margin: "20px auto" }}
         >
+          ""
         </Spinner>
       ) : data.length === 0 ? ( // Display empty table if data is empty
         <Table
@@ -186,12 +181,12 @@ function VendorReg() {
         >
           <thead>
             <tr>
-              <th>#</th>
-              <th>Vendor Name</th>
-              <th>Phone Number</th>
-              <th>Vendor email</th>
-              <th>Balance</th>
-              <th>Action</th>
+              <th style={{textAlign: "center"}}>#</th>
+              <th style={{textAlign: "center"}}>Vendor Name</th>
+              <th style={{textAlign: "center"}}>Phone Number</th>
+              <th style={{textAlign: "center"}}>Vendor email</th>
+              <th style={{textAlign: "center"}}>Balance</th>
+              <th style={{textAlign: "center"}}>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -201,10 +196,10 @@ function VendorReg() {
                 <td>{vendor.vendor_name}</td>
                 <td>{vendor.vendor_org_phone}</td>
                 <td>{vendor.vendor_org_email}</td>
-                <td>{vendor.balance}</td>
+                <td style={{textAlign: "right"}}>{separator(vendor.balance)}</td>
                 <td className="text-center">
                   <Button color="info" className="marginResponsive"
-                    onClick={() => navigate(`/vendorReg/detail/${vendor.id}?vendor_name=${vendor.vendor_name}&vendor_org_phone=${vendor.vendor_org_phone}&vendor_org_email=${vendor.vendor_org_email}&vendor_ofiice_address=${vendor.vendor_ofiice_address}`)}
+                    onClick={() => navigate(`/vendorReg/detail/${vendor.id}`)}
                     >
                     View
                   </Button>

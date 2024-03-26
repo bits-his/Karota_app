@@ -51,10 +51,11 @@ function VendorReg() {
 
   const getReg = useCallback(() => {
     setLoading(true); // Set loading to true before API call
-    _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
+    _get(`vendors?query_type=${query}&vendor_name=${filter}`, (resp) => {
      setLoading(false); // Set loading to false after receiving response
       if (resp.success && resp.results) {
         setData(resp.results);
+        console.log(resp.result)
       }
     });
   }, [query]);
@@ -141,7 +142,6 @@ function VendorReg() {
           type="grow"
           style={{ margin: "20px auto" }}
         >
-          ""
         </Spinner>
       ) : data.length === 0 ? ( // Display empty table if data is empty
         <Table
@@ -167,7 +167,7 @@ function VendorReg() {
           <tbody>
             <tr>
               <td colSpan="6" className="text-center">
-                No vendors found
+                No vendors {filter} found
               </td>
             </tr>
           </tbody>

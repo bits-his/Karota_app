@@ -98,8 +98,8 @@ export default function VehicleOwnerTable() {
           </div>
         </Col>
 
-        <Row>
-          <>{loading ? (
+        <Col>
+          {loading ? (
               <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
                 ""
               </Spinner>
@@ -128,24 +128,21 @@ export default function VehicleOwnerTable() {
               <tbody>
                 <tr>
                   <td colSpan="6" className="text-center">
-                    No vendors found
+                    Record For {filter} not found
                   </td>
                 </tr>
               </tbody>
             </Table>
-          ):
-            ) : null}</>
-          <div className="table_overflow">
-            {data.length === 0 ? <h4>There is not data at the Database</h4>:
-            (
+          ): 
+          <div className="table_overflow">  
               <Table
                 bordered
                 responsive
                 style={{
                   position: "relative",
                   top: "10px",
-                  width: "95.5%",
-                  left: "30px",
+                  width: "100%",
+              
                   marginTop: "4px",
                 }}
               >
@@ -191,9 +188,8 @@ export default function VehicleOwnerTable() {
                   </tr>)}
                 </tbody>
               </Table>
-            )}
-          </div>
-        </Row>
+          </div>}
+        </Col>
       </Row>
     </>
   );

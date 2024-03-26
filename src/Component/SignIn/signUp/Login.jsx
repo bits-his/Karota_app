@@ -13,6 +13,7 @@ import {
 // import {keke} from '../../../assets/keke_napep.png'
 //import { motion } from "framer-motion"
 import keke from "../../../assets/keke_napep.png";
+// import kano from '../../../Images/kano.jpeg'
 import { useDispatch } from "react-redux";
 import { login } from "../../../redux/actions/auth";
 import { useNavigate } from "react-router-dom";

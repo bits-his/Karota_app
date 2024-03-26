@@ -8,7 +8,7 @@ import { _get, _post } from "../../Utils/Helper";
 export default function VendorDetail() {
   const navigate = useNavigate();
   const { user } = useSelector((s) => s.auth);
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const params = useParams();
   const owner_id = params.id;
   const getReg = useCallback(() => {
@@ -73,9 +73,30 @@ export default function VendorDetail() {
           <hr />
         </Col>
         <Col md={12}>
-          <div>
-            
-          </div>
+          <section style={{ marginBottom: "2rem" }}>
+            <div style={{ display: "flex" }}>
+              <div style={{ width: "50%", marginBottom: "20px" }}>
+                <p>Vendor's name: </p>
+                <span>{data.vendor_name}</span>
+              </div>
+              <div style={{ width: "50%" }}>
+                <p>Phone no.: </p>
+                <span>{data.vendor_org_phone}</span>
+              </div>
+            </div>
+
+            <div style={{ display: "flex" }}>
+              <div style={{ width: "50%" }}>
+                <p>Address: </p>
+                <span>{data.vendor_ofiice_address}</span>
+              </div>
+              <div style={{ width: "50%" }}>
+                <p>E-mail: </p>
+                <span>{data.vendor_org_email}</span>
+              </div>
+            </div>
+          </section>
+
           <Table striped bordered>
             <thead>
               <tr className="table-dark">
@@ -87,13 +108,15 @@ export default function VendorDetail() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>{data[0].t_date}</td>
-                <td>{data[0].type_of_top_up}</td>
-                <td>{data[0].description}</td>
-                <td>{data[0].credit}</td>
-                <td>{data[0].balance}</td>
-              </tr>
+              {data?.map((item, idx) => (
+                <tr key={idx}>
+                  <td>{item.t_date}</td>
+                  <td>{item.type_of_top_up}</td>
+                  <td>{item.description}</td>
+                  <td>{item.credit}</td>
+                  <td>{item.balance}</td>
+                </tr>
+              ))}
             </tbody>
           </Table>
         </Col>

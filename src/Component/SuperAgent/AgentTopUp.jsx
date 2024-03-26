@@ -80,23 +80,21 @@ function AgentTopUp() {
           </div>
 
           <div className="transaction-details">
-            <h3>Transaction Details</h3>
-            <div className="details">
-              <p>
-                FROM : <span>{form.superagent_name}</span>
-              </p>
-              <p>
-                ID : <span>{form.superagent_id}</span>
-              </p>
-              <p>
-                TO : <span>{form.agent_name}</span>
-              </p>
-              <p>
-                ID : <span>{form.agent_id}</span>
-              </p>
-              <p>
-                Amount: <span>{form.amount ? form.amount : 0}</span>
-              </p>
+          <h3>Transaction Details</h3>
+                <div className="details">
+                  <div className="full-width">
+                    <p>
+                      AGENT NAME: <span>{form.vendor_name}</span>
+                    </p>
+                  </div>
+                  <div className="full-width">
+                    <p>
+                      AGENT ID: <span>{form.vendor_id}</span>
+                    </p>
+                    <p>
+                      AMOUNT: <span>{form.amount ? form.amount : 0}</span>
+                    </p>
+                    </div>
             </div>
           </div>
           <div

@@ -11,22 +11,35 @@ export default function AgentTable() {
   const [filter, setFilter] = useState("");
 
   const [query, setQuery] = useState("select-all");
-
+ const [loading,setLoading] = useState(false);
+ const [searchResultNotFound, setSearchResultNotFound] = useState(false);
   const search = () => {
     setQuery("search");
   };
   const getReg = useCallback(() => {
+    setLoading(true); 
     _get(`agents?query_type=${query}&name=${filter}`, (resp) => {
       if (resp.success && resp.results) {
         setData(resp.results);
+        setSearchResultNotFound(resp.results.length === 0);
+        setLoading(false);
+      
       }
+    }, ()=>{
+      setLoading(false);
     });
   }, [query]);
+
   useEffect(() => {
     if (!filter) {
       setQuery("select-all");
     }
   });
+
+  useEffect(() => {
+    
+    setSearchResultNotFound(false);
+  }, [filter]);
   useEffect(() => {
     getReg();
   }, [getReg]);
@@ -89,8 +102,7 @@ export default function AgentTable() {
 
         <Row>
           <div className="table_overflow">
-            
-            {data?.length === 0 ? (
+          {loading ? (
               <Spinner
                 color="warning"
                 className="spinner"
@@ -99,6 +111,10 @@ export default function AgentTable() {
               >
                 ""
               </Spinner>
+            ) : searchResultNotFound ? ( // Check if search result is not found
+              <div style={{ textAlign: "center", marginTop: "20px", color: "red" }}>
+                Not found
+              </div>
             ) : (
               <Table
                 bordered

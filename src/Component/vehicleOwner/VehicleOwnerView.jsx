@@ -13,7 +13,7 @@ export default function VehicleOwnerView() {
   const params = useParams();
   const owner_id = params.id;
   const getReg = useCallback(() => {
-    _get(`vehicle-owners?query_type=select&user_id=${owner_id}`, (resp) => {
+    _get(`vehicle-owners?query_type=select-all&user_id=${owner_id}`, (resp) => {
       if (resp.success && resp.data) {
         setData(resp.data[0]);
       }

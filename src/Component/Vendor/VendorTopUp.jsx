@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import Select from "react-select";
 import VendorTopUpDropDown from "../Vendor/VendorTopUpDropDown";
-import { _get, _post } from "../../Utils/Helper";
+import { _get, _post, separator } from "../../Utils/Helper";
 import { Button } from "reactstrap";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
@@ -133,7 +133,7 @@ function VendorTopUp({ selectedVendorValue }) {
                       VENDOR ID: <span>{form.vendor_id}</span>
                     </p>
                     <p>
-                      AMOUNT: <span>{form.amount ? form.amount : 0}</span>
+                      AMOUNT: <span>{form.amount ? separator(form.amount) : 0}</span>
                     </p>
                   </div>
                 </div>

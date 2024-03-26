@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Card, Col, Input, Label, Table } from 'reactstrap'
-import useQuery, { _get } from '../../Utils/Helper'
+import useQuery, { _get, separator } from '../../Utils/Helper'
 
 function VendorDetail() {
   const [vendorDetail, setVendorDetail] = useState([])
@@ -70,8 +70,8 @@ function VendorDetail() {
               <tr>
                 <td>{vendorDetail.t_date}</td>
                 <td>{vendorDetail.description}</td>
-                <td>{vendorDetail.debit}</td>
-                <td>{vendorDetail.credit}</td>
+                <td>{separator(vendorDetail.debit)}</td>
+                <td>{separator(vendorDetail.credit)}</td>
               </tr>
             </tbody>
           </Table>

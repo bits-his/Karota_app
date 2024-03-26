@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import Select from "react-select";
-import { _get, _post } from "../../Utils/Helper";
+import { _get, _post, separator } from "../../Utils/Helper";
 import VehicleDropDown from "./VehicleDropDown";
 import AgentDropDown from "./AgentDropDown";
 import { Button, Row, Col } from "reactstrap";
@@ -63,9 +63,10 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
     //console.log(form);
   };
 
+  console.log(typeof Number(form.amount))
+
   return (
   <>
-    {JSON.stringify(form)}
     <div className="app_card dashboard_card m-0 p-0">
       <div  style={{ margin: "auto" }}>
         <h3 className="text-center fw-bold ve-t-u" >Vehicle Top-Up</h3>
@@ -110,7 +111,7 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
                <p >ID : <span >{form.agent_id}</span></p>
                 <p >TO : <span  >{form.Plate_no}</span></p>
                <p >ID :  <span  >{form.vehicle_id}</span></p>
-               <p >Amount:  <span  >{form.amount}</span></p>
+               <p >Amount:  <span  >{separator(form.amount)}</span></p>
               </div>
            </div>
 

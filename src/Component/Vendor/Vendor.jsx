@@ -23,6 +23,8 @@ export default function RegistrationTable() {
     contact_phone: "",
     contact_email: "",
     contact_lga: "",
+    contact_password :123456
+
   };
 
 

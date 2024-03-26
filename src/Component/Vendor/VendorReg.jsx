@@ -55,7 +55,6 @@ function VendorReg() {
      setLoading(false); // Set loading to false after receiving response
       if (resp.success && resp.results) {
         setData(resp.results);
-        console.log(resp.result)
       }
     });
   }, [query]);

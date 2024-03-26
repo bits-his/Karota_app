@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Table, Card, Row, Col, Button } from "reactstrap";
+import { Table, Card, Row, Col, Button, Input } from "reactstrap";
 import keke from "../../../assets/keke_napep.png";
 import { _get, _post } from "../../../Utils/Helper";
+import AgentVeiw from  "./AgentView"
 
 export default function AgentHistory() {
   const navigate = useNavigate();
@@ -73,8 +74,30 @@ export default function AgentHistory() {
           </div>
           <hr />
         </Col>
-        <Col md={12}>
+       
+        <Col md={12} className="text-center" >
           <Col md={12}>
+          <AgentVeiw  />
+          <Row  className="text-left" style={{ margin: "50px" ,}}>
+            
+    <Col md={3}>
+        from
+        <Input
+            type="date"
+            className="form-control-sm"
+        />
+    </Col>
+    <Col md={3}>
+        to
+        <Input
+            type="date"
+            className="form-control-sm"
+        />
+    </Col>
+</Row>
+
+
+          
             <Table striped bordered>
               {/* {JSON.stringify(data)} */}
               <thead>
@@ -92,8 +115,8 @@ export default function AgentHistory() {
                     <td>{item.t_date}</td>
                     <td>{item.type_of_top_up}</td>
                     <td>{item.description}</td>
-                    <td>{item.credit}</td>
-                    <td>{item.debit}</td>
+                    <td className="text-right">{item.credit}</td>
+                    <td className="text-right">{item.debit}</td>
                   </tr>
                 ))}
               </tbody>

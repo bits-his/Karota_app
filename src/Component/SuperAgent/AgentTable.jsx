@@ -143,11 +143,11 @@ export default function AgentTable() {
                         style={{margin:"5px"}}
                           color="info"
                           onClick={() =>
-                            navigate(`/agenttable/view/${agent.id}`)
+                            navigate(`/agenttopup`)
                             
                           }
                         >
-                          View
+                         Top up
                         </Button>
                         <Button
                           color="success"

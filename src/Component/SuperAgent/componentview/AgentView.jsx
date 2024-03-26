@@ -29,9 +29,9 @@ export default function AgentView() {
   };
 
   return (
-    <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
+    <Card className="">
       <Row>
-        <Col md={12}>
+        {/* <Col md={12}>
           <div
             style={{
               display: "flex",
@@ -39,7 +39,7 @@ export default function AgentView() {
               alignItems: "center",
             }}
           >
-            {/* Back Button */}
+            {}
 
             <Button
               className="app_button"
@@ -55,10 +55,10 @@ export default function AgentView() {
               Back
             </Button>
 
-            {/* Title */}
+            
             <h4 className="app_title">{data.name}</h4>
 
-            {/* User DP */}
+            
             <img
               src={keke}
               alt="User DP"
@@ -71,58 +71,49 @@ export default function AgentView() {
             />
           </div>
           <hr />
-        </Col>
-        <Col md={12}>
-          <Col md={12}>
-            <Table striped>
-              <tbody>
-                <tr>
-                  <th width="20%">Owner's Name</th>
-                  <td>{data.name}</td>
-                </tr>
-                <tr>
-                  <th>Phone</th>
-                  <td>{data.phone_no}</td>
-                </tr>
-                <tr>
-                  <th>Address</th>
-                  <td>{data.address}</td>
-                </tr>
-                <tr>
-                  <th>Owner's Email</th>
-                  <td>{data.email}</td>
-                </tr>
-                <tr>
-                  <th>State</th>
-                  <td>{data.state}</td>
-                </tr>
-                <tr>
-                  <th>NIN</th>
-                  <td>{data.nin}</td>
-                </tr>
-                <tr>
-                  <th>Local Government Area</th>
-                  <td>{data.lga}</td>
-                </tr>
-                <tr>
-                  <th>Service Location</th>
-                  <td className="text-center">
-                    {data.service_location}
-                    {/* <Button
-                      className="btn btn-primary"
-                      onClick={() =>    
-                        navigate(`/vehicleregistration/${owner_id}`)
-                      }
-                    >
-                      {" "}
-                      Add +
-                    </Button> */}
-                  </td>
-                </tr>
-              </tbody>
-            </Table>
-          </Col>
-        </Col>
+        </Col> */}
+       <Row className="align-items-start text-left">
+       <section style={{marginBottom: "2rem"}}>
+            <div style={{display: "flex"}}>
+              <div style={{width: "50%", marginBottom: "20px"}}>
+                <p>Owner's Name: </p>
+                <span>{data.name}</span>
+              </div>
+              <div style={{width: "50%"}}>
+                <p>State: </p>
+                <span>{data.state}</span>
+              </div>
+            </div>
+             
+            <div style={{display: "flex"}}>
+              <div style={{width: "50%"}}>
+                <p>Phone: </p>
+                <span>{data.phone_no}</span>
+              </div>
+              <div style={{width: "50%"}}>
+                <p>NIN: </p>
+                <span>{data.nin}</span>
+              </div>
+              <div style={{width: "50%"}}>
+                <p>Address: </p>
+                <span>{data.address}</span>
+              </div>
+              <div style={{width: "50%"}}>
+                <p>LGA: </p>
+                <span>{data.lga}</span>
+              </div>
+              <div style={{width: "50%"}}>
+                <p>Owner's Email: </p>
+                <span>{data.email}</span>
+              </div>
+              <div style={{width: "50%"}}>
+                <p>Service Location: </p>
+                <span>{data.service_location}</span>
+              </div>
+            </div>
+          </section>
+       
+</Row>
       </Row>
     </Card>
   );

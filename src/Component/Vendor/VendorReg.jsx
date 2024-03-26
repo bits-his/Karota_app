@@ -27,18 +27,13 @@ function VendorReg() {
   };
   const navigate = useNavigate();
   const [data, setData] = useState([]);
-
   const [filter, setFilter] = useState("");
   const [currentVendor, setCurrentVendor] = useState(_form);
   const [loading, setLoading] = useState(false); // Add loading state
   const [modal, setModal] = useState(false);
-  const [query, setQuery] = useState("select-all");
   const [vendor, setVendor] = useState({});
   const [form, setForm] = useState({});
-  const [searchData, setSearchData] = useState();
-  const search = () => {
-    setQuery("search");
-  };
+  const [query, setQuery] = useState('select-all')
   const reference_no = moment().format("YYYYMMDDhhmmssSSS");
   const onHandleChange = ({ target: { name, value } }) => {
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -48,6 +43,12 @@ function VendorReg() {
     setVendor(data);
     setModal(!modal);
   };
+
+  const search = () => {
+    setQuery('search')
+
+  }
+
   const getReg = useCallback(() => {
     setLoading(true); // Set loading to true before API call
     _get(`vendors?query_type=${query}&vendor_name=${filter}`, (resp) => {
@@ -58,16 +59,13 @@ function VendorReg() {
     });
   }, [query]);
   useEffect(() => {
+    if (!filter) {
+      setQuery('select-all')
+    }
+  })
+  useEffect(() => {
     getReg();
   }, [getReg]);
-
-  useEffect(() => {
-    // getReg();
-    if (!filter) {
-      setQuery("select-all");
-    }
-  }, [filter]);
-
   return (
     <>
       <Row>
@@ -136,13 +134,7 @@ function VendorReg() {
         </Col>
       </Row>
 
-      { loading ? (
-        data?.length === 0 ? (
-        <div>
-          <h3>
-            Not Data found
-          </h3>
-        </div> ):(
+      {loading ? ( // Display spinner if loading is true
         <Spinner
           color="warning"
           className="spinner"
@@ -151,7 +143,35 @@ function VendorReg() {
         >
           ""
         </Spinner>
-        )
+      ) : data.length === 0 ? ( // Display empty table if data is empty
+        <Table
+          bordered
+          responsive
+          style={{
+            position: "relative",
+            top: "20px",
+            width: "100%",
+            marginTop: "4px",
+          }}
+        >
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Vendor Name</th>
+              <th>Phone Number</th>
+              <th>Vendor email</th>
+              <th>Office Address</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colSpan="6" className="text-center">
+                No vendors found
+              </td>
+            </tr>
+          </tbody>
+        </Table>
       ) : (
         <Table
           bordered
@@ -174,7 +194,7 @@ function VendorReg() {
             </tr>
           </thead>
           <tbody>
-            {data?.map((vendor, idx) => (
+            {data.map((vendor, idx) => (
               <tr key={idx}>
                 <th scope="row">{idx + 1}</th>
                 <td>{vendor.vendor_name}</td>
@@ -182,11 +202,9 @@ function VendorReg() {
                 <td>{vendor.vendor_org_email}</td>
                 <td>{vendor.balance}</td>
                 <td className="text-center">
-                  <Button
-                    color="info"
-                    // onClick={() => navigate(`/vendorReg/detail/${vendor.id}`)}
-                  >
-                   <Link to={`/vendorReg/detail/${vendor.id}`} state={vendor}>View</Link> 
+                  <Button color="info" className="marginResponsive"
+                    onClick={() => navigate(`/vendorReg/view/${vendor.id}?vendor_name=${vendor.vendor_name}&vendor_org_phone=${vendor.vendor_org_phone}&vendor_org_email=${vendor.vendor_org_email}&vendor_ofiice_address=${vendor.vendor_ofiice_address}`)}>
+                    View
                   </Button>
                   <Button
                     color="success"
@@ -286,7 +304,7 @@ function VendorReg() {
             </Col>
           </Row>
         </ModalFooter>
-      </Modal>
+      </Modal> 
     </>
   );
 }

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Table, Card, Row, Col, Button } from "reactstrap";
-// import keke from "../../../assets/keke_napep.png";
+import keke from "../../assets/keke_napep.png";
 import { _get, _post } from "../../Utils/Helper";
 
 export default function VendorDetail() {
@@ -88,11 +88,11 @@ export default function VendorDetail() {
               </thead>
               <tbody>
                 <tr>
-                  <td>{data[0].t_date}</td>
-                  <td>{data[0].type_of_top_up}</td>
+                  {/* <td>{data[0].t_date}</td> */}
+                  {/* <td>{data[0].type_of_top_up}</td>
                   <td>{data[0].description}</td>
                   <td>{data[0].credit}</td>
-                  <td>{data[0].balance}</td>
+                  <td>{data[0].balance}</td> */}
                 </tr>
               </tbody>
             </Table>

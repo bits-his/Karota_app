@@ -20,8 +20,6 @@ const navigate = useNavigate();
     }));
   };
 
-
-
   const submitTopUp = () => {
     // e.preventDefault();
     const obj = {
@@ -52,29 +50,10 @@ const navigate = useNavigate();
     // alert("HEEEEE")
     console.log(form);
   };
-  // const submitTopUp = (e) => {
-  //   e.preventDefault();
-  //   if (loading) return;
-  //   _post(
-  //     "super_agent/top-up/create",
-  //     form,
-  //     (res) => {
-  //       setLoading(false); // Set loading to false when submission is successful
-  //       toast.success("super agent top up created successfully");
-  //       navigate("/superagenttable");
-  //     },
-  //     (err) => {
-  //       console.log(err);
-  //       toast.error("An error occurred while creating super agent top up");
-  //       setLoading(false);
-  //     }
-  //   );
-  //   console.log(form);
-  // };
 
   return (
     <>
-    {JSON.stringify(form)}
+    {/* {JSON.stringify(form)} */}
       <div className="app_card dashboard_card m-0 p-0">
         <h3 className="text-center fw-bold">Super Agent Top-Up</h3>
 
@@ -85,7 +64,7 @@ const navigate = useNavigate();
             <h4> Select Vendor:</h4>
             <VendorTopUpDropDown
               handleChange={handleChange}
-              selectedVendorValue={form.source_id}
+              selectedVendorValue={form.vendor_id}
             />
           </div>
           <div className="info-input col-md-6">

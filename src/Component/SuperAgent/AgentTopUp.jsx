@@ -18,10 +18,17 @@ function AgentTopUp() {
   };
 
   const submitTopUp = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
+    const obj = {
+      source_id: form.super_agent_id,
+      destination_id: form.agent_id,
+      query_type:'top_up',
+      type_of_top_up: "agent_top_up",
+      ...form
+    }
     _post(
       "top-up/create",
-      form,
+      obj,
       (res) => {
         setLoading(false); // Set loading to false when submission is successful
         if(res.success){
@@ -41,6 +48,7 @@ function AgentTopUp() {
 
   return (
     <>
+    {JSON.stringify(form)}
       <div className="app_card dashboard_card m-0 p-0">
         <h3 className="text-center fw-bold">Agent Top-Up</h3>
 
@@ -82,23 +90,21 @@ function AgentTopUp() {
           </div>
 
           <div className="transaction-details">
-            <h3>Transaction Details</h3>
-            <div className="details">
-              <p>
-                FROM : <span>{form.superagent_name}</span>
-              </p>
-              <p>
-                ID : <span>{form.superagent_id}</span>
-              </p>
-              <p>
-                TO : <span>{form.agent_name}</span>
-              </p>
-              <p>
-                ID : <span>{form.agent_id}</span>
-              </p>
-              <p>
-                Amount: <span>{form.amount ? form.amount : 0}</span>
-              </p>
+          <h3>Transaction Details</h3>
+                <div className="details">
+                  <div className="full-width">
+                    <p>
+                      AGENT NAME: <span>{form.vendor_name}</span>
+                    </p>
+                  </div>
+                  <div className="full-width">
+                    <p>
+                      AGENT ID: <span>{form.vendor_id}</span>
+                    </p>
+                    <p>
+                      AMOUNT: <span>{form.amount ? form.amount : 0}</span>
+                    </p>
+                    </div>
             </div>
           </div>
           <div

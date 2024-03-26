@@ -82,13 +82,15 @@ export default function AgentHistory() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1/2/2000</td>
-                  <td>debit</td>
-                  <td>payment</td>
-                  <td>2000</td>
-                  <td>10000</td>
-                </tr>
+              {data?.transactions?.map((transaction, idx) => ( // Assuming transactions is an array within the data object
+                  <tr key={idx}>
+                    <td>{transaction.date}</td>
+                    <td>{transaction.type}</td>
+                    <td>{transaction.description}</td>
+                    <td>{transaction.amount}</td>
+                    <td>{transaction.balance}</td>
+                  </tr>
+                ))}
               </tbody>
             </Table>
           </Col>

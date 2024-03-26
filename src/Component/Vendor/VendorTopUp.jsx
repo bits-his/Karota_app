@@ -3,12 +3,17 @@ import Select from "react-select";
 import VendorTopUpDropDown from "../Vendor/VendorTopUpDropDown";
 import { _get, _post } from "../../Utils/Helper";
 import { Button } from "reactstrap";
+import toast from "react-hot-toast";
 
 function VendorTopUp({
   selectedVendorValue,
   selectedAgent,
   handleSelectSuperAgentChange,
 }) {
+  const _form = {
+    query_type: "top_up",
+    vendor_name: "",
+  }
   const [data, setData] = useState([]);
   const [selectedVendor, setSelectedVendor] = useState(selectedVendorValue);
   const [loading, setLoading] = useState(false);
@@ -50,6 +55,23 @@ function VendorTopUp({
 
   const submitTopUp = (e) => {
     e.preventDefault();
+
+    if (form.amount <= 0) {
+      toast.error("Amount should be above 100.");
+      return;
+    }
+    _post(
+      "top-up/create",
+      form,
+      res => {
+        if (res.success){
+          toast.success(`Successfully credited ${form.amount} to ${form.vendor_name}`)
+        }
+      }
+
+
+
+    )
 
     console.log(form);
   };
@@ -94,15 +116,19 @@ function VendorTopUp({
              <div className="transaction-details">
                 <h3>Transaction Details</h3>
                 <div className="details">
-                  <p>
-                    FROM : <span>{form.vendor_name}</span>
-                  </p>
-                  <p>
-                    ID : <span>{form.vendor_id}</span>
-                  </p>
-                  <p>
-                    Amount: <span>{form.amount ? form.amount : 0}</span>
-                  </p>
+                  <div className="full-width">
+                    <p>
+                      VENDOR NAME: <span>{form.vendor_name}</span>
+                    </p>
+                  </div>
+                  <div className="full-width">
+                    <p>
+                      VENDOR ID: <span>{form.vendor_id}</span>
+                    </p>
+                    <p>
+                      AMOUNT: <span>{form.amount ? form.amount : 0}</span>
+                    </p>
+                  </div>
                 </div>
               </div>
             <div className="top-up-submit">

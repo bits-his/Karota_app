@@ -16,12 +16,8 @@ export default function VehicleOwnerView() {
   // console.log(owner_id)
   const getReg = useCallback(() => {
     _get(`vehicle-owners?query_type=select-all&user_id=${owner_id}`, (resp) => {
-      const resData = resp.data
-      const owner = resData.find((item) => item.id === parseInt(owner_id) )
-      // console.log(owner)
-      if (resp.success && resp.data && resp.data.length) {
-        // setData(owner[0])
-        setData(owner);
+      if (resp.success && resp.data) {
+        setData(resp.data[0]);
       }
     });
 

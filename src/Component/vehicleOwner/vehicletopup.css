@@ -44,9 +44,12 @@
    
     & p {
         width: 45%;
-        justify-content: space-between;
+        align-items: flex-start;
         display: inline-flex;
         font-weight: bold;
+    }
+    & span {
+        margin-left: 3rem;
     }
 }
 .top-up-submit{
@@ -66,8 +69,14 @@
 @media (width < 768px){
 
     .transaction-details{
-       & p{
+        & .details {
+            height: 150px;
+        }
+        & p{
             width:100%
+        }
+        & span {
+            margin-left: 1rem;
         }
     }
     .ve-t-u{

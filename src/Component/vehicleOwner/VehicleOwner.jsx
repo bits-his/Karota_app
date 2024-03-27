@@ -171,17 +171,7 @@ export default function OwnerReg() {
                                             ))}
                                     </Input>
                                 </FormGroup>
-                            </Col>
-                            {/* <Col md={6}>
-                                <FormGroup>
-                                    <Label for="examplePassword">Password</Label>
-                                    <Input 
-                                    
-                                    id="examplePassword" 
-                                    name="password" 
-                                    placeholder="password" type="password" />
-                                </FormGroup>
-                            </Col> */}
+                            </Col> 
                         </Row>
                         <Row>
                             <Col md={12}

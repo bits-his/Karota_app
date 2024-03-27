@@ -78,25 +78,7 @@ export default function AgentHistory() {
         <Col md={12} className="text-center" >
           <Col md={12}>
           <AgentVeiw  />
-          <Row  className="text-left" style={{ margin: "50px" ,}}>
-            
-    <Col md={3}>
-        from
-        <Input
-            type="date"
-            className="form-control-sm"
-        />
-    </Col>
-    <Col md={3}>
-        to
-        <Input
-            type="date"
-            className="form-control-sm"
-        />
-    </Col>
-</Row>
-
-
+     
           
             <Table striped bordered>
               {/* {JSON.stringify(data)} */}

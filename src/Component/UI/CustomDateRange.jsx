@@ -162,7 +162,7 @@ export default function CustomDateRange({
                     ["custom", "daily", "weekly"].includes(type) && (
                         <Row className="d-flex mx-0 px-0 flex-direction-row justify-content-between">
                             <Col md={6} className="text-left">
-                                <div className="row">
+                                <div className="row " style={{display:"flex",alignItems:"center"}}>
                                     <div className="col-md-3 pt-5 mt-5 text-right d-flex align-items-center justify-content-end">
                                         <em className="text-black">From:</em>
                                     </div>
@@ -179,7 +179,7 @@ export default function CustomDateRange({
                                 </div>
                             </Col>
                             <Col md={6} className="text-left">
-                                <div className="row">
+                                <div className="row" style={{display:"flex",alignItems:"center"}}>
                                     <div className="col-md-3 text-right d-flex align-items-center justify-content-end">
                                         <em className="text-black">To:</em>
                                     </div>

@@ -15,30 +15,29 @@ import {
   Input,
   Label,
 } from "reactstrap";
-import { _get } from "../../Utils/Helper";
+import { _get, separator } from "../../Utils/Helper";
 import { useLocation } from "react-router-dom";
 
 export default function SuperAgentTable() {
   const navigate = useNavigate();
   const location = useLocation();
   const formData = location.state && location.state.formData;
-
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
-  const [query, setQuery] = useState('select-all')
- 
-  
+  const [query, setQuery] = useState("select-all");
 
- const search = () => {
-  setQuery('search')
-
- }
+  const search = () => {
+    setQuery("search");
+  };
 
   const getReg = useCallback(() => {
+    setLoading(true);
     _get(`superagent?query_type=${query}&name=${filter}`, (resp) => {
+      setLoading(false);
       if (resp.success && resp.results) {
         setData(resp.results);
       }
@@ -48,11 +47,11 @@ export default function SuperAgentTable() {
   useEffect(() => {
     getReg();
   }, [getReg]);
- useEffect(() => {
-  if(!filter){
-    setQuery('select-all')
-  }
- },[filter])
+  useEffect(() => {
+    if (!filter) {
+      setQuery("select-all");
+    }
+  }, [filter]);
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
@@ -133,7 +132,7 @@ export default function SuperAgentTable() {
 
         <Row>
           <div className="table_overflow">
-            {data?.length === 0 ? (
+            {loading ? ( // Display spinner if loading is true
               <Spinner
                 color="warning"
                 className="spinner"
@@ -142,7 +141,7 @@ export default function SuperAgentTable() {
               >
                 ""
               </Spinner>
-            ) : (
+            ) : data.length === 0 ? (
               <Table
                 bordered
                 responsive
@@ -165,31 +164,52 @@ export default function SuperAgentTable() {
                   </tr>
                 </thead>
                 <tbody>
+                  <tr>
+                    <td colSpan="6" className="text-center">
+                      No vendors {filter} found
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+            ) : (
+              <Table
+                bordered
+                responsive
+                style={{
+                  position: "relative",
+                  top: "10px",
+                  width: "95.3%",
+                  left: "32px",
+                  marginTop: "4px",
+                }}
+              >
+                <thead>
+                  <tr>
+                    <th style={{textAlign: "center"}}>S/N</th>
+                    <th style={{textAlign: "center"}}>Name</th>
+                    <th style={{textAlign: "center"}}>Phone</th>
+                    <th style={{textAlign: "center"}}>Email</th>
+                    <th style={{textAlign: "center"}}>Balance</th>
+                    <th style={{textAlign: "center"}}>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
                   {data?.map((agent, idx) => (
                     <tr key={idx}>
                       <th>{idx + 1}</th>
                       <td>{agent.name}</td>
                       <td>{agent.phone}</td>
                       <td>{agent.email}</td>
-                      <td>{agent.balance}</td>
+                      <td className="text-right">{separator(agent.balance)}</td>
                       <td className="text-center">
                         <Button
                           color="info"
                           onClick={() =>
                             navigate(`/superagenttable/view/${agent.id}`)
                           }
-                          mr={2}
                         >
-                          View
+                          View History
                         </Button>{" "}
-                        <Button
-                          color="success"
-                          onClick={() =>
-                            navigate(`/superagenthistory/history/${agent.id}`)
-                          }
-                        >
-                          View history
-                        </Button>
                       </td>
                     </tr>
                   ))}

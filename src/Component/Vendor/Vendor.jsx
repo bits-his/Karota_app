@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Card, Col, Row, Form, FormGroup, Label, Input, Spinner } from "reactstrap";
 import { stateLga } from "../../assets/state_and_lgas";
 import { _post } from "../../Utils/Helper";
+import keke from "../../assets/keke_napep.png";
 import toast from "react-hot-toast";
 
 export default function RegistrationTable() {
@@ -23,6 +24,8 @@ export default function RegistrationTable() {
     contact_phone: "",
     contact_email: "",
     contact_lga: "",
+    contact_password :123456
+
   };
 
 
@@ -112,18 +115,16 @@ export default function RegistrationTable() {
             <h4 className="app_title vendor_title">
               {form.step > 0 ? "Vendor contact person" : "Vendor Registeration"}
             </h4>
-            <button
-              className="app_button imaginary"
+            <img
+              src={keke}
+              alt="User DP"
               style={{
-                width: "10rem",
-                padding: 10,
-                color: "#000",
-                borderRadius: 10,
+                width: 40,
+                height: 40,
+                borderRadius: "50%",
+                marginRight: 10,
               }}
-              onClick={() => navigate("/vendorReg")}
-            >
-              Back
-            </button>
+            />
           </div>
 
           <hr />

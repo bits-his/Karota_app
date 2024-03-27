@@ -103,19 +103,12 @@ export default function AgentTable() {
         <Row>
           <div className="table_overflow">
           {loading ? (
-              <Spinner
-                color="warning"
-                className="spinner"
-                type="grow"
-                style={{ margin: "20px auto" }}
-              >
-                ""
+              <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
+                " "
               </Spinner>
-            ) : searchResultNotFound ? ( // Check if search result is not found
-              <div style={{ textAlign: "center", marginTop: "20px", color: "red" }}>
-                Not found
-              </div>
-            ) : (
+            ) : 
+            data.length === 0 ? <h1 className="text-danger text-center">Not found</h1>:
+            (
               <Table
                 bordered
                 responsive
@@ -150,11 +143,11 @@ export default function AgentTable() {
                         style={{margin:"5px"}}
                           color="info"
                           onClick={() =>
-                            navigate(`/agenttable/view/${agent.id}`)
+                            navigate(`/agenttopup`)
                             
                           }
                         >
-                          View
+                         Top up
                         </Button>
                         <Button
                           color="success"

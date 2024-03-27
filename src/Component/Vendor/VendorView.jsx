@@ -14,7 +14,7 @@ export default function VehicleView() {
     const [loading, setLoading] = useState(false)
 
     setLoading(true);
-    _get(`vendor?query_type=select-all&plate_no=${filter}`, (resp) => {
+    _get(`vendor?query_type=select&plate_no=${filter}`, (resp) => {
       setLoading(false);
       if (resp.success && resp.results) {
         setData(resp.results)

@@ -15,7 +15,7 @@ import {
   ModalBody,
   ModalFooter,
 } from "reactstrap";
-import { _get, formatNumber } from "../../Utils/Helper";
+import { _get, formatNumber, separator } from "../../Utils/Helper";
 import PaymentButton from "../../PayWithInterswitch";
 import moment from "moment";
 
@@ -33,6 +33,7 @@ function VendorReg() {
   const [modal, setModal] = useState(false);
   const [vendor, setVendor] = useState({});
   const [form, setForm] = useState({});
+  const [query, setQuery] = useState('select-all')
   const reference_no = moment().format("YYYYMMDDhhmmssSSS");
   const onHandleChange = ({ target: { name, value } }) => {
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -42,16 +43,26 @@ function VendorReg() {
     setVendor(data);
     setModal(!modal);
   };
+
+  const search = () => {
+    setQuery('search')
+
+  }
+
   const getReg = useCallback(() => {
     setLoading(true); // Set loading to true before API call
-    _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
+    _get(`vendors?query_type=${query}&vendor_name=${filter}`, (resp) => {
      setLoading(false); // Set loading to false after receiving response
       if (resp.success && resp.results) {
         setData(resp.results);
       }
     });
-  }, [filter]);
-
+  }, [query]);
+  useEffect(() => {
+    if (!filter) {
+      setQuery('select-all')
+    }
+  })
   useEffect(() => {
     getReg();
   }, [getReg]);
@@ -84,42 +95,38 @@ function VendorReg() {
       </Row>
       <hr style={{ width: "100%" }} />
       <Row>
-        <Col md={12}>
-          <div style={{ display: "flex", flexDirection: "row" }}>
-            <Col md={12}>
-              <div className="search1">
-                <CiSearch
-                  style={{
-                    fontSize: 30,
-                    width: 25,
-                    marginTop: 3,
-                    color: "#000",
-                  }}
-                />
-                <Input
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    fontSize: 20,
-                    top: -5,
-                  }}
-                  name="filter"
-                  value={filter}
-                  type="text"
-                  className="app_input2"
-                  onChange={({ target: { value } }) => setFilter(value)}
-                  placeholder="Search: eg. Vendor Name | Vendor ID"
-                />
-              </div>
-            </Col>
-            <Label
-              onClick={getReg}
-              className="label_title1"
-              style={{ color: "#000", cursor: "pointer" }}
-            >
-              Search
-            </Label>
+        <Col md={12} style={{ display: "flex", flexDirection: "row", width: "100%" }}>
+          <div className="search1">
+            <CiSearch
+              style={{
+                fontSize: 30,
+                width: 25,
+                marginTop: 3,
+                color: "#000",
+              }}
+            />
+            <Input
+              style={{
+                position: "relative",
+                width: "100%",
+                fontSize: 20,
+                top: -5,
+              }}
+              name="filter"
+              value={filter}
+              type="text"
+              className="app_input2"
+              onChange={({ target: { value } }) => setFilter(value)}
+              placeholder="Search: eg. Vendor Name | Vendor ID"
+            />
           </div>
+          <Button
+          onClick={search}
+          className="label_title1"
+          style={{ cursor: "pointer", fontWeight: "bold" }}
+          >
+            Search
+          </Button>
         </Col>
       </Row>
 
@@ -149,14 +156,14 @@ function VendorReg() {
               <th>Vendor Name</th>
               <th>Phone Number</th>
               <th>Vendor email</th>
-              <th>Office Address</th>
+              <th>Balance</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td colSpan="6" className="text-center">
-                No vendors found
+                No vendors {filter} found
               </td>
             </tr>
           </tbody>
@@ -174,12 +181,12 @@ function VendorReg() {
         >
           <thead>
             <tr>
-              <th>#</th>
-              <th>Vendor Name</th>
-              <th>Phone Number</th>
-              <th>Vendor email</th>
-              <th>Balance</th>
-              <th>Action</th>
+              <th style={{textAlign: "center"}}>#</th>
+              <th style={{textAlign: "center"}}>Vendor Name</th>
+              <th style={{textAlign: "center"}}>Phone Number</th>
+              <th style={{textAlign: "center"}}>Vendor email</th>
+              <th style={{textAlign: "center"}}>Balance</th>
+              <th style={{textAlign: "center"}}>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -189,10 +196,10 @@ function VendorReg() {
                 <td>{vendor.vendor_name}</td>
                 <td>{vendor.vendor_org_phone}</td>
                 <td>{vendor.vendor_org_email}</td>
-                <td>{vendor.balance}</td>
+                <td style={{textAlign: "right"}}>{separator(vendor.balance)}</td>
                 <td className="text-center">
                   <Button color="info" className="marginResponsive"
-                    onClick={() => navigate(`/vendorReg/view/${vendor.id}?vendor_name=${vendor.vendor_name}&vendor_org_phone=${vendor.vendor_org_phone}&vendor_org_email=${vendor.vendor_org_email}&vendor_ofiice_address=${vendor.balance}`)}>
+                    onClick={() => navigate(`/vendorReg/view/${vendor.id}?vendor_name=${vendor.vendor_name}&vendor_org_phone=${vendor.vendor_org_phone}&vendor_org_email=${vendor.vendor_org_email}&vendor_ofiice_address=${vendor.vendor_ofiice_address}`)}>
                     View
                   </Button>
                   <Button
@@ -283,7 +290,7 @@ function VendorReg() {
             <Col md={2}>
               <PaymentButton
                 color="success"
-                amount={form.amount}
+                amount={separator(form.amount)}
                 label="Pay"
                 email={vendor?.vendor_org_email}
                 user_id={vendor?.id}

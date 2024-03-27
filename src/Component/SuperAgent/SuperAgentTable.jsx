@@ -185,12 +185,12 @@ export default function SuperAgentTable() {
               >
                 <thead>
                   <tr>
-                    <th style={{textAlign: "center"}}>S/N</th>
-                    <th style={{textAlign: "center"}}>Name</th>
-                    <th style={{textAlign: "center"}}>Phone</th>
-                    <th style={{textAlign: "center"}}>Email</th>
-                    <th style={{textAlign: "center"}}>Balance</th>
-                    <th style={{textAlign: "center"}}>Action</th>
+                    <th style={{ textAlign: "center" }}>S/N</th>
+                    <th style={{ textAlign: "center" }}>Name</th>
+                    <th style={{ textAlign: "center" }}>Phone</th>
+                    <th style={{ textAlign: "center" }}>Email</th>
+                    <th style={{ textAlign: "center" }}>Balance</th>
+                    <th style={{ textAlign: "center" }}>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -204,12 +204,18 @@ export default function SuperAgentTable() {
                       <td className="text-center">
                         <Button
                           color="info"
+                          onClick={() => navigate(`/superagenttopup`)}
+                        >
+                          Topup
+                        </Button>{" "}
+                        <Button
+                          color="success"
                           onClick={() =>
                             navigate(`/superagenttable/view/${agent.id}`)
                           }
                         >
                           View History
-                        </Button>{" "}
+                        </Button>
                       </td>
                     </tr>
                   ))}

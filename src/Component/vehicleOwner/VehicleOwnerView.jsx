@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Card, Col, Row, Button, Table, Badge } from "reactstrap";
 import { useSelector } from "react-redux";
-import { _get, _post } from "../../Utils/Helper";
+import { _get, _post, separator } from "../../Utils/Helper";
 import keke from "../../assets/keke_napep.png";
 import { Filter } from "@mui/icons-material";
 
@@ -16,6 +16,7 @@ export default function VehicleOwnerView() {
   // console.log(owner_id)
   const getReg = useCallback(() => {
     _get(`vehicle-owners?query_type=select-all&user_id=${owner_id}`, (resp) => {
+      console.log(resp)
       if (resp.success && resp.data) {
         setData(resp.data[0]);
       }
@@ -27,6 +28,25 @@ export default function VehicleOwnerView() {
         setVehicles(resp.data);
       }
     });
+//////////////////API to get only transaction history
+    _post(
+      `top-up/create`,
+      {
+        destination_id: owner_id,
+        type_of_top_up: "vehicle_top_up",
+        query_type: "select_destination",
+      },
+      (res) => {
+        console.log(res, "see me")
+        if(res.success && res.results){
+          console.log(res)
+        }
+      }
+    )
+    // _get(`top-up/create/?query_type=vehicle&vehicle_id=${owner_id}`, (res) => {
+    //   console.log(res)
+    //   setVendorDetail(res.data[0])
+    // })
   }, [owner_id]);
 
   useEffect(() => {
@@ -93,38 +113,61 @@ export default function VehicleOwnerView() {
         </Col>
         <Col md={12}>
           <Col md={12}>
+            
+          <div className="vehicleview">
+                <div style={{display: "flex"}}>
+                  <span style={{fontWeight: '600', marginRight: '20px'}}>Owner's Name:</span>
+                  <p>Abu</p>
+                </div>
+                <div style={{display: "flex"}}>
+                  <span style={{fontWeight: '600', marginRight: '20px'}}>Phone Number</span>
+                  <p>020293884982</p>
+                </div>
+                <div style={{display: "flex"}}>
+                  <span style={{fontWeight: '600', marginRight: '20px'}}>Address</span>
+                  <p>Ada rd</p>
+                </div>
+                <div style={{display: "flex"}}>
+                  <span style={{fontWeight: '600', marginRight: '20px'}}>Registered Vehicle</span>
+                  <p>245678rty</p>
+                </div>
+                <div style={{display: "flex"}}>
+                  <span style={{fontWeight: '600', marginRight: '20px'}}>Local Government Area</span>
+                  <p>ajingi</p>
+                </div>
+              </div>
+              <div>
+              <Badge color="primary">{vehicles.length}</Badge>{" "}
+                    <Button
+                      className="btn btn-primary"
+                      onClick={() =>
+                        navigate(`/vehicleregistration/${owner_id}`)
+                      }
+                    >
+                      {" "}
+                      Add +
+                    </Button>
+              </div>
             <Table striped>
-              <tbody>
-                <tr>
-                  <th width="20%">Owner's Name</th>
-                  <td>{data.name}</td>
-                </tr>
-                <tr>
+              {/* <tbody>
+              <tr>
+                  <th width="15%">Owner's Name</th>
                   <th>Phone</th>
-                  <td>{data.phone}</td>
-                </tr>
-                <tr>
                   <th>Address</th>
-                  <td>{data.address}</td>
-                </tr>
-                <tr>
                   <th>Owner's Email</th>
-                  <td>{data.email}</td>
-                </tr>
-                <tr>
                   <th>State</th>
-                  <td>{data.state}</td>
-                </tr>
-                <tr>
                   <th>NIN</th>
-                  <td>{data.nin}</td>
-                </tr>
-                <tr>
                   <th>Local Government Area</th>
-                  <td>{data.lga}</td>
+                  <th>Registered Vehicles</th>
                 </tr>
                 <tr>
-                  <th>Registered Vehicles</th>
+                  <td>{data.name}</td>
+                  <td>{data.phone}</td>
+                  <td>{data.address}</td>
+                  <td>{data.email}</td>
+                  <td>{data.state}</td>
+                  <td>{data.nin}</td>
+                  <td>{data.lga}</td>
                   <td className="text-center">
                     <Badge color="primary">{vehicles.length}</Badge>{" "}
                     <Button
@@ -137,8 +180,23 @@ export default function VehicleOwnerView() {
                       Add +
                     </Button>
                   </td>
-                </tr>
-              </tbody>
+                 </tr>
+              </tbody> */}
+              <div style={{marginBottom: '20px', marginTop: '15px', fontSize: '15px', fontWeight: '600'}}>Transaction History</div>
+              <tbody>
+            <tr>
+                <th width="20%">Date</th>
+                <th width="20%">Description</th>
+                <th width="20%">Dr</th>
+                <th width="20%">Cr</th>
+              </tr>
+              <tr>
+                <td>{vehicles.t_date}</td>
+                <td>{vehicles.description}</td>
+                <td>{vehicles.debit === NaN ? 0 : separator(vehicles.debit)}</td>
+                <td>{vehicles.credit === NaN ? 0 : separator(vehicles.credit)}</td>
+              </tr>
+            </tbody>
             </Table>
           </Col>
         </Col>

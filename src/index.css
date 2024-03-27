@@ -481,6 +481,15 @@ td, th{
     margin-bottom: 0;
     margin-right: 5px;
   }
+  .vehicleview{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.2fr 0.8fr;
+    width: 68vw;
+    height: 20vh;
+    justify-content: center;
+    align-content: center;
+  }
 }
 
 /* SignIn */

@@ -13,6 +13,7 @@ function VendorDetail() {
 
  const getReg = useCallback(() => {
   _get(`fetch/trans_history/?query_type=vendor&vendor_id=${vendor.id}`, (res) => {
+    console.log(res.data)
     setVendorDetail(res.data[0])
   })
  }, [vendor.id])

@@ -5,7 +5,7 @@ import { Button } from "reactstrap";
 import SuperDropdown from "./SuperDropdown";
 import VendorTopUpDropDown from "../Vendor/VendorTopUpDropDown";
 import toast from "react-hot-toast";
-import { _post } from "../../Utils/Helper";
+import { _post, separator } from "../../Utils/Helper";
 
 function SuperAgentTopUp() {
 const navigate = useNavigate();
@@ -27,6 +27,7 @@ const navigate = useNavigate();
       destination_id: form.super_agent_id,
       query_type:'top_up',
       type_of_top_up:"super_agent_top_up",
+      out_type:'vendor_top_up',
       ...form
     }
     _post(
@@ -104,7 +105,7 @@ const navigate = useNavigate();
               ID : <span>{form.superagent_id}</span>
             </p>
             <p>
-              Amount: <span>{form.amount ? form.amount : 0}</span>
+              Amount: <span>{form.amount ? separator(form.amount) : 0}</span>
             </p>
           </div>
         </div>

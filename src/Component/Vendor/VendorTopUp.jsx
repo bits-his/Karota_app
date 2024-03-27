@@ -84,7 +84,6 @@ function VendorTopUp({ selectedVendorValue }) {
 
   return (
     <>
-    {JSON.stringify(form)}
       <div className="app_card dashboard_card m-0 p-0">
         <div style={{ margin: "auto" }}>
           <h3 className="text-center fw-bold ve-t-u">Vendor Top-Up</h3>
@@ -102,7 +101,7 @@ function VendorTopUp({ selectedVendorValue }) {
 
             <div>
               <div className="info-input col-md-6">
-                <h4>Amount:</h4>
+                <h4>Amount ({form.amount ? separator(form.amount) : 0}):</h4>
                 <input
                   placeholder="Enter amount here..."
                   name = 'amount'

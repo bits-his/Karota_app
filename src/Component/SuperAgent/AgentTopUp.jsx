@@ -24,6 +24,7 @@ function AgentTopUp() {
       destination_id: form.agent_id,
       query_type:'top_up',
       type_of_top_up: "agent_top_up",
+      out_type:'super_agent_top_up',
       ...form
     }
     _post(
@@ -31,9 +32,11 @@ function AgentTopUp() {
       obj,
       (res) => {
         setLoading(false); // Set loading to false when submission is successful
+        if(res.success){
         toast.success("agent top up created successfully");
         // setSubmittedData([...submittedData, res]);
         navigate("/agenttable");
+        }
       },
       (err) => {
         console.log(err);
@@ -46,7 +49,7 @@ function AgentTopUp() {
 
   return (
     <>
-    {JSON.stringify(form)}
+    {/* {JSON.stringify(form)} */}
       <div className="app_card dashboard_card m-0 p-0">
         <h3 className="text-center fw-bold">Agent Top-Up</h3>
 
@@ -92,12 +95,12 @@ function AgentTopUp() {
                 <div className="details">
                   <div className="full-width">
                     <p>
-                      AGENT NAME: <span>{form.vendor_name}</span>
+                      AGENT NAME: <span>{form.agent_name}</span>
                     </p>
                   </div>
                   <div className="full-width">
                     <p>
-                      AGENT ID: <span>{form.vendor_id}</span>
+                      AGENT ID: <span>{form.super_agent_id}</span>
                     </p>
                     <p>
                       AMOUNT: <span>{form.amount ? separator(form.amount) : 0}</span>

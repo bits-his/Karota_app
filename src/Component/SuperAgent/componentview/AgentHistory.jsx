@@ -1,23 +1,28 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Table, Card, Row, Col, Button } from "reactstrap";
+import { Table, Card, Row, Col, Button, Input } from "reactstrap";
 import keke from "../../../assets/keke_napep.png";
 import { _get, _post } from "../../../Utils/Helper";
+import AgentVeiw from  "./AgentView"
 
 export default function AgentHistory() {
   const navigate = useNavigate();
   const { user } = useSelector((s) => s.auth);
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const params = useParams();
   const owner_id = params.id;
   const getReg = useCallback(() => {
-    
-    _get(
-      `fetch/trans_history?query_type=agent&agent_id=${owner_id}`,
+    _post(
+      `top-up/create`,
+      {
+        destination_id: owner_id,
+        type_of_top_up: "agent_top_up",
+        query_type: "select_destination",
+      },
       (resp) => {
         if (resp.success && resp.results) {
-          setData(resp.results[0]);
+          setData(resp.results);
         }
       }
     );
@@ -69,26 +74,49 @@ export default function AgentHistory() {
           </div>
           <hr />
         </Col>
-        <Col md={12}>
+       
+        <Col md={12} className="text-center" >
           <Col md={12}>
+          <AgentVeiw  />
+          <Row  className="text-left" style={{ margin: "50px" ,}}>
+            
+    <Col md={3}>
+        from
+        <Input
+            type="date"
+            className="form-control-sm"
+        />
+    </Col>
+    <Col md={3}>
+        to
+        <Input
+            type="date"
+            className="form-control-sm"
+        />
+    </Col>
+</Row>
+
+
+          
             <Table striped bordered>
+              {/* {JSON.stringify(data)} */}
               <thead>
                 <tr className="table-dark">
                   <th scope="row">Date</th>
                   <th scope="row">Type</th>
                   <th scope="row">Description</th>
-                  <th scope="row">Amount</th>
-                  <th scope="row">Balance</th>
+                  <th scope="row">Topup</th>
+                  <th scope="row">Withdraw</th>
                 </tr>
               </thead>
               <tbody>
-              {data?.transactions?.map((transaction, idx) => ( // Assuming transactions is an array within the data object
-                  <tr key={idx}>
-                    <td>{transaction.date}</td>
-                    <td>{transaction.type}</td>
-                    <td>{transaction.description}</td>
-                    <td>{transaction.amount}</td>
-                    <td>{transaction.balance}</td>
+                {data.map((item, index) => (
+                  <tr key={index}>
+                    <td>{item.t_date}</td>
+                    <td>{item.type_of_top_up}</td>
+                    <td>{item.description}</td>
+                    <td className="text-right">{item.credit}</td>
+                    <td className="text-right">{item.debit}</td>
                   </tr>
                 ))}
               </tbody>

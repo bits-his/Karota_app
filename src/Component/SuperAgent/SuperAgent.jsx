@@ -15,6 +15,7 @@ import VendorDropdown from "./VendorDropdown";
 import { stateLga } from "../../assets/state_and_lgas";
 import { _post } from "../../Utils/Helper";
 import toast from "react-hot-toast";
+import keke from "../../assets/keke_napep.png";
 
 export default function SuperAgent() {
   // const user = "nazif";
@@ -69,7 +70,7 @@ export default function SuperAgent() {
 
   const validateForm = (formData) => {
     let newErrors = {};
-    
+
     if (!formData.name.trim()) {
       newErrors.name = "Name must be filled";
     }
@@ -107,28 +108,41 @@ export default function SuperAgent() {
             <div
               style={{
                 display: "flex",
-                alignItems: "center",
                 justifyContent: "space-between",
-                padding: "5px",
+                alignItems: "center",
               }}
             >
-              <button
+              {/* Back Button */}
+
+              <Button
                 className="app_button"
                 style={{
-                  width: "10rem",
+                  width: 150,
                   padding: 10,
+                  marginLeft: 15,
                   color: "#000",
                   borderRadius: 10,
                 }}
                 onClick={() => navigate("/superagenttable")}
               >
                 Back
-              </button>
-              <h4 className="app_title">
-                Super Agent Registeration{form.step}
-              </h4>
-            </div>
+              </Button>
 
+              {/* Title */}
+              <h4 className="app_title">Create Super Agent</h4>
+
+              {/* User DP */}
+              <img
+                src={keke}
+                alt="User DP"
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "50%",
+                  marginRight: 10,
+                }}
+              />
+            </div>
             <hr />
           </Col>
           <Col md={12}>

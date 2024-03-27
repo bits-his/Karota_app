@@ -82,6 +82,10 @@ export default function AppNavigation() {
           element: <AgentView />,
         },
         {
+          path: "vendorReg/view/:id",
+          element: <VendorDetail />,
+        },
+        {
           path: "agenthistory/history/:id",
           element: <AgentHistory />,
         },

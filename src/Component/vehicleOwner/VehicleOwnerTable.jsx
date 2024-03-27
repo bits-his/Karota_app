@@ -4,13 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { Button, Card, Col, Row, Table, Spinner } from "reactstrap";
 import { _get } from "../../Utils/Helper";
 
-
 export default function VehicleOwnerTable() {
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false)
   const [filter, setFilter] = useState('');
+  const [loading,setLoading] = useState(false);
 
   const [query, setQuery] = useState('select-all')
 
@@ -23,7 +22,6 @@ export default function VehicleOwnerTable() {
   const getReg = useCallback(() => {
     _get(`vehicle-owners?query_type=${query}&name=${filter}`,
       (resp) => {
-        setLoading(true)
         if (resp.success && resp.data) {
           setData(resp.data);
           setLoading(false)
@@ -98,23 +96,52 @@ export default function VehicleOwnerTable() {
           </div>
         </Col>
 
-        <Row>
-          <>{loading ? (
+        <Col>
+          {loading ? (
               <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
                 ""
+                ""
               </Spinner>
-            ) : null}</>
-          <div className="table_overflow">
-            {data.length === 0 ? <h4>There is not data at the Database</h4>:
-            (
+            ) : 
+            data.length === 0 ?( // Display empty table if data is empty
+            <Table
+              bordered
+              responsive
+              style={{
+                position: "relative",
+                top: "20px",
+                width: "100%",
+                marginTop: "4px",
+              }}
+            >
+              <thead>
+                <tr>
+                  <th>S/N</th>
+                  <th>Owners Name</th>
+                    <th>Email</th>
+                    <th>phone Num</th>
+                    <th>Balance</th>
+                    <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colSpan="6" className="text-center">
+                    Record For {filter} not found
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
+          ): 
+          <div className="table_overflow">  
               <Table
                 bordered
                 responsive
                 style={{
                   position: "relative",
                   top: "10px",
-                  width: "95.5%",
-                  left: "30px",
+                  width: "100%",
+              
                   marginTop: "4px",
                 }}
               >
@@ -124,6 +151,7 @@ export default function VehicleOwnerTable() {
                     <th>Owners Name</th>
                     <th>Email</th>
                     <th>phone Num</th>
+                    <th>Plate No</th>
                     <th>Balance</th>
                     <th>Action</th>
                   </tr>
@@ -143,6 +171,9 @@ export default function VehicleOwnerTable() {
                       {item.phone}
 
                     </td>
+                    <td>
+                      {item.phone_no}
+                    </td>
 
                     <td>
                       NGN  {item.balance}
@@ -160,9 +191,8 @@ export default function VehicleOwnerTable() {
                   </tr>)}
                 </tbody>
               </Table>
-            )}
-          </div>
-        </Row>
+          </div>}
+        </Col>
       </Row>
     </>
   );

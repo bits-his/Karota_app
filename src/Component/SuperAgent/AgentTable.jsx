@@ -137,7 +137,7 @@ export default function AgentTable() {
                       <td>{agent.name}</td>
                       <td>{agent.phone_no}</td>
                       <td>{agent.email}</td>
-                      <td>{agent.balance}</td>
+                      <td className="text-right">{agent.balance}</td>
                       <td className="text-center">
                         <Button
                         style={{margin:"5px"}}

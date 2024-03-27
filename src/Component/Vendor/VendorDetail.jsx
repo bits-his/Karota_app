@@ -14,7 +14,7 @@ export default function VendorDetail() {
   const owner_id = params.id;
 
   const getData = useCallback(() => {
-    _get(`vendors?query_type=select-all&id=${owner_id}`, (resp) => {
+    _get(`vendors?query_type=select&id=${owner_id}`, (resp) => {
       if (resp.success && resp.results) {
         setDetails(resp.results[0]);
       }
@@ -29,8 +29,7 @@ export default function VendorDetail() {
     _post(
       `top-up/create`,
       {
-        destination_id: owner_id,
-        type_of_top_up: "vendor_top_up",
+        source_id: owner_id,
         query_type: "select_destination",
       },
       (resp) => {
@@ -118,7 +117,6 @@ export default function VendorDetail() {
                 <th scope="row" className="text-center">Type</th>
                 <th scope="row" className="text-center">Description</th>
                 <th scope="row" className="text-center">Amount</th>
-                <th scope="row" className="text-center">Balance</th>
               </tr>
             </thead>
             <tbody>
@@ -127,8 +125,8 @@ export default function VendorDetail() {
                   <td>{item.t_date}</td>
                   <td>{item.type_of_top_up}</td>
                   <td>{item.description}</td>
-                  <td className="text-right">{separator(item.credit)}</td>
-                  <td className="text-right">{item.balance ? (separator(item.balance)):(0)}</td>
+                  <td className="text-right">{separator(item.credit ? item.credit : item.debit)}</td>
+               
                 </tr>
               ))}
             </tbody>

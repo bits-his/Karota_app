@@ -20,7 +20,7 @@ export default function SuperAgentHistory() {
         query_type: "select_destination",
       },
       (resp) => {
-        console.log(resp, "gsgsggsg");
+       // console.log(resp, "gsgsggsg");
         if (resp.success && resp.results) {
           setData(resp.results);
         }

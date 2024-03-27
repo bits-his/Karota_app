@@ -34,8 +34,7 @@ export default function VehicleHistory() {
     _post(
       `top-up/create`,
       {
-        destination_id: owner_id,
-        type_of_top_up: "vehicle_top_up",
+        source_id: owner_id,
         query_type: "select_destination",
       },
       (resp) => {
@@ -106,13 +105,6 @@ export default function VehicleHistory() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>{data[0].t_date}</td>
-                  <td>{data[0].type_of_top_up}</td>
-                  <td>{data[0].description}</td>
-                  <td>{data[0].credit}</td>
-                  <td>{data[0].balance}</td>
-                </tr>
               </tbody>
             </Table>
           </Col>

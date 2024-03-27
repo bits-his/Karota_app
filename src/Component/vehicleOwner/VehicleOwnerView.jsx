@@ -188,12 +188,14 @@ export default function VehicleOwnerView() {
               <tbody>
             <tr>
                 <th width="20%">Date</th>
+                <th width="20%">Type</th>
                 <th width="20%">Description</th>
-                <th width="20%">Dr</th>
-                <th width="20%">Cr</th>
+                <th width="20%">Topup</th>
+                <th width="20%">Withdraw</th>
               </tr>
               <tr>
                 <td>{vehicles.t_date}</td>
+                <td>{vehicles.type}</td>
                 <td>{vehicles.description}</td>
                 <td>{vehicles.debit === NaN ? 0 : separator(vehicles.debit)}</td>
                 <td>{vehicles.credit === NaN ? 0 : separator(vehicles.credit)}</td>

@@ -15,7 +15,7 @@ export default function SuperAgentHistory() {
     _post(
       `top-up/create`,
       {
-        destination_id: owner_id,
+        source_id: owner_id,
         type_of_top_up: "super_agent_top_up",
         query_type: "select_destination",
       },

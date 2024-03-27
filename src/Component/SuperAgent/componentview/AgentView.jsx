@@ -13,7 +13,7 @@ export default function AgentView() {
   const params = useParams();
   const owner_id = params.id;
   const getReg = useCallback(() => {
-    _get(`agents?query_type=select-all&id=${owner_id}`, (resp) => {
+    _get(`agents?query_type=select&id=${owner_id}`, (resp) => {
       if (resp.success && resp.results) {
         setData(resp.results[0]);
       }

@@ -44,13 +44,13 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
       ...form
       // amount: parseFloat(form.amount),
     }
+    toast.success(`Sucessfully added ${form.amount}`)
       setLoading(true)
  _post(`top-up/create`,
     obj,
     (res)=> {
        if(res.success){
-        toast.success(`Sucessfully added ${form.amount}`)
-        navigate('/top-up')
+        navigate('/vehicles') /////////where?
     }else{
       setLoading(false)
       toast.error(`failed to top up vehicle`)
@@ -63,7 +63,7 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
     //console.log(form);
   };
 
-  console.log(typeof Number(form.amount))
+  console.log(form)
 
   return (
   <>

@@ -18,7 +18,9 @@ export default function VehicleOwnerView() {
     _get(`vehicle-owners?query_type=select-all&user_id=${owner_id}`, (resp) => {
       console.log(resp)
       if (resp.success && resp.data) {
-        setData(resp.data[0]);
+        const ownerDetail = resp.data.find((item) => item.id == owner_id)
+        console.log(ownerDetail)
+        setData(ownerDetail);
       }
     });
 
@@ -32,7 +34,7 @@ export default function VehicleOwnerView() {
     _post(
       `top-up/create`,
       {
-        destination_id: owner_id,
+        source_id: owner_id,
         type_of_top_up: "vehicle_top_up",
         query_type: "select_destination",
       },
@@ -117,23 +119,23 @@ export default function VehicleOwnerView() {
           <div className="vehicleview">
                 <div style={{display: "flex"}}>
                   <span style={{fontWeight: '600', marginRight: '20px'}}>Owner's Name:</span>
-                  <p>Abu</p>
+                  <p>{data.name}</p>
                 </div>
                 <div style={{display: "flex"}}>
                   <span style={{fontWeight: '600', marginRight: '20px'}}>Phone Number</span>
-                  <p>020293884982</p>
+                  <p>{data.phone}</p>
                 </div>
                 <div style={{display: "flex"}}>
                   <span style={{fontWeight: '600', marginRight: '20px'}}>Address</span>
-                  <p>Ada rd</p>
+                  <p>{data.address}</p>
                 </div>
-                <div style={{display: "flex"}}>
+                {/* <div style={{display: "flex"}}>
                   <span style={{fontWeight: '600', marginRight: '20px'}}>Registered Vehicle</span>
                   <p>245678rty</p>
-                </div>
+                </div> */}
                 <div style={{display: "flex"}}>
                   <span style={{fontWeight: '600', marginRight: '20px'}}>Local Government Area</span>
-                  <p>ajingi</p>
+                  <p>{data.lga}</p>
                 </div>
               </div>
               <div>

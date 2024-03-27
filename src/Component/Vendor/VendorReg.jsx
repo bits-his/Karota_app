@@ -201,13 +201,9 @@ function VendorReg() {
                 <td style={{textAlign: "right"}}>{separator(vendor.balance)}</td>
                 <td className="text-center">
                   <Button color="info" className="marginResponsive"
-<<<<<<< HEAD
-                    onClick={() => navigate(`/vendorReg/view/${vendor.id}?vendor_name=${vendor.vendor_name}&vendor_org_phone=${vendor.vendor_org_phone}&vendor_org_email=${vendor.vendor_org_email}&vendor_ofiice_address=${vendor.vendor_ofiice_address}`)}>
-=======
                     // onClick={() => navigate(`/vendorReg/detail/${vendor.id}?vendor_name=${vendor.vendor_name}&vendor_org_phone=${vendor.vendor_org_phone}&vendor_org_email=${vendor.vendor_org_email}&vendor_ofiice_address=${vendor.vendor_ofiice_address}`)}
                     onClick={() => navigate(`/vendorReg/detail/${vendor.id}`)}
                     >
->>>>>>> 9a224b714674aef47b9650052635a760a287d35e
                     View
                   </Button>
                   <Button

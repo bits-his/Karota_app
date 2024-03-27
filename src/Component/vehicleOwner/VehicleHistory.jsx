@@ -39,6 +39,7 @@ export default function VehicleHistory() {
       },
       (resp) => {
         if (resp.success && resp.results) {
+          console.log(resp)
           setData(resp.results);
         }
       }

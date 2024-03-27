@@ -13,7 +13,6 @@ export default function VendorDetail() {
   const params = useParams();
   const owner_id = params.id;
 
-<<<<<<< HEAD
   const getData = useCallback(() => {
     _get(`vendors?query_type=select-all&id=${owner_id}`, (resp) => {
       if (resp.success && resp.results) {
@@ -21,14 +20,6 @@ export default function VendorDetail() {
       }
     });
   }, [owner_id]);
-=======
- const getReg = useCallback(() => {
-  _get(`fetch/trans_history/?query_type=vendor&vendor_id=${vendor.id}`, (res) => {
-    console.log(res.data)
-    setVendorDetail(res.data[0])
-  })
- }, [vendor.id])
->>>>>>> 9a224b714674aef47b9650052635a760a287d35e
 
   useEffect(() => {
     getData();

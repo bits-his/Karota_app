@@ -122,15 +122,21 @@ export default function VendorDetail() {
               </tr>
             </thead>
             <tbody>
-              {data?.map((item, idx) => (
-                <tr key={idx}>
-                  <td>{item.t_date}</td>
-                  <td>{item.type_of_top_up}</td>
-                  <td>{item.description}</td>
-                  <td className="text-right">{separator(item.credit)}</td>
-                  <td className="text-right">{item.balance ? (separator(item.balance)):(0)}</td>
+              {data && data.length > 0 ? (
+                data.map((item, idx) => (
+                  <tr key={idx}>
+                    <td>{item.t_date}</td>
+                    <td>{item.type_of_top_up}</td>
+                    <td>{item.description}</td>
+                    <td className="text-right">{separator(item.credit)}</td>
+                    <td className="text-right">{item.balance ? separator(item.balance) : 0}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5" className="text-center">No transactions have been made.</td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </Table>
         </Col>

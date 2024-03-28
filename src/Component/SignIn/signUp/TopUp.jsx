@@ -72,7 +72,7 @@ export default function TopUp() {
     _get(`vehicles?query_type=${query}&engine_no=${filter}`, (resp) => {
       if (resp.success && resp.data) {
         setData(resp.data);
-        //console.log(resp);
+        console.log(resp);
       }
     });
     // _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {

@@ -30,17 +30,21 @@ export default function VehicleHistory() {
   const [data, setData] = useState({});
   const params = useParams();
   const owner_id = params.id;
+  console.log(owner_id)
+
   const getReg = useCallback(() => {
+    console.log("na nme")
     _post(
       `top-up/create`,
       {
         source_id: owner_id,
-        query_type: "select_destination",
+        query_type: "select_vehicle",
       },
       (resp) => {
         if (resp.success && resp.results) {
-          console.log(resp)
-          setData(resp.results);
+          const dataDetail = resp.results.find((item) => item.source_id == owner_id)
+          console.log(dataDetail, "see me")
+          setData(dataDetail);
         }
       }
     );
@@ -50,7 +54,7 @@ export default function VehicleHistory() {
     getReg();
   }, [getReg]);
   const handleBackToTable = () => {
-    navigate("/agenttable");
+    navigate("/vehicles");
   };
   return (
     <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
@@ -106,6 +110,23 @@ export default function VehicleHistory() {
                 </tr>
               </thead>
               <tbody>
+                <tr>
+                    <td>
+                      {data.t_date}
+                    </td>
+                    <td>
+                      {data.type_of_top_up}
+                    </td>
+                    <td>
+                      {data.description}
+                    </td>
+                    <td className="text-center">
+                      {data.credit}
+                    </td>
+                    <td className="text-center">
+                      {data.balance}
+                    </td>
+                  </tr>
               </tbody>
             </Table>
           </Col>

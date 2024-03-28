@@ -112,7 +112,7 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
                <p >ID : <span >{form.agent_id}</span></p>
                 <p >TO : <span  >{form.Plate_no}</span></p>
                <p >ID :  <span  >{form.vehicle_id}</span></p>
-               <p >Amount:  <span  >{separator(form.amount)}</span></p>
+               <p >Amount:  <span  >{form.amount ? separator(form.amount) : 0}</span></p>
               </div>
            </div>
 

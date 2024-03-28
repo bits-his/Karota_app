@@ -16,9 +16,9 @@ import { _post } from "../../Utils/Helper";
 import toast from "react-hot-toast";
 
 export default function RegistrationTable() {
-  const { owner_id } = useParams();
+  const  {id}  = useParams();
   const _form = {
-    owner_id: owner_id || 1,
+    owner_id: id ,
     lg_reg_no: "",
     pin: "",
     engine_no: "",

@@ -116,7 +116,9 @@ export default function VendorDetail() {
                 <th scope="row" className="text-center">Date</th>
                 <th scope="row" className="text-center">Type</th>
                 <th scope="row" className="text-center">Description</th>
-                <th scope="row" className="text-center">Amount</th>
+                <th scope="row" className="text-center">Credit</th>
+                <th scope="row" className="text-center">Debit</th>
+                <th scope="row" className="text-center">Balance</th>
               </tr>
             </thead>
             <tbody>
@@ -125,8 +127,9 @@ export default function VendorDetail() {
                   <td>{item.t_date}</td>
                   <td>{item.type_of_top_up}</td>
                   <td>{item.description}</td>
-                  <td className="text-right">{separator(item.credit ? item.credit : item.debit)}</td>
-               
+                  <td className="text-right">{separator(item.credit )}</td>
+                  <td className="text-right">{separator(item.debit )}</td>
+                  <td className="text-right">{separator(item.balance)}</td>
                 </tr>
               ))}
             </tbody>

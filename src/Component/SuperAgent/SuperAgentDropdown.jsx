@@ -41,7 +41,7 @@ function SuperAgentDropdown({ handleChange, selectedSuperAgentValue }) {
     <>
       {/* {JSON.stringify(defaultVlaue)} */}
       <Select
-        value={super_name === "" ? selectedSuperAgent : defaultVlaue}
+        value={selectedSuperAgent}
         onChange={handleSelectChange}
         options={data}
         placeholder="Search for a super agent..."

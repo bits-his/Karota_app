@@ -53,6 +53,7 @@ function VendorReg() {
     setLoading(true); // Set loading to true before API call
     _get(`vendors?query_type=${query}&vendor_name=${filter}`, (resp) => {
      setLoading(false); // Set loading to false after receiving response
+     console.log(resp)
       if (resp.success && resp.results) {
         setData(resp.results);
       }
@@ -66,6 +67,7 @@ function VendorReg() {
   useEffect(() => {
     getReg();
   }, [getReg]);
+  console.log(vendor)
   return (
     <>
       <Row>
@@ -199,6 +201,7 @@ function VendorReg() {
                 <td style={{textAlign: "right"}}>{separator(vendor.balance)}</td>
                 <td className="text-center">
                   <Button color="info" className="marginResponsive"
+                    // onClick={() => navigate(`/vendorReg/detail/${vendor.id}?vendor_name=${vendor.vendor_name}&vendor_org_phone=${vendor.vendor_org_phone}&vendor_org_email=${vendor.vendor_org_email}&vendor_ofiice_address=${vendor.vendor_ofiice_address}`)}
                     onClick={() => navigate(`/vendorReg/detail/${vendor.id}`)}
                     >
                     View

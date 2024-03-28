@@ -35,7 +35,8 @@ export default function VehicleHistory() {
       `top-up/create`,
       {
         source_id: owner_id,
-        query_type: "select_destination",
+        type_of_top_up: "vehicle_top_up",
+        query_type: "select_vehicle",
       },
       (resp) => {
         if (resp.success && resp.results) {

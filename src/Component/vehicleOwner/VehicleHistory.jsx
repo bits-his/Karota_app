@@ -38,22 +38,14 @@ export default function VehicleHistory() {
       `top-up/create`,
       {
         source_id: owner_id,
-<<<<<<< HEAD
         type_of_top_up: "vehicle_top_up",
-=======
->>>>>>> 600f11c50e2d57ac8a538dda7de01425e3677d13
         query_type: "select_vehicle",
       },
       (resp) => {
         if (resp.success && resp.results) {
-<<<<<<< HEAD
-          //console.log(resp)
-          setData(resp.results);
-=======
           const dataDetail = resp.results.find((item) => item.source_id == owner_id)
           console.log(dataDetail, "see me")
           setData(dataDetail);
->>>>>>> 600f11c50e2d57ac8a538dda7de01425e3677d13
         }
       }
     );
@@ -62,6 +54,7 @@ export default function VehicleHistory() {
   useEffect(() => {
     getReg();
   }, [getReg]);
+
   const handleBackToTable = () => {
     navigate("/vehicles");
   };

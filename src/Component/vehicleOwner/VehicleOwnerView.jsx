@@ -147,6 +147,10 @@ export default function VehicleOwnerView() {
                   <span style={{fontWeight: '600', marginRight: '20px'}}>Local Government Area</span>
                   <p>{data.lga}</p>
                 </div>
+                <div  style={{display: "flex"}}>
+                <span  style={{fontWeight: '600', marginRight: '20px'}}>Number of vehicle</span>
+                <p>{vehicles.length}</p>
+                </div>
               </div>
               <div>
               <Badge color="primary">{vehicleCount}</Badge>{" "}
@@ -160,6 +164,7 @@ export default function VehicleOwnerView() {
                       Add +
                     </Button>
               </div>
+              
             <Table striped>
              
               <thead>

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Card, Col, Row, Button, Table } from "reactstrap";
 import { useSelector } from "react-redux";
-import { _get, _post } from "../../../Utils/Helper";
+import { _get, _post, separator } from "../../../Utils/Helper";
 import keke from "../../../assets/keke_napep.png";
 
 export default function SuperAgentHistory() {
@@ -20,7 +20,7 @@ export default function SuperAgentHistory() {
         query_type: "select_destination",
       },
       (resp) => {
-       // console.log(resp, "gsgsggsg");
+        // console.log(resp, "gsgsggsg");
         if (resp.success && resp.results) {
           setData(resp.results);
         }
@@ -38,31 +38,37 @@ export default function SuperAgentHistory() {
     <Card>
       <Row>
         <Col md={12}>
-          <Col md={12}>
-            <Table striped bordered>
-              {/* {JSON.stringify(data)} */}
-              <thead>
-                <tr className="table-dark">
-                  <th>Date</th>
-                  <th>Type</th>
-                  <th>Description</th>
-                  <th>Topup</th>
-                  <th>Withdraw</th>
+          <Table striped bordered>
+            {/* {JSON.stringify(data)} */}
+            <thead>
+              <tr className="table-dark">
+                <th className="text-center">Date</th>
+                <th className="text-center">Type</th>
+                <th className="text-center">Description</th>
+                <th className="text-center">Topup</th>
+                <th className="text-center">Withdraw</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data && data.length > 0 ? (
+                data.map((item, idx) => (
+                  <tr key={idx}>
+                    <td>{item.t_date}</td>
+                    <td>{item.type_of_top_up}</td>
+                    <td>{item.description}</td>
+                    <td className="text-right">{separator(item.credit)}</td>
+                    <td className="text-right">{separator(item.debit)}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5" className="text-center">
+                    No transactions have been made.
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                  {data.map((item, index) => (
-                    <tr key={index}>
-                      <td>{item && item.t_date}</td>
-                      <td>{item && item.type_of_top_up}</td>
-                      <td>{item && item.description}</td>
-                      <td>{item && item.credit}</td>
-                      <td>{item && item.debit}</td>
-                    </tr>
-                  ))}
-              </tbody>
-            </Table>
-          </Col>
+              )}
+            </tbody>
+          </Table>
         </Col>
       </Row>
     </Card>

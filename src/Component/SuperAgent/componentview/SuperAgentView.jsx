@@ -77,7 +77,68 @@ export default function SuperAgentView() {
         <Col md={12}>
           <Col md={12}>
             <section style={{ marginBottom: "2rem" }}>
-              {/* {JSON.stringify(data)} */}
+              <div style={{ display: "flex" }}>
+                <div
+                  style={{
+                    width: "50%",
+                    marginBottom: "20px",
+                    display: "flex",
+                  }}
+                >
+                  <p
+                    style={{
+                      marginRight: 10,
+                      fontSize: 16,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    SuperAgent's Name:{" "}
+                  </p>
+                  <span>{data[0]?.name}</span>
+                </div>
+                <div style={{ width: "50%", display: "flex" }}>
+                  <p
+                    style={{
+                      marginRight: 10,
+                      fontSize: 16,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Phone no.:{" "}
+                  </p>
+                  <span>{data[0]?.phone}</span>
+                </div>
+              </div>
+
+              <div style={{ display: "flex" }}>
+                <div style={{ width: "50%", display: "flex" }}>
+                  <p
+                    style={{
+                      marginRight: 10,
+                      fontSize: 16,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Address:{" "}
+                  </p>
+                  <span>{data[0]?.address}</span>
+                </div>
+                <div style={{ width: "50%", display: "flex" }}>
+                  <p
+                    style={{
+                      marginRight: 10,
+                      fontSize: 16,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    E-mail:{" "}
+                  </p>
+                  <span>{data[0]?.email}</span>
+                </div>
+              </div>
+            </section>
+            {/* <section style={{ marginBottom: "2rem" }}>
+              {JSON.stringify(data)}
               <div style={{ display: "flex" }}>
                 <div style={{ width: "50%", marginBottom: "20px" }}>
                   <p>SuperAgent's Name: </p>
@@ -99,7 +160,7 @@ export default function SuperAgentView() {
                   <span>{data[0]?.email}</span>
                 </div>
               </div>
-            </section>
+            </section> */}
             <SuperAgentHistory />
           </Col>
         </Col>

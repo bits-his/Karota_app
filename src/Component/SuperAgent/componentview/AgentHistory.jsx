@@ -18,7 +18,7 @@ export default function AgentHistory() {
       {
         source_id: owner_id,
         type_of_top_up: "agent_top_up",
-        query_type: "select_destination",
+        query_type: "select_agent",
       },
       (resp) => {
         if (resp.success && resp.results) {

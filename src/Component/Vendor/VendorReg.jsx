@@ -53,7 +53,7 @@ function VendorReg() {
     setLoading(true); // Set loading to true before API call
     _get(`vendors?query_type=${query}&vendor_name=${filter}`, (resp) => {
      setLoading(false); // Set loading to false after receiving response
-     console.log(resp)
+    // console.log(resp)
       if (resp.success && resp.results) {
         setData(resp.results);
       }
@@ -67,7 +67,7 @@ function VendorReg() {
   useEffect(() => {
     getReg();
   }, [getReg]);
-  console.log(vendor)
+  //console.log(vendor)
   return (
     <>
       <Row>

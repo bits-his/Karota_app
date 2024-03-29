@@ -151,8 +151,6 @@ export default function VehicleOwnerTable() {
                     <th>Owners Name</th>
                     <th>Email</th>
                     <th>phone Num</th>
-                    <th>Plate No</th>
-                    <th>Balance</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -171,13 +169,9 @@ export default function VehicleOwnerTable() {
                       {item.phone}
 
                     </td>
-                    <td>
-                      {item.phone_no}
-                    </td>
+                  
 
-                    <td>
-                      NGN  {item.balance}
-                    </td>
+                   
                     <td className="text-center btn-table">
                       <Button color="info"
                         className=""

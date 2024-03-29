@@ -41,16 +41,17 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
       destination_id: form.vehicle_id,
       query_type: 'top_up',
       type_of_top_up: 'vehicle_top_up',
+      out_type:'agent_top_up',
       ...form
       // amount: parseFloat(form.amount),
     }
+    toast.success(`Sucessfully added ${form.amount}`)
       setLoading(true)
  _post(`top-up/create`,
     obj,
     (res)=> {
        if(res.success){
-        toast.success(`Sucessfully added ${form.amount}`)
-        navigate('/top-up')
+        navigate('/vehicles') /////////where?
     }else{
       setLoading(false)
       toast.error(`failed to top up vehicle`)
@@ -63,7 +64,7 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
     //console.log(form);
   };
 
-  console.log(typeof Number(form.amount))
+  //console.log(form)
 
   return (
   <>
@@ -111,7 +112,7 @@ function VehicleTopUp({ selectedAgentValue, selectedVehicleValue }) {
                <p >ID : <span >{form.agent_id}</span></p>
                 <p >TO : <span  >{form.Plate_no}</span></p>
                <p >ID :  <span  >{form.vehicle_id}</span></p>
-               <p >Amount:  <span  >{separator(form.amount)}</span></p>
+               <p >Amount:  <span  >{form.amount ? separator(form.amount) : 0}</span></p>
               </div>
            </div>
 

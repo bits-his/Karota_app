@@ -1,23 +1,24 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Table, Card, Row, Col, Button } from "reactstrap";
+import { Table, Card, Row, Col, Button, Input } from "reactstrap";
 import keke from "../../../assets/keke_napep.png";
 import { _get, _post } from "../../../Utils/Helper";
+import AgentVeiw from  "./AgentView"
 
 export default function AgentHistory() {
   const navigate = useNavigate();
   const { user } = useSelector((s) => s.auth);
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const params = useParams();
   const owner_id = params.id;
   const getReg = useCallback(() => {
     _post(
       `top-up/create`,
       {
-        destination_id: owner_id,
+        source_id: owner_id,
         type_of_top_up: "agent_top_up",
-        query_type: "select_destination",
+        query_type: "select_agent",
       },
       (resp) => {
         if (resp.success && resp.results) {
@@ -73,8 +74,12 @@ export default function AgentHistory() {
           </div>
           <hr />
         </Col>
-        <Col md={12}>
+       
+        <Col md={12} className="text-center" >
           <Col md={12}>
+          <AgentVeiw  />
+     
+          
             <Table striped bordered>
               {/* {JSON.stringify(data)} */}
               <thead>
@@ -82,18 +87,20 @@ export default function AgentHistory() {
                   <th scope="row">Date</th>
                   <th scope="row">Type</th>
                   <th scope="row">Description</th>
-                  <th scope="row">Amount</th>
-                  <th scope="row">Balance</th>
+                  <th scope="row">Topup</th>
+                  <th scope="row">Withdraw</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>{data[0].t_date}</td>
-                  <td>{data[0].type_of_top_up}</td>
-                  <td>{data[0].description}</td>
-                  <td>{data[0].credit}</td>
-                  <td>{data[0].balance}</td>
-                </tr>
+                {data.map((item, index) => (
+                  <tr key={index}>
+                    <td>{item.t_date}</td>
+                    <td>{item.type_of_top_up}</td>
+                    <td>{item.description}</td>
+                    <td className="text-right">{item.credit}</td>
+                    <td className="text-right">{item.debit}</td>
+                  </tr>
+                ))}
               </tbody>
             </Table>
           </Col>

@@ -4,18 +4,20 @@ import { Card, Col, Row, Button, Table, Badge } from "reactstrap";
 import { useSelector } from "react-redux";
 import { _get, _post } from "../../../Utils/Helper";
 import keke from "../../../assets/keke_napep.png";
+import SuperAgentHistory from "./SuperAgentHistory";
 
 export default function SuperAgentView() {
   const navigate = useNavigate();
   const { user } = useSelector((s) => s.auth);
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const [superagent, setsuperagent] = useState([]);
   const params = useParams();
   const owner_id = params.id;
   const getReg = useCallback(() => {
-    _get(`superagent?query_type=select-all&id=${owner_id}`, (resp) => {
+    _get(`superagent?query_type=select&id=${owner_id}`, (resp) => {
       if (resp.success && resp.results) {
-        setData(resp.results[0]);
+        setData(resp.results);
+        //console.log(resp.results);
       }
     });
   }, [owner_id]);
@@ -56,7 +58,7 @@ export default function SuperAgentView() {
             </Button>
 
             {/* Title */}
-            <h4 className="app_title">{data.name}</h4>
+            <h4 className="app_title">Account History</h4>
 
             {/* User DP */}
             <img
@@ -74,56 +76,31 @@ export default function SuperAgentView() {
         </Col>
         <Col md={12}>
           <Col md={12}>
-            <Table striped>
-              <tbody>
-                <tr>
-                  <th width="20%">Owner's Name</th>
-                  <td>{data.name}</td>
-                </tr>
-                <tr>
-                  <th>Phone</th>
-                  <td>{data.phone}</td>
-                </tr>
-                <tr>
-                  <th>Address</th>
-                  <td>{data.address}</td>
-                </tr>
-                <tr>
-                  <th>Owner's Email</th>
-                  <td>{data.email}</td>
-                </tr>
-                <tr>
-                  <th>State</th>
-                  <td>{data.state}</td>
-                </tr>
-                <tr>
-                  <th>NIN</th>
-                  <td>{data.nin}</td>
-                </tr>
-                <tr>
-                  <th>Local Government Area</th>
-                  <td>{data.lga}</td>
-                </tr>
-                <tr>
-                  <th>Balance</th>
-                  <td>{data.balance}</td>
-                </tr>
-                <tr>
-                  <th>Registered Agents</th>
-                  <td className="text-center">
-                    <Badge color="primary">{data.agents_count}</Badge>{" "}
-                    <Button
-                      className="btn btn-primary"
-                      onClick={() =>
-                        navigate(`/agent?name=${data.name}&id=${data.id}`)
-                      }
-                    >
-                      Add Agent
-                    </Button>
-                  </td>
-                </tr>
-              </tbody>
-            </Table>
+            <section style={{ marginBottom: "2rem" }}>
+              {/* {JSON.stringify(data)} */}
+              <div style={{ display: "flex" }}>
+                <div style={{ width: "50%", marginBottom: "20px" }}>
+                  <p>SuperAgent's Name: </p>
+                  <span>{data[0]?.name}</span>
+                </div>
+                <div style={{ width: "50%" }}>
+                  <p>Phone no. : </p>
+                  <span>{data[0]?.phone}</span>
+                </div>
+              </div>
+
+              <div style={{ display: "flex" }}>
+                <div style={{ width: "50%" }}>
+                  <p>Address: </p>
+                  <span>{data[0]?.address}</span>
+                </div>
+                <div style={{ width: "50%" }}>
+                  <p>E-mail: </p>
+                  <span>{data[0]?.email}</span>
+                </div>
+              </div>
+            </section>
+            <SuperAgentHistory />
           </Col>
         </Col>
       </Row>

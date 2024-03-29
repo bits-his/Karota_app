@@ -28,14 +28,11 @@ export default function SuperAgentTable() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
-  const [query, setQuery] = useState('select-all')
- 
-  
+  const [query, setQuery] = useState("select-all");
 
- const search = () => {
-  setQuery('search')
-
- }
+  const search = () => {
+    setQuery("search");
+  };
 
   const getReg = useCallback(() => {
     setLoading(true);
@@ -50,11 +47,11 @@ export default function SuperAgentTable() {
   useEffect(() => {
     getReg();
   }, [getReg]);
- useEffect(() => {
-  if(!filter){
-    setQuery('select-all')
-  }
- },[filter])
+  useEffect(() => {
+    if (!filter) {
+      setQuery("select-all");
+    }
+  }, [filter]);
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
@@ -188,12 +185,12 @@ export default function SuperAgentTable() {
               >
                 <thead>
                   <tr>
-                    <th style={{textAlign: "center"}}>S/N</th>
-                    <th style={{textAlign: "center"}}>Name</th>
-                    <th style={{textAlign: "center"}}>Phone</th>
-                    <th style={{textAlign: "center"}}>Email</th>
-                    <th style={{textAlign: "center"}}>Balance</th>
-                    <th style={{textAlign: "center"}}>Action</th>
+                    <th style={{ textAlign: "center" }}>S/N</th>
+                    <th style={{ textAlign: "center" }}>Name</th>
+                    <th style={{ textAlign: "center" }}>Phone</th>
+                    <th style={{ textAlign: "center" }}>Email</th>
+                    <th style={{ textAlign: "center" }}>Balance</th>
+                    <th style={{ textAlign: "center" }}>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -207,20 +204,17 @@ export default function SuperAgentTable() {
                       <td className="text-center">
                         <Button
                           color="info"
-                          onClick={() =>
-                            navigate(`/superagenttable/view/${agent.id}`)
-                          }
-                          mr={2}
+                          onClick={() => navigate(`/superagenttopup`)}
                         >
-                          View
+                          Topup
                         </Button>{" "}
                         <Button
                           color="success"
                           onClick={() =>
-                            navigate(`/superagenthistory/history/${agent.id}`)
+                            navigate(`/superagenttable/view/${agent.id}`)
                           }
                         >
-                          View history
+                          View History
                         </Button>
                       </td>
                     </tr>

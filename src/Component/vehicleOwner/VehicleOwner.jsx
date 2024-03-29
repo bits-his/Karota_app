@@ -4,6 +4,7 @@ import { Card, Col, Row, Form, FormGroup, Label, Input, Button, Table } from 're
 import { stateLga } from '../../assets/state_and_lgas';
 import { useSelector } from 'react-redux';
 import { _post } from '../../Utils/Helper';
+import keke from '../../assets/keke_napep.png'
 import toast from 'react-hot-toast';
 
 export default function OwnerReg() {
@@ -27,7 +28,8 @@ export default function OwnerReg() {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        _post(`vehicle-owners/create` , form, 
+        console.log(form)
+        _post(`vehicle-owners/create` , form,
         res =>{
             console.log(res)
             if(res.success){
@@ -35,7 +37,7 @@ export default function OwnerReg() {
             navigate("/Vehicleownertable")
             }
             else{
-
+                toast.error('error creating owner')
             }
             
         })
@@ -66,6 +68,7 @@ export default function OwnerReg() {
                             </Button>
                         )}
                          <h4 className="app_title">Vehicle Owner Registration</h4>
+                         <img src={keke} alt='keke' style={{width: '50px'}}/>
                     </div>
                     <hr />
                 </Col>
@@ -131,8 +134,8 @@ export default function OwnerReg() {
                                         required
                                     >
                                         <option value={""}>Select State</option>
-                                        {stateLga.map((item) => (
-                                            <option>{item.state}</option>
+                                        {stateLga.map((item, idx) => (
+                                            <option key={idx}>{item.state}</option>
                                         ))}
                                     </Input>
                                 </FormGroup>
@@ -168,17 +171,7 @@ export default function OwnerReg() {
                                             ))}
                                     </Input>
                                 </FormGroup>
-                            </Col>
-                            {/* <Col md={6}>
-                                <FormGroup>
-                                    <Label for="examplePassword">Password</Label>
-                                    <Input 
-                                    
-                                    id="examplePassword" 
-                                    name="password" 
-                                    placeholder="password" type="password" />
-                                </FormGroup>
-                            </Col> */}
+                            </Col> 
                         </Row>
                         <Row>
                             <Col md={12}

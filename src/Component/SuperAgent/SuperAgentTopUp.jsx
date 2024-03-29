@@ -27,6 +27,7 @@ const navigate = useNavigate();
       destination_id: form.super_agent_id,
       query_type:'top_up',
       type_of_top_up:"super_agent_top_up",
+      out_type:'vendor_top_up',
       ...form
     }
     _post(

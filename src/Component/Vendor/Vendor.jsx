@@ -339,7 +339,7 @@ export default function RegistrationTable() {
                       >
                         <option value={""}>Select State</option>
                         {stateLga.map((item) => (
-                          <option>{item.state}</option>
+                          <option key={item.id}>{item.state}</option>
                         ))}
                       </Input>
                     </FormGroup>

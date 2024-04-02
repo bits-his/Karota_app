@@ -305,7 +305,7 @@ export default function RegistrationTable() {
                           <option key={idx}>{lga}</option>
                         ))}
                     </Input>
-                    <FormFeedback><spann style={{ color: 'red' }}>{errors.registered_lg}</spann></FormFeedback>
+                    <FormFeedback><span style={{ color: 'red' }}>{errors.registered_lg}</span></FormFeedback>
                   </FormGroup>
                 </Col>
                 <Col md={4}>

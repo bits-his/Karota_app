@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Card, Col, Row, Form, FormGroup, Label, Input, Spinner } from "reactstrap";
-import { stateLga } from "../../assets/state_and_lgas";
+import { Card, Col, Row, Form, Spinner } from "reactstrap";
 import { _post } from "../../Utils/Helper";
 import keke from "../../assets/keke_napep.png";
 import toast from "react-hot-toast";
@@ -10,11 +9,16 @@ import InputField from "./InputField";
 export default function RegistrationTable() {
   const _form = {
     query_type: "insert",
-    vendor_name: "",
+    Reporters_name: "",
+    Reporters_phone_no: "",
+    capacity: "",
+    chasis_no: "",
+    engine_no: "",
+    vehicle_model: "",
+    vehicle_color: "",
+    others: "",
   };
 
-
-  const [submittedData, setSubmittedData] = useState([]);
   const [form, setForm] = useState(_form);
   const [loading, setLoading] = useState(false);
   const handleChange = ({ target: { name, value } }) => {
@@ -25,28 +29,34 @@ export default function RegistrationTable() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!form.contact_name || !form.contact_address || !form.contact_state || !form.contact_lga || !form.contact_phone || !form.contact_email) {
+    // if (!form.Reporters_name || !form.Reporters_phone_no || !form.capacity || !form.chasis_no || !form.engine_no || !form.vehicle_model || !form.vehicle_color) {
+    if (!1===1) {
       toast.error("Please fill in all required fields.");
       return;
     }
 
     setLoading(true);
-    _post(
-      "vendors/create",
-      form,
-      (res) => {
-        if (res.success) {
-          setLoading(false);
-          toast.success("Vendor created successfully");
-          setSubmittedData([...submittedData, res]);
-          navigate("/vendorReg");
-        }
-      },
-      () => {
-        setLoading(false);
-        toast.error("An error occurred while creating Vendor");
-      }
-    );
+    // _post(
+    //   "vendors/create",
+    //   form,
+    //   (res) => {
+    //     if (res.success) {
+    //       setLoading(false);
+    //       toast.success("Report submitted successfully");
+    //       setSubmittedData([...submittedData, res]);
+    //       navigate("/vendorReg");
+    //     }
+    //   },
+    //   () => {
+    //     setLoading(false);
+    //     toast.error("An error occurred while creating Vendor");
+    //   }
+    // );
+            console.log(form)
+            toast.success("Report submitted successfully");
+            navigate("/");
+
+            setLoading(false);
   };
 
   return (
@@ -105,24 +115,23 @@ export default function RegistrationTable() {
                 </Row>
                 <Row className="margin-bottom-input">
                     <InputField id="capacity" label="Engine Capacity" name="capacity" type="text" required="true" handleChange={handleChange} place="200hp" />
-                    <InputField id="others" label="Other details" name="others" type="textarea" required="false" handleChange={handleChange} place="" />
+                    <InputField id="others" label="Other details" name="others" type="textarea" required="false" handleChange={handleChange} place="" rows={1} />
                 </Row>
               </>
             <Row
               className="mt-3"
               style={{
                 display: "flex",
-                alignItems: "center",
+                justifyContent: "center",
                 marginTop: 30,
               }}
             >
                 <button
                     className="app_button"
                     style={{
-                    width: 150,
+                    width: 130,
                     marginLeft: 0,
                     padding: 10,
-                    color: "",
                     cursor: "pointer",
                     }}
                     disabled={loading}

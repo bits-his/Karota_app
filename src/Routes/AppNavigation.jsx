@@ -99,6 +99,10 @@ export default function AppNavigation() {
           element: <Vendor />,
         },
         {
+          path: "report_stolen",
+          element: <ReportStolen />,
+        },
+        {
           path: "vendorReg/",
           element: <VendorTable />,
           children: [

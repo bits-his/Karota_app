@@ -244,17 +244,19 @@ export default function Navbar() {
               Collection Point
             </div>
           )}
-          <div
-            onClick={logOut}
-            className={`navbar-link-item ${
+         
+        </section> 
+       
+      </div>
+       {/* <div
+        
+            className={`navbar-logout ${
               location.pathname.includes("top-up") && "navbar-active-side-menu"
             }`}
           >
             <GrLogout className="icon shadow" />
             Log out
-          </div>
-        </section>
-      </div>
+          </div> */}
     </div>
   );
 }

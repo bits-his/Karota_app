@@ -31,6 +31,7 @@ import VendorDetail from "../Component/Vendor/VendorDetail";
 import SuperAgentHistory from "../Component/SuperAgent/componentview/SuperAgentHistory";
 import AgentHistory from "../Component/SuperAgent/componentview/AgentHistory";
 import VehicleHistory from "../Component/vehicleOwner/VehicleHistory";
+import ReportStolen from "../Component/ReportStolen/ReportStolen"
 
 export default function AppNavigation() {
   let Pages = useRoutes([
@@ -96,6 +97,10 @@ export default function AppNavigation() {
         {
           path: "vendor",
           element: <Vendor />,
+        },
+        {
+          path: "report_stolen",
+          element: <ReportStolen />,
         },
         {
           path: "vendorReg/",

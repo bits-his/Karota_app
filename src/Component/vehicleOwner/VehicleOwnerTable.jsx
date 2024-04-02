@@ -63,7 +63,7 @@ export default function VehicleOwnerTable() {
       <hr />
       <Row>
         <Col md={12}>
-          <div style={{ display: "flex", flexDirection: "row", marginTop: 30, marginBottom: 30 }}>
+          <div style={{ display: "flex", flexDirection: "row", marginTop: 30, marginBottom: 10 }}>
               <div className="search">
                 <CiSearch
                   style={{

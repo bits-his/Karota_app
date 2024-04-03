@@ -207,10 +207,10 @@ function VendorReg() {
                   </Button>
                   <Button
                     color="success"
-                    // onClick={() => {
-                    //   toggle(vendor);
-                    // }}
-                    onClick={() => navigate("/vendortopup")}
+                    onClick={() => {
+                      toggle(vendor);
+                    }}
+                    // onClick={() => navigate("/vendortopup")}
                   >
                     Top up
                   </Button>

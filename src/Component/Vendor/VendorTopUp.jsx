@@ -53,7 +53,7 @@ function VendorTopUp({ selectedVendorValue }) {
     const obj = {
       source_id: 0,
       destination_id: form.vendor_id,
-      query_type: 'top_up',
+      query_type: 'vendor_top_up',
       type_of_top_up:"vendor_top_up",
       ...form
     }

@@ -107,7 +107,37 @@ export default function AgentTable() {
                 " "
               </Spinner>
             ) : 
-            data.length === 0 ? <h1 className="text-danger text-center">Not found</h1>:
+            data.length === 0 ? 
+            <Table
+                bordered
+                responsive
+                style={{
+                  position: "relative",
+                  top: "10px",
+                  width: "95.3%",
+                  left: "32px",
+                  marginTop: "4px",
+                }}
+              >
+                <thead>
+                  <tr>
+                    <th>S/N</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Balance</th>
+                    <th className="text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colSpan="6" className="text-center">
+                      No Agent {filter} found
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+            :
             (
               <Table
                 bordered
@@ -133,7 +163,7 @@ export default function AgentTable() {
                 <tbody>
                   {data?.map((agent, idx) => (
                     <tr key={idx}>
-                      <th>{idx + 1}</th>
+                      <th>{agent.agent_id}</th>
                       <td>{agent.name}</td>
                       <td>{agent.phone_no}</td>
                       <td>{agent.email}</td>
@@ -152,7 +182,7 @@ export default function AgentTable() {
                         <Button
                           color="success"
                           onClick={() =>
-                            navigate(`/agenthistory/history/${agent.id}`)
+                            navigate(`/agenthistory/history/${agent.agent_id}`)
                           }
                         >
                           View history

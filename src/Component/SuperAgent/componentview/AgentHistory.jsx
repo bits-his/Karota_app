@@ -14,7 +14,7 @@ export default function AgentHistory() {
   const owner_id = params.id;
   const getReg = useCallback(() => {
     _post(
-      `top-up/create`,
+      `top-up/history`,
       {
         source_id: owner_id,
         type_of_top_up: "agent_top_up",

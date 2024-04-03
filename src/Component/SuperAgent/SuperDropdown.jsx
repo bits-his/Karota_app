@@ -25,7 +25,7 @@ function SuperDropdown({ handleChange, selectedSuperValue }) {
     _get(`superagent?query_type=select-all`, (resp) => {
       if (resp.success && resp.results) {
         const formattedData = resp.results.map((superagent) => ({
-          value: superagent.id,
+          value: superagent.super_agent_id,
           label: superagent.name,
         }));
         setData(formattedData);

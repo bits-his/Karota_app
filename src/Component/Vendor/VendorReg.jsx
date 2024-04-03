@@ -15,7 +15,7 @@ import {
   ModalBody,
   ModalFooter,
 } from "reactstrap";
-import { _get, formatNumber, separator } from "../../Utils/Helper";
+import { _get, formatNumber, separator, _post } from "../../Utils/Helper";
 import PaymentButton from "../../PayWithInterswitch";
 import moment from "moment";
 
@@ -47,10 +47,23 @@ function VendorReg() {
   };
 
   const toggleInner = () => {
-    // console.log(data);
-    // setVendor(data);
+    const payload = {
+      name: vendor?.vendor_name,
+      vendor_no: vendor?.vendor_id,
+      email: vendor?.vendor_org_email,
+      balance: vendor?.balance,
+      amount: form.amount,
+    };
+// ask ahmed to give you the correct route you want to post them to
+    _post("top_up/create", payload, (res) => {
+      if (res.success) {
+        setLoading(false);
+        navigate("/vendorReg");
+      }
+    });
     setModalInner(!modalInner);
   };
+
 
   const search = () => {
     setQuery('search')
@@ -314,7 +327,7 @@ function VendorReg() {
                 Cancel
               </Button>
             </Col>
-            <Col md={2}>
+            <Col md={2}>  
               <Button color="primary" onClick={toggleInner}
               >
                 Pay
@@ -337,7 +350,7 @@ function VendorReg() {
             </div>
             <div className="modal-row-content">
               <span>Amount: </span>
-              <div>{form.amount? (separator(form.amount)):(0)}</div>
+              <div>{form.amount ? separator(form.amount) : 0}</div>
             </div>
           </div>
           <div className="modal-row-details">

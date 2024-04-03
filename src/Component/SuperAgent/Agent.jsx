@@ -219,8 +219,8 @@ export default function Agent() {
                         invalid={!!errors.state}
                       >
                         <option value={""}>Select State</option>
-                        {stateLga.map((item) => (
-                          <option>{item.state}</option>
+                        {stateLga.map((item, idx) => (
+                          <option key={idx}>{item.state}</option>
                         ))}
                       </Input>
                       <FormFeedback>

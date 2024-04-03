@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 // export const server_url = 'https://hotelserver-production.up.railway.app'
+<<<<<<< HEAD
 // export const server_url = 'http://localhost:34568'
 export const server_url = "http://localhost:44405";
 // export const server_url = "https://galaxybis.ebudgetkano.ng/karota";

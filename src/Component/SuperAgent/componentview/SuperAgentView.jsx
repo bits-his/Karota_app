@@ -17,7 +17,7 @@ export default function SuperAgentView() {
     _get(`superagent?query_type=select&id=${owner_id}`, (resp) => {
       if (resp.success && resp.results) {
         setData(resp.results);
-        console.log(resp.results);
+        //console.log(resp.results);
       }
     });
   }, [owner_id]);
@@ -58,7 +58,7 @@ export default function SuperAgentView() {
             </Button>
 
             {/* Title */}
-            <h4 className="app_title">{data[0]?.name}</h4>
+            <h4 className="app_title">Account History</h4>
 
             {/* User DP */}
             <img
@@ -80,11 +80,11 @@ export default function SuperAgentView() {
               {/* {JSON.stringify(data)} */}
               <div style={{ display: "flex" }}>
                 <div style={{ width: "50%", marginBottom: "20px" }}>
-                  <p>Vendor's name: </p>
+                  <p>SuperAgent's Name: </p>
                   <span>{data[0]?.name}</span>
                 </div>
                 <div style={{ width: "50%" }}>
-                  <p>Phone no.: </p>
+                  <p>Phone no. : </p>
                   <span>{data[0]?.phone}</span>
                 </div>
               </div>

@@ -14,7 +14,7 @@ export default function VendorDetail() {
   const owner_id = params.id;
 
   const getData = useCallback(() => {
-    _get(`vendors?query_type=select-all&id=${owner_id}`, (resp) => {
+    _get(`vendors?query_type=select&id=${owner_id}`, (resp) => {
       if (resp.success && resp.results) {
         setDetails(resp.results[0]);
       }
@@ -29,9 +29,8 @@ export default function VendorDetail() {
     _post(
       `top-up/create`,
       {
-        destination_id: owner_id,
-        type_of_top_up: "vendor_top_up",
-        query_type: "select_destination",
+        source_id: owner_id,
+        query_type: "select_vendor",
       },
       (resp) => {
         if (resp.success && resp.results) {
@@ -117,20 +116,28 @@ export default function VendorDetail() {
                 <th scope="row" className="text-center">Date</th>
                 <th scope="row" className="text-center">Type</th>
                 <th scope="row" className="text-center">Description</th>
-                <th scope="row" className="text-center">Amount</th>
+                <th scope="row" className="text-center">Credit</th>
+                <th scope="row" className="text-center">Debit</th>
                 <th scope="row" className="text-center">Balance</th>
               </tr>
             </thead>
             <tbody>
-              {data?.map((item, idx) => (
-                <tr key={idx}>
-                  <td>{item.t_date}</td>
-                  <td>{item.type_of_top_up}</td>
-                  <td>{item.description}</td>
-                  <td className="text-right">{separator(item.credit)}</td>
-                  <td className="text-right">{item.balance ? (separator(item.balance)):(0)}</td>
+              {data && data.length > 0 ? (
+                data.map((item, idx) => (
+                  <tr key={idx}>
+                    <td>{item.t_date}</td>
+                    <td>{item.type_of_top_up}</td>
+                    <td>{item.description}</td>
+                    <td className="text-right">{separator(item.credit )}</td>
+                  <td className="text-right">{separator(item.debit )}</td>
+                  <td className="text-right">{separator(item.balance)}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5" className="text-center">No transactions have been made.</td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </Table>
         </Col>

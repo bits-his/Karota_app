@@ -25,12 +25,14 @@ function VendorReg() {
     date_to: "",
     amount: 0,
   };
+  
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("");
   const [currentVendor, setCurrentVendor] = useState(_form);
   const [loading, setLoading] = useState(false); // Add loading state
   const [modal, setModal] = useState(false);
+  const [modalInner, setModalInner] = useState(false);
   const [vendor, setVendor] = useState({});
   const [form, setForm] = useState({});
   const [query, setQuery] = useState('select-all')
@@ -42,6 +44,12 @@ function VendorReg() {
     console.log(data);
     setVendor(data);
     setModal(!modal);
+  };
+
+  const toggleInner = () => {
+    // console.log(data);
+    // setVendor(data);
+    setModalInner(!modalInner);
   };
 
   const search = () => {
@@ -67,6 +75,21 @@ function VendorReg() {
   useEffect(() => {
     getReg();
   }, [getReg]);
+
+
+  // const pay = () {
+  //   _post(
+  //     "top_up_history/create",
+  //     form,
+  //     (res) => {
+  //       if (res.success) {
+  //         setLoading(false);
+  //         toast.success("Top up sucessful");
+  //         navigate("/vendorReg");
+  //       }
+  //     }
+  //   );
+  // }
   //console.log(vendor)
   return (
     <>
@@ -232,7 +255,7 @@ function VendorReg() {
             </div>
             <div className="modal-row-content">
               <span>Vendor no.:</span>
-              <div>{vendor?.id}</div>
+              <div>{vendor?.vendor_id}</div>
             </div>
           </div>
           <div className="modal-row-details">
@@ -292,19 +315,51 @@ function VendorReg() {
               </Button>
             </Col>
             <Col md={2}>
-              <PaymentButton
-                color="success"
-                amount={separator(form.amount)}
-                label="Pay"
-                email={vendor?.vendor_org_email}
-                user_id={vendor?.id}
-                name={vendor?.vendor_name}
-                reference_no={reference_no}
-              />
+              <Button color="primary" onClick={toggleInner}
+              >
+                Pay
+              </Button>
             </Col>
           </Row>
         </ModalFooter>
-      </Modal> 
+      </Modal>
+
+      {/* Nested modal for payment confirmation */}
+      <Modal isOpen={modalInner} toggle={toggleInner} className="innerModal">
+        <ModalHeader className="text-center modal-head-vendor-topup">
+          Payment confirmation
+        </ModalHeader>
+        <ModalBody>
+          <div className="modal-row-details">
+            <div className="modal-row-content small-margin-right">
+              <span>Name: </span>
+              <div>{vendor?.vendor_name}</div>
+            </div>
+            <div className="modal-row-content">
+              <span>Amount: </span>
+              <div>{form.amount? (separator(form.amount)):(0)}</div>
+            </div>
+          </div>
+          <div className="modal-row-details">
+            <div className="modal-row-content small-margin-right">
+              <span>Transaction ID:</span>
+              <div>{vendor?.vendor_id}</div>
+            </div>
+          </div>
+        </ModalBody>
+        <ModalFooter>
+          <Col md={8}>
+            <Button color="danger" onClick={toggleInner}>
+              Cancel
+            </Button>
+          </Col>
+          <Col md={2}>
+            <Button color="success" onClick={toggleInner}>
+              Confirm
+            </Button>
+          </Col>
+        </ModalFooter>
+      </Modal>
     </>
   );
 }

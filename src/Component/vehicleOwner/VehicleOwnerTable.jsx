@@ -63,8 +63,7 @@ export default function VehicleOwnerTable() {
       <hr />
       <Row>
         <Col md={12}>
-          <div style={{ display: "flex", flexDirection: "row", marginTop: 30 }}>
-            <Col md={12}>
+          <div style={{ display: "flex", flexDirection: "row", marginTop: 30, marginBottom: 10 }}>
               <div className="search">
                 <CiSearch
                   style={{
@@ -87,7 +86,6 @@ export default function VehicleOwnerTable() {
                   placeholder="Search Vehicle Owner"
                 />
               </div>
-            </Col>
             <label
               onClick={search}
               className="label_title" style={{ color: "#000" }}>

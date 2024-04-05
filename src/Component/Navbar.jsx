@@ -13,6 +13,7 @@ import { FaTruckFast } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 import { toParagraph } from "../Utils/Helper";
 import "./Navbar.css";
+import { GoReport } from "react-icons/go";
 
 export default function Navbar() {
   const goto = useNavigate();
@@ -245,16 +246,26 @@ export default function Navbar() {
             </div>
           )}
           <div
+            onClick={() => goto("/report_stolen")}
+            className={`navbar-link-item ${
+              location.pathname === "/report_stolen" && "navbar-active-side-menu"
+            }`}
+          >
+            {/* <GrLogout className="icon shadow" /> */}
+            <GoReport  className="icon
+          shadow" />
+            Report Stolen
+          </div>
+          {/* <div
             onClick={logOut}
             className={`navbar-link-item ${
               location.pathname.includes("top-up") && "navbar-active-side-menu"
             }`}
           >
             <GrLogout className="icon shadow" />
-            Log out
-          </div>
-        </section>
-      </div>
+            Log out */}
+            </section>
+          </div> 
     </div>
   );
 }

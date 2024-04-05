@@ -166,7 +166,7 @@ export default function SuperAgentTable() {
                 <tbody>
                   <tr>
                     <td colSpan="6" className="text-center">
-                      No vendors {filter} found
+                      No super Agent {filter} found
                     </td>
                   </tr>
                 </tbody>
@@ -211,7 +211,7 @@ export default function SuperAgentTable() {
                         <Button
                           color="success"
                           onClick={() =>
-                            navigate(`/superagenttable/view/${agent.id}`)
+                            navigate(`/superagenttable/view/${agent.super_agent_id}`)
                           }
                         >
                           View History

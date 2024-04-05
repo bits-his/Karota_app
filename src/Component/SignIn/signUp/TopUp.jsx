@@ -36,7 +36,7 @@ export default function TopUp() {
   });
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
- // const [vendorData, setVendorData] = useState([]);
+  const [loading,setLoading] = useState(false);
   const [filter, setFilter] = useState("");
   const navigate = useNavigate();
   
@@ -68,10 +68,11 @@ export default function TopUp() {
   //   bal: 2000,
   // };
   const getReg = useCallback(() => {
-    
+     setLoading(true)
     _get(`vehicles?query_type=${query}&engine_no=${filter}`, (resp) => {
       if (resp.success && resp.data) {
         setData(resp.data);
+        setLoading(false)
        // console.log(resp);
       }
     });
@@ -160,7 +161,8 @@ export default function TopUp() {
           </Col>
           <Card className="mt-5 shadow">
             <div className="table_overflow1">
-              {data?.length === 0 ? (
+              {
+              loading ? (
                 <Spinner
                   color="warning"
                   className="spinner"
@@ -169,7 +171,39 @@ export default function TopUp() {
                 >
                   ""
                 </Spinner>
-              ) : (
+              ) :
+              data?.length === 0 ?
+              <Table
+                bordered
+                responsive
+                style={{
+                  position: "relative",
+                  top: "10px",
+                  width: "95.3%",
+                  left: "32px",
+                  marginTop: "4px",
+                }}
+              >
+                <thead>
+                  <tr>
+                    <th>S/N</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Balance</th>
+                    <th className="text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colSpan="6" className="text-center">
+                      No Vehicle {filter} found
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+              :
+              (
                 <Table
                   bordered
                   responsive

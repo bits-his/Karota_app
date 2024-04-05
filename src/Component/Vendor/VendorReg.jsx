@@ -201,7 +201,7 @@ function VendorReg() {
                 <td style={{textAlign: "right"}}>{separator(vendor.balance)}</td>
                 <td className="text-center">
                   <Button color="info" className="marginResponsive"
-                    onClick={() => navigate(`/vendorReg/detail/${vendor.id}`)}
+                    onClick={() => navigate(`/vendorReg/detail/${vendor.vendor_id}`)}
                     >
                     View
                   </Button>

@@ -118,7 +118,7 @@ export default function VendorDetail() {
                 <th scope="row" className="text-center">Description</th>
                 <th scope="row" className="text-center">Credit</th>
                 <th scope="row" className="text-center">Debit</th>
-                <th scope="row" className="text-center">Balance</th>
+                <th scope="row" className="text-center">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -130,7 +130,7 @@ export default function VendorDetail() {
                     <td>{item?.description}</td>
                     <td className="text-right">{separator(item?.credit )}</td>
                   <td className="text-right">{separator(item?.debit )}</td>
-                  <td className="text-right">{separator(item?.balance)}</td>
+                  <td style={{color: `${item.status === 'success' ? 'green' : "blue"}`}} >{item?.status}</td>
                   </tr>
                 ))
               ) : (

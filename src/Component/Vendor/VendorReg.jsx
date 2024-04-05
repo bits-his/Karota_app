@@ -15,7 +15,7 @@ import {
   ModalBody,
   ModalFooter,
 } from "reactstrap";
-import { _get, formatNumber, separator } from "../../Utils/Helper";
+import { _get, _post, formatNumber, separator } from "../../Utils/Helper";
 import PaymentButton from "../../PayWithInterswitch";
 import moment from "moment";
 
@@ -27,10 +27,12 @@ function VendorReg() {
   };
   
   const navigate = useNavigate();
+  const [transId, setTransId] = useState('')
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("");
   const [currentVendor, setCurrentVendor] = useState(_form);
   const [loading, setLoading] = useState(false); // Add loading state
+  const [payLoading ,setPayLoading] = useState(false)
   const [modal, setModal] = useState(false);
   const [modalInner, setModalInner] = useState(false);
   const [vendor, setVendor] = useState({});
@@ -41,16 +43,33 @@ function VendorReg() {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
   const toggle = (data) => {
-    console.log(data);
+    //console.log(data);
     setVendor(data);
     setModal(!modal);
   };
 
   const toggleInner = () => {
     // console.log(data);
-    // setVendor(data);
-    setModalInner(!modalInner);
-  };
+     setPayLoading(true);
+    const obj = {
+      query_type : 'vendor_top_up',
+      source_id: vendor.vendor_id,
+      type_of_top_up: 'vendor_top_up',
+      destination_id: vendor.vendor_id,
+      amount:form.amount,
+    }
+    _post(`top-up/create`, obj, resp => {
+      setPayLoading(true)
+      if (resp.success){
+        console.log(resp.result[0].transaction_id)
+        setTransId(resp.result[0].transaction_id);
+        setPayLoading(false) 
+       setModalInner(!modalInner);
+      }
+      //console.log(resp)} )
+     
+   
+  })};
 
   const search = () => {
     setQuery('search')
@@ -345,17 +364,22 @@ function VendorReg() {
               <span>Transaction ID:</span>
               <div>{vendor?.vendor_id}</div>
             </div>
+            <div className="modal-row-content">
+              <span>Refence no: </span>
+              <div>{transId}</div>
+            </div>
           </div>
         </ModalBody>
         <ModalFooter>
-          <Col md={8}>
-            <Button color="danger" onClick={toggleInner}>
-              Cancel
+         
+          <Col md={4}>
+            <Button color="primary" onClick={()=>setModalInner(!modalInner)}>
+              Invoice
             </Button>
           </Col>
-          <Col md={2}>
+          <Col md={6}>
             <Button color="success" onClick={toggleInner}>
-              Confirm
+              Pay with bank
             </Button>
           </Col>
         </ModalFooter>

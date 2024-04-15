@@ -18,12 +18,14 @@ import {
 import { _get, _post, formatNumber, separator } from "../../Utils/Helper";
 import PaymentButton from "../../PayWithInterswitch";
 import moment from "moment";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import VendorInvoice from "../pdf/VendorInvoice";
 
 function VendorReg() {
   const _form = {
     date_from: "",
     date_to: "",
-    amount: 0,
+    amount: '',
   };
   
   const navigate = useNavigate();
@@ -36,8 +38,9 @@ function VendorReg() {
   const [modal, setModal] = useState(false);
   const [modalInner, setModalInner] = useState(false);
   const [vendor, setVendor] = useState({});
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState(_form);
   const [query, setQuery] = useState('select-all')
+  const [selectedItem,setSelecetedItem] =useState([])
   const reference_no = moment().format("YYYYMMDDhhmmssSSS");
   const onHandleChange = ({ target: { name, value } }) => {
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -61,16 +64,17 @@ function VendorReg() {
     _post(`top-up/create`, obj, resp => {
       setPayLoading(true)
       if (resp.success){
-        console.log(resp.result[0].transaction_id)
         setTransId(resp.result[0].transaction_id);
+        setSelecetedItem({...form,...data[0],transaction_id: resp.result[0].transaction_id})
+     
         setPayLoading(false) 
        setModalInner(!modalInner);
       }
-      //console.log(resp)} )
+     
      
    
   })};
-
+ //console.log(selectedItem) 
   const search = () => {
     setQuery('search')
 
@@ -262,7 +266,7 @@ function VendorReg() {
           </tbody>
         </Table>
       )}
-      <Modal isOpen={modal} toggle={toggle}>
+      <Modal isOpen={modal} toggle={toggle} centered>
         <ModalHeader className="text-center modal-head-vendor-topup">
           Vendor top up
         </ModalHeader>
@@ -336,7 +340,7 @@ function VendorReg() {
             <Col md={2}>
               <Button color="primary" onClick={toggleInner}
               >
-                Pay
+                Confirm
               </Button>
             </Col>
           </Row>
@@ -372,10 +376,26 @@ function VendorReg() {
         </ModalBody>
         <ModalFooter>
          
-          <Col md={4}>
-            <Button color="primary" onClick={()=>setModalInner(!modalInner)}>
-              Invoice
-            </Button>
+          <Col md={6}>
+          <PDFDownloadLink
+                  document={<VendorInvoice data={selectedItem} />}
+                  fileName={`${moment().format("YYYYMMDDhh:mm:ss")}-${
+                    selectedItem?.tax_payer
+                  }.pdf`}
+                >
+                  {({ blob, url, loading, error }) =>
+                  
+                      <Button variant="primary" color="primary" >
+                       { loading ? 'Loading Document' : 
+                        'Download Invoice'
+                          }
+                      </Button>
+                    
+                  }
+                </PDFDownloadLink>
+            {/* <Button color="primary" className='ml-auto' onClick={()=>setModalInner(!modalInner)}>
+             Download Invoice
+            </Button> */}
           </Col>
           <Col md={6}>
             <Button color="success" onClick={toggleInner}>

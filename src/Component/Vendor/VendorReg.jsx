@@ -46,14 +46,20 @@ function VendorReg() {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
   const toggle = (data) => {
-    //console.log(data);
     setVendor(data);
     setModal(!modal);
   };
-
+  const toggle1 = data => {
+   
+    setModal(false)
+    setTimeout(() => {
+      setForm(_form)
+    }, 1000);
+     
+  }
   const toggleInner = () => {
     // console.log(data);
-     setPayLoading(true);
+    setModal(false)
     const obj = {
       query_type : 'vendor_top_up',
       source_id: vendor.vendor_id,
@@ -62,18 +68,19 @@ function VendorReg() {
       amount:form.amount,
     }
     _post(`top-up/create`, obj, resp => {
-      setPayLoading(true)
       if (resp.success){
         setTransId(resp.result[0].transaction_id);
         setSelecetedItem({...form,...data[0],transaction_id: resp.result[0].transaction_id})
-     
-        setPayLoading(false) 
-       setModalInner(!modalInner);
+        setModalInner(!modalInner);
       }
-     
-     
    
-  })};
+  })
+};
+const handleCloseModal = () =>{
+  console.log('closed')
+  setModalInner(false)
+}
+ 
  //console.log(selectedItem) 
   const search = () => {
     setQuery('search')
@@ -100,20 +107,7 @@ function VendorReg() {
   }, [getReg]);
 
 
-  // const pay = () {
-  //   _post(
-  //     "top_up_history/create",
-  //     form,
-  //     (res) => {
-  //       if (res.success) {
-  //         setLoading(false);
-  //         toast.success("Top up sucessful");
-  //         navigate("/vendorReg");
-  //       }
-  //     }
-  //   );
-  // }
-  //console.log(vendor)
+
   return (
     <>
       <Row>
@@ -266,7 +260,7 @@ function VendorReg() {
           </tbody>
         </Table>
       )}
-      <Modal isOpen={modal} toggle={toggle} centered>
+      <Modal isOpen={modal} style={{top:'10%'}} centered>
         <ModalHeader className="text-center modal-head-vendor-topup">
           Vendor top up
         </ModalHeader>
@@ -333,7 +327,7 @@ function VendorReg() {
         <ModalFooter>
           <Row className="text-center">
             <Col md={8}>
-              <Button color="danger" onClick={toggle}>
+              <Button color="danger" onClick={toggle1}>
                 Cancel
               </Button>
             </Col>
@@ -348,9 +342,13 @@ function VendorReg() {
       </Modal>
 
       {/* Nested modal for payment confirmation */}
-      <Modal isOpen={modalInner} toggle={toggleInner} className="innerModal">
+      <Modal isOpen={modalInner} style={{top:'20%'}} className="innerModal">
         <ModalHeader className="text-center modal-head-vendor-topup">
+
           Payment confirmation
+          <Button color="danger" onClick={handleCloseModal}>
+              X
+            </Button>
         </ModalHeader>
         <ModalBody>
           <div className="modal-row-details">
@@ -375,12 +373,11 @@ function VendorReg() {
           </div>
         </ModalBody>
         <ModalFooter>
-         
           <Col md={6}>
           <PDFDownloadLink
                   document={<VendorInvoice data={selectedItem} />}
                   fileName={`${moment().format("YYYYMMDDhh:mm:ss")}-${
-                    selectedItem?.tax_payer
+                    selectedItem?.vendor_name
                   }.pdf`}
                 >
                   {({ blob, url, loading, error }) =>
@@ -390,12 +387,8 @@ function VendorReg() {
                         'Download Invoice'
                           }
                       </Button>
-                    
                   }
                 </PDFDownloadLink>
-            {/* <Button color="primary" className='ml-auto' onClick={()=>setModalInner(!modalInner)}>
-             Download Invoice
-            </Button> */}
           </Col>
           <Col md={6}>
             <Button color="success" onClick={toggleInner}>

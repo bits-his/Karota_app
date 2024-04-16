@@ -50,18 +50,7 @@ const VendorInvoice = ({
               </Text>
             </View>
           </View>
-          <View style={styles.item}>
-            <Text style={styles.mr5}>Date:</Text>
-            <View>
-              <Text>
-                {data?.date_from && data?.date_to
-                  ? `${moment(data?.date_from).format(" YYYY")} - ${moment(
-                      data?.date_to
-                    ).format(" YYYY")}`
-                  : moment(data?.transaction_date).format(" YYYY")}
-              </Text>
-            </View>
-          </View>
+     
 
           <View style={styles.item}>
             <Text style={styles.mr5}>Collection:</Text>
@@ -143,6 +132,18 @@ const VendorInvoice = ({
                 {data?.status === "success"
                   ? "Payment Successful"
                   : 'Pending'}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.item}>
+            <Text style={styles.mr5}>Period:</Text>
+            <View>
+              <Text>
+                {data?.date_from && data?.date_to
+                  ? `${moment(data?.date_from).format(" DD-MM-YYYY")} - ${moment(
+                      data?.date_to
+                    ).format(" DD-MM-YYYY")}`
+                  : moment(data?.transaction_date).format(" DD-MM-YYYY")}
               </Text>
             </View>
           </View>

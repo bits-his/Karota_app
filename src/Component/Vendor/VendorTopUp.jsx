@@ -13,7 +13,12 @@ function VendorTopUp({ selectedVendorValue }) {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false);
 
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({
+    vendor_id: '',
+    vendor_name: '',
+    
+
+  });
 
   const handleChange = ({ target: { name, value } }) => {
     setForm((prevForm) => ({
@@ -79,7 +84,7 @@ function VendorTopUp({ selectedVendorValue }) {
       return;
     }
 
-    console.log(form);
+    //console.log(form);
   };
 
   return (

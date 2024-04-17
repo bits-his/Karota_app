@@ -185,7 +185,6 @@
   border-bottom-left-radius: 5px;
   /* border-top-left-radius: 10px;
   border-bottom-left-radius: 10px; */
-  margin-left: -13px;
   width: 102.8%;
   border: 1px solid #f5c005;
 }
@@ -810,4 +809,8 @@ select.form-select {
 
 .full-width {
   width: 100% !important;
+}
+
+.innerModal {
+  width: 30% ;
 }

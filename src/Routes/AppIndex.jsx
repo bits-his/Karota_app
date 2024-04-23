@@ -20,16 +20,16 @@ export default function AppIndex() {
           {/* <SideBar /> */}
           <Navbar />
           <div
+            className={`navbar-logout ${
+              location.pathname.includes("top-up") && "navbar-active-side-menu"
+            }`}
+          >
         
-        className={`navbar-logout ${
-          location.pathname.includes("top-up") && "navbar-active-side-menu"
-        }`}
-      >
-        <GrLogout className="icon shadow" />
-        Log out
-      </div>
+            <GrLogout className="icon shadow" />
+            Log out
+          </div>
         </Col>
-        <Col md={10} sm={12}>
+        <Col md={12} sm={12}>
           <div
             className="p-0 m-0"
             style={{ marginRight: "auto", width: "100%" }}

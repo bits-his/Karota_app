@@ -70,13 +70,14 @@ export default function RegistrationTable() {
     }
 
 
+
     setLoading(true);
     _post(
       "vendors/create",
       form,
       (res) => {
         if (res.success) {
-          setLoading(true);
+          setLoading(false);
           toast.success("Vendor created successfully");
           setSubmittedData([...submittedData, res]);
           navigate("/vendorReg");

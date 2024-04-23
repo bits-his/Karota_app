@@ -27,7 +27,7 @@ export default function VendorDetail() {
 
   const getReg = useCallback(() => {
     _post(
-      `top-up/create`,
+      `top-up/history`,
       {
         source_id: owner_id,
         query_type: "select_vendor",
@@ -90,22 +90,22 @@ export default function VendorDetail() {
             <div style={{ display: "flex" }}>
               <div style={{ width: "50%", marginBottom: "20px", display: "flex" }}>
                 <p style={{ marginRight: 10, fontSize: 16, fontWeight: "bold" }}>Vendor's name: </p>
-                <span>{details.vendor_name}</span>
+                <span>{details?.vendor_name}</span>
               </div>
               <div style={{ width: "50%", display: "flex" }}>
                 <p style={{ marginRight: 10, fontSize: 16, fontWeight: "bold" }}>Phone no.: </p>
-                <span>{details.vendor_org_phone}</span>
+                <span>{details?.vendor_org_phone}</span>
               </div>
             </div>
 
             <div style={{ display: "flex" }}>
               <div style={{ width: "50%", display: "flex" }}>
                 <p style={{ marginRight: 10, fontSize: 16, fontWeight: "bold" }}>Address: </p>
-                <span>{details.vendor_ofiice_address}</span>
+                <span>{details?.vendor_ofiice_address}</span>
               </div>
               <div style={{ width: "50%", display: "flex" }}>
                 <p style={{ marginRight: 10, fontSize: 16, fontWeight: "bold" }}>E-mail: </p>
-                <span>{details.vendor_org_email}</span>
+                <span>{details?.vendor_org_email}</span>
               </div>
             </div>
           </section>
@@ -118,19 +118,19 @@ export default function VendorDetail() {
                 <th scope="row" className="text-center">Description</th>
                 <th scope="row" className="text-center">Credit</th>
                 <th scope="row" className="text-center">Debit</th>
-                <th scope="row" className="text-center">Balance</th>
+                <th scope="row" className="text-center">Status</th>
               </tr>
             </thead>
             <tbody>
-              {data && data.length > 0 ? (
+              {data?.length ? (
                 data.map((item, idx) => (
                   <tr key={idx}>
-                    <td>{item.t_date}</td>
-                    <td>{item.type_of_top_up}</td>
-                    <td>{item.description}</td>
-                    <td className="text-right">{separator(item.credit )}</td>
-                  <td className="text-right">{separator(item.debit )}</td>
-                  <td className="text-right">{separator(item.balance)}</td>
+                    <td>{item?.t_date}</td>
+                    <td>{item?.type_of_top_up}</td>
+                    <td>{item?.description}</td>
+                    <td className="text-right">{separator(item?.credit )}</td>
+                  <td className="text-right">{separator(item?.debit )}</td>
+                  <td style={{color: `${item.status === 'success' ? 'green' : "blue"}`}} >{item?.status}</td>
                   </tr>
                 ))
               ) : (

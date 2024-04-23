@@ -14,7 +14,7 @@ function VendorDropdown({ handleChange, selectedVendorValue }) {
       if (resp.success && resp.results) {
         // Extract only the name and id properties from the response
         const formattedData = resp.results.map((vendor) => ({
-          value: vendor.id,
+          value: vendor.vendor_id,
           label: vendor.vendor_name,
         }));
         setData(formattedData);

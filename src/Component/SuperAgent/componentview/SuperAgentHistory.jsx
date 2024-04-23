@@ -13,7 +13,7 @@ export default function SuperAgentHistory() {
   const owner_id = params.id;
   const getReg = useCallback(() => {
     _post(
-      `top-up/create`,
+      `top-up/history`,
       {
         source_id: owner_id,
         type_of_top_up: "super_agent_top_up",
@@ -66,9 +66,26 @@ export default function SuperAgentHistory() {
                     No transactions have been made.
                   </td>
                 </tr>
+<<<<<<< HEAD
               )}
             </tbody>
           </Table>
+=======
+              </thead>
+              <tbody>
+                  {data?.map((item, index) => (
+                    <tr key={index}>
+                      <td>{item?.t_date}</td>
+                      <td>{item?.type_of_top_up}</td>
+                      <td>{item?.description}</td>
+                      <td>{item?.credit}</td>
+                      <td>{item?.debit}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </Table>
+          </Col>
+>>>>>>> a21f2e0fdabd8526753f31e185a7458090456915
         </Col>
       </Row>
     </Card>

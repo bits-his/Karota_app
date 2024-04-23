@@ -44,8 +44,7 @@ function AgentTopUp() {
         setLoading(false); 
       }
     );
-    console.log(form);
-  };
+      };
 
   return (
     <>

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { InterswitchPay } from "react-interswitch";
+
 
 const PaymentButton = ({
   addStyle = {},
@@ -29,8 +31,7 @@ const PaymentButton = ({
         .then((raw) => raw.json())
         .then((resp) => {
           if (resp) {
-            console.log(resp);
-            console.log("resp");
+            console.log('resp',resp);
             if (resp.ResponseCode === "00") {
               _postApi(
                 "/inter-response",
@@ -53,7 +54,7 @@ const PaymentButton = ({
         })
         .catch((err) => {
           console.log(err);
-          toast.error("Payment aborted!");
+          toast.error("Payment aborted 1!");
         });
     } else {
       toast.error("Payment aborted!");
@@ -78,13 +79,13 @@ const PaymentButton = ({
     amount: input_amount,
     style: {
       // width: '200px',
-      height: "40px",
+      height: "35px",
       border: "none",
       color: "#fff",
-      backgroundColor: "#262B40",
-      padding: "7px",
+      backgroundColor: "#449d44",
+      padding: "6px 12px",
       width: "100%",
-      borderRadius: "10px",
+      borderRadius: "5px",
       ...addStyle,
     },
     callback: (response) => {
@@ -92,6 +93,7 @@ const PaymentButton = ({
       console.log("response: ", response);
     },
   };
+  //console.log(paymentParameters)
   return (
     <>
       <InterswitchPay {...paymentParameters} />

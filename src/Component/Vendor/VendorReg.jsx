@@ -58,7 +58,6 @@ function VendorReg() {
      
   }
   const toggleInner = () => {
-    // console.log(data);
     setModal(false)
     const obj = {
       query_type : 'vendor_top_up',
@@ -77,8 +76,11 @@ function VendorReg() {
   })
 };
 const handleCloseModal = () =>{
-  console.log('closed')
+  //closing the inner modal when x icon is clicked
   setModalInner(false)
+  setTimeout(() => {
+    setForm(_form)
+  }, 1000);
 }
  
  //console.log(selectedItem) 
@@ -391,9 +393,15 @@ const handleCloseModal = () =>{
                 </PDFDownloadLink>
           </Col>
           <Col md={6}>
-            <Button color="success" onClick={toggleInner}>
-              Pay with bank
-            </Button>
+          <PaymentButton reference_no={transId}
+           label="pay now"
+           amount={form.amount}
+           user_id={vendor.vendor_id} 
+           name={vendor.vendor_name}
+           email={vendor.vendor_org_email}
+           />
+           
+           
           </Col>
         </ModalFooter>
       </Modal>

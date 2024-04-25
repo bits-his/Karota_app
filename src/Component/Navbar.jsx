@@ -66,8 +66,7 @@ export default function Navbar() {
 
   return (
     <>
-      {isLargeScreen ? (
-        <div className="navbar-container">
+        <div className="navbar-container navbar-lg">
           <div className="navbar-logo-container">
             <img src={kekeLogo} alt="Keke logo" className="navbar-keke-logo" />
           </div>
@@ -282,7 +281,7 @@ export default function Navbar() {
                 </section>
               </div> 
         </div>
-      ):(
+     
         <section className="navbar-link-container navbar-md">
           <div className="navbar-link-item navbar-link-item-md hambugger-md">
             <GiHamburgerMenu className="icon icon-md shadow" />
@@ -306,7 +305,6 @@ export default function Navbar() {
             <FaMagento className="icon icon-md shadow"/>
           </div>
         </section>
-      )}
     </>
   );
 }

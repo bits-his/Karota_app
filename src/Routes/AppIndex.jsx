@@ -26,7 +26,7 @@ export default function AppIndex() {
           >
         
             <GrLogout className="icon shadow" />
-            Log out
+            <span classname="log-out-text">Log out</span>
           </div>
         </Col>
         <Col md={12} sm={12}>

@@ -135,7 +135,7 @@ export default function VendorDetail() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="5" className="text-center">No transactions have been made.</td>
+                  <td colSpan="6" className="text-center">No transactions have been made.</td>
                 </tr>
               )}
             </tbody>

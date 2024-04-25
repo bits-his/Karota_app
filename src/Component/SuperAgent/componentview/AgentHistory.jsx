@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Table, Card, Row, Col, Button, Input } from "reactstrap";
 import keke from "../../../assets/keke_napep.png";
-import { _get, _post } from "../../../Utils/Helper";
+import { _get, _post, separator } from "../../../Utils/Helper";
 import AgentVeiw from  "./AgentView"
 
 export default function AgentHistory() {
@@ -80,29 +80,36 @@ export default function AgentHistory() {
           <AgentVeiw  />
      
           
-            <Table striped bordered>
-              {/* {JSON.stringify(data)} */}
-              <thead>
-                <tr className="table-dark">
-                  <th scope="row">Date</th>
-                  <th scope="row">Type</th>
-                  <th scope="row">Description</th>
-                  <th scope="row">Topup</th>
-                  <th scope="row">Withdraw</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.map((item, index) => (
-                  <tr key={index}>
-                    <td>{item.t_date}</td>
-                    <td>{item.type_of_top_up}</td>
-                    <td>{item.description}</td>
-                    <td className="text-right">{item.credit}</td>
-                    <td className="text-right">{item.debit}</td>
+          <Table striped bordered>
+            <thead>
+              <tr className="table-dark">
+                <th scope="row" className="text-center">Date</th>
+                <th scope="row" className="text-center">Type</th>
+                <th scope="row" className="text-center">Description</th>
+                <th scope="row" className="text-center">Credit</th>
+                <th scope="row" className="text-center">Debit</th>
+                <th scope="row" className="text-center">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data?.length ? (
+                data.map((item, idx) => (
+                  <tr key={idx}>
+                    <td>{item?.t_date}</td>
+                    <td>{item?.type_of_top_up}</td>
+                    <td>{item?.description}</td>
+                    <td className="text-right">{separator(item?.credit )}</td>
+                  <td className="text-right">{separator(item?.debit )}</td>
+                  <td style={{color: `${item.status === 'success' ? 'green' : "blue"}`}} >{item?.status}</td>
                   </tr>
-                ))}
-              </tbody>
-            </Table>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="6" className="text-center">No transactions have been made.</td>
+                </tr>
+              )}
+            </tbody>
+          </Table>
           </Col>
         </Col>
       </Row>

@@ -8,18 +8,17 @@ import keke from "../../../assets/keke_napep.png";
 export default function AgentView() {
   const navigate = useNavigate();
   const { user } = useSelector((s) => s.auth);
-  const [data, setData] = useState({});
+  const [details, setDetails] = useState({});
   const [superagent, setsuperagent] = useState([]);
   const params = useParams();
   const owner_id = params.id;
   const getReg = useCallback(() => {
     _get(`agents?query_type=select&id=${owner_id}`, (resp) => {
       if (resp.success && resp.results) {
-        setData(resp.results[0]);
+        setDetails(resp.results[0]);
       }
     });
   }, [owner_id]);
-
   useEffect(() => {
     getReg();
   }, [getReg]);
@@ -73,46 +72,29 @@ export default function AgentView() {
           <hr />
         </Col> */}
        <Row className="align-items-start text-left">
-       <section style={{marginBottom: "2rem"}}>
-            <div style={{display: "flex"}}>
-              <div style={{width: "50%", marginBottom: "20px"}}>
-                <p>Owner's Name: </p>
-                <span>{data?.name}</span>
+       <section style={{ marginBottom: "2rem" }}>
+            <div style={{ display: "flex" }}>
+              <div style={{ width: "50%", marginBottom: "20px", display: "flex" }}>
+                <p style={{ marginRight: 10, fontSize: 16, fontWeight: "bold" }}>Vendor's name: </p>
+                <span>{details?.name}</span>
               </div>
-              <div style={{width: "50%"}}>
-                <p>State: </p>
-                <span>{data?.state}</span>
+              <div style={{ width: "50%", display: "flex" }}>
+                <p style={{ marginRight: 10, fontSize: 16, fontWeight: "bold" }}>Phone no.: </p>
+                <span>{details?.phone_no}</span>
               </div>
             </div>
-             
-            <div style={{display: "flex"}}>
-              <div style={{width: "50%"}}>
-                <p>Phone: </p>
-                <span>{data?.phone_no}</span>
+
+            <div style={{ display: "flex" }}>
+              <div style={{ width: "50%", display: "flex" }}>
+                <p style={{ marginRight: 10, fontSize: 16, fontWeight: "bold" }}>Address: </p>
+                <span>{details?.address}</span>
               </div>
-              <div style={{width: "50%"}}>
-                <p>NIN: </p>
-                <span>{data?.nin}</span>
-              </div>
-              <div style={{width: "50%"}}>
-                <p>Address: </p>
-                <span>{data?.address}</span>
-              </div>
-              <div style={{width: "50%"}}>
-                <p>LGA: </p>
-                <span>{data?.lga}</span>
-              </div>
-              <div style={{width: "50%"}}>
-                <p>Owner's Email: </p>
-                <span>{data?.email}</span>
-              </div>
-              <div style={{width: "50%"}}>
-                <p>Service Location: </p>
-                <span>{data?.service_location}</span>
+              <div style={{ width: "50%", display: "flex" }}>
+                <p style={{ marginRight: 10, fontSize: 16, fontWeight: "bold" }}>E-mail: </p>
+                <span>{details?.email}</span>
               </div>
             </div>
           </section>
-       
 </Row>
       </Row>
     </Card>

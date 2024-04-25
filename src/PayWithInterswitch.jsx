@@ -7,7 +7,7 @@ const PaymentButton = ({
   addStyle = {},
   merchantCode = "60969",
   amount = 0,
-  label = "",
+  label = "", 
   email = "",
   user_id = "",
   name = "",
@@ -20,7 +20,7 @@ const PaymentButton = ({
   const handleResponse = (response) => {
     if (response.desc === "Approved by Financial Institution") {
       fetch(
-        `https://webpay.interswitchng.com/collections/api/v1/gettransaction.json?merchantcode=MX${merchantCode}&transactionreference=${
+        `https://qa.interswitchng.com/collections/api/v1/gettransaction.json?merchantcode=MX${merchantCode}&transactionreference=${
           refNo || reference_no
         }&amount=${amount * 100}`,
         {
@@ -66,7 +66,7 @@ const PaymentButton = ({
   let input_amount = new_amount?.toString().split(".")[0];
   const paymentParameters = {
     merchantCode: `MX188877`,
-    payItemID,
+    payItemID:"057502",
     customerEmail: email,
     redirectURL: `https://kekeapp.netlify.app/`,
     text: label,

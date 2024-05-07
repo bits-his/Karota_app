@@ -231,6 +231,9 @@
   /* margin-top: -18px; */
   /* height: 70px; */ 
 }
+.search-bar-box{
+  display: flex; flex-direction: row; margin-top: 25px; margin-bottom: 10px;
+}
 .app_input:focus {
   outline: 1px #f5c005 solid;
   border: none;
@@ -289,7 +292,7 @@ label {
 
 .dashboard_card {
   margin-top: 20px;
-  padding: 30px;
+  padding: 15px;
   min-height: 87vh !important;
 }
 .card_div {
@@ -408,6 +411,12 @@ td, th{
 @media only screen and (max-width: 768px) {
   .customer-page {
     display: none;
+  }
+  .label_title{
+    font-size: 15px;
+    padding: 10px 6px 9px;
+    color: white;
+    font-weight: bold;
   }
   /* .sidebar_div {
     display: none;

@@ -92,8 +92,7 @@ export default function SuperAgentTable() {
       <hr />
       <Row>
         <Col md={12}>
-          <div style={{ display: "flex", flexDirection: "row", marginTop: 30 }}>
-            <Col md={12}>
+          <div className="search-bar-box">
               <div className="search">
                 <CiSearch
                   style={{
@@ -119,11 +118,11 @@ export default function SuperAgentTable() {
                   placeholder="Search for super agent"
                 />
               </div>
-            </Col>
+         
             <Label
               onClick={search}
               className="label_title"
-              style={{ color: "#000", cursor: "pointer" }}
+              style={{ cursor: "pointer" }}
             >
               Search
             </Label>

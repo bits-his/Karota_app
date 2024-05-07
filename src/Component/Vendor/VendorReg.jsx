@@ -148,8 +148,9 @@ const handleCloseModal = () =>{
       </Row>
       <hr style={{ width: "100%" }} />
       <Row>
-        <Col md={12} style={{ display: "flex", flexDirection: "row", width: "100%" }}>
-          <div className="search1">
+        <Col md={12} >
+         <div className="search-bar-box">
+         <div className="search">
             <CiSearch
               style={{
                 fontSize: 30,
@@ -173,13 +174,19 @@ const handleCloseModal = () =>{
               placeholder="Search: eg. Vendor Name | Vendor ID"
             />
           </div>
-          <Button
+          <label
+              onClick={search}
+              className="label_title" >
+              Search
+            </label>
+          {/* <Button
             onClick={search}
             className="label_title1"
             style={{ cursor: "pointer", fontWeight: "bold" }}
           >
             Search
-          </Button>
+          </Button> */}
+         </div>
         </Col>
       </Row>
 

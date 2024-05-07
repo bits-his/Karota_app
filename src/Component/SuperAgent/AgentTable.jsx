@@ -66,10 +66,10 @@ export default function AgentTable() {
           </div>
           <hr />
         </Col>
-
+      </Row>
+      <Row>
         <Col md={12}>
-          <div style={{ display: "flex", flexDirection: "row", marginTop: 30 }}>
-            <Col md={12}>
+          <div className="search-bar-box">
               <div className="search">
                 <CiSearch
                   style={{
@@ -89,11 +89,10 @@ export default function AgentTable() {
                 />
                 
               </div>
-            </Col>
             <label
               onClick={search}
               className="label_title"
-              style={{ color: "#000" }}
+              style={{ cursor:'pointer'}}
             >
               Search
             </label>

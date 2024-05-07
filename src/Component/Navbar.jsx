@@ -286,22 +286,71 @@ export default function Navbar() {
           <div className="navbar-link-item navbar-link-item-md hambugger-md">
             <GiHamburgerMenu className="icon icon-md shadow" />
           </div>
-          <div className="navbar-link-item navbar-link-item-md">
+          <div
+            onClick={() => goto("/")}
+              className={`navbar-link-item navbar-link-item-md hambugger-md ${
+                location.pathname === "/" && "navbar-active-side-menu"
+              }`
+            }
+          >
             <MdDashboard className="icon icon-md shadow" />
           </div>
-          <div className="navbar-link-item navbar-link-item-md">
+
+          <div 
+            onClick={() => {
+              goto("/vendorReg");
+            }}
+            className={`navbar-link-item navbar-link-item-md ${
+              location.pathname === "/vendor" && "navbar-active-side-menu"
+            }`}
+          >
             <LiaLayerGroupSolid className="icon icon-md shadow" />
           </div>
-          <div className="navbar-link-item navbar-link-item-md">
+
+          <div 
+            onClick={() => {
+              goto("/superagenttable");
+            }}
+            className={`navbar-link-item navbar-link-item-md ${
+              location.pathname === "/superagenttable" &&
+              "navbar-active-side-menu"
+            }`}
+          >
             <FaUser className="icon icon-md shadow" />
           </div>
-          <div className="navbar-link-item navbar-link-item-md">
+
+          <div
+            onClick={() => {
+              goto("/agenttable");
+            }}
+            className={`navbar-link-item navbar-link-item-md ${
+              location.pathname === "/agenttable" &&
+              "navbar-active-side-menu"
+            }`}
+          >
             <MdOutlineSupportAgent className="icon icon-md shadow" />
           </div>
-          <div className="navbar-link-item navbar-link-item-md">
+
+          <div 
+            onClick={() => {
+              goto("/vehicleownertable");
+            }}
+            className={`navbar-link-item navbar-link-item-md ${
+              location.pathname === "/vehicleownertable" &&
+              "navbar-active-side-menu"
+            }`}
+          >
             <FaTruckFast className="icon icon-md shadow" />
           </div>
-          <div className="navbar-link-item navbar-link-item-md">
+
+          <div
+            onClick={() => goto("/vehicles")}
+              className={`navbar-link-item navbar-link-item-md ${location.pathname.includes("vehicles")
+                ? "navbar-active-side-menu"
+                : ""
+              }`
+            }
+          >
             <FaMagento className="icon icon-md shadow"/>
           </div>
         </section>

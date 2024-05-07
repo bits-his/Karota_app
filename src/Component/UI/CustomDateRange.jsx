@@ -26,7 +26,7 @@ export default function CustomDateRange({
 
     return (
         <Row >
-            <Col md={7}>
+            <Col md={7} >
                 <ButtonGroup>
                     {dateRanges.map((r) => (
                         <Button
@@ -74,7 +74,7 @@ export default function CustomDateRange({
                     </Row>
                 )}
                 {type === "quarterly" && (
-                    <Row className="d-flex mx-0 px-0 flex-direction-row justify-content-between">
+                    <Row className="d-flex mx-0 px-0 flex-direction-row justify-content-between" style={{display:'flex'}}>
                         <Col md={6}>
                             <div className="row">
                                 <div className="col-md-3 text-right d-flex align-items-center justify-content-end">

@@ -170,6 +170,7 @@
 
 .hambugger-md {
   margin-bottom: 40px;
+
 }
 
 @media screen and (max-width: 767px){
@@ -178,11 +179,24 @@
   }
   .navbar-md {
     display: flex;
+    justify-content: flex-start;
+    padding-top: 10px;
     position: sticky;
-    height: 100vh;
+    height: 100%;
+    top: 0;
   }
   .sidebar {
     width: 100px;
+  }
+  #log-out-text {
+    display: none ;
+  }
+  .navbar-logout{
+    padding: 20px;
+    bottom: 10px
+  }
+  .navbar-logout svg {
+    margin: 0;
   }
 }
 

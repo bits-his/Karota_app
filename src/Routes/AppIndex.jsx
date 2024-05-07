@@ -6,6 +6,7 @@ import { GrLogout } from "react-icons/gr";
 import Navbar from "../Component/Navbar";
 import Navlogout from "../Component/Navlogout";
 
+
 export default function AppIndex() {
   const logOut = () => {
     dispatch(logout(navigate));
@@ -26,7 +27,7 @@ export default function AppIndex() {
           >
         
             <GrLogout className="icon shadow" />
-            <span classname="log-out-text">Log out</span>
+            <span id="log-out-text">Log out</span>
           </div>
         </Col>
         <Col md={12} sm={12}>

@@ -31,6 +31,7 @@
   width: 100px;
 }
 
+
 .navbar-app-title {
   color: #020202;
 }
@@ -148,3 +149,56 @@
   text-align: left;
   padding: 10px 30px;
 }
+
+
+/* styling for sidebar on small screen */
+.navbar-md {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px 0;
+}
+.navbar-link-item-md {
+  padding: 10px 20px;
+  margin-bottom: 17px;
+}
+
+.icon-md {
+  font-size: 3rem !important;
+  font-weight: bold;
+}
+
+.hambugger-md {
+  margin-bottom: 40px;
+
+}
+
+@media screen and (max-width: 767px){
+  .navbar-lg {
+    display: none;
+  }
+  .navbar-md {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 10px;
+    position: sticky;
+    height: 100%;
+    top: 0;
+  }
+  .sidebar {
+    width: 100px;
+    height: 200vh
+  }
+  #log-out-text {
+    display: none ;
+  }
+  .navbar-logout{
+    padding: 20px;
+    bottom: 10px
+  }
+  .navbar-logout svg {
+    margin: 0;
+  }
+}
+
+/* end of styling for sidbar on small screens */

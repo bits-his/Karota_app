@@ -129,7 +129,7 @@ export default function SuperAgentTable() {
           </div>
         </Col>
 
-        <Row>
+        
           <div className="table_overflow">
             {loading ? ( // Display spinner if loading is true
               <Spinner
@@ -146,9 +146,8 @@ export default function SuperAgentTable() {
                 responsive
                 style={{
                   position: "relative",
-                  top: "10px",
-                  width: "95.3%",
-                  left: "32px",
+
+                  width: "100%",
                   marginTop: "4px",
                 }}
               >
@@ -176,9 +175,9 @@ export default function SuperAgentTable() {
                 responsive
                 style={{
                   position: "relative",
-                  top: "10px",
-                  width: "95.3%",
-                  left: "32px",
+                
+                  width: "100%",
+              
                   marginTop: "4px",
                 }}
               >
@@ -222,7 +221,6 @@ export default function SuperAgentTable() {
               </Table>
             )}
           </div>
-        </Row>
       </Row>
     </Card>
   );

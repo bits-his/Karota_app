@@ -11,7 +11,7 @@ import { FaMagento, FaUser } from "react-icons/fa";
 import { FaTruckFast } from "react-icons/fa6";
 
 const QuickActivityWrap = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(false);
   const columnMarginBottom = {
     marginBottom: "2rem",
   };

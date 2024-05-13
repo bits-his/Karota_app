@@ -16,7 +16,7 @@ import AgentTopUp from "../Component/SuperAgent/AgentTopUp"
 import VendorTable from "../Component/Vendor/VendorTable";
 import VendorReg from "../Component/Vendor/VendorReg";
 import VehicleOwnerTable from "../Component/vehicleOwner/VehicleOwnerTable";
-import TopUp from "../Component/SignIn/signUp/TopUp";
+import TopUp from "../Component/SignIn/signUp/CollectionPoint";
 import Dashboard from "../Component/Dashboard/index";
 import VendorTopUp from "../Component/Vendor/VendorTopUp";
 import VehicleView from "../Component/vehicleOwner/VehicleView";

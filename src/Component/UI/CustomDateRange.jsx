@@ -26,8 +26,8 @@ export default function CustomDateRange({
 
     return (
         <Row >
-            <Col md={7} >
-                <ButtonGroup>
+            <Col md={12}  lg={8}>
+                <ButtonGroup style={{width: '100%'}}>
                     {dateRanges.map((r) => (
                         <Button
                             key={r.type}
@@ -43,7 +43,7 @@ export default function CustomDateRange({
                     ))}
                 </ButtonGroup>
             </Col>
-            <Col md={5} className="text-right">
+            <Col md={12} lg={4} className="text-right ">
                 {type === "monthly" && (
                     <Row>
                         <Col md={6} className="offset-md-6">
@@ -77,7 +77,7 @@ export default function CustomDateRange({
                     <Row className="d-flex mx-0 px-0 flex-direction-row justify-content-between" style={{display:'flex'}}>
                         <Col md={6}>
                             <div className="row">
-                                <div className="col-md-3 text-right d-flex align-items-center justify-content-end">
+                                <div className="col-md-3 text-right d-flex align-items-center justify-content-end ">
                                     <em className="text-black">Year:</em>
                                 </div>
                                 <div className="col-md-9">
@@ -161,9 +161,9 @@ export default function CustomDateRange({
                 {
                     ["custom", "daily", "weekly"].includes(type) && (
                         <Row className="d-flex mx-0 px-0 flex-direction-row justify-content-between">
-                            <Col md={6} className="text-left">
+                            <Col md={6} className="text-left px-0">
                                 <div className="row " style={{display:"flex",alignItems:"center"}}>
-                                    <div className="col-md-3 pt-5 mt-5 text-right d-flex align-items-center justify-content-end">
+                                    <div className="col-md-3 text-right d-flex align-items-center justify-content-end px-0">
                                         <em className="text-black">From:</em>
                                     </div>
                                     <div className="col-md-9">
@@ -178,7 +178,7 @@ export default function CustomDateRange({
                                     </div>
                                 </div>
                             </Col>
-                            <Col md={6} className="text-left">
+                            <Col md={6} className="text-left px-0">
                                 <div className="row" style={{display:"flex",alignItems:"center"}}>
                                     <div className="col-md-3 text-right d-flex align-items-center justify-content-end">
                                         <em className="text-black">To:</em>

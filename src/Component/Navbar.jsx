@@ -90,18 +90,19 @@ export default function Navbar() {
         <div className="navbar-container navbar-lg">
           <div className="navbar-logo-container">
             <img src={kekeLogo} alt="Keke logo" className="navbar-keke-logo" />
-          </div>
-          <h4
+          
+                  <h4
             className="navbar-app-title"
             style={{
               fontSize: "26px",
-              marginTop: 20,
               textAlign: "center",
               color: "black",
             }}
           >
             Keke App
-          </h4>
+          </h4>          
+          </div>
+        
           <div className="navbar-menu-container">
             <section className="navbar-link-container">
               <div

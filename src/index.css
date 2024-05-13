@@ -4,6 +4,14 @@
   margin: 0;
   /* width: 100%; */
 }
+.main-outlet{
+  padding-inline: 5px;
+}
+@media (width > 1240px){
+  .main-outlet{
+    width: 78%;
+  }
+}
 .status_button {
   border: none;
   border-radius: 0;
@@ -81,7 +89,7 @@
   background-color: #f5c005;
   border: none;
   color: white;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
   border-radius: 7px;
   transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
@@ -240,6 +248,7 @@
 }
 .app_title {
   color: #020202;
+  margin: 0;
   /* text-shadow: 3px 4px 5px #4b4b4b; */
 }
 .vendor_title {
@@ -293,7 +302,7 @@ label {
 .dashboard_card {
   margin-top: 20px;
   padding: 15px;
-  min-height: 87vh !important;
+  min-height: 97vh !important;
 }
 .card_div {
   border: 1px solid #f5c005;
@@ -349,11 +358,7 @@ label {
   /* background-color: #b30000; */
   color: #fff;
 }
-.icon {
-  font-size: 22px;
-  margin-bottom: -6px;
-  margin-right: 10px;
-}
+
 .grp_btn {
   /* width: fit-content; */
   display: flex;

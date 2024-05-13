@@ -48,13 +48,12 @@ export default function AgentTable() {
     <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
       <Row>
         <Col md={12}>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems:'center'}}>
             <h4 className="app_title"> Registered Agents </h4>
 
             <button
               className="app_button"
               style={{
-                width: 150,
                 padding: 10,
                 marginLeft: 15,
                 color: "#000",
@@ -99,7 +98,7 @@ export default function AgentTable() {
           </div>
         </Col>
 
-        <Row>
+     
           <div className="table_overflow">
           {loading ? (
               <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
@@ -110,13 +109,13 @@ export default function AgentTable() {
             <Table
                 bordered
                 responsive
-                style={{
-                  position: "relative",
-                  top: "10px",
-                  width: "95.3%",
-                  left: "32px",
-                  marginTop: "4px",
-                }}
+                // style={{
+                //   position: "relative",
+                //   top: "10px",
+                //   width: "95.3%",
+                //   left: "32px",
+                //   marginTop: "4px",
+                // }}
               >
                 <thead>
                   <tr>
@@ -143,9 +142,8 @@ export default function AgentTable() {
                 responsive
                 style={{
                   position: "relative",
-                  top: "10px",
-                  width: "95.3%",
-                  left: "32px",
+             
+                  width: "100%",
                   marginTop: "4px",
                 }}
               >
@@ -193,7 +191,6 @@ export default function AgentTable() {
               </Table>
             )}
           </div>
-        </Row>
       </Row>
     </Card>
   );

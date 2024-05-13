@@ -41,12 +41,11 @@ export default function VehicleOwnerTable() {
     <>
       <Row>
         <Col md={12}>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: 'center'}}>
             <h4 className="app_title"> Vehicle Owners</h4>
             <button
               className="app_button text-right"
               style={{
-                width: 150,
                 padding: 10,
                 marginLeft: 15,
                 color: "#000",
@@ -94,7 +93,6 @@ export default function VehicleOwnerTable() {
           </div>
         </Col>
 
-        <Col>
           {loading ? (
               <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
                 ""
@@ -105,12 +103,6 @@ export default function VehicleOwnerTable() {
             <Table
               bordered
               responsive
-              style={{
-                position: "relative",
-                top: "20px",
-                width: "100%",
-                marginTop: "4px",
-              }}
             >
               <thead>
                 <tr>
@@ -184,7 +176,7 @@ export default function VehicleOwnerTable() {
                 </tbody>
               </Table>
           </div>}
-        </Col>
+        
       </Row>
     </>
   );

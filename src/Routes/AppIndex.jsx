@@ -21,7 +21,7 @@ export default function AppIndex() {
         className="m-0 p-0"
         style={{ padding: 0, margin: 0, display: "flex", flexDirection: "row" }}
       >
-        <Col md={2} sm={0} className="m-0 sidebar">
+        <Col md={3} sm={0} className="m-0 sidebar">
           {/* <SideBar /> */}
           <Navbar />
           <div
@@ -34,14 +34,11 @@ export default function AppIndex() {
             <span id="log-out-text">Log out</span>
           </div>
         </Col>
-        <Col md={12} sm={12}>
+        <Col md={9} sm={12} className="main-outlet">
           <div
             className="p-0 m-0"
             style={{ marginRight: "auto", width: "100%" }}
           >
-            <div>
-                {/* <Navlogout /> */}
-                </div>
             <Outlet />
           </div>
         </Col>

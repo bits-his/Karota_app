@@ -93,74 +93,50 @@ export default function TopUp() {
   }, [getReg]);
 
   return (
-    <div>
-      {/* {JSON.stringify(data)} */}
-      <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
-        <Row>
-          <Col md={12}>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <h4 className="app_title">Point of Collection</h4>
-            </div>
-            {/* {vendorData.map(item, id) => ( 
-            <div
-            key={id}
-            style={{
-              position: 'absolute',
-              left: '90rem',
-              top: '-25px',
-              fontSize: '20px',
-              // display: 'flex',
-              float: 'right'
-            }}>
-              {/* <div>Name: {agentDetails.name}</div>
-              <div>ID: {agentDetails.id}</div>
-              <div>Bal: {agentDetails.bal}</div> */}
-            {/* <div>Name: {item.name}</div>
-              <div>ID: {item.id}</div>
-              <div>Bal: {item.bal}</div>
-            </div>
-             )}   */}
-            <hr />
-          </Col>
-          <Col md={12}>
-            <div style={{ display: "flex", flexDirection: "row" }}>
-              <Col md={12}>
-                <div className="search1">
-                  <CiSearch
-                    style={{
-                      fontSize: 30,
-                      width: 25,
-                      marginTop: 3,
-                      color: "#000",
-                    }}
-                  />
-                  <Input
-                    style={{
-                      position: "relative",
-                      width: "100%",
-                      fontSize: 20,
-                      top: -5,
-                    }}
-                    name="filter"
-                    value={filter}
-                    type="text"
-                    className="app_input2"
-                    onChange={({ target: { value } }) => setFilter(value)}
-                    placeholder="Search: Reg. No | Vehicle No. | Phone No"
-                  />
-                </div>
-              </Col>
-              <Label
-                onClick={search}
-                className="label_title1"
-                style={{ color: "#000", cursor: "pointer" }}
-              >
-                Search
-              </Label>
-            </div>
-          </Col>
-          <Card className="mt-5 shadow">
-            <div className="table_overflow1">
+    <>
+      <Card className="app_card dashboard_card shadow m-2 mt-2">
+      <Row>
+        <Col md={12}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems:'center'}}>
+            <h4 className="app_title"> Point of Collection</h4>
+          </div>
+        </Col>
+      </Row>
+
+      <hr />
+      <Row>
+        <Col md={12}>
+          <div className='search-bar-box' >
+              <div className="search">
+                <CiSearch
+                  style={{
+                    fontSize: 30,
+                    width: 25,
+                    marginTop: 3,
+                    color: "#000",
+                  }}
+                />
+                <input
+                  name="filter"
+                  value={filter}
+                  type="text"
+                  className="app_input2"
+                  onChange={({ target: { value } }) => setFilter(value)}
+                  style={{
+                    width: "100%",
+                    fontSize: 20,
+                  }}
+                  placeholder="Search Vehicle Owner"
+                />
+              </div>
+              <label
+              onClick={search}
+              className="label_title" >
+              Search
+            </label>
+          </div>
+        </Col>
+            <div className="table_overflow">
               {
               loading ? (
                 <Spinner
@@ -178,9 +154,7 @@ export default function TopUp() {
                 responsive
                 style={{
                   position: "relative",
-                  top: "10px",
-                  width: "95.3%",
-                  left: "32px",
+                  width: "100%",
                   marginTop: "4px",
                 }}
               >
@@ -209,9 +183,7 @@ export default function TopUp() {
                   responsive
                   style={{
                     position: "relative",
-                    top: "10px",
-                    width: "97.5%",
-                    left: "17px",
+                    width: "100%",
                     marginTop: "4px",
                   }}
                 >
@@ -261,7 +233,7 @@ export default function TopUp() {
                 </Table>
               )}
             </div>
-          </Card>
+    
 
           {/* <Modal
             isOpen={modal}
@@ -499,6 +471,6 @@ export default function TopUp() {
           )} */}
         </Row>
       </Card>
-    </div>
+    </>
   );
 }

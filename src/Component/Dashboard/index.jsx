@@ -164,8 +164,8 @@ const App = () => {
 
     return (
         <div>
-            <div className="app_card dashboard_card shadow p-4 m-2 mt-2">
-                <Row className='mx-0 pt-5' style={{ marginBottom: '30px' }}>
+            <div className="app_card dashboard_card shadow px-2 m-1 mt-2">
+                <Row className='mx-0 pt-3' style={{ marginBottom: '30px' }}>
                     <Col md={12}>
                         <CustomDateRange
                             type={dateRange.type}

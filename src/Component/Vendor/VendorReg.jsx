@@ -189,7 +189,7 @@ const handleCloseModal = () =>{
          </div>
         </Col>
       </Row>
-
+      <div className="table_overflow">
       {loading ? ( // Display spinner if loading is true
         <Spinner
           color="warning"
@@ -205,7 +205,6 @@ const handleCloseModal = () =>{
           responsive
           style={{
             position: "relative",
-            top: "20px",
             width: "100%",
             marginTop: "4px",
           }}
@@ -234,7 +233,6 @@ const handleCloseModal = () =>{
           responsive
           style={{
             position: "relative",
-            top: "20px",
             width: "100%",
             marginTop: "4px",
           }}
@@ -284,6 +282,7 @@ const handleCloseModal = () =>{
           </tbody>
         </Table>
       )}
+      </div>
       <Modal isOpen={modal} style={{ top: "10%" }} centered>
         <ModalHeader className="text-center modal-head-vendor-topup">
           Vendor top up

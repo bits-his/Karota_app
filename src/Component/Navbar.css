@@ -181,13 +181,13 @@
     display: flex;
     justify-content: flex-start;
     padding-top: 10px;
-    position: sticky;
+    position: relative;
     height: 100%;
     top: 0;
   }
   .sidebar {
     width: 100px;
-    height: 200vh
+    height: 200vh;
   }
   #log-out-text {
     display: none ;

@@ -35,35 +35,42 @@ export default function Navbar() {
   };
 
   const toggleVendorDropdown = () => {
+    closeDropdown()
     setVendorDropdown(!vendorDropdown);
   };
 
   const toggleSuperAgentDropdown = () => {
+    closeDropdown()
     setSuperAgentDropdown(!superAgentDropdown);
   };
 
   const toggleAgentDropdown = () => {
+    closeDropdown()
     setAgentDropdown(!agentDropdown);
   };
 
   const toggleVehicleDropdown = () => {
+    closeDropdown()
     setVehicleDropdown(!vehicleDropdown);
   };
 
-  const closeDropdown = () => {};
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsLargeScreen(window.innerWidth >= 768);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
+  const closeDropdown = () => {
+    // Count how many dropdowns are open
+    let openDropdownCount = 0;
+    if (vendorDropdown) openDropdownCount++;
+    if (superAgentDropdown) openDropdownCount++;
+    if (agentDropdown) openDropdownCount++;
+    if (vehicleDropdown) openDropdownCount++;
+  
+    // If more than two dropdowns are open, close all dropdowns
+    if (openDropdownCount => 2 || openDropdownCount) {
+      setVendorDropdown(false);
+      setSuperAgentDropdown(false);
+      setAgentDropdown(false);
+      setVehicleDropdown(false);
+    }
+  };
+  
   return (
     <>
         <div className="navbar-container navbar-lg">

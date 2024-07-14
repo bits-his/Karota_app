@@ -13,7 +13,12 @@ function VendorTopUp({ selectedVendorValue }) {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false);
 
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({
+    vendor_id: '',
+    vendor_name: '',
+    
+
+  });
 
   const handleChange = ({ target: { name, value } }) => {
     setForm((prevForm) => ({
@@ -53,7 +58,7 @@ function VendorTopUp({ selectedVendorValue }) {
     const obj = {
       source_id: 0,
       destination_id: form.vendor_id,
-      query_type: 'top_up',
+      query_type: 'vendor_top_up',
       type_of_top_up:"vendor_top_up",
       ...form
     }
@@ -79,7 +84,7 @@ function VendorTopUp({ selectedVendorValue }) {
       return;
     }
 
-    console.log(form);
+    //console.log(form);
   };
 
   return (

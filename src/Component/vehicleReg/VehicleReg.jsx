@@ -16,9 +16,9 @@ import { _post } from "../../Utils/Helper";
 import toast from "react-hot-toast";
 
 export default function RegistrationTable() {
-  const  {id}  = useParams();
+  const { id } = useParams();
   const _form = {
-    owner_id: id ,
+    owner_id: id,
     lg_reg_no: "",
     pin: "",
     engine_no: "",
@@ -41,7 +41,7 @@ export default function RegistrationTable() {
 
   const handleChange = ({ target: { name, value } }) => {
     setForm((p) => ({ ...p, [name]: value }));
-      
+
   };
 
 
@@ -185,6 +185,22 @@ export default function RegistrationTable() {
                     {/* {errors.expiry_date && <span style={{ color: 'red' }}>{errors.expiry_date}</span>} */}
                   </FormGroup>
                 </Col>
+                <Col md={4} className="first-col">
+                  <FormGroup>
+                    <Label for="chasis_no">Chasis No</Label>
+                    <Input
+                      onChange={handleChange}
+                      id="chasis_no"
+                      name="chasis_no"
+                      value={form.chasis_no}
+                      placeholder="Vehicle's chasis No"
+                      type="text"
+                      className="app_input"
+                      invalid={!!errors.chasis_no}
+                    />
+                    <FormFeedback><spann style={{ color: 'red' }}>{errors.chasis_no}</spann></FormFeedback>
+                  </FormGroup>
+                </Col>
                 <Col md={4} className="">
                   <FormGroup>
                     <Label for="pin">PIN</Label>
@@ -217,8 +233,6 @@ export default function RegistrationTable() {
                     <FormFeedback><span style={{ color: 'red' }}>{errors.engine_no}</span></FormFeedback>
                   </FormGroup>
                 </Col>
-              </Row>
-              <Row className="margin-bottom-input">
                 <Col md={4} className="first-col">
                   <FormGroup>
                     <Label for="vehicle_make">Vehicle make</Label>
@@ -266,8 +280,6 @@ export default function RegistrationTable() {
                     <FormFeedback><span style={{ color: 'red' }}>{errors.date_issued}</span></FormFeedback>
                   </FormGroup>
                 </Col>
-              </Row>
-              <Row className="margin-bottom-input">
                 <Col md={4} className="first-col">
                   <FormGroup>
                     <Label for="state_registered">State Registered</Label>
@@ -301,7 +313,7 @@ export default function RegistrationTable() {
                       <option value="">--Select LGA--</option>
                       {stateLga
                         .filter((item) => item.state === form.state_registered)[0]
-                        ?.lgas?.map((lga, idx) => (
+                        ?.lgas ?.map((lga, idx) => (
                           <option key={idx}>{lga}</option>
                         ))}
                     </Input>
@@ -321,24 +333,6 @@ export default function RegistrationTable() {
                       invalid={!!errors.lg_reg_no}
                     />
                     <FormFeedback><span style={{ color: 'red' }}></span></FormFeedback>
-                  </FormGroup>
-                </Col>
-              </Row>
-              <Row className="margin-bottom-input">
-                <Col md={4} className="first-col">
-                  <FormGroup>
-                    <Label for="chasis_no">Chasis No</Label>
-                    <Input
-                      onChange={handleChange}
-                      id="chasis_no"
-                      name="chasis_no"
-                      value={form.chasis_no}
-                      placeholder="Vehicle's chasis No"
-                      type="text"
-                      className="app_input"
-                      invalid={!!errors.chasis_no}
-                    />
-                    <FormFeedback><spann style={{ color: 'red' }}>{errors.chasis_no}</spann></FormFeedback>
                   </FormGroup>
                 </Col>
                 <Col md={4}>

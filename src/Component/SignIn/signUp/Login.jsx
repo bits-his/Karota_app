@@ -30,13 +30,12 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const handleChange = ({ target: { name, value } }) => {
     setForm((p) => ({ ...p, [name]: value }));
-    console.log(form);
   };
 
   const handleSubmit = () => {
     setLoading(true);
-    setForm(form);
-    console.log(form);
+    //navigate("/");
+    //console.log(form);
     dispatch(
       login(
         { username: form.email, password: form.password, history: navigate },
@@ -119,7 +118,7 @@ export default function Login() {
                       fullWidth
                       onClick={handleSubmit}
                     >
-                      {loading ? <Spinner size={10} /> : 'Sign In'} 
+                      {loading ? <Spinner size={'sm'} /> : 'Sign In'} 
                     </Button>
                  
                   </Col>

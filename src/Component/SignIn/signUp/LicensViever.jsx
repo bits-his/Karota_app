@@ -11,7 +11,7 @@ export default function LicensViever() {
   const getVehicles = useCallback(() => {
     // setLoading(true);
     _get(
-      `vehicles?query_type=select&vehicle_id=${vehicle_id}`,
+      `vehicles?query_type=pdf&owner_id=${vehicle_id}`,
       (resp) => {
         if (resp.data && resp.data.length) {
           setData(resp.data);

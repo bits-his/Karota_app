@@ -201,9 +201,6 @@ export default function RegistrationTable() {
                     {/* {errors.expiry_date && <span style={{ color: 'red' }}>{errors.expiry_date}</span>} */}
                   </FormGroup>
                 </Col>
-<<<<<<< HEAD
-               
-=======
                 <Col md={4} className="first-col">
                   <FormGroup>
                     <Label for="chasis_no">Chasis No</Label>
@@ -236,7 +233,6 @@ export default function RegistrationTable() {
                     <FormFeedback><span style={{ color: 'red' }}>{errors.pin}</span></FormFeedback>
                   </FormGroup>
                 </Col>
->>>>>>> 13baf7823b25276e9e5b04583580dafa6d38f4ba
                 <Col md={4}>
                   <FormGroup>
                     <Label for="engine_no">Engine No.</Label>
@@ -300,13 +296,7 @@ export default function RegistrationTable() {
                     <FormFeedback><span style={{ color: 'red' }}>{errors.date_issued}</span></FormFeedback>
                   </FormGroup>
                 </Col>
-<<<<<<< HEAD
-              </Row>
-              <Row className="margin-bottom-input">
-              <Col md={4} className="">
-=======
                 <Col md={4} className="first-col">
->>>>>>> 13baf7823b25276e9e5b04583580dafa6d38f4ba
                   <FormGroup>
                     <Label for="pin">PIN</Label>
                     <Input
@@ -359,12 +349,6 @@ export default function RegistrationTable() {
                     <FormFeedback><span style={{ color: 'red' }}></span></FormFeedback>
                   </FormGroup>
                 </Col>
-<<<<<<< HEAD
-              </Row>
-              <Row className="margin-bottom-input">
-               
-=======
->>>>>>> 13baf7823b25276e9e5b04583580dafa6d38f4ba
                 <Col md={4}>
                 
                   <FormGroup>

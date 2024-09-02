@@ -810,3 +810,7 @@ select.form-select {
 .full-width {
   width: 100% !important;
 }
+
+.innerModal {
+  width: 30% ;
+}

@@ -46,6 +46,7 @@ export default function SuperAgentHistory() {
                 <th className="text-center">Type</th>
                 <th className="text-center">Description</th>
                 <th className="text-center">Topup</th>
+                <th className="text-center">balance</th>
                 <th className="text-center">Withdraw</th>
               </tr>
             </thead>
@@ -56,6 +57,7 @@ export default function SuperAgentHistory() {
                     <td>{item.t_date}</td>
                     <td>{item.type_of_top_up}</td>
                     <td>{item.description}</td>
+                    <td>{item.balance}</td>
                     <td className="text-right">{separator(item.credit)}</td>
                     <td className="text-right">{separator(item.debit)}</td>
                   </tr>
@@ -66,26 +68,9 @@ export default function SuperAgentHistory() {
                     No transactions have been made.
                   </td>
                 </tr>
-<<<<<<< HEAD
               )}
             </tbody>
           </Table>
-=======
-              </thead>
-              <tbody>
-                  {data?.map((item, index) => (
-                    <tr key={index}>
-                      <td>{item?.t_date}</td>
-                      <td>{item?.type_of_top_up}</td>
-                      <td>{item?.description}</td>
-                      <td>{item?.credit}</td>
-                      <td>{item?.debit}</td>
-                    </tr>
-                  ))}
-              </tbody>
-            </Table>
-          </Col>
->>>>>>> a21f2e0fdabd8526753f31e185a7458090456915
         </Col>
       </Row>
     </Card>

@@ -201,6 +201,7 @@ export default function RegistrationTable() {
                     {/* {errors.expiry_date && <span style={{ color: 'red' }}>{errors.expiry_date}</span>} */}
                   </FormGroup>
                 </Col>
+<<<<<<< HEAD
                 <Col md={4} className="first-col">
                   <FormGroup>
                     <Label for="chasis_no">Chasis No</Label>
@@ -217,6 +218,8 @@ export default function RegistrationTable() {
                     <FormFeedback><spann style={{ color: 'red' }}>{errors.chasis_no}</spann></FormFeedback>
                   </FormGroup>
                 </Col>
+=======
+>>>>>>> 6b9e30e6e3492a4c404f04f50143421f6787b0c2
                 <Col md={4} className="">
                   <FormGroup>
                     <Label for="pin">PIN</Label>
@@ -296,6 +299,11 @@ export default function RegistrationTable() {
                     <FormFeedback><span style={{ color: 'red' }}>{errors.date_issued}</span></FormFeedback>
                   </FormGroup>
                 </Col>
+<<<<<<< HEAD
+=======
+              </Row>
+              <Row className="margin-bottom-input">
+>>>>>>> 6b9e30e6e3492a4c404f04f50143421f6787b0c2
                 <Col md={4} className="first-col">
                   <FormGroup>
                     <Label for="pin">PIN</Label>
@@ -349,6 +357,27 @@ export default function RegistrationTable() {
                     <FormFeedback><span style={{ color: 'red' }}></span></FormFeedback>
                   </FormGroup>
                 </Col>
+<<<<<<< HEAD
+=======
+              </Row>
+              <Row className="margin-bottom-input">
+                <Col md={4} className="first-col">
+                  <FormGroup>
+                    <Label for="chasis_no">Chasis No</Label>
+                    <Input
+                      onChange={handleChange}
+                      id="chasis_no"
+                      name="chasis_no"
+                      value={form.chasis_no}
+                      placeholder="Vehicle's chasis No"
+                      type="text"
+                      className="app_input"
+                      invalid={!!errors.chasis_no}
+                    />
+                    <FormFeedback><spann style={{ color: 'red' }}>{errors.chasis_no}</spann></FormFeedback>
+                  </FormGroup>
+                </Col>
+>>>>>>> 6b9e30e6e3492a4c404f04f50143421f6787b0c2
                 <Col md={4}>
                 
                   <FormGroup>

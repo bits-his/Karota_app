@@ -20,7 +20,7 @@ export default function SuperAgentHistory() {
         query_type: "select_super_agent",
       },
       (resp) => {
-       // console.log(resp, "gsgsggsg");
+        // console.log(resp, "gsgsggsg");
         if (resp.success && resp.results) {
           setData(resp.results);
         }
@@ -48,18 +48,20 @@ export default function SuperAgentHistory() {
                   <th>Description</th>
                   <th>Topup</th>
                   <th>Withdraw</th>
+                  <th>Balance</th>
                 </tr>
               </thead>
               <tbody>
-                  {data?.map((item, index) => (
-                    <tr key={index}>
-                      <td>{item?.t_date}</td>
-                      <td>{item?.type_of_top_up}</td>
-                      <td>{item?.description}</td>
-                      <td>{item?.credit}</td>
-                      <td>{item?.debit}</td>
-                    </tr>
-                  ))}
+                {data ?.map((item, index) => (
+                  <tr key={index}>
+                    <td>{item ?.t_date}</td>
+                    <td>{item ?.type_of_top_up}</td>
+                    <td>{item ?.description}</td>
+                    <td>{item ?.credit}</td>
+                    <td>{item ?.debit}</td>
+                    <td>{item ?.balance}</td>
+                  </tr>
+                ))}
               </tbody>
             </Table>
           </Col>

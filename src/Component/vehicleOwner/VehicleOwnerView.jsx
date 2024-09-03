@@ -198,7 +198,7 @@ export default function VehicleOwnerView() {
                             <Button
                               color="info"
                               onClick={() => {
-                                navigate(`/licens-pdf/${vehicle.vehicle_id}`);
+                                navigate(`/licens-pdf/${vehicle.owner_id}`);
                               }}
                             >
                               View License

@@ -167,22 +167,6 @@ export default function RegistrationTable() {
           <Form onSubmit={handleSubmit} className="mx-auto">
             <>
               <Row className="margin-bottom-input">
-              <Col md={4} className="first-col">
-                  <FormGroup>
-                    <Label for="chasis_no">Chasis No</Label>
-                    <Input
-                      onChange={handleChange}
-                      id="chasis_no"
-                      name="chasis_no"
-                      value={form.chasis_no}
-                      placeholder="Vehicle's chasis No"
-                      type="text"
-                      className="app_input"
-                      invalid={!!errors.chasis_no}
-                    />
-                    <FormFeedback><spann style={{ color: 'red' }}>{errors.chasis_no}</spann></FormFeedback>
-                  </FormGroup>
-                </Col>
                 <Col md={4} className="first-col">
                   <FormGroup>
                     <Label for="plate_no">Plate No</Label>
@@ -199,6 +183,22 @@ export default function RegistrationTable() {
                     <span style={{ color: 'red' }}></span>
                     <FormFeedback><span style={{ color: 'red' }}>{errors.plate_no}</span></FormFeedback>
                     {/* {errors.expiry_date && <span style={{ color: 'red' }}>{errors.expiry_date}</span>} */}
+                  </FormGroup>
+                </Col>
+                <Col md={4} className="first-col">
+                  <FormGroup>
+                    <Label for="chasis_no">Chasis No</Label>
+                    <Input
+                      onChange={handleChange}
+                      id="chasis_no"
+                      name="chasis_no"
+                      value={form.chasis_no}
+                      placeholder="Vehicle's chasis No"
+                      type="text"
+                      className="app_input"
+                      invalid={!!errors.chasis_no}
+                    />
+                    <FormFeedback><spann style={{ color: 'red' }}>{errors.chasis_no}</spann></FormFeedback>
                   </FormGroup>
                 </Col>
                 <Col md={4} className="">
@@ -280,25 +280,25 @@ export default function RegistrationTable() {
                     <FormFeedback><span style={{ color: 'red' }}>{errors.date_issued}</span></FormFeedback>
                   </FormGroup>
                 </Col>
-              </Row>
-              <Row className="margin-bottom-input">
                 <Col md={4} className="first-col">
                   <FormGroup>
-                    <Label for="pin">PIN</Label>
+                    <Label for="state_registered">State Registered</Label>
                     <Input
                       onChange={handleChange}
-                      id="pin"
-                      name="pin"
-                      value={form.pin}
-                      placeholder="PINXXXXXXXXXX28"
-                      type="text"
+                      id="state_registered"
+                      name="state_registered"
+                      type="select"
                       className="app_input"
-                      invalid={!!errors.pin}
-                    />
-                    <FormFeedback><span style={{ color: 'red' }}>{errors.pin}</span></FormFeedback>
+                      invalid={!!errors.state_registered}
+                    >
+                      <option value="">Select State</option>
+                      {stateLga.map((item, idx) => (
+                        <option key={idx}>{item.state}</option>
+                      ))}
+                    </Input>
+                    <FormFeedback><span style={{ color: 'red' }}>{errors.state_registered}</span></FormFeedback>
                   </FormGroup>
                 </Col>
-               
                 <Col md={4}>
                   <FormGroup>
                     <Label for="registered_lg">L.G.A. Registred</Label>
@@ -335,27 +335,8 @@ export default function RegistrationTable() {
                     <FormFeedback><span style={{ color: 'red' }}></span></FormFeedback>
                   </FormGroup>
                 </Col>
-              </Row>
-              <Row className="margin-bottom-input">
-                <Col md={4} className="first-col">
-                  <FormGroup>
-                    <Label for="chasis_no">Chasis No</Label>
-                    <Input
-                      onChange={handleChange}
-                      id="chasis_no"
-                      name="chasis_no"
-                      value={form.chasis_no}
-                      placeholder="Vehicle's chasis No"
-                      type="text"
-                      className="app_input"
-                      invalid={!!errors.chasis_no}
-                    />
-                    <FormFeedback><spann style={{ color: 'red' }}>{errors.chasis_no}</spann></FormFeedback>
-                  </FormGroup>
-                </Col>
                 <Col md={4}>
-                
-                  <FormGroup>
+                    <FormGroup>
                     <Label for="color">Color</Label>
                     <Input
                       onChange={handleChange}

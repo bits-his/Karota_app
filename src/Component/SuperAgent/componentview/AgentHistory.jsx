@@ -89,6 +89,7 @@ export default function AgentHistory() {
                   <th scope="row">Description</th>
                   <th scope="row">Topup</th>
                   <th scope="row">Withdraw</th>
+                  <th scope="row">balace</th>
                 </tr>
               </thead>
               <tbody>
@@ -97,6 +98,7 @@ export default function AgentHistory() {
                     <td>{item.t_date}</td>
                     <td>{item.type_of_top_up}</td>
                     <td>{item.description}</td>
+                    <td>{item.balance}</td>
                     <td className="text-right">{item.credit}</td>
                     <td className="text-right">{item.debit}</td>
                   </tr>

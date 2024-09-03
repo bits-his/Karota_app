@@ -166,7 +166,7 @@ export default function SuperAgentTable() {
                 <tbody>
                   <tr>
                     <td colSpan="6" className="text-center">
-                      No super Agent {filter} found
+                      No SuperAgent {filter} found
                     </td>
                   </tr>
                 </tbody>

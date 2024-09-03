@@ -119,7 +119,7 @@ export default function VendorDetail() {
                 <th scope="row" className="text-center">Credit</th>
                 <th scope="row" className="text-center">Debit</th>
                 <th scope="row" className="text-center">Status</th>
-                <th scope="row" className="text-center">Balance</th>
+                <th scope="row" className="text-center">balance</th>
               </tr>
             </thead>
             <tbody>

@@ -4,6 +4,10 @@
   margin: 0;
   /* width: 100%; */
 }
+body{
+  box-sizing: border-box;
+  /* overflow-x: hidden; */
+}
 .status_button {
   border: none;
   border-radius: 0;

@@ -21,51 +21,26 @@ export function login({ username, password, history }, success, error) {
     })
       .then((raw) => raw.json())
       .then((data) => {
-        console.log(data);
         if (data.success) {
           const { token } = data;
-          // console.log(token);
+
           if (token) {
             localStorage.setItem("@@token", token);
           }
 
           getUserProfile(token)
             .then((userData) => {
-              // console.log(userData, data, "KKDKDKDDK");
-              if (data.success) {
-                /**
-                 * Token is valid
-                 * navigate user to dashboard */
-                // callback();
-                dispatch({ type: LOADING_APP });
-                const { user, tax_accounts } = userData;
-                if (user.role === "user") {
-                  dispatch({
-                    type: AUTH,
-                    payload: {
-                      user,
-                      tax_account: tax_accounts ? tax_accounts[0] : [],
-                    },
-                  });
-                  success(data);
-                } else {
-                  dispatch({
-                    type: AUTH,
-                    payload: {
-                      user,
-                    },
-                  });
-                  success(data);
-                }
+              console.log(userData); // Ensure this logs user with `accessTo` and `functionalities`
 
-                // history("/selection");
-              } else {
-                // callback();
-                localStorage.removeItem("@@token");
-                // history("/");
-
-                dispatch(logout(history));
-              }
+              dispatch({ type: LOADING_APP });
+              dispatch({
+                type: AUTH,
+                payload: {
+                  user: userData,  // Ensure `userData` includes `accessTo` and `functionalities`
+                  tax_account: userData.tax_accounts ? userData.tax_accounts[0] : [],
+                },
+              });
+              success(data);
             })
             .catch((error) => {
               dispatch(logout(history));
@@ -77,15 +52,15 @@ export function login({ username, password, history }, success, error) {
         } else {
           dispatch({ type: ERRORS, payload: data.msg });
           error(data);
-          // console.log(data);
         }
       })
       .catch((err) => {
         dispatch({ type: LOADING_LOGIN });
-        // console.log(err)
       });
   };
 }
+
+
 
 export async function getUserProfile(_token) {
   try {
@@ -95,8 +70,16 @@ export async function getUserProfile(_token) {
         authorization: _token,
       },
     });
+
     let data = await response.json();
-    return data;
+
+    console.log(data); // Check if `data.user` includes `accessTo` and `functionalities`
+
+    if (data.success) {
+      return data.user;  // Ensure that the returned user data includes `accessTo` and `functionalities`
+    } else {
+      throw new Error('Failed to fetch user profile');
+    }
   } catch (error) {
     if (error.status === 401) {
       logout();
@@ -105,6 +88,8 @@ export async function getUserProfile(_token) {
     return error;
   }
 }
+
+
 
 export function getWallet(cb = (f) => f, err = (f) => f) {
   return (dispatch) => {

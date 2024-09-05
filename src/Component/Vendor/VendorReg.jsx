@@ -180,7 +180,7 @@ function VendorReg() {
         </Col>
       </Row>
 
-      {loading ? ( // Display spinner if loading is true
+      {loading ? ( 
         <Spinner
           color="warning"
           className="spinner"
@@ -189,7 +189,7 @@ function VendorReg() {
         >
           ""
         </Spinner>
-      ) : data.length === 0 ? ( // Display empty table if data is empty
+      ) : data.length === 0 ? ( 
         <Table
           bordered
           responsive

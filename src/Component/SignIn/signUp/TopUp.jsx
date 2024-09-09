@@ -67,22 +67,46 @@ export default function TopUp() {
   //   id: 123,
   //   bal: 2000,
   // };
-  const getReg = useCallback(() => {
-     setLoading(true)
-    _get(`vehicles?query_type=${query}&engine_no=${filter}`, (resp) => {
-      if (resp.success && resp.data) {
+
+  const getReg = useCallback(async () => {
+    setLoading(true);
+    try {
+      const resp = await _get(`vehicles?query_type=${query}&engine_no=${filter}`);
+      setLoading(false);
+
+      if (resp.success && resp.results) {
         setData(resp.data);
         setLoading(false)
-       // console.log(resp);
+      } else {
+        console.log('No data found');
       }
-    });
-    // _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
-    //   setLoading(false); // Set loading to false after receiving response
-    //   if (resp.success && resp.results) {
-    //     setVendorData(resp.results);
-    //   }
-    // });
-  },[query]);
+    } catch (err) {
+      setLoading(false);
+      toast('Failed to fetch data');
+    } finally {
+      setLoading(false);
+    }
+  }, [query, filter]);
+
+
+  // const getReg = useCallback(() => {
+  //    setLoading(true)
+  //   _get(`vehicles?query_type=${query}&engine_no=${filter}`, (resp) => {
+  //     if (resp.success && resp.data) {
+  //       setData(resp.data);
+  //       setLoading(false)
+  //      // console.log(resp);
+  //     }
+  //   });
+  //   // _get(`vendors?query_type=select-all&plate_no=${filter}`, (resp) => {
+  //   //   setLoading(false); // Set loading to false after receiving response
+  //   //   if (resp.success && resp.results) {
+  //   //     setVendorData(resp.results);
+  //   //   }
+  //   // });
+  // },[query]);
+
+
   useEffect(() =>{
     if(!filter){
       setQuery('select-all')

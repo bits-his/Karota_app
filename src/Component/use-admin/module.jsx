@@ -6,7 +6,7 @@ import { MdDashboard, MdOutlineSupportAgent } from "react-icons/md";
 export const sidebarModules = [
     {
         title: "Dashboard",
-        route: "/",
+        route: "/dashboard",
         icon: MdDashboard,
     },
     {

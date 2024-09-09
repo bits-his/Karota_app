@@ -14,8 +14,7 @@ export default function AdminDashboard() {
             try {
                 const result = await _get('get-all-users');
                 
-                // Check if response was successful and results array exists
-                if (result && result.success && Array.isArray(result.results)) {
+                if (result && result.success) {
                     setData(result.results);
                 } else {
                     throw new Error('Unexpected error or data format');

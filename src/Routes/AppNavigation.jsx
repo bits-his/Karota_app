@@ -49,7 +49,7 @@ export default function AppNavigation() {
       element: <AppIndex />,
       children: [
         {
-          path: "/",
+          path: "/dashboard",
           element: <Dashboard />,
         },
         {

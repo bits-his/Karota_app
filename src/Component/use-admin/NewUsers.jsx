@@ -47,11 +47,9 @@ export default () => {
         if (form.functionalities.includes(item.label)) {
             let newList = form.functionalities.filter((a) => a !== item.label);
             setForm((prevForm) => ({ ...prevForm, functionalities: newList }));
-            // setIsOpen(!isOpen);
         } else {
             let newList = [...form.functionalities, item.label];
             setForm((prevForm) => ({ ...prevForm, functionalities: newList }));
-            // setIsOpen(!isOpen);
         }
     };
 
@@ -72,7 +70,7 @@ export default () => {
                 ...form,
                 accessTo: form.accessTo.join(","),
                 functionalities: form.functionalities.join(","),
-                password: form.contact_password,  // Change field name to 'password'
+                password: form.contact_password,  
             },
             (resp) => {
                 setLoading(false);
@@ -232,7 +230,7 @@ export default () => {
                                     name="contact_password"
                                     value={form.contact_password}
                                     placeholder="**********"
-                                    type={passwordVisible ? "text" : "password"} // Toggle input type
+                                    type={passwordVisible ? "text" : "password"}
                                     className="app_input"
                                     required
                                 />
@@ -246,7 +244,7 @@ export default () => {
                                         cursor: 'pointer',
                                     }}
                                 >
-                                    {passwordVisible ? <AiFillEyeInvisible /> : <AiFillEye />} {/* Toggle icons */}
+                                    {passwordVisible ? <AiFillEyeInvisible /> : <AiFillEye />}
                                 </span>
                             </div>
                         </FormGroup>

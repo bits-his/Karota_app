@@ -7,7 +7,6 @@ import {
   MY_WALLET,
 } from "../types";
 import { _get, server_url } from "../../Utils/Helper";
-// import { useHistory } from 'react-router-dom';
 
 export function login({ username, password, history }, success, error) {
   return (dispatch) => {
@@ -30,20 +29,22 @@ export function login({ username, password, history }, success, error) {
 
           getUserProfile(token)
             .then((userData) => {
-              console.log(userData); // Ensure this logs user with `accessTo` and `functionalities`
+              console.log(userData);
 
               dispatch({ type: LOADING_APP });
               dispatch({
                 type: AUTH,
                 payload: {
-                  user: userData,  // Ensure `userData` includes `accessTo` and `functionalities`
+                  user: userData,
                   tax_account: userData.tax_accounts ? userData.tax_accounts[0] : [],
                 },
               });
               success(data);
             })
             .catch((error) => {
-              dispatch(logout(history));
+              console.log(error);
+              
+              // dispatch(logout(history));
               dispatch({
                 type: ERRORS,
                 payload: { msg: "Authentication failed", error },
@@ -73,10 +74,10 @@ export async function getUserProfile(_token) {
 
     let data = await response.json();
 
-    console.log(data); // Check if `data.user` includes `accessTo` and `functionalities`
+    console.log(data);
 
     if (data.success) {
-      return data.user;  // Ensure that the returned user data includes `accessTo` and `functionalities`
+      return data.user;
     } else {
       throw new Error('Failed to fetch user profile');
     }
@@ -154,7 +155,7 @@ export function init(history, success = (f) => f, error = (f) => f) {
   };
 }
 
-export function logout(history) {
+export function logout(history=f=>f) {
   return (dispatch) => {
     localStorage.removeItem("@@token");
     history("/login");

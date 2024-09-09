@@ -46,8 +46,8 @@ export default function SuperAgentHistory() {
                 <th className="text-center">Type</th>
                 <th className="text-center">Description</th>
                 <th className="text-center">Topup</th>
-                <th className="text-center">balance</th>
                 <th className="text-center">Withdraw</th>
+                <th className="text-center">balance</th>
               </tr>
             </thead>
             <tbody>
@@ -57,9 +57,9 @@ export default function SuperAgentHistory() {
                     <td>{item.t_date}</td>
                     <td>{item.type_of_top_up}</td>
                     <td>{item.description}</td>
-                    <td>{item.balance}</td>
                     <td className="text-right">{separator(item.credit)}</td>
                     <td className="text-right">{separator(item.debit)}</td>
+                    <td>{item.balance}</td>
                   </tr>
                 ))
               ) : (

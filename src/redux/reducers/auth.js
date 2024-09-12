@@ -23,9 +23,12 @@ const initialState = {
 export default function auth(state = initialState, action) {
   switch (action.type) {
     case AUTH:
+      // Log to see what exactly is coming in the action payload
+      console.log("AUTH action payload:", action.payload);
+
       return {
         ...state,
-        user: action.payload?.user,
+        user: action.payload?.user || state.user,  // Keep the existing user if the payload is undefined
         my_wallet:
           action.payload && action.payload?.my_wallet?.id > 0
             ? action.payload.my_wallet
@@ -67,3 +70,4 @@ export default function auth(state = initialState, action) {
       return state;
   }
 }
+

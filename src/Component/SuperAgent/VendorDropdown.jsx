@@ -7,20 +7,43 @@ function VendorDropdown({ handleChange, selectedVendorValue }) {
   const [selectedVendor, setSelectedVendor] = useState(selectedVendorValue);
   const [loading, setLoading] = useState(false);
 
-  const getVendors = useCallback(() => {
+  const getVendors = useCallback(async () => {
     setLoading(true);
-    _get(`vendors?query_type=select-all`, (resp) => {
+    try {
+      const resp = await _get(`vendors?query_type=select-all`);
       setLoading(false);
+
       if (resp.success && resp.results) {
-        // Extract only the name and id properties from the response
         const formattedData = resp.results.map((vendor) => ({
           value: vendor.vendor_id,
           label: vendor.vendor_name,
         }));
         setData(formattedData);
+      } else {
+        console.log('No data found');
       }
-    });
+    } catch (err) {
+      setLoading(false);
+      toast('Failed to fetch data');
+    } finally {
+      setLoading(false);
+    }
   }, []);
+
+  // const getVendors = useCallback(() => {
+  //   setLoading(true);
+  //   _get(`vendors?query_type=select-all`, (resp) => {
+  //     setLoading(false);
+  //     if (resp.success && resp.results) {
+  //       // Extract only the name and id properties from the response
+  //       const formattedData = resp.results.map((vendor) => ({
+  //         value: vendor.vendor_id,
+  //         label: vendor.vendor_name,
+  //       }));
+  //       setData(formattedData);
+  //     }
+  //   });
+  // }, []);
 
   useEffect(() => {
     getVendors();

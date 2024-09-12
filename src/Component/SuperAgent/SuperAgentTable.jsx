@@ -34,15 +34,34 @@ export default function SuperAgentTable() {
     setQuery("search");
   };
 
-  const getReg = useCallback(() => {
+  const getReg = useCallback(async () => {
     setLoading(true);
-    _get(`superagent?query_type=${query}&name=${filter}`, (resp) => {
+    try {
+      const resp = await _get(`superagent?query_type=${query}&name=${filter}`);
       setLoading(false);
+
       if (resp.success && resp.results) {
         setData(resp.results);
+      } else {
+        setError('No data found');
       }
-    });
-  }, [query]);
+    } catch (err) {
+      setLoading(false);
+      setError('Failed to fetch data');
+    } finally {
+      setLoading(false);
+    }
+  }, [query, filter]);
+
+  // const getReg = useCallback(() => {
+  //   setLoading(true);
+  //   _get(`superagent?query_type=${query}&name=${filter}`, (resp) => {
+  //     setLoading(false);
+  //     if (resp.success && resp.results) {
+  //       setData(resp.results);
+  //     }
+  //   });
+  // }, [query]);
 
   useEffect(() => {
     getReg();

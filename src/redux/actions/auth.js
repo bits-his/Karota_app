@@ -7,7 +7,6 @@ import {
   MY_WALLET,
 } from "../types";
 import { _get, server_url } from "../../Utils/Helper";
-// import { useHistory } from 'react-router-dom';
 
 export function login({ username, password, history }, success, error) {
   return (dispatch) => {
@@ -21,54 +20,31 @@ export function login({ username, password, history }, success, error) {
     })
       .then((raw) => raw.json())
       .then((data) => {
-        console.log(data);
         if (data.success) {
           const { token } = data;
-          // console.log(token);
+
           if (token) {
             localStorage.setItem("@@token", token);
           }
 
           getUserProfile(token)
             .then((userData) => {
-              // console.log(userData, data, "KKDKDKDDK");
-              if (data.success) {
-                /**
-                 * Token is valid
-                 * navigate user to dashboard */
-                // callback();
-                dispatch({ type: LOADING_APP });
-                const { user, tax_accounts } = userData;
-                if (user.role === "user") {
-                  dispatch({
-                    type: AUTH,
-                    payload: {
-                      user,
-                      tax_account: tax_accounts ? tax_accounts[0] : [],
-                    },
-                  });
-                  success(data);
-                } else {
-                  dispatch({
-                    type: AUTH,
-                    payload: {
-                      user,
-                    },
-                  });
-                  success(data);
-                }
+              console.log(userData);
 
-                // history("/selection");
-              } else {
-                // callback();
-                localStorage.removeItem("@@token");
-                // history("/");
-
-                dispatch(logout(history));
-              }
+              dispatch({ type: LOADING_APP });
+              dispatch({
+                type: AUTH,
+                payload: {
+                  user: userData,
+                  tax_account: userData.tax_accounts ? userData.tax_accounts[0] : [],
+                },
+              });
+              success(data);
             })
             .catch((error) => {
-              dispatch(logout(history));
+              console.log(error);
+              
+              // dispatch(logout(history));
               dispatch({
                 type: ERRORS,
                 payload: { msg: "Authentication failed", error },
@@ -77,15 +53,15 @@ export function login({ username, password, history }, success, error) {
         } else {
           dispatch({ type: ERRORS, payload: data.msg });
           error(data);
-          // console.log(data);
         }
       })
       .catch((err) => {
         dispatch({ type: LOADING_LOGIN });
-        // console.log(err)
       });
   };
 }
+
+
 
 export async function getUserProfile(_token) {
   try {
@@ -95,8 +71,16 @@ export async function getUserProfile(_token) {
         authorization: _token,
       },
     });
+
     let data = await response.json();
-    return data;
+
+    console.log(data);
+
+    if (data.success) {
+      return data.user;
+    } else {
+      throw new Error('Failed to fetch user profile');
+    }
   } catch (error) {
     if (error.status === 401) {
       logout();
@@ -105,6 +89,8 @@ export async function getUserProfile(_token) {
     return error;
   }
 }
+
+
 
 export function getWallet(cb = (f) => f, err = (f) => f) {
   return (dispatch) => {
@@ -169,7 +155,7 @@ export function init(history, success = (f) => f, error = (f) => f) {
   };
 }
 
-export function logout(history) {
+export function logout(history=f=>f) {
   return (dispatch) => {
     localStorage.removeItem("@@token");
     history("/login");

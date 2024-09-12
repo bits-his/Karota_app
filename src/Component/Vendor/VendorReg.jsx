@@ -33,31 +33,39 @@ function VendorReg() {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState("");
   const [currentVendor, setCurrentVendor] = useState(_form);
-  const [loading, setLoading] = useState(false); // Add loading state
+  const [loading, setLoading] = useState(false);
   const [payLoading, setPayLoading] = useState(false);
   const [modal, setModal] = useState(false);
   const [modalInner, setModalInner] = useState(false);
   const [vendor, setVendor] = useState({});
   const [form, setForm] = useState(_form);
   const [query, setQuery] = useState("select-all");
-  const [selectedItem, setSelecetedItem] = useState([]);
+  const [selectedItem, setSelectedItem] = useState({});
   const [amountValid, setAmountValid] = useState(false);
+  const [error, setError] = useState(""); // Added error state
   const reference_no = moment().format("YYYYMMDDhhmmssSSS");
+
+  // Form field change handler
   const onHandleChange = ({ target: { name, value } }) => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
+
+  // Toggle vendor top-up modal
   const toggle = (data) => {
     setVendor(data);
     setModal(!modal);
   };
-  const toggle1 = (data) => {
+
+  // Handle closing the modal
+  const toggle1 = () => {
     setModal(false);
     setTimeout(() => {
       setForm(_form);
     }, 1000);
   };
+
+  // Handle inner modal for payment
   const toggleInner = () => {
-    // console.log(data);
     if (amountValid) {
       setModal(false);
       const obj = {
@@ -67,50 +75,63 @@ function VendorReg() {
         destination_id: vendor.vendor_id,
         amount: form.amount,
       };
+
+      _post(`top-up/create`, obj, (resp) => {
+        if (resp.success) {
+          setTransId(resp.result[0].transaction_id);
+          setSelectedItem({
+            ...form,
+            ...data[0],
+            transaction_id: resp.result[0].transaction_id,
+          });
+          setModalInner(true);
+        }
+      });
     }
-    _post(`top-up/create`, obj, (resp) => {
-      if (resp.success) {
-        setTransId(resp.result[0].transaction_id);
-        setSelecetedItem({
-          ...form,
-          ...data[0],
-          transaction_id: resp.result[0].transaction_id,
-        });
-        setModalInner(!modalInner);
-      }
-    });
   };
+
+  // Handle closing the inner modal
   const handleCloseModal = () => {
-    console.log("closed");
     setModalInner(false);
   };
 
-  //console.log(selectedItem)
+  // Search vendors
   const search = () => {
     setQuery("search");
+    getReg();
   };
 
-  const getReg = useCallback(() => {
-    setLoading(true); // Set loading to true before API call
-    _get(`vendors?query_type=${query}&vendor_name=${filter}`, (resp) => {
-      setLoading(false); // Set loading to false after receiving response
-      // console.log(resp)
+  // Fetch vendor data
+  const getReg = useCallback(async () => {
+    setLoading(true);
+    setError(""); // Clear previous error state before making a new request
+
+    try {
+      const resp = await _get(`vendors?query_type=${query}&vendor_name=${filter}`);
+      
       if (resp.success && resp.results) {
         setData(resp.results);
+      } else {
+        setError('No data found');
       }
-    });
-  }, [query]);
+    } catch (err) {
+      setError('Failed to fetch data');
+    } finally {
+      setLoading(false);
+    }
+  }, [query, filter]);
+
+  // Reset query to 'select-all' when the filter is empty
   useEffect(() => {
     if (!filter) {
       setQuery("select-all");
+      getReg();
     }
-  });
-  useEffect(() => {
-    getReg();
-  }, [getReg]);
+  }, [filter, getReg]);
 
+  // Validate amount input
   useEffect(() => {
-    setAmountValid(form.amount.length > 1);
+    setAmountValid(Number(form.amount) > 0 && !isNaN(form.amount)); // Enhanced validation
   }, [form.amount]);
 
   return (
@@ -180,7 +201,7 @@ function VendorReg() {
         </Col>
       </Row>
 
-      {loading ? ( // Display spinner if loading is true
+      {loading ? (
         <Spinner
           color="warning"
           className="spinner"
@@ -189,7 +210,9 @@ function VendorReg() {
         >
           ""
         </Spinner>
-      ) : data.length === 0 ? ( // Display empty table if data is empty
+      ) : error ? ( // Check for error state
+        <div className="text-center text-danger">{error}</div>
+      ) : data.length === 0 ? (
         <Table
           bordered
           responsive
@@ -213,7 +236,7 @@ function VendorReg() {
           <tbody>
             <tr>
               <td colSpan="6" className="text-center">
-                No vendors {filter} found
+                No vendors {filter ? `matching "${filter}"` : ""} found
               </td>
             </tr>
           </tbody>
@@ -235,7 +258,7 @@ function VendorReg() {
               <th style={{ textAlign: "center" }}>Vendor Name</th>
               <th style={{ textAlign: "center" }}>Phone Number</th>
               <th style={{ textAlign: "center" }}>Vendor email</th>
-              <th style={{ textAlign: "center" }}>Balance</th>
+              <th style={{ textAlign: "right" }}>Balance</th>
               <th style={{ textAlign: "center" }}>Action</th>
             </tr>
           </thead>
@@ -253,20 +276,9 @@ function VendorReg() {
                   <Button
                     color="info"
                     className="marginResponsive"
-                    onClick={() =>
-                      navigate(`/vendorReg/detail/${vendor.vendor_id}`)
-                    }
+                    onClick={() => toggle(vendor)}
                   >
-                    View
-                  </Button>
-                  <Button
-                    color="success"
-                    onClick={() => {
-                      toggle(vendor);
-                    }}
-                    // onClick={() => navigate("/vendortopup")}
-                  >
-                    Top up
+                    Top-up Vendor
                   </Button>
                 </td>
               </tr>
@@ -274,136 +286,55 @@ function VendorReg() {
           </tbody>
         </Table>
       )}
-      <Modal isOpen={modal} style={{ top: "10%" }} centered>
-        <ModalHeader className="text-center modal-head-vendor-topup">
-          Vendor top up
+
+      {/* Vendor top-up modal */}
+      <Modal isOpen={modal} toggle={toggle1} backdrop="static">
+        <ModalHeader toggle={toggle1}>
+          Vendor top-up ({vendor.vendor_name})
         </ModalHeader>
         <ModalBody>
-          <div className="modal-row-details">
-            <div className="modal-row-content small-margin-right">
-              <span>Name:</span>
-              <div>{vendor?.vendor_name}</div>
-            </div>
-            <div className="modal-row-content">
-              <span>Vendor no.:</span>
-              <div>{vendor?.vendor_id}</div>
-            </div>
-          </div>
-          <div className="modal-row-details">
-            <div className="modal-row-content small-margin-right">
-              <span>E-mail:</span>
-              <div>{vendor?.vendor_org_email}</div>
-            </div>
-            <div className="modal-row-content">
-              <span>Balance:</span>
-              <div>{formatNumber(vendor?.balance)}</div>
-            </div>
-          </div>
-          <div>
-            <div className="period-bigger">period</div>
-            <div className="modal-row-details">
-              <div className="modal-row-content small-margin-right">
-                <div>From</div>
-                <Input
-                  type="date"
-                  className="text-center"
-                  value={form.date_from}
-                  name="date_from"
-                  onChange={onHandleChange}
-                />
-              </div>
-              <div className="modal-row-content">
-                <div>To</div>
-                <Input
-                  type="date"
-                  className="text-center"
-                  value={form.date_to}
-                  name="date_to"
-                  onChange={onHandleChange}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="text-center">
-            <div>
-              <Label>Amount({formatNumber(form.amount)})</Label>
+          <Row>
+            <Col md={12}>
+              <Label for="amount">Amount</Label>
               <Input
-                type="number"
-                // style={{ width: "50%" }}
-                className="text-center"
-                value={form.amount}
                 name="amount"
+                value={form.amount}
                 onChange={onHandleChange}
+                type="number"
+                className="app_input2"
+                placeholder="Enter top-up amount"
               />
-            </div>
-          </div>
-        </ModalBody>
-        <ModalFooter>
-          <Row className="text-center">
-            <Col md={8}>
-              <Button color="danger" onClick={toggle1}>
-                Cancel
-              </Button>
-            </Col>
-            <Col md={2}>
-              <Button color="primary" onClick={toggleInner} disabled={!amountValid}>
-                Confirm
-              </Button>
             </Col>
           </Row>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="info" onClick={toggleInner} disabled={!amountValid}>
+            Proceed
+          </Button>
+          <Button color="danger" onClick={toggle1}>
+            Cancel
+          </Button>
         </ModalFooter>
       </Modal>
 
-      {/* Nested modal for payment confirmation */}
-      <Modal isOpen={modalInner} style={{ top: "20%" }} className="innerModal">
-        <ModalHeader className="text-center modal-head-vendor-topup">
-          Payment confirmation
-          <Button color="danger" onClick={handleCloseModal}>
-            X
-          </Button>
-        </ModalHeader>
+      {/* Payment modal */}
+      <Modal isOpen={modalInner} toggle={handleCloseModal} backdrop="static">
+        <ModalHeader toggle={handleCloseModal}>Top-up Payment</ModalHeader>
         <ModalBody>
-          <div className="modal-row-details">
-            <div className="modal-row-content small-margin-right">
-              <span>Name: </span>
-              <div>{vendor?.vendor_name}</div>
-            </div>
-            <div className="modal-row-content">
-              <span>Amount: </span>
-              <div>{form.amount ? separator(form.amount) : 0}</div>
-            </div>
-          </div>
-          <div className="modal-row-details">
-            <div className="modal-row-content small-margin-right">
-              <span>Transaction ID:</span>
-              <div>{vendor?.vendor_id}</div>
-            </div>
-            <div className="modal-row-content">
-              <span>Refence no: </span>
-              <div>{transId}</div>
-            </div>
-          </div>
+          <PaymentButton
+            amount={form.amount}
+            vendor_name={vendor.vendor_name}
+            transaction_id={transId}
+            item={selectedItem}
+            closeModal={handleCloseModal}
+            payLoading={payLoading}
+            setPayLoading={setPayLoading}
+          />
         </ModalBody>
         <ModalFooter>
-          <Col md={6}>
-            <PDFDownloadLink
-              document={<VendorInvoice data={selectedItem} />}
-              fileName={`${moment().format("YYYYMMDDhh:mm:ss")}-${
-                selectedItem?.vendor_name
-              }.pdf`}
-            >
-              {({ blob, url, loading, error }) => (
-                <Button variant="primary" color="primary">
-                  {loading ? "Loading Document" : "Download Invoice"}
-                </Button>
-              )}
-            </PDFDownloadLink>
-          </Col>
-          <Col md={6}>
-            <Button color="success" onClick={toggleInner}>
-              Pay with bank
-            </Button>
-          </Col>
+          <Button color="danger" onClick={handleCloseModal}>
+            Close
+          </Button>
         </ModalFooter>
       </Modal>
     </>

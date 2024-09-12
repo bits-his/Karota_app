@@ -9,20 +9,42 @@ function SuperAgentDropdown({ handleChange, selectedSuperAgentValue }) {
   );
   const [loading, setLoading] = useState(false);
 
-  const getsuperAgents = useCallback(() => {
+  const getsuperAgents = useCallback(async () => {
     setLoading(true);
-    _get(`superagent?query_type=select-all`, (resp) => {
+    try {
+      const resp = await _get(`superagent?query_type=select-all`);
       setLoading(false);
+
       if (resp.success && resp.results) {
-        // Extract only the name and id properties from the response
         const formattedData = resp.results.map((superagent) => ({
           value: superagent.super_agent_id,
           label: superagent.name,
         }));
         setData(formattedData);
+      } else {
+        console.log('No data found');
       }
-    });
+    } catch (err) {
+      setLoading(false);
+      toast('Failed to fetch data');
+    } finally {
+      setLoading(false);
+    }
   }, []);
+
+  // const getsuperAgents = useCallback(() => {
+  //   setLoading(true);
+  //   _get(`superagent?query_type=select-all`, (resp) => {
+  //     setLoading(false);
+  //     if (resp.success && resp.results) {
+  //       const formattedData = resp.results.map((superagent) => ({
+  //         value: superagent.super_agent_id,
+  //         label: superagent.name,
+  //       }));
+  //       setData(formattedData);
+  //     }
+  //   });
+  // }, []);
 
   useEffect(() => {
     getsuperAgents();

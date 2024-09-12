@@ -32,6 +32,8 @@ import SuperAgentHistory from "../Component/SuperAgent/componentview/SuperAgentH
 import AgentHistory from "../Component/SuperAgent/componentview/AgentHistory";
 import VehicleHistory from "../Component/vehicleOwner/VehicleHistory";
 import ReportStolen from "../Component/ReportStolen/ReportStolen"
+import UserList from "../Component/use-admin/UserList";
+import NewUsers from "../Component/use-admin/NewUsers";
 
 export default function AppNavigation() {
   let Pages = useRoutes([
@@ -47,7 +49,7 @@ export default function AppNavigation() {
       element: <AppIndex />,
       children: [
         {
-          path: "/",
+          path: "/dashboard",
           element: <Dashboard />,
         },
         {
@@ -176,6 +178,14 @@ export default function AppNavigation() {
         {
           path: "/vehicletopup",
           element: <VehicleTopUp />,
+        },
+        {
+          path: "/user-admin",
+          element: <UserList/>
+        },
+        {
+          path: "user-admin-new",
+          element: <NewUsers />
         },
       ],
     },

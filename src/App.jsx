@@ -17,6 +17,7 @@ function App() {
     dispatch(
       init(navigate,
         () => {
+          console.log(`${location.pathname}${location.search}`);
           navigate(`${location.pathname}${location.search}`);
         },
         () => {
@@ -24,7 +25,7 @@ function App() {
         }
       )
     );
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     initUser()

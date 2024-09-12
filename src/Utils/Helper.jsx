@@ -1,8 +1,8 @@
 import { useLocation } from "react-router-dom";
 // export const server_url = 'https://hotelserver-production.up.railway.app'
  // export const server_url = 'http://localhost:34568'
-// export const server_url = "http://localhost:34567";
-export const server_url = "https://galaxybis.ebudgetkano.ng/karota";
+  export const server_url = "http://localhost:44405";
+// export const server_url = "https://galaxybis.ebudgetkano.ng/karota";
 // export const server_url = 'https://galaxybis.ebudgetkano.ng/keke-api'
 
 export const _post = (url, data, success = (f) => f, error = (f) => f) => {
@@ -23,14 +23,12 @@ export const _post = (url, data, success = (f) => f, error = (f) => f) => {
       error(err);
     });
 };
-export const _get = (url, success = (f) => f, error = (f) => f) => {
-  fetch(`${server_url}/${url}`)
+export const _get = (url) => {
+  return fetch(`${server_url}/${url}`)
     .then((raw) => raw.json())
-    .then((result) => {
-      success(result);
-    })
+    .then((result) => result)
     .catch((err) => {
-      error(err);
+      throw err;
     });
 };
 

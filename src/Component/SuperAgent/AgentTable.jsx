@@ -68,7 +68,7 @@ export default function AgentTable() {
   }, [getReg]);
 
   return (
-    <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
+    <Card className="app_card2 dashboard_card2 shadow p-4 m-2 mt-2">
       <Row>
         <Col md={12}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -110,7 +110,6 @@ export default function AgentTable() {
                   onChange={({ target: { value } }) => setFilter(value)}
                   placeholder="Search Individual"
                 />
-
               </div>
             </Col>
             <label
@@ -126,96 +125,95 @@ export default function AgentTable() {
         <Row>
           <div className="table_overflow">
             {loading ? (
-              <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
+              <Spinner
+                color="warning"
+                className="spinner"
+                type="grow"
+                style={{ margin: "20px auto" }}
+              >
                 " "
               </Spinner>
-            ) :
-              data.length === 0 ?
-                <Table
-                  bordered
-                  responsive
-                  style={{
-                    position: "relative",
-                    top: "10px",
-                    width: "95.3%",
-                    left: "32px",
-                    marginTop: "4px",
-                  }}
-                >
-                  <thead>
-                    <tr>
-                      <th>S/N</th>
-                      <th>Name</th>
-                      <th>Phone</th>
-                      <th>Email</th>
-                      <th>Balance</th>
-                      <th className="text-center">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td colSpan="6" className="text-center">
-                        No Agent {filter} found
+            ) : data.length === 0 ? (
+              <Table
+                bordered
+                responsive
+                style={{
+                  position: "relative",
+                  top: "10px",
+                  width: "95.3%",
+                  left: "32px",
+                  marginTop: "4px",
+                }}
+              >
+                <thead>
+                  <tr>
+                    <th>S/N</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Balance</th>
+                    <th className="text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colSpan="6" className="text-center">
+                      No Agent {filter} found
+                    </td>
+                  </tr>
+                </tbody>
+              </Table>
+            ) : (
+              <Table
+                bordered
+                responsive
+                style={{
+                  position: "relative",
+                  top: "10px",
+                  width: "95.3%",
+                  left: "32px",
+                  marginTop: "4px",
+                }}
+              >
+                <thead>
+                  <tr>
+                    <th>S/N</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Balance</th>
+                    <th className="text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data?.map((agent, idx) => (
+                    <tr key={idx}>
+                      <th>{agent.agent_id}</th>
+                      <td>{agent.name}</td>
+                      <td>{agent.phone_no}</td>
+                      <td>{agent.email}</td>
+                      <td className="text-right">{agent.balance}</td>
+                      <td className="text-center">
+                        <Button
+                          style={{ margin: "5px" }}
+                          color="info"
+                          onClick={() => navigate(`/agenttopup`)}
+                        >
+                          Top up
+                        </Button>
+                        <Button
+                          color="success"
+                          onClick={() =>
+                            navigate(`/agenthistory/history/${agent.agent_id}`)
+                          }
+                        >
+                          View history
+                        </Button>
                       </td>
                     </tr>
+                  ))}
                   </tbody>
-                </Table>
-                :
-                (
-                  <Table
-                    bordered
-                    responsive
-                    style={{
-                      position: "relative",
-                      top: "10px",
-                      width: "95.3%",
-                      left: "32px",
-                      marginTop: "4px",
-                    }}
-                  >
-                    <thead>
-                      <tr>
-                        <th>S/N</th>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                        <th>Balance</th>
-                        <th className="text-center">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {data?.map((agent, idx) => (
-                        <tr key={idx}>
-                          <th>{agent.agent_id}</th>
-                          <td>{agent.name}</td>
-                          <td>{agent.phone_no}</td>
-                          <td>{agent.email}</td>
-                          <td className="text-right">{agent.balance}</td>
-                          <td className="text-center">
-                            <Button
-                              style={{ margin: "5px" }}
-                              color="info"
-                              onClick={() =>
-                                navigate(`/agenttopup`)
-
-                              }
-                            >
-                              Top up
-                            </Button>
-                            <Button
-                              color="success"
-                              onClick={() =>
-                                navigate(`/agenthistory/history/${agent.agent_id}`)
-                              }
-                            >
-                              View history
-                            </Button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                )}
+                </Table>)}
           </div>
         </Row>
       </Row>

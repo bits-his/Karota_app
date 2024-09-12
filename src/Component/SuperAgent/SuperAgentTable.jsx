@@ -81,8 +81,31 @@ export default function SuperAgentTable() {
   };
 
   return (
-    <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
-      <Row>
+    <Card className="app_card2 dashboard_card2 shadow p-4 m-2 mt-2">
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+        className="super_header"
+      >
+        <h4 className="app_title"> Registered SuperAgents </h4>
+        <button
+          className="app_button p_button_super "
+          style={{
+            width: 170,
+            padding: 10,
+            marginLeft: 15,
+            color: "#000",
+            borderRadius: 7,
+          }}
+          onClick={() => navigate("/superagent")}
+        >
+          Add SuperAgent +
+        </button>
+      </div>
+      {/* <Row>
         <Col
           md={12}
           style={{
@@ -91,11 +114,11 @@ export default function SuperAgentTable() {
             alignItems: "center",
           }}
         >
-          <h4 className="app_title"> Super Agents </h4>
+          <h4 className="app_title">Registered SuperAgents </h4>
           <button
             className="app_button"
             style={{
-              width: 150,
+              width: 160,
               padding: 10,
               marginLeft: 15,
               color: "#000",
@@ -103,13 +126,57 @@ export default function SuperAgentTable() {
             }}
             onClick={() => navigate("/superagent")}
           >
-            Add SuperAgent
+            Add SuperAgent +
           </button>
         </Col>
-      </Row>
+      </Row> */}
 
       <hr />
-      <Row>
+
+      <div
+        // className="mb-4"
+        style={{ display: "flex", flexDirection: "row" }}
+        className="super_header"
+      >
+        <div className="search1">
+          <CiSearch
+            style={{
+              fontSize: 30,
+              width: 25,
+              marginTop: 3,
+              color: "#000",
+            }}
+          />
+          <Input
+            style={{
+              position: "relative",
+              // width: "100%",
+              fontSize: 20,
+              top: -5,
+            }}
+            name="filter"
+            value={filter}
+            type="text"
+            className="app_input2"
+            onChange={({ target: { value } }) => setFilter(value)}
+            placeholder="Search for super agent"
+          />
+        </div>
+        <Button
+          onClick={search}
+          className="label_title1"
+          style={{
+            cursor: "pointer",
+            fontWeight: "bold",
+            boxShadow: "none",
+            outline: "0",
+          }}
+        >
+          Search
+        </Button>
+      </div>
+
+      {/* <Row>
         <Col md={12}>
           <div style={{ display: "flex", flexDirection: "row", marginTop: 30 }}>
             <Col md={12}>
@@ -147,103 +214,101 @@ export default function SuperAgentTable() {
               Search
             </Label>
           </div>
-        </Col>
+        </Col> */}
 
-        <Row>
-          <div className="table_overflow">
-            {loading ? ( // Display spinner if loading is true
-              <Spinner
-                color="warning"
-                className="spinner"
-                type="grow"
-                style={{ margin: "20px auto" }}
-              >
-                ""
-              </Spinner>
-            ) : data.length === 0 ? (
-              <Table
-                bordered
-                responsive
-                style={{
-                  position: "relative",
-                  top: "10px",
-                  width: "95.3%",
-                  left: "32px",
-                  marginTop: "4px",
-                }}
-              >
-                <thead>
-                  <tr>
-                    <th>S/N</th>
-                    <th>Name</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Balance</th>
-                    <th className="text-center">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td colSpan="6" className="text-center">
-                      No SuperAgent {filter} found
-                    </td>
-                  </tr>
-                </tbody>
-              </Table>
-            ) : (
-              <Table
-                bordered
-                responsive
-                style={{
-                  position: "relative",
-                  top: "10px",
-                  width: "95.3%",
-                  left: "32px",
-                  marginTop: "4px",
-                }}
-              >
-                <thead>
-                  <tr>
-                    <th style={{ textAlign: "center" }}>S/N</th>
-                    <th style={{ textAlign: "center" }}>Name</th>
-                    <th style={{ textAlign: "center" }}>Phone</th>
-                    <th style={{ textAlign: "center" }}>Email</th>
-                    <th style={{ textAlign: "center" }}>Balance</th>
-                    <th style={{ textAlign: "center" }}>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {data?.map((agent, idx) => (
-                    <tr key={idx}>
-                      <th>{idx + 1}</th>
-                      <td>{agent.name}</td>
-                      <td>{agent.phone}</td>
-                      <td>{agent.email}</td>
-                      <td className="text-right">{separator(agent.balance)}</td>
-                      <td className="text-center">
-                        <Button
-                          color="info"
-                          onClick={() => navigate(`/superagenttopup`)}
-                        >
-                          Topup
-                        </Button>{" "}
-                        <Button
-                          color="success"
-                          onClick={() =>
-                            navigate(`/superagenttable/view/${agent.super_agent_id}`)
-                          }
-                        >
-                          View History
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            )}
-          </div>
-        </Row>
-      </Row>
+      {loading ? (
+        <Spinner
+          color="warning"
+          className="spinner"
+          type="grow"
+          style={{ margin: "20px auto" }}
+        >
+          ""
+        </Spinner>
+      ) : data.length === 0 ? (
+        <Table
+          bordered
+          responsive
+          style={{
+            //   position: "relative",
+            //   top: "10px",
+            //   width: "95.3%",
+            //   left: "32px",
+            marginTop: "20px",
+          }}
+        >
+          <thead>
+            <tr>
+              <th>S/N</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Balance</th>
+              <th className="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colSpan="6" className="text-center">
+                No SuperAgent {filter} found
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+      ) : (
+        <Table
+          className="super_table"
+          bordered
+          responsive
+          style={{
+            // position: "relative",
+            // top: "10px",
+            // width: "95.3%",
+            // left: "32px",
+            marginTop: "20px",
+          }}
+        >
+          <thead>
+            <tr>
+              <th style={{ textAlign: "center" }}>S/N</th>
+              <th style={{ textAlign: "center" }}>Name</th>
+              <th style={{ textAlign: "center" }}>Phone</th>
+              <th style={{ textAlign: "center" }}>Email</th>
+              <th style={{ textAlign: "center" }}>Balance</th>
+              <th style={{ textAlign: "center" }}>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data?.map((agent, idx) => (
+              <tr key={idx}>
+                <th>{idx + 1}</th>
+                <td>{agent.name}</td>
+                <td>{agent.phone}</td>
+                <td>{agent.email}</td>
+                <td className="text-right">{separator(agent.balance)}</td>
+                <td className="text-center">
+                  <Button
+                    color="info"
+                    onClick={() => navigate(`/superagenttopup`)}
+                  >
+                    Topup
+                  </Button>{" "}
+                  <Button
+                    color="success"
+                    onClick={() =>
+                      navigate(`/superagenttable/view/${agent.super_agent_id}`)
+                    }
+                  >
+                    View History
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      )}
+
+      {/* </Row> */}
     </Card>
   );
 }

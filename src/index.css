@@ -2,10 +2,11 @@
 * {
   padding: 0;
   margin: 0;
-  /* width: 100%; */
+  box-sizing: border-box;
 }
 body{
   box-sizing: border-box;
+  width: 100%;
   /* overflow-x: hidden; */
 }
 .status_button {
@@ -36,6 +37,7 @@ body{
   border: none !important;
   border-radius: 5px;
   border: 1px solid #f5c005 !important;
+  box-sizing: border-box;
 }
 .dd {
   width: 100% !important;
@@ -204,6 +206,7 @@ body{
   margin-left: 0;
   margin-right: 5px;
   width: 80.8%;
+  /* position: relative; */
   border: 1px solid #f5c005;
 }
 

@@ -20,7 +20,7 @@ export default function AppIndex() {
         className="m-0 p-0"
         style={{ padding: 0, margin: 0, display: "flex", flexDirection: "row" }}
       >
-        <Col md={2} sm={2} className="m-0 sidebar2">
+        <Col md={2} className="m-0 sidebar2">
           {/* <SideBar /> */}
           <Navbar />
           {/* <div
@@ -33,7 +33,7 @@ export default function AppIndex() {
             Log out
           </div> */}
         </Col>
-        <Col md={10} sm={10}>
+        <Col md={10}>
           <div
             className="p-0 m-0"
             style={{ marginRight: "auto", width: "100%" }}

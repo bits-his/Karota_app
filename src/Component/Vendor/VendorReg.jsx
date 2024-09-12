@@ -115,14 +115,14 @@ function VendorReg() {
 
   return (
     <>
-      <Row>
-        <Col
-          md={12}
+      <Card>
+        <div
           style={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
           }}
+          className="super_header"
         >
           <h4 className="app_title"> Registered Vendors </h4>
           <button
@@ -138,142 +138,143 @@ function VendorReg() {
           >
             Add vendor +
           </button>
-        </Col>
-      </Row>
-      <hr style={{ width: "100%" }} />
-      <Row>
-        <Col
-          md={12}
-          style={{ display: "flex", flexDirection: "row", width: "100%" }}
-        >
-          <div className="search1">
-            <CiSearch
-              style={{
-                fontSize: 30,
-                width: 25,
-                marginTop: 3,
-                color: "#000",
-              }}
-            />
-            <Input
-              style={{
-                position: "relative",
-                width: "100%",
-                fontSize: 20,
-                top: -5,
-              }}
-              name="filter"
-              value={filter}
-              type="text"
-              className="app_input2"
-              onChange={({ target: { value } }) => setFilter(value)}
-              placeholder="Search: eg. Vendor Name | Vendor ID"
-            />
-          </div>
-          <Button
-            onClick={search}
-            className="label_title1"
-            style={{ cursor: "pointer", fontWeight: "bold" }}
-          >
-            Search
-          </Button>
-        </Col>
-      </Row>
+        </div>
 
-      {loading ? ( // Display spinner if loading is true
-        <Spinner
-          color="warning"
-          className="spinner"
-          type="grow"
-          style={{ margin: "20px auto" }}
-        >
-          ""
-        </Spinner>
-      ) : data.length === 0 ? ( // Display empty table if data is empty
-        <Table
-          bordered
-          responsive
-          style={{
-            position: "relative",
-            top: "20px",
-            width: "100%",
-            marginTop: "4px",
-          }}
-        >
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Vendor Name</th>
-              <th>Phone Number</th>
-              <th>Vendor email</th>
-              <th>Balance</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td colSpan="6" className="text-center">
-                No vendors {filter} found
-              </td>
-            </tr>
-          </tbody>
-        </Table>
-      ) : (
-        <Table
-          bordered
-          responsive
-          style={{
-            position: "relative",
-            top: "20px",
-            width: "100%",
-            marginTop: "4px",
-          }}
-        >
-          <thead>
-            <tr>
-              <th style={{ textAlign: "center" }}>#</th>
-              <th style={{ textAlign: "center" }}>Vendor Name</th>
-              <th style={{ textAlign: "center" }}>Phone Number</th>
-              <th style={{ textAlign: "center" }}>Vendor email</th>
-              <th style={{ textAlign: "center" }}>Balance</th>
-              <th style={{ textAlign: "center" }}>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((vendor, idx) => (
-              <tr key={idx}>
-                <th scope="row">{idx + 1}</th>
-                <td>{vendor.vendor_name}</td>
-                <td>{vendor.vendor_org_phone}</td>
-                <td>{vendor.vendor_org_email}</td>
-                <td style={{ textAlign: "right" }}>
-                  {separator(vendor.balance)}
-                </td>
-                <td className="text-center">
-                  <Button
-                    color="info"
-                    className="marginResponsive"
-                    onClick={() =>
-                      navigate(`/vendorReg/detail/${vendor.vendor_id}`)
-                    }
-                  >
-                    View
-                  </Button>
-                  <Button
-                    color="success"
-                    onClick={() => {
-                      toggle(vendor);
-                    }}
-                    // onClick={() => navigate("/vendortopup")}
-                  >
-                    Top up
-                  </Button>
+        <hr style={{ width: "100%" }} />
+        <Row>
+          <Col
+            md={12}
+            style={{ display: "flex", flexDirection: "row", width: "100%" }}
+          >
+            <div className="search1">
+              <CiSearch
+                style={{
+                  fontSize: 30,
+                  width: 25,
+                  marginTop: 3,
+                  color: "#000",
+                }}
+              />
+              <Input
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  fontSize: 20,
+                  top: -5,
+                }}
+                name="filter"
+                value={filter}
+                type="text"
+                className="app_input2"
+                onChange={({ target: { value } }) => setFilter(value)}
+                placeholder="Search: eg. Vendor Name | Vendor ID"
+              />
+            </div>
+            <Button
+              onClick={search}
+              className="label_title1"
+              style={{ cursor: "pointer", fontWeight: "bold" }}
+            >
+              Search
+            </Button>
+          </Col>
+        </Row>
+
+        {loading ? ( // Display spinner if loading is true
+          <Spinner
+            color="warning"
+            className="spinner"
+            type="grow"
+            style={{ margin: "20px auto" }}
+          >
+            ""
+          </Spinner>
+        ) : data.length === 0 ? ( // Display empty table if data is empty
+          <Table
+            bordered
+            responsive
+            style={{
+              position: "relative",
+              top: "20px",
+              width: "100%",
+              marginTop: "4px",
+            }}
+          >
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Vendor Name</th>
+                <th>Phone Number</th>
+                <th>Vendor email</th>
+                <th>Balance</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colSpan="6" className="text-center">
+                  No vendors {filter} found
                 </td>
               </tr>
-            ))}
-          </tbody>
-        </Table>
-      )}
+            </tbody>
+          </Table>
+        ) : (
+          <Table
+            bordered
+            responsive
+            style={{
+              position: "relative",
+              top: "20px",
+              width: "100%",
+              marginTop: "4px",
+            }}
+          >
+            <thead>
+              <tr>
+                <th style={{ textAlign: "center" }}>#</th>
+                <th style={{ textAlign: "center" }}>Vendor Name</th>
+                <th style={{ textAlign: "center" }}>Phone Number</th>
+                <th style={{ textAlign: "center" }}>Vendor email</th>
+                <th style={{ textAlign: "center" }}>Balance</th>
+                <th style={{ textAlign: "center" }}>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((vendor, idx) => (
+                <tr key={idx}>
+                  <th scope="row">{idx + 1}</th>
+                  <td>{vendor.vendor_name}</td>
+                  <td>{vendor.vendor_org_phone}</td>
+                  <td>{vendor.vendor_org_email}</td>
+                  <td style={{ textAlign: "right" }}>
+                    {separator(vendor.balance)}
+                  </td>
+                  <td className="text-center">
+                    <Button
+                      color="info"
+                      className="marginResponsive"
+                      onClick={() =>
+                        navigate(`/vendorReg/detail/${vendor.vendor_id}`)
+                      }
+                    >
+                      View
+                    </Button>
+                    <Button
+                      color="success"
+                      onClick={() => {
+                        toggle(vendor);
+                      }}
+                      // onClick={() => navigate("/vendortopup")}
+                    >
+                      Top up
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        )}
+      </Card>
       <Modal isOpen={modal} style={{ top: "10%" }} centered>
         <ModalHeader className="text-center modal-head-vendor-topup">
           Vendor top up
@@ -346,7 +347,11 @@ function VendorReg() {
               </Button>
             </Col>
             <Col md={2}>
-              <Button color="primary" onClick={toggleInner} disabled={!amountValid}>
+              <Button
+                color="primary"
+                onClick={toggleInner}
+                disabled={!amountValid}
+              >
                 Confirm
               </Button>
             </Col>

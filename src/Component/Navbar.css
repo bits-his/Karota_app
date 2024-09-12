@@ -20,9 +20,16 @@
   z-index: 20;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .sidebar2 {
-    background-color: transparent;
+    /* background-color: transparent; */
+    /* left: -100px; */
+    /* display: none;  */
+    left: -500px !important;
+    position: relative;
+  }
+  .search1 {
+    /* width: 50% !important; */
   }
   /* .navbar-link-item:hover {
   transform: scale(0);
@@ -34,12 +41,12 @@
     width: 300px;
     position: fixed;
     top: 0;
-    left: -300px;
+    left: -600px;
     transition: left 0.3s ease-in-out;
     z-index: 10;
   }
   .sidebar-toggler {
-    display: block;
+    display: block !important;
   }
 
   .sidebar.show {
@@ -47,6 +54,39 @@
   }
   .navbar-link-item:hover {
     transform: scale(0);
+  }
+}
+@media (max-width: 540px) {
+  .app_title {
+    /* font-size: 14px; */
+  }
+  /* .p_button_super {
+    font-size: 12px !important;
+    width: 100px !important;
+  }
+  hr {
+    width: 50% !important;
+  }
+  .search1 {
+    width: 35% !important;
+  }
+  .label_title1 {
+    width: 13% !important;
+  }
+  .table-responsive {
+    width: 50% !important;
+  }
+  .super_header {
+    width: 50% !important;
+  } */
+  .dashboard_card{
+    width: 50%;
+  }
+  .app_card{
+    width: 50%;
+  }
+  body {
+    /* overflow-x: hidden; */
   }
 }
 

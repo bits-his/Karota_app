@@ -43,6 +43,17 @@ export const sidebarModules = [
         ],
     },
     {
+        title: "Vehicles",
+        route: "/vehicleownertable",
+        icon: MdOutlineSupportAgent,
+        subMenu: [
+            {
+                label: "Vehicles Top Up",
+                path: "/vehicletopup",
+            },
+        ],
+    },
+    {
         title: "Collection Point",
         route: "/vehicles",
         icon: FaMagento,

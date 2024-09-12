@@ -9,7 +9,7 @@ export default function VehicleOwnerTable() {
 
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState('');
-  const [loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [query, setQuery] = useState('select-all')
 
@@ -19,15 +19,27 @@ export default function VehicleOwnerTable() {
   }
 
 
-  const getReg = useCallback(() => {
-    _get(`vehicle-owners?query_type=${query}&name=${filter}`,
-      (resp) => {
-        if (resp.success && resp.data) {
-          setData(resp.data);
-          setLoading(false)
-        }
-      });
-  }, [query]);
+  const getReg = useCallback(async () => {
+    setLoading(true);
+    try {
+      const resp = await _get(`vehicle-owners?query_type=${query}&name=${filter}`);
+      setLoading(false);
+
+      if (resp.success && resp.results) {
+        setData(resp.data);
+        setLoading(false)
+      } else {
+        console.log('No data found');
+      }
+    } catch (err) {
+      setLoading(false);
+      toast('Failed to fetch data');
+    } finally {
+      setLoading(false);
+    }
+  }, [query, filter]);
+
+
   useEffect(() => {
     if (!filter) {
       setQuery('select-all')
@@ -64,28 +76,28 @@ export default function VehicleOwnerTable() {
       <Row>
         <Col md={12}>
           <div style={{ display: "flex", flexDirection: "row", marginTop: 30, marginBottom: 10 }}>
-              <div className="search">
-                <CiSearch
-                  style={{
-                    fontSize: 30,
-                    width: 25,
-                    marginTop: 3,
-                    color: "#000",
-                  }}
-                />
-                <input
-                  name="filter"
-                  value={filter}
-                  type="text"
-                  className="app_input2"
-                  onChange={({ target: { value } }) => setFilter(value)}
-                  style={{
-                    width: "100%",
-                    fontSize: 20,
-                  }}
-                  placeholder="Search Vehicle Owner"
-                />
-              </div>
+            <div className="search">
+              <CiSearch
+                style={{
+                  fontSize: 30,
+                  width: 25,
+                  marginTop: 3,
+                  color: "#000",
+                }}
+              />
+              <input
+                name="filter"
+                value={filter}
+                type="text"
+                className="app_input2"
+                onChange={({ target: { value } }) => setFilter(value)}
+                style={{
+                  width: "100%",
+                  fontSize: 20,
+                }}
+                placeholder="Search Vehicle Owner"
+              />
+            </div>
             <label
               onClick={search}
               className="label_title" style={{ color: "#000" }}>
@@ -96,50 +108,19 @@ export default function VehicleOwnerTable() {
 
         <Col>
           {loading ? (
-              <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
-                ""
-                ""
-              </Spinner>
-            ) : 
-            data.length === 0 ?( // Display empty table if data is empty
-            <Table
-              bordered
-              responsive
-              style={{
-                position: "relative",
-                top: "20px",
-                width: "100%",
-                marginTop: "4px",
-              }}
-            >
-              <thead>
-                <tr>
-                  <th>S/N</th>
-                  <th>Owners Name</th>
-                    <th>Email</th>
-                    <th>phone Num</th>
-                    <th>Balance</th>
-                    <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td colSpan="6" className="text-center">
-                    Record For {filter} not found
-                  </td>
-                </tr>
-              </tbody>
-            </Table>
-          ): 
-          <div className="table_overflow">  
+            <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
+              ""
+              ""
+            </Spinner>
+          ) :
+            data.length === 0 ? ( // Display empty table if data is empty
               <Table
                 bordered
                 responsive
                 style={{
                   position: "relative",
-                  top: "10px",
+                  top: "20px",
                   width: "100%",
-              
                   marginTop: "4px",
                 }}
               >
@@ -149,41 +130,72 @@ export default function VehicleOwnerTable() {
                     <th>Owners Name</th>
                     <th>Email</th>
                     <th>phone Num</th>
+                    <th>Balance</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {data?.map((item, idx) => <tr key={idx}>
-                    <td>
-                      {idx + 1}
+                  <tr>
+                    <td colSpan="6" className="text-center">
+                      Record For {filter} not found
                     </td>
-                    <td>
-                      {item.name}
-                    </td>
-                    <td>
-                      {item.email}
-                    </td>
-                    <td>
-                      {item.phone}
-
-                    </td>
-                  
-
-                   
-                    <td className="text-center btn-table">
-                      <Button color="info"
-                        className=""
-                        onClick={() => navigate(`/vehicleownertable/view/${item.id}`)}
-                      >View</Button>
-                      <Button
-                        className="btn btn-primary"
-                        onClick={() => navigate(`/vehicleregistration/${item.id}`)}
-                      > vehicle +</Button>
-                    </td>
-                  </tr>)}
+                  </tr>
                 </tbody>
               </Table>
-          </div>}
+            ) :
+              <div className="table_overflow">
+                <Table
+                  bordered
+                  responsive
+                  style={{
+                    position: "relative",
+                    top: "10px",
+                    width: "100%",
+
+                    marginTop: "4px",
+                  }}
+                >
+                  <thead>
+                    <tr>
+                      <th>S/N</th>
+                      <th>Owners Name</th>
+                      <th>Email</th>
+                      <th>phone Num</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data?.map((item, idx) => <tr key={idx}>
+                      <td>
+                        {idx + 1}
+                      </td>
+                      <td>
+                        {item.name}
+                      </td>
+                      <td>
+                        {item.email}
+                      </td>
+                      <td>
+                        {item.phone}
+
+                      </td>
+
+
+
+                      <td className="text-center btn-table">
+                        <Button color="info"
+                          className=""
+                          onClick={() => navigate(`/vehicleownertable/view/${item.id}`)}
+                        >View</Button>
+                        <Button
+                          className="btn btn-primary"
+                          onClick={() => navigate(`/vehicleregistration/${item.id}`)}
+                        > vehicle +</Button>
+                      </td>
+                    </tr>)}
+                  </tbody>
+                </Table>
+              </div>}
         </Col>
       </Row>
     </>

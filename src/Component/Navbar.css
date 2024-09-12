@@ -148,3 +148,22 @@
   text-align: left;
   padding: 10px 30px;
 }
+.topbar{
+  display: none
+}
+.navbar-container.closed{
+  margin-left: -300px;
+}
+
+/* ========================================================================================== */
+@media only screen and (max-width:768px){
+  .sidebar{
+    display: none;
+    /* width: -300px; */
+  }
+  .topbar{
+    display: block
+  }.sidebar.open{
+    width: 300px;
+  }
+}

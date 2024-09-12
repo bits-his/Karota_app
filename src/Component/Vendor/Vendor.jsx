@@ -393,20 +393,6 @@ export default function RegistrationTable() {
                     </FormGroup>
                   </Col>
                 </Row>
-                {/* <Row className="margin-bottom-input">
-                  <Col md={12}>
-                    <FormGroup>
-                      <Label for="companyProfile">Company's Profile</Label>
-                      <Input
-                        onChange={handleChange}
-                        id="companyProfile"
-                        name="companyProfile"
-                        type="file"
-                        className="app_input"
-                      />
-                    </FormGroup>
-                  </Col>
-                </Row> */}
               </>
             )}
             <Row

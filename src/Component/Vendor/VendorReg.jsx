@@ -115,6 +115,7 @@ function VendorReg() {
 
   return (
     <>
+    
       <Card>
         <div
           style={{

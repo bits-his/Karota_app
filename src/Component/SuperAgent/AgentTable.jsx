@@ -45,7 +45,7 @@ export default function AgentTable() {
   }, [getReg]);
 
   return (
-    <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
+    <Card className="app_card2 dashboard_card2 shadow p-4 m-2 mt-2">
       <Row>
         <Col md={12}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -87,7 +87,6 @@ export default function AgentTable() {
                   onChange={({ target: { value } }) => setFilter(value)}
                   placeholder="Search Individual"
                 />
-                
               </div>
             </Col>
             <label
@@ -102,13 +101,17 @@ export default function AgentTable() {
 
         <Row>
           <div className="table_overflow">
-          {loading ? (
-              <Spinner color="warning" className="spinner" type="grow" style={{ margin: "20px auto" }}>
+            {loading ? (
+              <Spinner
+                color="warning"
+                className="spinner"
+                type="grow"
+                style={{ margin: "20px auto" }}
+              >
                 " "
               </Spinner>
-            ) : 
-            data.length === 0 ? 
-            <Table
+            ) : data.length === 0 ? (
+              <Table
                 bordered
                 responsive
                 style={{
@@ -137,8 +140,7 @@ export default function AgentTable() {
                   </tr>
                 </tbody>
               </Table>
-            :
-            (
+            ) : (
               <Table
                 bordered
                 responsive
@@ -170,14 +172,11 @@ export default function AgentTable() {
                       <td className="text-right">{agent.balance}</td>
                       <td className="text-center">
                         <Button
-                        style={{margin:"5px"}}
+                          style={{ margin: "5px" }}
                           color="info"
-                          onClick={() =>
-                            navigate(`/agenttopup`)
-                            
-                          }
+                          onClick={() => navigate(`/agenttopup`)}
                         >
-                         Top up
+                          Top up
                         </Button>
                         <Button
                           color="success"

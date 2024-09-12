@@ -39,6 +39,12 @@ body{
   border: 1px solid #f5c005 !important;
   box-sizing: border-box;
 }
+.app_card2 {
+  border: none !important;
+  border-radius: 5px;
+  border: 1px solid #f5c005 !important;
+  box-sizing: border-box;
+}
 .dd {
   width: 100% !important;
 }
@@ -295,6 +301,11 @@ label {
 } */
 
 .dashboard_card {
+  margin-top: 20px;
+  padding: 30px;
+  min-height: 87vh !important;
+}
+.dashboard_card2 {
   margin-top: 20px;
   padding: 30px;
   min-height: 87vh !important;

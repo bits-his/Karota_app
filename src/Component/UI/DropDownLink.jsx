@@ -7,6 +7,7 @@ const DropdownLink = ({ mainPath, mainLabel, subPaths = [], icon: Icon }) => {
   const location = useLocation();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const goto = (path) => {
     history(path);
@@ -15,6 +16,9 @@ const DropdownLink = ({ mainPath, mainLabel, subPaths = [], icon: Icon }) => {
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   return (
     <>
@@ -22,6 +26,7 @@ const DropdownLink = ({ mainPath, mainLabel, subPaths = [], icon: Icon }) => {
         onClick={() => {
           goto(mainPath);
           toggleDropdown();
+          toggleSidebar();
         }}
         className={`navbar-link-item ${
           location.pathname === mainPath && "navbar-active-side-menu"
@@ -45,7 +50,9 @@ const DropdownLink = ({ mainPath, mainLabel, subPaths = [], icon: Icon }) => {
         subPaths.map((subPath) => (
           <div
             key={subPath.path}
-            onClick={() => goto(subPath.path)}
+            onClick={() => {
+              goto(subPath.path), toggleSidebar();
+            }}
             className={`navbar-link-item-sub ${
               location.pathname === subPath.path && "navbar-active-side-menu"
             }`}

@@ -1,32 +1,114 @@
-/* Navbar component styles */
-.sidebar {
+.sidebar2 {
   background-color: #f5c005;
   height: 100vh;
-  /* overflow-y: auto; */
   margin: 0;
   width: 300px;
   position: sticky;
   top: 0;
+  /* left: -300px;  */
+  transition: left 0.3s ease-in-out;
+  z-index: 10;
 }
- .navbar-logo-container {
+
+/* Sidebar Toggler */
+.sidebar-toggler {
+  display: none;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+  z-index: 20;
+}
+
+@media (max-width: 820px) {
+  .sidebar2 {
+    /* background-color: transparent; */
+    /* left: -100px; */
+    /* display: none;  */
+    left: -500px !important;
+    position: relative;
+  }
+  .search1 {
+    /* width: 50% !important; */
+  }
+  /* .navbar-link-item:hover {
+  transform: scale(0);
+} */
+  .sidebar {
+    background-color: #f5c005;
+    height: 100vh;
+    margin: 0;
+    width: 300px;
+    position: fixed;
+    top: 0;
+    left: -600px;
+    transition: left 0.3s ease-in-out;
+    z-index: 10;
+  }
+  .sidebar-toggler {
+    display: block !important;
+  }
+
+  .sidebar.show {
+    left: 0;
+  }
+  .navbar-link-item:hover {
+    transform: scale(0);
+  }
+}
+@media (max-width: 540px) {
+  .app_title {
+    /* font-size: 14px; */
+  }
+  /* .p_button_super {
+    font-size: 12px !important;
+    width: 100px !important;
+  }
+  hr {
+    width: 50% !important;
+  }
+  .search1 {
+    width: 35% !important;
+  }
+  .label_title1 {
+    width: 13% !important;
+  }
+  .table-responsive {
+    width: 50% !important;
+  }
+  .super_header {
+    width: 50% !important;
+  } */
+  .dashboard_card2{
+    width: 50%;
+  }
+  .app_card2{
+    width: 50%;
+  }
+  body {
+    /* overflow-x: hidden; */
+  }
+}
+
+.navbar-logo-container {
   display: flex;
   align-items: center;
 }
- .navbar-logo-container {
+.navbar-logo-container {
   width: 115px;
   height: 115px;
   border-radius: 100%;
   margin-top: 40px;
   background-color: #fff;
   box-shadow: 0 14px 28px rgba(17, 16, 16, 0.25),
-    0 10px 10px rgba(49, 48, 48, 0.22);
+    0 10px 10px rgba(39, 30, 30, 0.22);
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-inline: auto;
 }
- .navbar-keke-logo {
+.navbar-keke-logo {
   position: absolute;
   width: 100px;
 }
@@ -79,6 +161,9 @@
   color: #fff;
   cursor: pointer;
   transform: scale(1.05);
+  @media (max-width: 768px) {
+    transform: scale(1);
+  }
 }
 
 .navbar-container {
@@ -125,8 +210,8 @@
 }
 
 .navbar-link-item-sub::before {
-  content: '';
-  height: 100% ; /* Adjusted height to match padding */
+  content: "";
+  height: 100%; /* Adjusted height to match padding */
   width: 3px;
   background-color: white; /* Border color */
   position: absolute;
@@ -134,9 +219,9 @@
   top: 0px; /* Adjusted top position to match padding */
   border-radius: 0px;
 }
-.navbar-logout{
-  position: sticky;
-  bottom: 0px;
+.navbar-logout {
+  /* position: sticky; */
+  /* bottom: 0px; */
   color: white;
   background-color: black;
   /* width: 100%; */
@@ -147,4 +232,5 @@
   border-radius: 10px;
   text-align: left;
   padding: 10px 30px;
+  margin-top: 70px;
 }

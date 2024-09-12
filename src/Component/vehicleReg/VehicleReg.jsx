@@ -336,7 +336,7 @@ export default function RegistrationTable() {
                   </FormGroup>
                 </Col>
                 <Col md={4}>
-                  <FormGroup>
+                    <FormGroup>
                     <Label for="color">Color</Label>
                     <Input
                       onChange={handleChange}

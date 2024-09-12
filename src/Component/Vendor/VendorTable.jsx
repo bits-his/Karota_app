@@ -7,8 +7,8 @@ export default function Vehicle() {
     const [] = useState('')
     
   return (
-    <Card className="app_card dashboard_card shadow p-4 m-2 mt-2">
-        <Outlet />
+    <Card className="app_card2 dashboard_card2 shadow p-4 m-2 mt-2">
+      <Outlet />
     </Card>
-  )
+  );
 }

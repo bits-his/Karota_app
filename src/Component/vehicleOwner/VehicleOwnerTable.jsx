@@ -117,6 +117,7 @@ export default function VehicleOwnerTable() {
               <Table
                 bordered
                 responsive
+                striped
                 style={{
                   position: "relative",
                   top: "20px",

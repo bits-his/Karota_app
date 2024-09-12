@@ -23,15 +23,6 @@ export default function AppIndex() {
         <Col md={2} className="m-0 sidebar2">
           {/* <SideBar /> */}
           <Navbar />
-          {/* <div
-            onClick={logOut}
-            className={`navbar-logout ${
-              location.pathname.includes("top-up") && "navbar-active-side-menu"
-            }`}
-          >
-            <GrLogout className="icon shadow" />
-            Log out
-          </div> */}
         </Col>
         <Col md={10}>
           <div

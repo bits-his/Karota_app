@@ -102,9 +102,11 @@ export default function VehicleOwnerTable() {
               </Spinner>
             ) : 
             data.length === 0 ?( // Display empty table if data is empty
+              
             <Table
               bordered
               responsive
+              striped
               style={{
                 position: "relative",
                 top: "20px",
@@ -131,10 +133,11 @@ export default function VehicleOwnerTable() {
               </tbody>
             </Table>
           ): 
-          <div className="table_overflow">  
+          <div className="table_overflow  table-responsive">  
               <Table
                 bordered
                 responsive
+                striped
                 style={{
                   position: "relative",
                   top: "10px",

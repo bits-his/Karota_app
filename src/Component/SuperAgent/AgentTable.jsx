@@ -67,9 +67,9 @@ export default function AgentTable() {
           <hr />
         </Col>
 
-        <Col md={12}>
-          <div style={{ display: "flex", flexDirection: "row", marginTop: 30 }}>
-            <Col md={12}>
+        <Col md={12} xs={12}  sm={12}>
+          <div style={{ display: "flex", flexDirection: "row", marginTop: 50 }}>
+            <Col md={12} xs={12}  sm={12}>
               <div className="search">
                 <CiSearch
                   style={{
@@ -118,6 +118,7 @@ export default function AgentTable() {
                   left: "32px",
                   marginTop: "4px",
                 }}
+                className="table-reponsive"
               >
                 <thead>
                   <tr>
@@ -149,6 +150,7 @@ export default function AgentTable() {
                   left: "32px",
                   marginTop: "4px",
                 }}
+                className="table-reponsive"
               >
                 <thead>
                   <tr>

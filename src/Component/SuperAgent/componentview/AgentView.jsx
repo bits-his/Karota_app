@@ -75,7 +75,7 @@ export default function AgentView() {
        <section style={{ marginBottom: "2rem" }}>
             <div style={{ display: "flex" }}>
               <div style={{ width: "50%", marginBottom: "20px", display: "flex" }}>
-                <p style={{ marginRight: 10, fontSize: 16, fontWeight: "bold" }}>Vendor's name: </p>
+                <p style={{ marginRight: 10, fontSize: 16, fontWeight: "bold" }}>Agent's name: </p>
                 <span>{details?.name}</span>
               </div>
               <div style={{ width: "50%", display: "flex" }}>

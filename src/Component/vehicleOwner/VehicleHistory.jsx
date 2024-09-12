@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Table, Card, Row, Col, Button } from "reactstrap";
 import keke from "../../assets/keke_napep.png";
 import { _get, _post,separator } from "../../Utils/Helper";
+import toast from "react-hot-toast";
 
 export default function VehicleHistory() {
   const navigate = useNavigate();
@@ -126,6 +127,7 @@ export default function VehicleHistory() {
                   </tr> */}
               </tbody>
             </Table>
+         
           </Col>
         </Col>
       </Row>

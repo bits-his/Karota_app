@@ -5,6 +5,7 @@ import { _get, _post, separator } from "../../Utils/Helper";
 import { Button } from "reactstrap";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
+import SuperAgentDropdown from "./SuperAgentDropdown";
 
 function SuperAgentSetup({ selectedVendorValue }) {
 
@@ -93,10 +94,10 @@ function SuperAgentSetup({ selectedVendorValue }) {
           <div className="account-info row">
             <div className="info-input col-md-6">
               <div style={{ marginTop: "15px" }}>
-                <h4> Select Vendor:</h4>
-                <VendorTopUpDropDown
+              <h4> Select Superagent:</h4>
+                <SuperAgentDropdown
                   handleChange={handleChange}
-                  selectedVendorValue={form.vendor_id}
+                  selectedSuperValue={form.superagent_id}
                 />
               </div>
               
@@ -104,10 +105,10 @@ function SuperAgentSetup({ selectedVendorValue }) {
 
             <div className="info-input col-md-6">
               <div style={{ marginTop: "15px" }}>
-                <h4> Select Vendor:</h4>
-                <VendorTopUpDropDown
+                <h4> Select Superagent:</h4>
+                <SuperAgentDropdown
                   handleChange={handleChange}
-                  selectedVendorValue={form.vendor_id}
+                  selectedSuperValue={form.superagent_id}
                 />
               </div>
             </div>

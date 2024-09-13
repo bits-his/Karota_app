@@ -34,6 +34,7 @@ import VehicleHistory from "../Component/vehicleOwner/VehicleHistory";
 import ReportStolen from "../Component/ReportStolen/ReportStolen"
 import UserList from "../Component/user-admin/UserList";
 import NewUsers from "../Component/user-admin/NewUsers";
+import CollectionPointData from "../Component/SignIn/CollectionPointData";
 
 export default function AppNavigation() {
   let Pages = useRoutes([
@@ -184,6 +185,10 @@ export default function AppNavigation() {
         {
           path: "user-admin-new",
           element: <NewUsers />,
+        },
+        {
+          path: "collection-point",
+          // element: <CollectionPointData />,
         },
       ],
     },

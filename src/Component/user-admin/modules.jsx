@@ -59,6 +59,11 @@ export const sidebarModules = [
     icon: FaMagento,
   },
   {
+    title: "Collection Point Data",
+    route: "/collection-point",
+    icon: FaMagento,
+  },
+  {
     title: "Report Stolen",
     route: "/report_stolen",
     icon: GoReport,

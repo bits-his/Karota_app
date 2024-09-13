@@ -89,7 +89,7 @@ function AgentSetup({ selectedVendorValue }) {
     <>
       <div className="app_card dashboard_card m-0 p-0">
         <div style={{ margin: "auto" }}>
-          <h3 className="text-center fw-bold ve-t-u">Vendor Setup</h3>
+          <h3 className="text-center fw-bold ve-t-u">Agent Setup</h3>
           <div className="account-info row">
             <div className="info-input col-md-6">
               <div style={{ marginTop: "15px" }}>

@@ -71,46 +71,48 @@ function AgentSetup() {
               />
             </div>
             <div className="info-input col-md-6">
-                <h4>
-                  {form.payment_value === "percentage"
-                    ? `Percentage (${
-                        form.percentValue ? form.percentValue : 0
-                      })`
-                    : `Amount (${
-                        form.amount ? separator(form.amount) : 0
-                      })`}{" "}
-                  :
-                </h4>
-                {form.payment_value === "percentage" ? (
-                  <input
-                    placeholder="Enter percentage here..."
-                    name="percentValue" // Use the correct name consistent with the form state
-                    value={form.percentValue} // Value from the form state
-                    onChange={handleChange} // Handle the change
-                    style={{
-                      width: "100%",
-                      borderColor: "#dedede",
-                      padding: "10px",
-                      borderRadius: "5px",
-                      border: "1px solid",
-                    }}
-                  />
-                ) : (
-                  <input
-                    placeholder="Enter amount here..."
-                    name="amount"
-                    value={form.amount}
-                    onChange={handleChange}
-                    style={{
-                      width: "100%",
-                      borderColor: "#dedede",
-                      padding: "10px",
-                      borderRadius: "5px",
-                      border: "1px solid",
-                    }}
-                  />
-                )}
-              </div>
+              <h4>
+                {form.payment_value === "percentage"
+                  ? `Percentage (${form.percentValue ? form.percentValue : 0})`
+                  : `Amount (${form.amount ? separator(form.amount) : 0})`}{" "}
+                :
+              </h4>
+              {form.payment_value === "percentage" ? (
+                <input
+                  placeholder="Enter percentage here..."
+                  type="number"
+                  name="percentValue"
+                  value={form.percentValue}
+                  min="1"
+                  max="100"
+                  onChange={(e) => {
+                    const value = Math.max(1, Math.min(100, e.target.value));
+                    handleChange({ target: { name: e.target.name, value } });
+                  }}
+                  style={{
+                    width: "100%",
+                    borderColor: "#dedede",
+                    padding: "10px",
+                    borderRadius: "5px",
+                    border: "1px solid",
+                  }}
+                />
+              ) : (
+                <input
+                  placeholder="Enter amount here..."
+                  name="amount"
+                  value={form.amount}
+                  onChange={handleChange}
+                  style={{
+                    width: "100%",
+                    borderColor: "#dedede",
+                    padding: "10px",
+                    borderRadius: "5px",
+                    border: "1px solid",
+                  }}
+                />
+              )}
+            </div>
           </div>
 
           <div className="transaction-details">
@@ -127,7 +129,9 @@ function AgentSetup() {
                 </p>
                 <p>
                   {form.payment_value === "percentage"
-                    ? `PERCENTAGE: ${form.percentValue ? form.percentValue : 0}%`
+                    ? `PERCENTAGE: ${
+                        form.percentValue ? form.percentValue : 0
+                      }%`
                     : `AMOUNT: ${form.amount ? separator(form.amount) : 0} `}
                 </p>
               </div>

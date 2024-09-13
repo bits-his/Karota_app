@@ -129,9 +129,15 @@ function VendorSetup({ selectedVendorValue }) {
                 {form.payment_value === "percentage" ? (
                   <input
                     placeholder="Enter percentage here..."
-                    name="percentValue" // Use the correct name consistent with the form state
-                    value={form.percentValue} // Value from the form state
-                    onChange={handleChange} // Handle the change
+                    type="number"
+                    name="percentValue"
+                    value={form.percentValue}
+                    min="1"
+                    max="100"
+                    onChange={(e) => {
+                      const value = Math.max(1, Math.min(100, e.target.value));
+                      handleChange({ target: { name: e.target.name, value } });
+                    }}
                     style={{
                       width: "100%",
                       borderColor: "#dedede",
@@ -172,7 +178,9 @@ function VendorSetup({ selectedVendorValue }) {
                 </p>
                 <p>
                   {form.payment_value === "percentage"
-                    ? `PERCENTAGE: ${form.percentValue ? form.percentValue : 0}%`
+                    ? `PERCENTAGE: ${
+                        form.percentValue ? form.percentValue : 0
+                      }%`
                     : `AMOUNT: ${form.amount ? separator(form.amount) : 0} `}
                 </p>
               </div>

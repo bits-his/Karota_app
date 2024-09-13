@@ -5,6 +5,7 @@ import { Button } from "reactstrap";
 import SuperDropdown from "./SuperDropdown";
 import AgentDropDown from "../vehicleOwner/AgentDropDown";
 import toast from "react-hot-toast";
+import PaymentType from "../Component/PaymentType";
 
 function AgentSetup() {
   const [form, setForm] = useState({});
@@ -57,29 +58,59 @@ function AgentSetup() {
           <div className="account-info row">
             <div className="info-input col-md-6">
               <h4>Agent :</h4>
-              <SuperDropdown
-                handleChange={handleChange}
-                selectedSuperValue={form.super_agent_id}
-              />
-            </div>
-            <div className="info-input col-md-6">
-              <h4>Payment Type:</h4>
               <AgentDropDown
                 handleChange={handleChange}
                 selectedAgentValue={form.agent_id}
               />
             </div>
             <div className="info-input col-md-6">
-              <h4>Amount:</h4>
-              <input
-                className="form-control"
-                placeholder="Enter amount here..."
-                onChange={handleChange}
-                name="amount"
-                value={form.amount}
-                type="number"
+              <h4> Payment Type:</h4>
+              <PaymentType
+                handleChange={handleChange}
+                paymentValue={form.payment_value}
               />
             </div>
+            <div className="info-input col-md-6">
+                <h4>
+                  {form.payment_value === "percentage"
+                    ? `Percentage (${
+                        form.percentValue ? form.percentValue : 0
+                      })`
+                    : `Amount (${
+                        form.amount ? separator(form.amount) : 0
+                      })`}{" "}
+                  :
+                </h4>
+                {form.payment_value === "percentage" ? (
+                  <input
+                    placeholder="Enter percentage here..."
+                    name="percentValue" // Use the correct name consistent with the form state
+                    value={form.percentValue} // Value from the form state
+                    onChange={handleChange} // Handle the change
+                    style={{
+                      width: "100%",
+                      borderColor: "#dedede",
+                      padding: "10px",
+                      borderRadius: "5px",
+                      border: "1px solid",
+                    }}
+                  />
+                ) : (
+                  <input
+                    placeholder="Enter amount here..."
+                    name="amount"
+                    value={form.amount}
+                    onChange={handleChange}
+                    style={{
+                      width: "100%",
+                      borderColor: "#dedede",
+                      padding: "10px",
+                      borderRadius: "5px",
+                      border: "1px solid",
+                    }}
+                  />
+                )}
+              </div>
           </div>
 
           <div className="transaction-details">
@@ -92,11 +123,12 @@ function AgentSetup() {
               </div>
               <div className="full-width">
                 <p>
-                  Payment Type: <span>{form.super_agent_id}</span>
+                  Payment Type: <span>{form.payment_value}</span>
                 </p>
                 <p>
-                  AMOUNT:{" "}
-                  <span>{form.amount ? separator(form.amount) : 0}</span>
+                  {form.payment_value === "percentage"
+                    ? `PERCENTAGE: ${form.percentValue ? form.percentValue : 0}%`
+                    : `AMOUNT: ${form.amount ? separator(form.amount) : 0} `}
                 </p>
               </div>
             </div>

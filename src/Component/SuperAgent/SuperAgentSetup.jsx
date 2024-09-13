@@ -6,6 +6,7 @@ import SuperDropdown from "./SuperDropdown";
 import VendorTopUpDropDown from "../Vendor/VendorTopUpDropDown";
 import toast from "react-hot-toast";
 import { _post, separator } from "../../Utils/Helper";
+import PaymentType from "../Component/PaymentType";
 
 function SuperAgentSetup() {
   const navigate = useNavigate();
@@ -68,9 +69,9 @@ function SuperAgentSetup() {
           </div>
           <div className="info-input col-md-6">
             <h4> Payment Type:</h4>
-            <VendorTopUpDropDown
+            <PaymentType
               handleChange={handleChange}
-              selectedVendorValue={form.vendor_id}
+              paymentValue={form.payment_value}
             />
           </div>
 
@@ -94,7 +95,7 @@ function SuperAgentSetup() {
               Super Agent : <span>{form.superagent_name}</span>
             </p>
             <p>
-              Payment Type : <span>{form.vendor_name}</span>
+              Payment Type : <span>{form.payment_value}</span>
             </p>
 
             <p>

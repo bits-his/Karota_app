@@ -85,7 +85,7 @@ export const LicensPDF = ({ data = {} }) => {
         const canvas = document.createElement("canvas");
         await QRCode.toCanvas(
           canvas,
-          `https://verify.barinstorm.ng/vehicles?query_type=verify&plate_no=${data?.plate_no}`
+          `https://keke-verify.barinstorm.ng/vehicles?query_type=verify&plate_no=${data?.plate_no}`
         );
         setQr(canvas.toDataURL());
       } catch (err) {
@@ -145,10 +145,10 @@ export const LicensPDF = ({ data = {} }) => {
                 {qr && <Image style={styles.qrCodeContainer} src={qr} />}
                 <Text>Verify your Vehicle at</Text>
                 <Link
-                  src={`https://verify.brainstorm.ng/verify/${data?.plate_no}`}
+                  src={`https://keke-verify.brainstorm.ng/verify/${data?.plate_no}`}
                   style={styles.qrLink}
                 >
-                  {`https://verify.brainstorm.ng/verify/${data?.plate_no}`}
+                  {`https://keke-verify.brainstorm.ng/verify/${data?.plate_no}`}
                 </Link>
               </View>
             </View>

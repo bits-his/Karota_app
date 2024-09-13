@@ -65,13 +65,16 @@ export default function Login() {
           const route = getDefaultRoute(firstItem);
 
           if (route) {
-            if (route.route) {
-              navigate(route.route);
-            } else {
-              navigate(route.path);
-            }
+            // if (route.route) {
+            //   navigate(route.route);
+            //   console.log(route,'route.route')
+            // } else {
+            //   navigate(route.path);
+            //      console.log("route.path");
+            // }
+            navigate("/dashboard");
           } else {
-            navigate("/");
+            navigate("/dashboard");
           }
         },
         (err) => {

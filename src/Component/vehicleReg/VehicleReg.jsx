@@ -55,7 +55,7 @@ export default function RegistrationTable() {
 
     if (Object.keys(newErrors).length === 0) {
       setLoading(true);
-      //console.log(form)
+      console.log(form)
       // Submit the form data
       _post(
         "vehicles/registration",

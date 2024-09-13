@@ -47,9 +47,7 @@ export default function TopUp() {
 
  }
 
-const dailyTopUp = useCallback(() => {
-  _get("daily_top_up", (resp) => toast(resp.message));
-});
+
 
   const goto = useNavigate();
 
@@ -471,7 +469,6 @@ const dailyTopUp = useCallback(() => {
             <></>
           )} */}
         </Row>
-        <button onClick={dailyTopUp}>fghj</button>
       </Card>
     </>
   );

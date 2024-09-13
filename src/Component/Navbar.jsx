@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import kekeLogo from "../assets/keke_napep.png";
 import { useSelector } from "react-redux";
@@ -60,6 +60,7 @@ export default function Navbar() {
 
         <div className="navbar-menu-container">
           <section className="navbar-link-container">
+        
             {sidebarModules.map((module, index) => {
               // Check if the user has access to the module
               if (user.accessTo && user.accessTo.includes(module.title)) {

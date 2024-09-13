@@ -7,7 +7,6 @@ import {
   MY_WALLET,
 } from "../types";
 import { _get, server_url } from "../../Utils/Helper";
-// import { useHistory } from 'react-router-dom';
 
 export function login({ username, password, history }, success, error) {
   return (dispatch) => {
@@ -86,7 +85,6 @@ export function login({ username, password, history }, success, error) {
       });
   };
 }
-
 export async function getUserProfile(_token) {
   try {
     let response = await fetch(`${server_url}/verify-token`, {
@@ -95,8 +93,16 @@ export async function getUserProfile(_token) {
         authorization: _token,
       },
     });
+
     let data = await response.json();
-    return data;
+
+    console.log(data);
+
+    if (data.success) {
+      return data;
+    } else {
+      throw new Error("Failed to fetch user profile");
+    }
   } catch (error) {
     if (error.status === 401) {
       logout();
@@ -169,7 +175,7 @@ export function init(history, success = (f) => f, error = (f) => f) {
   };
 }
 
-export function logout(history) {
+export function logout(history = (f) => f) {
   return (dispatch) => {
     localStorage.removeItem("@@token");
     history("/login");

@@ -1,23 +1,17 @@
 import React, { useState, useCallback, useEffect } from "react";
-import Select from "react-select";
-import VendorTopUpDropDown from "../Vendor/VendorTopUpDropDown";
-import { _get, _post, separator } from "../../Utils/Helper";
+import { _get } from "../../Utils/Helper";
+import { useNavigate } from "react-router-dom";
 import { Button } from "reactstrap";
+import SuperDropdown from "./SuperDropdown";
+import VendorTopUpDropDown from "../Vendor/VendorTopUpDropDown";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router";
+import { _post, separator } from "../../Utils/Helper";
 
-function SuperAgentSetup({ selectedVendorValue }) {
+function SuperAgentSetup() {
+  const navigate = useNavigate();
 
-  const [data, setData] = useState([]);
-  const [selectedVendor, setSelectedVendor] = useState(selectedVendorValue);
-  const navigate = useNavigate()
+  const [form, setForm] = useState({});
   const [loading, setLoading] = useState(false);
-
-  const [form, setForm] = useState({
-    vendor_id: '',
-    vendor_name: '',
-  });
-
   const handleChange = ({ target: { name, value } }) => {
     setForm((prevForm) => ({
       ...prevForm,
@@ -25,138 +19,94 @@ function SuperAgentSetup({ selectedVendorValue }) {
     }));
   };
 
-
-  const getVendors = useCallback(() => {
-    setLoading(true);
-    _get(`vendors?query_type=select-all`, (resp) => {
-      setLoading(false);
-      if (resp.success && resp.result) {
-        const formattedData = resp.result.map((vendor) => ({
-          value: vendor.id,
-          label: vendor.vendor_name,
-        }));
-        setData(formattedData);
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    getVendors();
-  }, [getVendors]);
-
-  const handleSelectVendorChange = (selectedOption) => {
-    setSelectedVendor(selectedOption);
-    handleSelectVendorChange({
-      target: { name: "vendor", value: selectedOption.value },
-    });
-  };
-
   const submitTopUp = () => {
     // e.preventDefault();
-    const obj = {
-      source_id: 0,
-      destination_id: form.vendor_id,
-      query_type: 'vendor_top_up',
-      type_of_top_up:"vendor_top_up",
-      ...form
-    }
-    _post(
-      "top-up/create",
-      obj,
-      (res) => {
-        if(res.success){
-          setLoading(false);
-          toast.success("vendor top_up successfully");
-          navigate("/vendorReg");
-        }
-      },
-      (err) => {
-        console.log(err)
-        toast.error('Error occoured while creating top up ');
-        setLoading(false)
-      }
-    );
+    // const obj = {
+    //   source_id: form.vendor_id,
+    //   destination_id: form.super_agent_id,
+    //   query_type: "top_up",
+    //   type_of_top_up: "super_agent_top_up",
+    //   out_type: "vendor_top_up",
+    //   ...form,
+    // };
+    // _post(
+    //   "top-up/create",
+    //   obj,
+    //   (res) => {
+    //     if (res.success) {
+    //       setLoading(false);
+    //       toast.success("super agent top up created successfully");
+    //       navigate("/superagenttable");
+    //     }
+    //   },
+    //   (error) => {
+    //     setLoading(false);
+    //     toast.error(
+    //       "An error occurred while creating super agent top up: " +
+    //         error.message
+    //     );
+    //   }
+    // );
 
-    if (form.amount <= 0) {
-      toast.error("Amount should be above 100.");
-      return;
-    }
-
-    //console.log(form);
+    console.log(form);
   };
 
   return (
     <>
+      {/* {JSON.stringify(form)} */}
       <div className="app_card dashboard_card m-0 p-0">
-        <div style={{ margin: "auto" }}>
-          <h3 className="text-center fw-bold ve-t-u">Super Agent Setup</h3>
-          <div className="account-info row">
-            <div className="info-input col-md-6">
-              <div style={{ marginTop: "15px" }}>
-                <h4> Select Vendor:</h4>
-                <VendorTopUpDropDown
-                  handleChange={handleChange}
-                  selectedVendorValue={form.vendor_id}
-                />
-              </div>
-              
-            </div>
+        <h3 className="text-center fw-bold">Super Agent Setup</h3>
 
-            <div className="info-input col-md-6">
-              <div style={{ marginTop: "15px" }}>
-                <h4> Select Vendor:</h4>
-                <VendorTopUpDropDown
-                  handleChange={handleChange}
-                  selectedVendorValue={form.vendor_id}
-                />
-              </div>
-            </div>
+        <div className="account-info row">
+          {/* {JSON.stringify(form)} */}
+          <div className="info-input col-md-6">
+            <h4> SuperAgent :</h4>
+            <SuperDropdown
+              handleChange={handleChange}
+              selectedSuperValue={form.superagent_id}
+            />
+          </div>
+          <div className="info-input col-md-6">
+            <h4> Payment Type:</h4>
+            <VendorTopUpDropDown
+              handleChange={handleChange}
+              selectedVendorValue={form.vendor_id}
+            />
+          </div>
 
-            <div>
-              <div className="info-input col-md-6">
-                <h4>Amount ({form.amount ? separator(form.amount) : 0}):</h4>
-                <input
-                  placeholder="Enter amount here..."
-                  name = 'amount'
-                  value={form.amount}
-                  onChange={handleChange}
-                  style={{
-                    width: "100%",
-                    borderColor: "#dedede",
-                    padding: "10px",
-                    borderRadius: "5px",
-                    border: "1px solid",
-                  }}
-                />
-              </div>
-              </div>
-             
-            </div>
-             <div className="transaction-details">
-                <h3>Setup Details</h3>
-                <div className="details">
-                  <div className="full-width">
-                    <p>
-                      VENDOR NAME: <span>{form.vendor_name}</span>
-                    </p>
-                  </div>
-                  <div className="full-width">
-                    <p>
-                      VENDOR ID: <span>{form.vendor_id}</span>
-                    </p>
-                    <p>
-                      AMOUNT: <span>{form.amount ? separator(form.amount) : 0}</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            <div className="top-up-submit">
-              {/* <Button onClick={submitTopUp}>Submit</Button> */}
-              <Button onClick={submitTopUp}>
+          <div className="info-input col-md-6">
+            <h4>Amount :</h4>
+            <input
+              className="form-control"
+              placeholder="Enter amount here..."
+              onChange={handleChange}
+              name="amount"
+              value={form.amount}
+              type="number"
+            />
+          </div>
+        </div>
+
+        <div className="transaction-details">
+          <h3>Transaction Details</h3>
+          <div className="details">
+            <p>
+              Super Agent : <span>{form.superagent_name}</span>
+            </p>
+            <p>
+              Payment Type : <span>{form.vendor_name}</span>
+            </p>
+
+            <p>
+              Amount: <span>{form.amount ? separator(form.amount) : 0}</span>
+            </p>
+          </div>
+        </div>
+        <div className="top-up-submit">
+          <Button onClick={submitTopUp}>
             {loading ? "Submitting..." : "Submit"}
           </Button>
-            </div>
-          </div>
+        </div>
       </div>
     </>
   );

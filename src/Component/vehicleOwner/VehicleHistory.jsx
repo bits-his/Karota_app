@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Table, Card, Row, Col, Button } from "reactstrap";
 import keke from "../../assets/keke_napep.png";
 import { _get, _post,separator } from "../../Utils/Helper";
+import toast from "react-hot-toast";
 
 export default function VehicleHistory() {
   const navigate = useNavigate();
@@ -30,6 +31,14 @@ export default function VehicleHistory() {
       }
     );
   }, [owner_id]);
+  const dailyTopUp =() => {
+ 
+    _get("daily_top_up", (resp) => {
+      toast.success(resp.message)
+            getReg();
+    });
+ 
+  }
 
   useEffect(() => {
     getReg();
@@ -92,21 +101,23 @@ export default function VehicleHistory() {
                 </tr>
               </thead>
               <tbody>
-              {data ? (data?.map((item, index) => (
+                {data ? (
+                  data?.map((item, index) => (
                     <tr key={index}>
                       <td>{item.t_date}</td>
                       <td>{item.type_of_top_up}</td>
                       <td>{item.description}</td>
                       <td className="text-right">{separator(item.credit)}</td>
-                      <td className="text-right" >{separator(item.debit)}</td>
+                      <td className="text-right">{separator(item.debit)}</td>
                     </tr>
                   ))
-                  ): (
-                    <tr>
-                      <td colSpan="5" className="text-center">No transactions have been made.</td>
-                    </tr>
-                  )
-                  }
+                ) : (
+                  <tr>
+                    <td colSpan="5" className="text-center">
+                      No transactions have been made.
+                    </td>
+                  </tr>
+                )}
                 {/* <tr>
                     <td>
                       {data.t_date}
@@ -127,6 +138,7 @@ export default function VehicleHistory() {
               </tbody>
             </Table>
           </Col>
+          <button className="btn btn-primary " style={{padding: 20}} onClick={dailyTopUp}>Daily Top UP</button>
         </Col>
       </Row>
     </Card>

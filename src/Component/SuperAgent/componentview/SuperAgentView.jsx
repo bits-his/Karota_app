@@ -17,7 +17,7 @@ export default function SuperAgentView() {
     _get(`superagent?query_type=select&id=${owner_id}`, (resp) => {
       if (resp.success && resp.results) {
         setData(resp.results);
-        //console.log(resp.results);
+        console.log(resp.results);
       }
     });
   }, [owner_id]);

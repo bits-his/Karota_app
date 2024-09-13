@@ -7,7 +7,7 @@ import {
   StyleSheet,
   Text,
   View,
-  Link
+  Link,
 } from "@react-pdf/renderer";
 import React, { useEffect, useState } from "react";
 import DM_SANS_NORMAL from "../../../assets/DM_Sans/DM_Sans/static/DMSans_24pt-SemiBold.ttf";
@@ -85,7 +85,7 @@ export const LicensPDF = ({ data = {} }) => {
         const canvas = document.createElement("canvas");
         await QRCode.toCanvas(
           canvas,
-          `http://127.0.0.1:5174/vehicles?query_type=verify&plate_no=${data?.plate_no}`
+          `https://keke-verify.barinstorm.ng/vehicles?query_type=verify&plate_no=${data?.plate_no}`
         );
         setQr(canvas.toDataURL());
       } catch (err) {
@@ -123,9 +123,15 @@ export const LicensPDF = ({ data = {} }) => {
                   ["Vehicle Model", data?.vehicle_model],
                   ["Color", data?.color],
                   ["Engine Capacity", data?.engine_capacity],
-                  ["Transaction Date", moment(data?.create_at).format("D MMMM, YYYY")],
+                  [
+                    "Transaction Date",
+                    moment(data?.create_at).format("D MMMM, YYYY"),
+                  ],
                   ["Date Issued", moment().format("YYYY/MM/DD")],
-                  ["Expiry Date", moment(data?.expiry_date).format("YYYY/MM/DD")],
+                  [
+                    "Expiry Date",
+                    moment(data?.expiry_date).format("YYYY/MM/DD"),
+                  ],
                 ].map(([label, value], index) => (
                   <View key={index} style={styles.section}>
                     <Text style={styles.label}>{label}:</Text>
@@ -139,10 +145,10 @@ export const LicensPDF = ({ data = {} }) => {
                 {qr && <Image style={styles.qrCodeContainer} src={qr} />}
                 <Text>Verify your Vehicle at</Text>
                 <Link
-                  src={`http://localhost:5174/verify/${data?.plate_no}`}
+                  src={`https://keke-verify.brainstorm.ng/verify/${data?.plate_no}`}
                   style={styles.qrLink}
                 >
-                  {`http://localhost:5174/verify/${data?.plate_no}`}
+                  {`https://keke-verify.brainstorm.ng/verify/${data?.plate_no}`}
                 </Link>
               </View>
             </View>

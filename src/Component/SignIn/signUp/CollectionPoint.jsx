@@ -95,18 +95,24 @@ export default function TopUp() {
   return (
     <>
       <Card className="app_card dashboard_card shadow m-2 mt-2">
-      <Row>
-        <Col md={12}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems:'center'}}>
-            <h4 className="app_title"> Point of Collection</h4>
-          </div>
-        </Col>
-      </Row>
+        <Row>
+          <Col md={12}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <h4 className="app_title"> Point of Collection</h4>
+            </div>
+          </Col>
+        </Row>
 
-      <hr />
-      <Row>
-        <Col md={12}>
-          <div className='search-bar-box' >
+        <hr />
+        <Row>
+          <Col md={12}>
+            <div className="search-bar-box">
               <div className="search">
                 <CiSearch
                   style={{
@@ -129,26 +135,22 @@ export default function TopUp() {
                   placeholder="Search Vehicle Owner"
                 />
               </div>
-              <label
-              onClick={search}
-              className="label_title" >
-              Search
-            </label>
-          </div>
-        </Col>
-            <div className="table_overflow">
-              {
-              loading ? (
-                <Spinner
-                  color="warning"
-                  className="spinner"
-                  type="grow"
-                  style={{ margin: "20px auto" }}
-                >
-                  ""
-                </Spinner>
-              ) :
-              data?.length === 0 ?
+              <label onClick={search} className="label_title">
+                Search
+              </label>
+            </div>
+          </Col>
+          <div className="table_overflow">
+            {loading ? (
+              <Spinner
+                color="warning"
+                className="spinner"
+                type="grow"
+                style={{ margin: "20px auto" }}
+              >
+                ""
+              </Spinner>
+            ) : data?.length === 0 ? (
               <Table
                 bordered
                 responsive
@@ -176,64 +178,62 @@ export default function TopUp() {
                   </tr>
                 </tbody>
               </Table>
-              :
-              (
-                <Table
-                  bordered
-                  responsive
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    marginTop: "4px",
-                  }}
-                >
-                  <thead>
-                    <tr>
-                      <th>Vehicle ID.</th>
-                      <th>Plate No.</th>
-                      <th>Chasis No.</th>
-                      <th>Balance (₦)</th>
-                      <th>Action</th>
+            ) : (
+              <Table
+                bordered
+                responsive
+                style={{
+                  position: "relative",
+                  width: "100%",
+                  marginTop: "4px",
+                }}
+              >
+                <thead>
+                  <tr>
+                    <th>Vehicle ID.</th>
+                    <th>Plate No.</th>
+                    <th>Chasis No.</th>
+                    <th>Balance (₦)</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data?.map((vehicle, idx) => (
+                    <tr key={idx}>
+                      <td>{vehicle.vehicle_id}</td>
+                      <td>{vehicle.plate_no}</td>
+                      <td>{vehicle.chasis_no}</td>
+                      <td className="text-right">
+                        {parseFloat(vehicle.balance).toFixed(2)}
+                      </td>
+                      <td className="text-center p-2">
+                        <ButtonGroup>
+                          <Button
+                            onClick={() => {
+                              navigate(`${vehicle.vehicle_id}`);
+                              setCurrentItem(vehicle);
+                              //handlePay(id);
+                            }}
+                            color="success"
+                          >
+                            Transactions
+                          </Button>
+                          <Button
+                            color="info"
+                            onClick={() => {
+                              navigate(`/licens-pdf/${vehicle.vehicle_id}`);
+                            }}
+                          >
+                            View License
+                          </Button>
+                        </ButtonGroup>
+                      </td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    {data?.map((vehicle, idx) => (
-                      <tr key={idx}>
-                        <td>{vehicle.vehicle_id}</td>
-                        <td>{vehicle.plate_no}</td>
-                        <td>{vehicle.chasis_no}</td>
-                        <td className="text-right">
-                          {parseFloat(vehicle.balance).toFixed(2)}
-                        </td>
-                        <td className="text-center p-2">
-                          <ButtonGroup>
-                            <Button
-                              onClick={() => {
-                                navigate(`${vehicle.vehicle_id}`)
-                                setCurrentItem(vehicle);
-                                //handlePay(id);
-                              }}
-                              color="success"
-                            >
-                              Transactions
-                            </Button>
-                            <Button
-                              color="info"
-                              onClick={() => {
-                                navigate(`/licens-pdf/${vehicle.vehicle_id}`);
-                              }}
-                            >
-                              View License
-                            </Button>
-                          </ButtonGroup>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </Table>
-              )}
-            </div>
-    
+                  ))}
+                </tbody>
+              </Table>
+            )}
+          </div>
 
           {/* <Modal
             isOpen={modal}
@@ -305,7 +305,6 @@ export default function TopUp() {
             </ModalBody>
           </Modal> */}
 
-          
           {/* {fund ? (
             <div>
               <Form

@@ -18,6 +18,10 @@ export const sidebarModules = [
         label: "Vendors Top Up",
         path: "/vendortopup",
       },
+      {
+        label: "Vendors Setup",
+        path: "/vendorsetup",
+      },
     ],
   },
   {
@@ -29,6 +33,10 @@ export const sidebarModules = [
         label: "Super Agents Top Up",
         path: "/superagenttopup",
       },
+      {
+        label: "Super Agents Setup",
+        path: "/superagentsetup",
+      },
     ],
   },
   {
@@ -39,6 +47,10 @@ export const sidebarModules = [
       {
         label: "Agents Top Up",
         path: "/agenttopup",
+      },
+      {
+        label: "Agents Setup",
+        path: "/agentsetup",
       },
     ],
   },

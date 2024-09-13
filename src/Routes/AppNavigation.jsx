@@ -34,6 +34,9 @@ import VehicleHistory from "../Component/vehicleOwner/VehicleHistory";
 import ReportStolen from "../Component/ReportStolen/ReportStolen"
 import UserList from "../Component/user-admin/UserList";
 import NewUsers from "../Component/user-admin/NewUsers";
+import VendorSetup from "../Component/Vendor/VendorSetup";
+import SuperAgentSetup from "../Component/SuperAgent/SuperAgentSetup";
+import AgentSetup from "../Component/SuperAgent/AgentSetup";
 
 export default function AppNavigation() {
   let Pages = useRoutes([
@@ -96,6 +99,20 @@ export default function AppNavigation() {
           path: "/agenttopup",
           element: <AgentTopUp />,
         },
+
+        {
+          path: "/vendorsetup",
+          element: <VendorSetup />,
+        },
+        {
+          path: "/superagentsetup",
+          element: <SuperAgentSetup/>,
+        },
+        {
+          path: "/agentsetup",
+          element: <AgentSetup />,
+        },
+
         {
           path: "vendor",
           element: <Vendor />,
